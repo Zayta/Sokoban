@@ -61,12 +61,12 @@ public class BiMap<K,V> {
 
     public String toString()
     {
-        String ret = "Key Size: "+map.size()+"\n";//todo implement
+        String ret = "Size: "+map.size()+"\n";
         for (K name: map.keySet()){
 
-//            String key =name.toString();
+            String key =name.toString();
             String value = map.get(name).toString();
-            ret+=(value+"\n");
+            ret+=("\n("+key+", "+value+"\n");
 
         }
         return ret;

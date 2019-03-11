@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.ComponentMapper;
 
 import exp.zhen.zayta.game.quest.component.labels.id.MortalTag;
 import exp.zhen.zayta.game.quest.component.properties.movement.Position;
-import exp.zhen.zayta.game.quest.entity.gameObjects.StoneTag;
+import exp.zhen.zayta.game.quest.mode.stone_gathering.gameObjects.StoneTag;
 import exp.zhen.zayta.game.quest.component.properties.visual.AnimationComponent;
 import exp.zhen.zayta.game.quest.component.properties.movement.CircularBoundsComponent;
 import exp.zhen.zayta.game.quest.component.properties.movement.DimensionComponent;

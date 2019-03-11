@@ -1,4 +1,4 @@
-package exp.zhen.zayta.game.quest.entity.gameObjects;
+package exp.zhen.zayta.game.quest.mode.stone_gathering.gameObjects;
 
 import com.badlogic.ashley.core.Component;
 

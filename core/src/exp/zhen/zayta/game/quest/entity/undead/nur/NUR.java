@@ -43,7 +43,7 @@ public class NUR extends MovingEntityMaker implements GameObjectMaker {
     }
 
 
-    private static HashMap<Undead,Nighter> nighters = new HashMap<Undead, Nighter>();
+    public static HashMap<Undead,Nighter> nighters = new HashMap<Undead, Nighter>();
 
 
 

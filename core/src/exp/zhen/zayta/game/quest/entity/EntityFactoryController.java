@@ -12,7 +12,7 @@ public class EntityFactoryController {
     }
     public void addEntities() {
         entityFactory.addBackground();
-        addStones();
+//        addStones();
         addCivilians();
         addPlayer();
     }
@@ -21,7 +21,7 @@ public class EntityFactoryController {
         Vector2[] points = Arrangements.circle(numStones,SizeManager.WORLD_CENTER_X,SizeManager.WORLD_CENTER_Y,SizeManager.WORLD_WIDTH/3);
         for(int i =0; i<numStones; i++)
         {
-            entityFactory.addStone(points[i].x,points[i].y);
+//            entityFactory.addStone(points[i].x,points[i].y);
         }
     }
     private void addCivilians(){

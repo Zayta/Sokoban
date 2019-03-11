@@ -25,8 +25,9 @@ import exp.zhen.zayta.game.quest.system.AnimationSystem;
 import exp.zhen.zayta.game.quest.system.movement.BoundsSystem;
 import exp.zhen.zayta.game.quest.system.CleanUpSystem;
 import exp.zhen.zayta.game.quest.system.collision.UndeadXCivilianCollisionSystem;
-import exp.zhen.zayta.game.quest.system.collision.NighterXStoneCollisionSystem;
+import exp.zhen.zayta.game.quest.mode.stone_gathering.StonesSystem;
 import exp.zhen.zayta.game.quest.system.movement.PositionTrackerSystem;
+import exp.zhen.zayta.game.quest.system.movement.movementLimitations.BlockPauseSystem;
 import exp.zhen.zayta.game.quest.system.movement.movementLimitations.BlocksSystem;
 import exp.zhen.zayta.game.quest.system.render.HudRenderSystem;
 import exp.zhen.zayta.game.quest.system.movement.MovementSystem;
@@ -95,12 +96,14 @@ public class Quest implements Screen {
         engine.addSystem(new WorldWrapPauseSystem(viewport));
         engine.addSystem(new WorldWrapChangeDirectionSystem(viewport));
         engine.addSystem(new BlocksSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
+//        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new PositionTrackerSystem());
         engine.addSystem(new CleanUpSystem());
         engine.addSystem(new AnimationSystem());
     }
     private void addRenderSystems(){
+//        engine.addSystem(new CameraUpdater(orthographicCamera));
         engine.addSystem(new QuestRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(AssetDescriptors.FONT)*/));
 
@@ -112,7 +115,7 @@ public class Quest implements Screen {
     }
 
     private void addGameControllingSystems(){
-        engine.addSystem(new NighterXStoneCollisionSystem(game,engine));
+        engine.addSystem(new StonesSystem(game,engine));
         engine.addSystem(new UndeadXCivilianCollisionSystem(game,engine));
     }
 

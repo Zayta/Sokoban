@@ -170,56 +170,67 @@
  <tile id="75">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="table" value=""/>
   </properties>
  </tile>
  <tile id="76">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="dead_person" value=""/>
   </properties>
  </tile>
  <tile id="77">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="dead_person" value=""/>
   </properties>
  </tile>
  <tile id="78">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="dead_person" value=""/>
   </properties>
  </tile>
  <tile id="79">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="dead_person" value=""/>
   </properties>
  </tile>
  <tile id="80">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="table" value=""/>
   </properties>
  </tile>
  <tile id="81">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="table" value=""/>
   </properties>
  </tile>
  <tile id="82">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="table" value=""/>
   </properties>
  </tile>
  <tile id="83">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="fridge" value=""/>
   </properties>
  </tile>
  <tile id="84">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="fridge" value=""/>
   </properties>
  </tile>
  <tile id="85">
   <properties>
    <property name="block" type="bool" value="true"/>
+   <property name="fridge" value=""/>
   </properties>
  </tile>
  <tile id="86">

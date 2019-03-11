@@ -13,8 +13,7 @@ public class PositionTracker {
         nightersBiMap(PositionTracker.nightersBiMap),
         wieldersBiMap(PositionTracker.wieldersBiMap),
         monstersBiMap(PositionTracker.monstersBiMap),
-        civiliansBiMap(PositionTracker.civiliansBiMap),
-        objectsBiMap(PositionTracker.objectsBiMap);
+        civiliansBiMap(PositionTracker.civiliansBiMap);
 
         private BiMap <Integer, Entity> biMap;
         PositionBiMap(BiMap<Integer,Entity> biMap){
@@ -28,7 +27,6 @@ public class PositionTracker {
     private static BiMap<Integer,Entity> wieldersBiMap = new BiMap<Integer, Entity>();
     private static BiMap<Integer,Entity> monstersBiMap = new BiMap<Integer, Entity>();
     private static BiMap<Integer,Entity> civiliansBiMap = new BiMap<Integer, Entity>();
-    private static BiMap<Integer,Entity> objectsBiMap = new BiMap<Integer, Entity>();
 
 
     public static void updateBiMap(BiMap<Integer,Entity> biMap,Entity entity, float x, float y){
@@ -37,15 +35,15 @@ public class PositionTracker {
         biMap.put(key,entity);
     }
 
-    public static int generateKey(float left, float bottom){
-        int i = (int)(bottom/SizeManager.maxObjHeight),j = (int)(left/SizeManager.maxObjWidth)/*, n= mapWidth/maxObjWidth*/;
-        return i*(int)SizeManager.maxObjWidth+j;
+    public static int n = (int)(SizeManager.WORLD_WIDTH/SizeManager.maxObjWidth);
+    public static int generateKey(float centerX, float centerY){
+        int i = (int)(centerY/SizeManager.maxObjHeight),j = (int)(centerX/SizeManager.maxObjWidth);
+        return i*n+j;
     }
     public static void reset() {
         nightersBiMap.clear();
         wieldersBiMap.clear();
         monstersBiMap.clear();
         civiliansBiMap.clear();
-        objectsBiMap.clear();
     }
 }

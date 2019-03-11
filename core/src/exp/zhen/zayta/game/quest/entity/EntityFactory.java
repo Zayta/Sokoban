@@ -11,7 +11,7 @@ import exp.zhen.zayta.game.quest.component.properties.movement.DimensionComponen
 import exp.zhen.zayta.game.quest.component.properties.movement.Position;
 import exp.zhen.zayta.game.quest.component.properties.visual.TextureComponent;
 import exp.zhen.zayta.config.SizeManager;
-import exp.zhen.zayta.game.quest.entity.gameObjects.StoneBase;
+import exp.zhen.zayta.game.quest.mode.stone_gathering.gameObjects.StoneBase;
 import exp.zhen.zayta.game.quest.entity.society.Civilization;
 import exp.zhen.zayta.game.quest.entity.undead.nur.NUR;
 
@@ -30,11 +30,11 @@ public class EntityFactory {
     private void initHQs(){
         nur = new NUR(gamePlayAtlas,engine);
         civilization = new Civilization(gamePlayAtlas,engine);
-        stoneBase = new StoneBase(gamePlayAtlas,engine);
+//        stoneBase = new StoneBase(gamePlayAtlas,engine);
     }
-    public void addStone(float x, float y){
-        stoneBase.addEntityInPos(x,y);
-    }
+//    public void addStone(float x, float y){
+//        stoneBase.addEntityInPos(x,y);
+//    }
     public void addPlayer(float x, float y)
     {
         nur.addEntityInPos(x,y);

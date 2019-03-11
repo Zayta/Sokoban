@@ -15,6 +15,7 @@ import exp.zhen.zayta.game.quest.component.labels.UndeadTag;
 import exp.zhen.zayta.common.Mappers;
 import exp.zhen.zayta.game.quest.component.properties.movement.CircularBoundsComponent;
 import exp.zhen.zayta.UserData;
+import exp.zhen.zayta.game.quest.component.properties.movement.Position;
 
 
 public class UndeadXCivilianCollisionSystem extends GameControllingSystem implements CollisionListener {
@@ -40,8 +41,8 @@ public class UndeadXCivilianCollisionSystem extends GameControllingSystem implem
 
         for(Entity nighter: nighters) {
             int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
-            int keyAbove = key+(int)SizeManager.maxObjWidth;
-            int keyBelow = key-(int)SizeManager.maxObjWidth;
+            int keyAbove = key+PositionTracker.n;
+            int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
                            key-1, key, key+1,
                            keyBelow-1, keyBelow, keyBelow+1};
