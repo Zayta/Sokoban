@@ -172,6 +172,26 @@
    <property name="block" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="76">
+  <properties>
+   <property name="block" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="77">
+  <properties>
+   <property name="block" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="78">
+  <properties>
+   <property name="block" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="79">
+  <properties>
+   <property name="block" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="80">
   <properties>
    <property name="block" type="bool" value="true"/>
@@ -205,6 +225,7 @@
  <tile id="86">
   <properties>
    <property name="block" type="bool" value="false"/>
+   <property name="door" type="int" value="0"/>
   </properties>
  </tile>
 </tileset>

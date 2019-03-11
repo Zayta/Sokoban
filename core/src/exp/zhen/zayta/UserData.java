@@ -1,11 +1,9 @@
 package exp.zhen.zayta;
 
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
-import exp.zhen.zayta.mode.quest.entity.undead.nur.Nighter;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.game.quest.entity.undead.nur.Nighter;
 
 
 public class UserData { /*monitors how much HP a player has left in the game

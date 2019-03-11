@@ -13,16 +13,13 @@ public class SizeManager {
     public static final float WORLD_WIDTH = 6.0f; // world units
     public static final float WORLD_HEIGHT = 10.0f; // world units
 
-//    public static final float GAME_WIDTH = 6.0f;
-//    public static final float GAME_HEIGHT = 9.0f;
-
 
     public static final float WORLD_CENTER_X = WORLD_WIDTH / 2f; // world units
     public static final float WORLD_CENTER_Y = WORLD_HEIGHT / 2f; // world units
 
-    public static final float maxBoundsRadius = 0.5f;//0.3f;
-    public static final float maxObjWidth = 1f;// 2*maxBoundsRadius;//world units
-    public static final float maxObjHeight = 1f;//0.8f;
+    public static final float maxBoundsRadius = 0.3f;
+    public static final float maxObjWidth = 2*maxBoundsRadius;//world units
+    public static final float maxObjHeight = 0.8f;
 //    //sprites
 //    public static final float maxBoundsRadius = 0.4f; // world units
 //    public static final float maxObjHeight = 0.9f;

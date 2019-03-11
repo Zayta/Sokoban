@@ -11,6 +11,8 @@ public class AssetPaths {
     public static final String MENU_CLIP = "menu/clips.atlas";
 
     public static final String MAPS_MEMLAB1 = "gameplay/maps/memLab1.tmx";
+    public static final String MAPS_MEMLAB2 = "gameplay/maps/memLab2.tmx";
+    public static final String MAPS_MEMLABBIG = "gameplay/maps/memLabBig.tmx";
 
     public static final String UI_SKIN = "ui/uiskin.json";
 

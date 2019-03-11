@@ -2,15 +2,15 @@ package exp.zhen.zayta.common;
 
 import com.badlogic.ashley.core.ComponentMapper;
 
-import exp.zhen.zayta.mode.quest.component.labels.id.MortalTag;
-import exp.zhen.zayta.mode.quest.component.properties.movement.Position;
-import exp.zhen.zayta.mode.quest.entity.gameObjects.StoneTag;
-import exp.zhen.zayta.mode.quest.component.properties.visual.AnimationComponent;
-import exp.zhen.zayta.mode.quest.component.properties.movement.CircularBoundsComponent;
-import exp.zhen.zayta.mode.quest.component.properties.movement.DimensionComponent;
-import exp.zhen.zayta.mode.quest.component.properties.movement.VelocityComponent;
-import exp.zhen.zayta.mode.quest.component.properties.ObstacleComponent;
-import exp.zhen.zayta.mode.quest.component.properties.visual.TextureComponent;
+import exp.zhen.zayta.game.quest.component.labels.id.MortalTag;
+import exp.zhen.zayta.game.quest.component.properties.movement.Position;
+import exp.zhen.zayta.game.quest.entity.gameObjects.StoneTag;
+import exp.zhen.zayta.game.quest.component.properties.visual.AnimationComponent;
+import exp.zhen.zayta.game.quest.component.properties.movement.CircularBoundsComponent;
+import exp.zhen.zayta.game.quest.component.properties.movement.DimensionComponent;
+import exp.zhen.zayta.game.quest.component.properties.movement.VelocityComponent;
+import exp.zhen.zayta.game.quest.component.properties.ObstacleComponent;
+import exp.zhen.zayta.game.quest.component.properties.visual.TextureComponent;
 
 public class Mappers {
 
