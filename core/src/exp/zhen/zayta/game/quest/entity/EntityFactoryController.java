@@ -11,19 +11,10 @@ public class EntityFactoryController {
         this.entityFactory = entityFactory;
     }
     public void addEntities() {
-        entityFactory.addBackground();
-//        addStones();
         addCivilians();
         addPlayer();
     }
-    private void addStones(){
-        int numStones = 4;
-        Vector2[] points = Arrangements.circle(numStones,SizeManager.WORLD_CENTER_X,SizeManager.WORLD_CENTER_Y,SizeManager.WORLD_WIDTH/3);
-        for(int i =0; i<numStones; i++)
-        {
-//            entityFactory.addStone(points[i].x,points[i].y);
-        }
-    }
+
     private void addCivilians(){
         //todo also in future make civilians change direction randomly
         /*add Civilization*/

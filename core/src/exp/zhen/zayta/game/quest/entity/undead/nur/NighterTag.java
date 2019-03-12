@@ -1,4 +1,4 @@
-package exp.zhen.zayta.game.quest.component.labels.id;
+package exp.zhen.zayta.game.quest.entity.undead.nur;
 
 import com.badlogic.ashley.core.Component;
 

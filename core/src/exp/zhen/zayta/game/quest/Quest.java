@@ -21,6 +21,7 @@ import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.config.SizeManager;
 import exp.zhen.zayta.game.quest.entity.EntityFactory;
 import exp.zhen.zayta.game.quest.entity.EntityFactoryController;
+import exp.zhen.zayta.game.quest.entity.game_objects.Manufacturer;
 import exp.zhen.zayta.game.quest.system.AnimationSystem;
 import exp.zhen.zayta.game.quest.system.movement.BoundsSystem;
 import exp.zhen.zayta.game.quest.system.CleanUpSystem;
@@ -51,6 +52,8 @@ public class Quest implements Screen {
     private final AssetManager assetManager;
 
     private EntityFactoryController entityFactoryController;
+    public static Manufacturer manufacturer;
+
     private OrthographicCamera orthographicCamera;
     private Viewport viewport;
     private Viewport hudViewport;
@@ -77,6 +80,7 @@ public class Quest implements Screen {
         /*Game Engines*/
         engine = new PooledEngine();
         entityFactoryController = new EntityFactoryController(new EntityFactory(engine,assetManager));
+        manufacturer = new Manufacturer(assetManager.get(AssetDescriptors.GAME_PLAY),engine);
         setInputHandler();
         addEntities();
         addSystems();

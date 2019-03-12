@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import exp.zhen.zayta.Direction;
 import exp.zhen.zayta.assets.RegionNames;
+import exp.zhen.zayta.common.Mappers;
+import exp.zhen.zayta.game.quest.PositionTracker;
 import exp.zhen.zayta.game.quest.component.labels.id.MortalTag;
 import exp.zhen.zayta.game.quest.component.labels.NPCTag;
 import exp.zhen.zayta.game.quest.component.properties.visual.AnimationComponent;
@@ -13,10 +15,10 @@ import exp.zhen.zayta.game.quest.component.properties.movement.VelocityComponent
 import exp.zhen.zayta.game.quest.component.properties.visual.TextureComponent;
 import exp.zhen.zayta.config.SpeedManager;
 import exp.zhen.zayta.game.quest.entity.MovingEntityMaker;
-import exp.zhen.zayta.game.quest.entity.GameObjectMaker;
+import exp.zhen.zayta.game.quest.entity.EntityPositioner;
 import exp.zhen.zayta.util.BiMap;
 
-public class Civilization extends MovingEntityMaker implements GameObjectMaker {
+public class Civilization extends MovingEntityMaker implements EntityPositioner {
     private TextureAtlas gamePlayAtlas;private PooledEngine engine;
     private BiMap<Integer,Entity> civilianPos;
     public Civilization(TextureAtlas gamePlayAtlas,PooledEngine engine){
@@ -31,10 +33,6 @@ public class Civilization extends MovingEntityMaker implements GameObjectMaker {
 
         MortalTag mortalTag = engine.createComponent(MortalTag.class);
 
-        VelocityComponent movement = engine.createComponent(VelocityComponent.class);
-        movement.setSpeed(SpeedManager.DEFAULT_SPEED,SpeedManager.DEFAULT_SPEED);
-        movement.setDirection(Direction.generateRandomDirection());
-
         TextureComponent texture = engine.createComponent(TextureComponent.class);
 //        texture.setRegion(gamePlayAtlas.findRegion(RegionNames.PLAYER));
 
@@ -43,12 +41,13 @@ public class Civilization extends MovingEntityMaker implements GameObjectMaker {
 
 
         Entity entity = engine.createEntity();
-        addPositionComponents(engine,entity,x,y);
-        entity.add(movement);
+        addMovementComponents(engine,entity,x,y,PositionTracker.PositionBiMap.civiliansBiMap);
         entity.add(npcTag);
         entity.add(mortalTag);
         entity.add(texture);
         entity.add(animationComponent);
         engine.addEntity(entity);
+
+        Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());
     }
 }

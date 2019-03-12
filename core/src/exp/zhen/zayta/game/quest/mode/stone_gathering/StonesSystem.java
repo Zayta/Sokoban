@@ -8,16 +8,18 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.Direction;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.common.Mappers;
 import exp.zhen.zayta.config.SizeManager;
 import exp.zhen.zayta.game.quest.PositionTracker;
+import exp.zhen.zayta.game.quest.Quest;
 import exp.zhen.zayta.game.quest.entity.Arrangements;
-import exp.zhen.zayta.game.quest.mode.stone_gathering.gameObjects.StoneBase;
-import exp.zhen.zayta.game.quest.mode.stone_gathering.gameObjects.StoneTag;
 import exp.zhen.zayta.game.quest.component.properties.movement.CircularBoundsComponent;
 import exp.zhen.zayta.game.quest.component.labels.PlayerTag;
+import exp.zhen.zayta.game.quest.entity.game_objects.Manufacturer;
 import exp.zhen.zayta.game.quest.system.collision.CollisionListener;
 import exp.zhen.zayta.game.quest.system.collision.GameControllingSystem;
 import exp.zhen.zayta.util.BiMap;
@@ -28,13 +30,9 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(StonesSystem.class.getName(),Logger.DEBUG);
 
-    private StoneBase stoneBase;
     private BiMap<Integer,Entity> stonesBiMap;
     //families are entities that can collide
     private final Family NIGHTERS;
-
-    private final Family STONES ;
-//    private int stonesToGather;
 
     public StonesSystem(RPG game, PooledEngine engine){
         super(game,engine);
@@ -43,11 +41,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
                 CircularBoundsComponent.class
         ).get();
 
-        STONES = Family.all(
-                StoneTag.class,
-                CircularBoundsComponent.class).get();
 
-        stoneBase = new StoneBase(game.getAssetManager().get(AssetDescriptors.GAME_PLAY),getEngine());
         stonesBiMap = new BiMap<Integer, Entity>();
         initStones();
     }
@@ -59,7 +53,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             stonesBiMap.put(key,
-                    stoneBase.makeEntityInPos(points[i].x,points[i].y));
+                    Quest.manufacturer.makeEntityInPos(points[i].x,points[i].y,StoneTag.class,RegionNames.STONE));
             log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
             +stonesBiMap.get(key));
         }
@@ -71,13 +65,59 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(NIGHTERS);
         
         for(Entity nighter: nighters) {
-            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+
+            Direction direction = Mappers.MOVEMENT.get(nighter).getDirection();
+            int [] keys = new int [6];
+
+            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);;
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
-            int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
-                    key-1, key, key+1,
-                    keyBelow-1, keyBelow, keyBelow+1};
+            switch (direction){
+                case none:
+                    Entity stone = stonesBiMap.get(key);
+                    if(stone!=null)
+                        checkCollisionBetween(nighter,stone);
+                    continue;
+                case up:
+                    keys[0]= keyAbove;
+                    keys[1]= keyAbove+1;
+                    keys[2]= keyAbove-1;
+                    keys[3] = key-1;
+                    keys[4] = key+1;
+                    break;
+                case down:
+                    keys[0]= keyBelow;
+                    keys[1]= keyBelow+1;
+                    keys[2]= keyBelow-1;
+                    keys[3] = key-1;
+                    keys[4] = key+1;
+                    break;
+                case left:
+                    keys[0]= keyAbove-1;
+                    keys[1]= key-1;
+                    keys[2]= keyBelow-1;
+                    keys[3] = keyAbove;
+                    keys[4] = keyBelow;
+                    break;
+                case right:
+                    keys[0]= keyAbove+1;
+                    keys[1]= key+1;
+                    keys[2]= keyBelow+1;
+                    keys[3] = keyAbove;
+                    keys[4] = keyBelow;
+                    break;
+            }
+            keys[5] = key;
             checkCollision(nighter,keys);
+
+
+//            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+//            int keyAbove = key+PositionTracker.n;
+//            int keyBelow = key-PositionTracker.n;
+//            int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
+//                    key-1, key, key+1,
+//                    keyBelow-1, keyBelow, keyBelow+1};
+//            checkCollision(nighter,keys);
         }
     }
     private void checkCollision(Entity nighter, int [] keys){
@@ -112,47 +152,13 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         if(stonesBiMap.size()==0){
             setNextLevel();
         }
-//        stonesToGather--;
-//        if(stonesToGather==0)
-//        {
-//            setNextLevel();
-//        }
-
-        //update stones to gather
-        //decrease number of stones that NUR has to gather
 
     }
 
     @Override
     public void reset() {
         stonesBiMap.clear();
-//        stonesToGather = getEngine().getEntitiesFor(STONES).size();
     }
 
 
-    //
-//    @Override
-//    public void update(float deltaTime) {
-//        ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(NIGHTERS);//size of  nighters array is always 1 since we only have one nighter instantiated
-//        ImmutableArray<Entity> stones = getEngine().getEntitiesFor(STONES);
-//        for(Entity playerEntity: nighters) {
-////            int key = Mappers.POSITION.get(playerEntity).getKey();//todo do this after u make a stones BiMap
-////            if(stonesBiMap.containsKey(key))
-////                if(checkCollision(playerEntity,stonesBiMap.get(key)){
-////                    log.debug("collision with stone");
-////            }
-//            for (Entity stoneEntity : stones){
-//                if(checkCollision(playerEntity,stoneEntity)){
-//                    log.debug("collision with stone");
-//                    collideEvent(playerEntity,stoneEntity);
-////                    if(stones.size()==0)
-////                    {
-////                        RPG.userData.setLevelPassed(true);
-////                    }
-//                }
-//            }
-//        }
-//
-//
-//    }
 }

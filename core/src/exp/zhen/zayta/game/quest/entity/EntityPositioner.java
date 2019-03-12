@@ -1,5 +1,5 @@
 package exp.zhen.zayta.game.quest.entity;
 
-public interface GameObjectMaker {
+public interface EntityPositioner {
     void addEntityInPos(float x, float y);
 }

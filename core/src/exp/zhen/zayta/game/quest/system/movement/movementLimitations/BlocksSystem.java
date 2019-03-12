@@ -11,10 +11,8 @@ import exp.zhen.zayta.Direction;
 import exp.zhen.zayta.common.Mappers;
 import exp.zhen.zayta.config.SizeManager;
 import exp.zhen.zayta.game.quest.component.labels.NPCTag;
-import exp.zhen.zayta.game.quest.component.labels.id.NighterTag;
 import exp.zhen.zayta.game.quest.component.properties.movement.Position;
 import exp.zhen.zayta.game.quest.component.properties.movement.VelocityComponent;
-import exp.zhen.zayta.game.quest.system.movement.MovementSystem;
 
 public class BlocksSystem extends EntitySystem {
 

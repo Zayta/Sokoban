@@ -5,14 +5,15 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
 
+import exp.zhen.zayta.game.quest.PositionTracker;
 import exp.zhen.zayta.game.quest.entity.MovingEntityMaker;
 import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.game.quest.component.labels.PlayerTag;
-import exp.zhen.zayta.game.quest.entity.GameObjectMaker;
+import exp.zhen.zayta.game.quest.entity.EntityPositioner;
 import exp.zhen.zayta.game.quest.entity.undead.Undead;
 
-public class NUR extends MovingEntityMaker implements GameObjectMaker {
+public class NUR extends MovingEntityMaker implements EntityPositioner {
     private TextureAtlas gamePlayAtlas;
     private PooledEngine engine;
     public NUR(TextureAtlas gamePlayAtlas,PooledEngine engine){
@@ -37,7 +38,7 @@ public class NUR extends MovingEntityMaker implements GameObjectMaker {
         Nighter nighter = nighters.get(Undead.Lorale);//todo later make ability to choose Nighter
         PlayerTag playerTag = engine.createComponent(PlayerTag.class);
         nighter.add(playerTag);
-        addMovementComponents(engine,nighter,x,y);
+        addMovementComponents(engine,nighter,x,y,PositionTracker.PositionBiMap.nightersBiMap);
         engine.addEntity(nighter);
         UserData.Player = nighter;
     }

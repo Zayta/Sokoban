@@ -93,21 +93,4 @@ public class UndeadXCivilianCollisionSystem extends GameControllingSystem implem
 
     }
 
-
-    //    @Override
-//    public void update(float deltaTime) {
-//        ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(UNDEADS);
-//        ImmutableArray<Entity> civilians = getEngine().getEntitiesFor(CIVILIANS);
-//
-//        for(Entity nighter: nighters) {
-//            for (Entity civilian : civilians){
-//                if(checkCollision(nighter,civilian)){
-//                    log.debug("NighterXCivilian collide");
-//                    collideEvent(nighter,civilian);
-//                }
-//            }
-//        }
-//
-//
-//    }
 }

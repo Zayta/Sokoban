@@ -11,7 +11,6 @@ import exp.zhen.zayta.game.quest.component.properties.movement.DimensionComponen
 import exp.zhen.zayta.game.quest.component.properties.movement.Position;
 import exp.zhen.zayta.game.quest.component.properties.visual.TextureComponent;
 import exp.zhen.zayta.config.SizeManager;
-import exp.zhen.zayta.game.quest.mode.stone_gathering.gameObjects.StoneBase;
 import exp.zhen.zayta.game.quest.entity.society.Civilization;
 import exp.zhen.zayta.game.quest.entity.undead.nur.NUR;
 
@@ -19,7 +18,7 @@ public class EntityFactory {
     private final PooledEngine engine;
     private final AssetManager assetManager;
     private final TextureAtlas gamePlayAtlas;
-    private GameObjectMaker nur, civilization, stoneBase;
+    private EntityPositioner nur, civilization;
     public EntityFactory(PooledEngine engine, AssetManager assetManager)
     {
         this.engine = engine;
@@ -30,21 +29,13 @@ public class EntityFactory {
     private void initHQs(){
         nur = new NUR(gamePlayAtlas,engine);
         civilization = new Civilization(gamePlayAtlas,engine);
-//        stoneBase = new StoneBase(gamePlayAtlas,engine);
     }
-//    public void addStone(float x, float y){
-//        stoneBase.addEntityInPos(x,y);
-//    }
     public void addPlayer(float x, float y)
     {
         nur.addEntityInPos(x,y);
     }
     public void addCivilian(float x, float y){
         civilization.addEntityInPos(x,y);
-    }
-
-    public void addBackground(){
-
     }
 
     private void commonBackground(){
@@ -56,7 +47,7 @@ public class EntityFactory {
 
         Entity entity = engine.createEntity();
         entity.add(texture);
-        Position position = new Position(entity,0,0);
+        Position position = engine.createComponent(Position.class);
         entity.add(position);
         entity.add(dimension);
 

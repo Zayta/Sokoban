@@ -4,7 +4,8 @@ import com.badlogic.ashley.core.ComponentMapper;
 
 import exp.zhen.zayta.game.quest.component.labels.id.MortalTag;
 import exp.zhen.zayta.game.quest.component.properties.movement.Position;
-import exp.zhen.zayta.game.quest.mode.stone_gathering.gameObjects.StoneTag;
+import exp.zhen.zayta.game.quest.component.properties.movement.PositionTrackerComponent;
+import exp.zhen.zayta.game.quest.mode.stone_gathering.StoneTag;
 import exp.zhen.zayta.game.quest.component.properties.visual.AnimationComponent;
 import exp.zhen.zayta.game.quest.component.properties.movement.CircularBoundsComponent;
 import exp.zhen.zayta.game.quest.component.properties.movement.DimensionComponent;
@@ -32,6 +33,7 @@ ComponentMapper.getFor(ObstacleComponent.class);
 
     public static final ComponentMapper<DimensionComponent> DIMENSION = ComponentMapper.getFor(DimensionComponent.class);
 
+    public static final ComponentMapper<PositionTrackerComponent> POSITION_TRACKER = ComponentMapper.getFor(PositionTrackerComponent.class);
 
     private Mappers(){}
 }
