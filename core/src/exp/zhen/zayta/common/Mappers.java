@@ -3,13 +3,13 @@ package exp.zhen.zayta.common;
 import com.badlogic.ashley.core.ComponentMapper;
 
 import exp.zhen.zayta.game.quest.component.labels.id.MortalTag;
-import exp.zhen.zayta.game.quest.component.properties.movement.Position;
-import exp.zhen.zayta.game.quest.component.properties.movement.PositionTrackerComponent;
+import exp.zhen.zayta.game.quest.movement.component.Position;
+import exp.zhen.zayta.game.quest.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.game.quest.mode.stone_gathering.StoneTag;
 import exp.zhen.zayta.game.quest.component.properties.visual.AnimationComponent;
-import exp.zhen.zayta.game.quest.component.properties.movement.CircularBoundsComponent;
-import exp.zhen.zayta.game.quest.component.properties.movement.DimensionComponent;
-import exp.zhen.zayta.game.quest.component.properties.movement.VelocityComponent;
+import exp.zhen.zayta.game.quest.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.game.quest.movement.component.DimensionComponent;
+import exp.zhen.zayta.game.quest.movement.component.VelocityComponent;
 import exp.zhen.zayta.game.quest.component.properties.ObstacleComponent;
 import exp.zhen.zayta.game.quest.component.properties.visual.TextureComponent;
 

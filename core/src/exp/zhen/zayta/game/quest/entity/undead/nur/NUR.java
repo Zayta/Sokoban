@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
 
-import exp.zhen.zayta.game.quest.PositionTracker;
+import exp.zhen.zayta.game.quest.movement.PositionTracker;
 import exp.zhen.zayta.game.quest.entity.MovingEntityMaker;
 import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.assets.RegionNames;

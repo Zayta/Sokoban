@@ -8,20 +8,18 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.Direction;
+import exp.zhen.zayta.game.quest.movement.Direction;
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.common.Mappers;
 import exp.zhen.zayta.config.SizeManager;
-import exp.zhen.zayta.game.quest.PositionTracker;
+import exp.zhen.zayta.game.quest.movement.PositionTracker;
 import exp.zhen.zayta.game.quest.Quest;
 import exp.zhen.zayta.game.quest.entity.Arrangements;
-import exp.zhen.zayta.game.quest.component.properties.movement.CircularBoundsComponent;
+import exp.zhen.zayta.game.quest.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.game.quest.component.labels.PlayerTag;
-import exp.zhen.zayta.game.quest.entity.game_objects.Manufacturer;
-import exp.zhen.zayta.game.quest.system.collision.CollisionListener;
-import exp.zhen.zayta.game.quest.system.collision.GameControllingSystem;
+import exp.zhen.zayta.game.quest.collision.CollisionListener;
+import exp.zhen.zayta.game.quest.collision.GameControllingSystem;
 import exp.zhen.zayta.util.BiMap;
 
 
@@ -54,10 +52,10 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             stonesBiMap.put(key,
                     Quest.manufacturer.makeEntityInPos(points[i].x,points[i].y,StoneTag.class,RegionNames.STONE));
-            log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
-            +stonesBiMap.get(key));
+//            log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
+//            +stonesBiMap.get(key));
         }
-        log.debug("stoneBiMap: "+stonesBiMap);
+//        log.debug("stoneBiMap: "+stonesBiMap);
     }
 
     @Override
@@ -69,7 +67,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
             Direction direction = Mappers.MOVEMENT.get(nighter).getDirection();
             int [] keys = new int [6];
 
-            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);;
+            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             switch (direction){

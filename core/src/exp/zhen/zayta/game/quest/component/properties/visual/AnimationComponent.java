@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import exp.zhen.zayta.Direction;
+import exp.zhen.zayta.game.quest.movement.Direction;
 
 public class AnimationComponent implements Component {
     // Constant rows and columns of the sprite sheet

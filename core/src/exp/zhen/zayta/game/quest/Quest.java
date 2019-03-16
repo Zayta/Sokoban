@@ -22,20 +22,18 @@ import exp.zhen.zayta.config.SizeManager;
 import exp.zhen.zayta.game.quest.entity.EntityFactory;
 import exp.zhen.zayta.game.quest.entity.EntityFactoryController;
 import exp.zhen.zayta.game.quest.entity.game_objects.Manufacturer;
-import exp.zhen.zayta.game.quest.system.AnimationSystem;
-import exp.zhen.zayta.game.quest.system.movement.BoundsSystem;
-import exp.zhen.zayta.game.quest.system.CleanUpSystem;
-import exp.zhen.zayta.game.quest.system.collision.UndeadXCivilianCollisionSystem;
+import exp.zhen.zayta.game.quest.movement.system.movementLimitations.blocks.movable_items.MovableBlocksSystem;
+import exp.zhen.zayta.game.quest.movement.system.BoundsSystem;
+import exp.zhen.zayta.game.quest.collision.UndeadXCivilianCollisionSystem;
 import exp.zhen.zayta.game.quest.mode.stone_gathering.StonesSystem;
-import exp.zhen.zayta.game.quest.system.movement.PositionTrackerSystem;
-import exp.zhen.zayta.game.quest.system.movement.movementLimitations.BlockPauseSystem;
-import exp.zhen.zayta.game.quest.system.movement.movementLimitations.BlocksSystem;
-import exp.zhen.zayta.game.quest.system.render.HudRenderSystem;
-import exp.zhen.zayta.game.quest.system.movement.MovementSystem;
-import exp.zhen.zayta.game.quest.system.render.MapRenderSystem;
-import exp.zhen.zayta.game.quest.system.render.QuestRenderSystem;
-import exp.zhen.zayta.game.quest.system.movement.movementLimitations.WorldWrapChangeDirectionSystem;
-import exp.zhen.zayta.game.quest.system.movement.movementLimitations.WorldWrapPauseSystem;
+import exp.zhen.zayta.game.quest.movement.system.PositionTrackerSystem;
+import exp.zhen.zayta.game.quest.movement.system.movementLimitations.blocks.BlocksSystem;
+import exp.zhen.zayta.game.quest.render.HudRenderSystem;
+import exp.zhen.zayta.game.quest.movement.system.MovementSystem;
+import exp.zhen.zayta.game.quest.render.MapRenderSystem;
+import exp.zhen.zayta.game.quest.render.QuestRenderSystem;
+import exp.zhen.zayta.game.quest.movement.system.movementLimitations.world_wrap.WorldWrapChangeDirectionSystem;
+import exp.zhen.zayta.game.quest.movement.system.movementLimitations.world_wrap.WorldWrapPauseSystem;
 import exp.zhen.zayta.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.debug.debug_system.DebugRenderSystem;
 import exp.zhen.zayta.debug.debug_system.GridRenderSystem;
@@ -91,23 +89,22 @@ public class Quest implements Screen {
         addEntityMovementSystems();
         addRenderSystems();
         addGameControllingSystems();
-//        engine.addSystem(new ScoreSystem());
     }
 
     private void addEntityMovementSystems(){
+
+        engine.addSystem(new PositionTrackerSystem());//should be first
         engine.addSystem(new MovementSystem());
-//        engine.addSystem(new BlockPauseSystem());
+        engine.addSystem(new BoundsSystem());
+        engine.addSystem(new MovableBlocksSystem(engine,viewport));//sb before movement
         engine.addSystem(new WorldWrapPauseSystem(viewport));
         engine.addSystem(new WorldWrapChangeDirectionSystem(viewport));
         engine.addSystem(new BlocksSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
 //        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
-        engine.addSystem(new BoundsSystem());
-        engine.addSystem(new PositionTrackerSystem());
-        engine.addSystem(new CleanUpSystem());
+
         engine.addSystem(new AnimationSystem());
     }
     private void addRenderSystems(){
-//        engine.addSystem(new CameraUpdater(orthographicCamera));
         engine.addSystem(new QuestRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(AssetDescriptors.FONT)*/));
 
@@ -120,7 +117,7 @@ public class Quest implements Screen {
 
     private void addGameControllingSystems(){
         engine.addSystem(new StonesSystem(game,engine));
-        engine.addSystem(new UndeadXCivilianCollisionSystem(game,engine));
+//        engine.addSystem(new UndeadXCivilianCollisionSystem(game,engine));
     }
 
 

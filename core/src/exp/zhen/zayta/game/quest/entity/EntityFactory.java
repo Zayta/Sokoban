@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.assets.RegionNames;
-import exp.zhen.zayta.game.quest.component.properties.movement.DimensionComponent;
-import exp.zhen.zayta.game.quest.component.properties.movement.Position;
+import exp.zhen.zayta.game.quest.movement.component.DimensionComponent;
+import exp.zhen.zayta.game.quest.movement.component.Position;
 import exp.zhen.zayta.game.quest.component.properties.visual.TextureComponent;
 import exp.zhen.zayta.config.SizeManager;
 import exp.zhen.zayta.game.quest.entity.society.Civilization;

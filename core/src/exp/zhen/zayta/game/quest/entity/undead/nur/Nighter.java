@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import exp.zhen.zayta.common.Mappers;
-import exp.zhen.zayta.game.quest.PositionTracker;
+import exp.zhen.zayta.game.quest.movement.PositionTracker;
 import exp.zhen.zayta.game.quest.component.properties.battle.BattleComponent;
 import exp.zhen.zayta.game.quest.component.labels.UndeadTag;
 import exp.zhen.zayta.game.quest.component.properties.visual.AnimationComponent;

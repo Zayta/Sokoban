@@ -8,11 +8,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.Direction;
+import exp.zhen.zayta.game.quest.movement.Direction;
 import exp.zhen.zayta.common.Mappers;
-import exp.zhen.zayta.game.quest.PositionTracker;
+import exp.zhen.zayta.game.quest.movement.PositionTracker;
 import exp.zhen.zayta.game.quest.component.labels.PlayerTag;
-import exp.zhen.zayta.game.quest.component.properties.movement.VelocityComponent;
+import exp.zhen.zayta.game.quest.movement.component.VelocityComponent;
 
 public class KeyboardInputHandler extends InputAdapter {
     private static final Logger log = new Logger(KeyboardInputHandler.class.getName(),Logger.DEBUG);

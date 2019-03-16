@@ -6,10 +6,10 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.input.GestureDetector;
 
-import exp.zhen.zayta.Direction;
+import exp.zhen.zayta.game.quest.movement.Direction;
 import exp.zhen.zayta.common.Mappers;
 import exp.zhen.zayta.game.quest.component.labels.PlayerTag;
-import exp.zhen.zayta.game.quest.component.properties.movement.VelocityComponent;
+import exp.zhen.zayta.game.quest.movement.component.VelocityComponent;
 
 public class GestureInputHandler extends GestureDetector.GestureAdapter {
     private Direction direction=Direction.none;
