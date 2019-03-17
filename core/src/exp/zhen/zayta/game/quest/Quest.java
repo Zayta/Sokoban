@@ -37,6 +37,7 @@ import exp.zhen.zayta.game.quest.movement.system.movementLimitations.world_wrap.
 import exp.zhen.zayta.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.debug.debug_system.DebugRenderSystem;
 import exp.zhen.zayta.debug.debug_system.GridRenderSystem;
+import exp.zhen.zayta.game.quest.user_control.TiledMapStageSystem;
 import exp.zhen.zayta.util.GdxUtils;
 
 public class Quest implements Screen {
@@ -86,6 +87,7 @@ public class Quest implements Screen {
     private void addSystems(){
 
         engine.addSystem(new MapRenderSystem(tiledMap,viewport));
+        engine.addSystem(new TiledMapStageSystem(tiledMap,viewport));
         addEntityMovementSystems();
         addRenderSystems();
         addGameControllingSystems();

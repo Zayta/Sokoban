@@ -101,54 +101,30 @@ public class MenuScreen extends MenuScreenBase {
 
         // setup table
         Table buttonTable = new Table(uiskin);
-//        buttonTable.defaults().pad(20);
-//        buttonTable.setBackground(RegionNames.PANEL);
         int numButtons = 4;
         buttonTable.add(playButton).width(SizeManager.WIDTH/numButtons);
         buttonTable.add(shopButton).width(SizeManager.WIDTH/numButtons);
         buttonTable.add(storyButton).width(SizeManager.WIDTH/numButtons);
         buttonTable.add(quitButton).width(SizeManager.WIDTH/numButtons);
 
-//        setButtonSize(playButton);
-//        setButtonSize(shopButton);
-//        setButtonSize(storyButton);
-//        setButtonSize(quitButton);
-//        buttonTable.add(playButton).maxWidth(buttonTable.getWidth()/4);
-//        buttonTable.add(shopButton).maxWidth(buttonTable.getWidth()/4);
-//        buttonTable.add(storyButton).maxWidth(buttonTable.getWidth()/4);
-//        buttonTable.add(quitButton).maxWidth(buttonTable.getWidth()/4);
 
         buttonTable.bottom();
-//        table.add(playButton).width(SizeManager.WIDTH/4);
-//        table.add(shopButton).width(SizeManager.WIDTH/4);;
-//        table.add(storyButton).width(SizeManager.WIDTH/4);;
-//        table.add(quitButton).width(SizeManager.WIDTH/4);;
         return buttonTable;
     }
 
-//    private void setButtonSize(TextButton button){
-//        button.setTransform(true);
-//        button.setScale(0.5f);
-//
-//    }
-
     private void play() {
-//        log.debug("play()");
         game.setScreen(new Quest(game));
     }
 
     private void showShop() {
-//        log.debug("showShop()");
         game.setScreen(new ShopScreen(game));
     }
 
     private void showStory() {
-//        log.debug("showStory()");
         game.setScreen(new StoryScreen(game));
     }
 
     private void quit() {
-//        log.debug("quit()");
         Gdx.app.exit();
     }
 

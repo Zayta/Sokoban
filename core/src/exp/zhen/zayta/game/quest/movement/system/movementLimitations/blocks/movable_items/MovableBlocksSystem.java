@@ -32,7 +32,7 @@ import exp.zhen.zayta.util.BiMap;
 public class MovableBlocksSystem extends EntitySystem  {
 
     /*todo this system is flawed. can only move one block at a time and left and down movements are laggy.
-    * I suspect some of the lagginess is because of circular bounds. Maybe I should switch to rectangular*/
+     * I suspect some of the lagginess is because of circular bounds. Maybe I should switch to rectangular*/
     /*Moveable Blocks have:
     *   Position
         DimensionComponent
@@ -101,6 +101,7 @@ public class MovableBlocksSystem extends EntitySystem  {
             Entity blockToBePushed = blocksToBePushed.pop();
 //            blocksToBePushed.remove(blockToBePushed);
             Vector2 nextPos = calculateNextPos(blockToBePushed,entityThatPushes,direction);
+            //todo rn the canMove method is based on position hash, and does not check whether block with that hash can move. so canMove is flawed. if switch this part with bottom part ,then the calculate next Pos will be flawed for the block in front.
             if(canMove(blockToBePushed,nextPos.x,nextPos.y)) {
                 setBlockPosition(blockToBePushed, nextPos.x, nextPos.y);
             }

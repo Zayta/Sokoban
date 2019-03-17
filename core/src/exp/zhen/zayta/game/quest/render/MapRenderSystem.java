@@ -9,13 +9,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MapRenderSystem extends EntitySystem{
 
+    public static float unitScale = 1/32f;
 
     private OrthogonalTiledMapRenderer mapRenderer;
     private final Viewport viewport;
 
     public MapRenderSystem(TiledMap map, Viewport viewport){
         this.viewport=viewport;
-        mapRenderer = new OrthogonalTiledMapRenderer(map, 1/32f);//unit scale is 1/(pixels per tile_width (or height) in tile sheet)
+        mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);//unit scale is 1/(pixels per tile_width (or height) in tile sheet)
     }
 
     @Override
@@ -26,4 +27,6 @@ public class MapRenderSystem extends EntitySystem{
         mapRenderer.setView((OrthographicCamera) camera);
         mapRenderer.render();
     }
+
+
 }
