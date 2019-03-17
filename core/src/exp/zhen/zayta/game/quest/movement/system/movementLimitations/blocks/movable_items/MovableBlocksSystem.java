@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -86,31 +87,36 @@ public class MovableBlocksSystem extends EntitySystem  {
         ImmutableArray<Entity> entities = getEngine().getEntitiesFor(UNDEADS);
 
         for(Entity entity: entities) {
-            Stack<Entity> blocks = getSurroundingBlocks(entity,Mappers.MOVEMENT.get(entity).getDirection());
-            pushBlocksBy(entity,blocks);
+            Direction direction = Mappers.MOVEMENT.get(entity).getDirection();
+            Stack<Entity> blocks = getSurroundingBlocks(entity,direction);
+            pushBlocksBy(entity,blocks,direction);
+            exploredBlocks.clear();
         }
-//        blocksToBePushed.clear();
     }
-    private void pushBlocksBy(Entity entityThatPushes, Stack<Entity> blocksToBePushed){
-        Direction direction = Mappers.MOVEMENT.get(entityThatPushes).getDirection();
+
+    private void pushBlocksBy(Entity entityThatPushes, Stack<Entity> blocksToBePushed, Direction direction){
+//        Direction direction = Mappers.MOVEMENT.get(entityThatPushes).getDirection();
 
         while(!blocksToBePushed.isEmpty()){
             Entity blockToBePushed = blocksToBePushed.pop();
-            Stack<Entity> blocksAroundBlockToBePushed=getSurroundingBlocks(blockToBePushed,direction);
-            if(!blocksAroundBlockToBePushed.isEmpty()){
-                pushBlocksBy(blockToBePushed,blocksAroundBlockToBePushed);
-                log.debug("Block has blocks around it");
-            }
-
-            blocksToBePushed.remove(blockToBePushed);
+//            blocksToBePushed.remove(blockToBePushed);
             Vector2 nextPos = calculateNextPos(blockToBePushed,entityThatPushes,direction);
             if(canMove(blockToBePushed,nextPos.x,nextPos.y)) {
                 setBlockPosition(blockToBePushed, nextPos.x, nextPos.y);
             }
 
+            Stack<Entity> blocksAroundBlockToBePushed = getSurroundingBlocks(blockToBePushed,direction);
+//            blocksToBePushed.remove(blockToBePushed);
+            if(!blocksAroundBlockToBePushed.isEmpty()){
+                pushBlocksBy(blockToBePushed,blocksAroundBlockToBePushed,direction);
+                log.debug("Block has blocks around it");
+            }
+
         }
     }
 
+
+    private ArrayList<Entity> exploredBlocks = new ArrayList<Entity>();
     private Stack<Entity> getSurroundingBlocks(Entity entity,Direction direction){
         Stack<Entity> blocksToCheck = new Stack<Entity>();
         int key = findKey(entity);
@@ -143,19 +149,50 @@ public class MovableBlocksSystem extends EntitySystem  {
 
         for(int k:keys){
             Entity blockToPush = movableBlocksBiMap.get(k);
-            if(blockToPush!=null&&blockToPush!=entity&&collisionBetween(entity,blockToPush)){
+            if(blockToPush!=null&&blockToPush!=entity&&collisionBetween(entity,blockToPush)&&!exploredBlocks.contains(blockToPush)){
                 blocksToCheck.push(blockToPush);
             }
         }
-
-        System.out.println(Arrays.asList(blocksToCheck).toArray().toString());
+        exploredBlocks.addAll(blocksToCheck);
         return blocksToCheck;
     }
 
     private boolean canMove(Entity block, float nextPosX,float nextPosY){
-        return withinBounds(block,nextPosX,nextPosY)
-                &&
-                positionHashAvailable(PositionTracker.generateKey(nextPosX,nextPosY),block);
+        if(withinBounds(block,nextPosX,nextPosY))
+        {
+            int newKey = PositionTracker.generateKey(nextPosX,nextPosY);
+            if(positionHashAvailable(newKey,block))
+                return true;
+        }
+        return false;
+    }
+    private Vector2 calculateNextPos(Entity block,Entity entityThatPushes,Direction direction){
+        Position posOfEntityThatPushes = Mappers.POSITION.get(entityThatPushes);
+        Position posOfBlock = Mappers.POSITION.get(block);
+        CircularBoundsComponent boundsOfEntityThatPushes = Mappers.BOUNDS.get(entityThatPushes);
+        CircularBoundsComponent boundsOfBlock = Mappers.BOUNDS.get(block);
+        float offset = boundsOfEntityThatPushes.getRadius()+boundsOfBlock.getRadius();
+        float nextPosX=posOfBlock.getX(), nextPosY=posOfBlock.getY();
+        //todo update velocity of block before using this method whne a block does the pushing
+        switch (direction){
+            case none://todo handle none case in future. rn it should overlap w nighter
+                break;
+            case up:
+                nextPosY = posOfEntityThatPushes.getY()+offset;
+                break;
+            case down:
+                nextPosY = posOfEntityThatPushes.getY()-offset;
+                break;
+            case left:
+                nextPosX = posOfEntityThatPushes.getX()-offset;
+                break;
+            case right:
+                nextPosX = posOfEntityThatPushes.getX()+offset;
+                break;
+        }
+
+        Vector2 vector2 = new Vector2(nextPosX,nextPosY);
+        return vector2;
     }
     //todo find way to make sure all keys in biMap are unique
 //    private int [] getBlocksToCheck(Entity entity, Direction direction, boolean isBlock){
@@ -205,36 +242,6 @@ public class MovableBlocksSystem extends EntitySystem  {
         return newPosX>0&&newPosX<maxX
                 && newPosY>0&&newPosY<maxY;
 
-    }
-
-
-    private Vector2 calculateNextPos(Entity block,Entity entityThatPushes,Direction direction){
-        Position posOfEntityThatPushes = Mappers.POSITION.get(entityThatPushes);
-        Position posOfBlock = Mappers.POSITION.get(block);
-        CircularBoundsComponent boundsOfEntityThatPushes = Mappers.BOUNDS.get(entityThatPushes);
-        CircularBoundsComponent boundsOfBlock = Mappers.BOUNDS.get(block);
-        float offset = boundsOfEntityThatPushes.getRadius()+boundsOfBlock.getRadius();
-        float nextPosX=posOfBlock.getX(), nextPosY=posOfBlock.getY();
-        //todo update velocity of block before using this method whne a block does the pushing
-        switch (direction){
-            case none://todo handle none case in future. rn it should overlap w nighter
-                break;
-            case up:
-                nextPosY = posOfEntityThatPushes.getY()+offset;
-                break;
-            case down:
-                nextPosY = posOfEntityThatPushes.getY()-offset;
-                break;
-            case left:
-                nextPosX = posOfEntityThatPushes.getX()-offset;
-                break;
-            case right:
-                nextPosX = posOfEntityThatPushes.getX()+offset;
-                break;
-        }
-
-        Vector2 vector2 = new Vector2(nextPosX,nextPosY);
-        return vector2;
     }
 
     private boolean positionHashAvailable(int newKey,Entity block)
