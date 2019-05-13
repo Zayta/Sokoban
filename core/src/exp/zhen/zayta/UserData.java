@@ -3,7 +3,7 @@ package exp.zhen.zayta;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
-import exp.zhen.zayta.game.quest.entity.undead.nur.Nighter;
+import exp.zhen.zayta.game.wake_mode.entity.undead.nur.Nighter;
 
 
 public class UserData { /*monitors how much HP a player has left in the game

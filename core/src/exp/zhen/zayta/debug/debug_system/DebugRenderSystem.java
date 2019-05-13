@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.common.Mappers;
-import exp.zhen.zayta.game.quest.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.game.wake_mode.movement.component.CircularBoundsComponent;
 
 public class DebugRenderSystem extends IteratingSystem {
 

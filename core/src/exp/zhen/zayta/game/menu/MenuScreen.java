@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.config.SizeManager;
-import exp.zhen.zayta.game.quest.Quest;
+import exp.zhen.zayta.game.wake_mode.WakeMode;
 
 
 public class MenuScreen extends MenuScreenBase {
@@ -113,7 +113,7 @@ public class MenuScreen extends MenuScreenBase {
     }
 
     private void play() {
-        game.setScreen(new Quest(game));
+        game.setScreen(new WakeMode(game));
     }
 
     private void showShop() {

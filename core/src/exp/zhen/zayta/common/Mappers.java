@@ -2,16 +2,16 @@ package exp.zhen.zayta.common;
 
 import com.badlogic.ashley.core.ComponentMapper;
 
-import exp.zhen.zayta.game.quest.component.labels.id.MortalTag;
-import exp.zhen.zayta.game.quest.movement.component.Position;
-import exp.zhen.zayta.game.quest.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.game.quest.mode.stone_gathering.StoneTag;
-import exp.zhen.zayta.game.quest.component.properties.visual.AnimationComponent;
-import exp.zhen.zayta.game.quest.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.game.quest.movement.component.DimensionComponent;
-import exp.zhen.zayta.game.quest.movement.component.VelocityComponent;
-import exp.zhen.zayta.game.quest.component.properties.ObstacleComponent;
-import exp.zhen.zayta.game.quest.component.properties.visual.TextureComponent;
+import exp.zhen.zayta.game.wake_mode.component.labels.id.MortalTag;
+import exp.zhen.zayta.game.wake_mode.movement.component.Position;
+import exp.zhen.zayta.game.wake_mode.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.game.wake_mode.mode.stone_gathering.StoneTag;
+import exp.zhen.zayta.game.wake_mode.visual.AnimationComponent;
+import exp.zhen.zayta.game.wake_mode.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.game.wake_mode.movement.component.DimensionComponent;
+import exp.zhen.zayta.game.wake_mode.movement.component.VelocityComponent;
+import exp.zhen.zayta.game.wake_mode.component.properties.ObstacleComponent;
+import exp.zhen.zayta.game.wake_mode.visual.TextureComponent;
 
 public class Mappers {
 
