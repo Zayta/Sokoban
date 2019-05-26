@@ -12,7 +12,7 @@ import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
 import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 public class ConsciousNighter extends Entity {
     private PooledEngine engine;
-    public ConsciousNighter(PooledEngine engine, TextureRegion textureRegion, int HP, int ATK, int DEF, int range){
+    public ConsciousNighter(PooledEngine engine, TextureRegion textureRegion){
         this.engine = engine;
         initIdentityComponents();
         initAnimationComponents(textureRegion);

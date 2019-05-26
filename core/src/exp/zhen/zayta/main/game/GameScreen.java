@@ -13,13 +13,13 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.assets.RegionNames;
+import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.game.conquest.Conquest;
 import exp.zhen.zayta.main.game.wake.WakeMode;
 import exp.zhen.zayta.main.menu.MenuScreen;
-import exp.zhen.zayta.main.menu.MenuScreenBase;
 
 
-public class GameScreen extends MenuScreenBase {
+public class GameScreen extends ScreenBase {
 
     private static final Logger log = new Logger(GameScreen.class.getName(), Logger.DEBUG);
 

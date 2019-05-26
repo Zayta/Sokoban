@@ -29,9 +29,9 @@ import exp.zhen.zayta.main.game.wake.render.MapRenderSystem;
 import exp.zhen.zayta.main.game.wake.render.QuestRenderSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.movementLimitations.world_wrap.WorldWrapChangeDirectionSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.movementLimitations.world_wrap.WorldWrapPauseSystem;
-import exp.zhen.zayta.main.game.wake.debug.debug_system.DebugCameraSystem;
-import exp.zhen.zayta.main.game.wake.debug.debug_system.DebugRenderSystem;
-import exp.zhen.zayta.main.game.wake.debug.debug_system.GridRenderSystem;
+import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
+import exp.zhen.zayta.main.game.debug.debug_system.DebugRenderSystem;
+import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
 import exp.zhen.zayta.main.game.wake.visual.AnimationSystem;
 import exp.zhen.zayta.main.game.wake.input.InputSystem;
 import exp.zhen.zayta.util.GdxUtils;
@@ -57,8 +57,6 @@ public class WakeMode implements Screen {
     private ShapeRenderer shapeRenderer;
 
     private PooledEngine engine;
-//    private Sound hitSound;
-//    private boolean reset;
 
     public WakeMode(RPG game) {
         this.game = game;
@@ -72,13 +70,15 @@ public class WakeMode implements Screen {
         orthographicCamera = new OrthographicCamera();
         viewport = new FitViewport(SizeManager.WAKE_WORLD_WIDTH,SizeManager.WAKE_WORLD_HEIGHT,orthographicCamera);
         hudViewport = new FitViewport(SizeManager.HUD_WIDTH,SizeManager.HUD_HEIGHT);
+
         /*Game Engines*/
         engine = new PooledEngine();
         entityFactoryController = new EntityFactoryController(new EntityFactory(engine,assetManager));
         manufacturer = new Manufacturer(assetManager.get(AssetDescriptors.WAKE_PLAY),engine);
         mapMaker = new MapMaker(assetManager);
         tiledMap = mapMaker.getTiledMap(0);
-//        setInputHandler();
+
+
         addEntities();
         addSystems();
     }
@@ -111,7 +111,7 @@ public class WakeMode implements Screen {
         if(DEBUG) {
             engine.addSystem(new GridRenderSystem(viewport, shapeRenderer));
             engine.addSystem(new DebugRenderSystem(viewport, shapeRenderer));
-            engine.addSystem(new DebugCameraSystem(orthographicCamera, SizeManager.WORLD_CENTER_X, SizeManager.WORLD_CENTER_Y));
+            engine.addSystem(new DebugCameraSystem(orthographicCamera, SizeManager.WAKE_WORLD_CENTER_X, SizeManager.WAKE_WORLD_CENTER_Y));
         }
     }
 

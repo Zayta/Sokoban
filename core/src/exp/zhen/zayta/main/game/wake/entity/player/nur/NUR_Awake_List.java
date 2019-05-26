@@ -28,8 +28,7 @@ public class NUR_Awake_List extends MovingEntityMaker implements EntityPositione
     private void initConsciousNighters()
     {
         consciousNighters.put(Undead.Lorale,
-                new ConsciousNighter(engine,wakePlayAtlas.findRegion(RegionNames.WakePlay.LORALE),
-                        100,10,0,5));
+                new ConsciousNighter(engine,wakePlayAtlas.findRegion(RegionNames.WakePlay.LORALE)));
 
     }
 

@@ -14,10 +14,10 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
-import exp.zhen.zayta.main.menu.MenuScreenBase;
+import exp.zhen.zayta.main.ScreenBase;
 
 
-public class ShopScreen extends MenuScreenBase {
+public class ShopScreen extends ScreenBase {
 
     private static final Logger log = new Logger(ShopScreen.class.getName(), Logger.DEBUG);
 

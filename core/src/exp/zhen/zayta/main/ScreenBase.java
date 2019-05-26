@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.menu;
+package exp.zhen.zayta.main;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -12,7 +12,7 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.util.GdxUtils;
 
 
-public abstract class MenuScreenBase extends ScreenAdapter {
+public abstract class ScreenBase extends ScreenAdapter {
 
     protected final RPG game;
     protected final AssetManager assetManager;
@@ -21,7 +21,7 @@ public abstract class MenuScreenBase extends ScreenAdapter {
     private Stage stage;
 
 
-    public MenuScreenBase(RPG game) {
+    public ScreenBase(RPG game) {
         this.game = game;
         assetManager = game.getAssetManager();
     }

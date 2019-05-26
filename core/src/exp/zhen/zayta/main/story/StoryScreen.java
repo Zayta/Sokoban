@@ -9,11 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.menu.MenuScreen;
-import exp.zhen.zayta.main.menu.MenuScreenBase;
 
 
-public class StoryScreen extends MenuScreenBase {
+public class StoryScreen extends ScreenBase {
 
 
     private ButtonGroup<CheckBox> checkBoxGroup;

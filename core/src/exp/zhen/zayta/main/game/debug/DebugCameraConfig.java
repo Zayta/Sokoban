@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.debug;
+package exp.zhen.zayta.main.game.debug;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

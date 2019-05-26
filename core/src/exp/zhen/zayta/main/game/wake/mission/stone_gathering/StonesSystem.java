@@ -46,7 +46,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 
     private void initStones(){
         int numStones = 5;
-        Vector2[] points = Arrangements.circle(numStones,SizeManager.WORLD_CENTER_X,SizeManager.WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/3);
+        Vector2[] points = Arrangements.circle(numStones,SizeManager.WAKE_WORLD_CENTER_X,SizeManager.WAKE_WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/3);
         for(int i =0; i<numStones; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);

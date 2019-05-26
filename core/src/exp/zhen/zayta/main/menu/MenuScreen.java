@@ -13,13 +13,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.game.GameScreen;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.shop.ShopScreen;
 import exp.zhen.zayta.main.story.StoryScreen;
 
 
-public class MenuScreen extends MenuScreenBase {
+public class MenuScreen extends ScreenBase {
 
     private static final Logger log = new Logger(MenuScreen.class.getName(), Logger.DEBUG);
 

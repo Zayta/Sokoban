@@ -1,10 +1,10 @@
-package exp.zhen.zayta.main.game.wake.debug.debug_system;
+package exp.zhen.zayta.main.game.debug.debug_system;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.wake.debug.DebugCameraController;
+import exp.zhen.zayta.main.game.debug.DebugCameraController;
 
 public class DebugCameraSystem extends EntitySystem {
 

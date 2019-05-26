@@ -65,7 +65,7 @@ public class MovableBlocksSystem extends EntitySystem  {
 
     private void initMovableBlocks(){
         int numBlocks = 5;
-        Vector2[] points = Arrangements.circle(numBlocks,SizeManager.WORLD_CENTER_X,SizeManager.WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/3);
+        Vector2[] points = Arrangements.circle(numBlocks,SizeManager.WAKE_WORLD_CENTER_X,SizeManager.WAKE_WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/3);
         for(int i =0; i<numBlocks; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);

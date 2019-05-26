@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.debug.debug_system;
+package exp.zhen.zayta.main.game.debug.debug_system;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
