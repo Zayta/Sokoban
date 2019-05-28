@@ -10,7 +10,7 @@ public class UserData { /*monitors how much HP a player has left in the game
  and stores levels unlocked and total points earned.*/
 
 
-//    private static final String POINTS = "highscore";//todo later make new ui skin and change this accordingly
+//    private static final String POINTS = "highscore";//todo later make new fonts skin and change this accordingly
     private static final String POINTS = "points";
 
     private Preferences PREFS;

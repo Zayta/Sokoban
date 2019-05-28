@@ -7,9 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
@@ -18,17 +16,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
-import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.conquest.soldiers.nur.NUR;
+import exp.zhen.zayta.main.game.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.debug.DebugCameraController;
 import exp.zhen.zayta.main.menu.MenuScreen;
 import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.ViewportUtils;
 
-public class Conquest implements Screen {
+public class ConquestScreen implements Screen {
 
-    private static final Logger log = new Logger(Conquest.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(ConquestScreen.class.getName(),Logger.DEBUG);
 
     // == constants ==
     private static final float PADDING = 20.0f;
@@ -39,7 +37,7 @@ public class Conquest implements Screen {
 
     private final SpriteBatch batch;
 
-    private final NUR nur;
+    private final NUR nur; private final Utsubyo utsubyo;
     private Territory territory;
 
     private OrthographicCamera camera;
@@ -59,11 +57,13 @@ public class Conquest implements Screen {
 //    private ShapeRenderer shapeRenderer;
     Pool<MoveToAction> pool;
     //    private PooledEngine engine;
-    public Conquest(RPG game) {
+    public ConquestScreen(RPG game) {
         this.game = game;
         assetManager = game.getAssetManager();
         batch = game.getBatch();
+
         nur = new NUR(assetManager.get(AssetDescriptors.CONQUEST));
+        utsubyo = new Utsubyo(nur.getConquestAtlas());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Conquest implements Screen {
 
         renderer = new ShapeRenderer();
 
-        //ui and display
+        //fonts and display
         uiCamera = new OrthographicCamera();
         uiViewport = new FitViewport(SizeManager.HUD_WIDTH, SizeManager.HUD_HEIGHT, uiCamera);
         font = assetManager.get(AssetDescriptors.FONT);

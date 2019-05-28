@@ -14,7 +14,7 @@ public class RegionNames {
     // == clip.atlas ==
     public static final String LORALE_REFLECTION = "Lorale";
 
-    // == ui.atlas ==
+    // == fonts.atlas ==
 //    public static final String BACK = "back";
 //    public static final String BACK_PRESSED = "backPressed";
 //    public static final String CHECK_MARK = "check-mark";

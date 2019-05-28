@@ -10,7 +10,8 @@ public class Monster extends Soldier {
     }
 
     @Override
-    public void activateAbility() {
+    public void activateAbility(Soldier target) {
 
     }
+
 }

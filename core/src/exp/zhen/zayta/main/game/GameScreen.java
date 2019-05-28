@@ -14,7 +14,7 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.ScreenBase;
-import exp.zhen.zayta.main.game.conquest.Conquest;
+import exp.zhen.zayta.main.game.conquest.ConquestScreen;
 import exp.zhen.zayta.main.game.wake.WakeMode;
 import exp.zhen.zayta.main.menu.MenuScreen;
 
@@ -109,6 +109,6 @@ public class GameScreen extends ScreenBase {
     }
 
     private void playConquest() {
-        game.setScreen(new Conquest(game));
+        game.setScreen(new ConquestScreen(game));
     }
 }

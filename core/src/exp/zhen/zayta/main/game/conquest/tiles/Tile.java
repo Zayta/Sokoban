@@ -1,25 +1,35 @@
 package exp.zhen.zayta.main.game.conquest.tiles;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Logger;
+
+import java.awt.Font;
 
 import exp.zhen.zayta.main.game.conquest.soldiers.Soldier;
 
-public abstract class Tile extends Actor {
+public class Tile extends Actor {
 
 
     private static final Logger log = new Logger(Tile.class.getName(), Logger.DEBUG);
 
+    private BitmapFont font;
     private Soldier soldier;
 
     private TextureRegion textureRegion;
-    public Tile(TextureRegion textureRegion) {
+    public Tile(TextureRegion textureRegion, BitmapFont font,Soldier soldier) {
         this.textureRegion = textureRegion;
-
+        this.font = font;
+        this.soldier = soldier;
     }
 
+    public void removeSoldier(){
+        soldier = null;
+    }
 
     public Soldier getSoldier() {
         return soldier;
@@ -29,7 +39,6 @@ public abstract class Tile extends Actor {
         this.soldier = soldier;
     }
 
-    public abstract void activate();
 
 
 
@@ -56,6 +65,10 @@ public abstract class Tile extends Actor {
                     getWidth(), getHeight(),
                     getScaleX(), getScaleY(),
                     getRotation());
+
+        }
+        if(font!=null){
+            font.draw(batch,soldier.toString(),getX(),getY());
         }
     }
 

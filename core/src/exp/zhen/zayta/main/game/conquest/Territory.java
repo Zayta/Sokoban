@@ -1,7 +1,10 @@
 package exp.zhen.zayta.main.game.conquest;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -10,11 +13,10 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.characters.Undead;
+import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.conquest.soldiers.nur.NUR;
-import exp.zhen.zayta.main.game.conquest.tiles.EPos;
-import exp.zhen.zayta.main.game.conquest.tiles.NPos;
+import exp.zhen.zayta.main.game.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.conquest.tiles.Tile;
-
 
 public class Territory extends Stage {
 
@@ -23,13 +25,14 @@ public class Territory extends Stage {
     enum Terrain{
         LAB
     }
-    private TextureAtlas conquestAtlas;
+    private TextureAtlas conquestAtlas; private BitmapFont font;
     //background
     private final Image background; private TextureRegionDrawable backgroundRegion;
-    //field
-    private NPos[] nPos;
-    private EPos[][] ePos;
-    
+    //fields
+    private Tile[] nPos;
+    private Tile[][] mPos;
+    private int numNighters = 3, numMisc = 6;
+
     public Territory (Viewport viewport, Batch batch, TextureAtlas conquestAtlas){
         super(viewport,batch);
         this.conquestAtlas = conquestAtlas;
@@ -37,11 +40,12 @@ public class Territory extends Stage {
         backgroundRegion = new TextureRegionDrawable();
         background = new Image(backgroundRegion);
         this.addActor(background);
-        
-        create(Terrain.LAB,3,12);
+
+        create(Terrain.LAB,numNighters,numMisc);
     }
 
     private void create(Terrain terrain, int numNighters,int numMisc){
+        setFont();
         setTerrain(terrain);
         selectNighters();
         if(numMisc<numNighters){
@@ -50,6 +54,14 @@ public class Territory extends Stage {
         else {
             setPositions(numNighters, numMisc);
         }
+    }
+    private void setFont(){
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("ui/fonts/font_amble/Amble-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 12;
+        font = generator.generateFont(parameter); // font size 12 pixels
+        generator.dispose(); // don't forget to dispose to avoid memory leaks!
+        font.getData().setScale(.2f);
     }
     private void selectNighters(){
         //todo make table, add to this stage/territory
@@ -72,64 +84,51 @@ public class Territory extends Stage {
 
     private void setPositions(int numNighters,int numMisc){
         int numRows = numNighters,numColumns = numMisc/numRows;//todo might have to ceiling this integer division
-
-        System.out.println("NumMisc"+numMisc);
         float padding = 0.1f;
         float tileWidth = (getWidth()-padding -(numColumns+1)*padding)/(numColumns+1);//+1 to account for nighter row
         float tileHeight = (getHeight()-numRows*padding)/numRows;
-        initCPos(numNighters,numMisc/numNighters,tileWidth,tileHeight,padding);
+
+        //important! initNPos before initCPos because CPos requires Tile for battle listener
         initNPos(numNighters,tileWidth,tileHeight,padding);
+        initCPos(numNighters,numMisc/numNighters,tileWidth,tileHeight,padding);
+
     }
-    
+
+
     private void initCPos(int numRows, int numColumns,float tileWidth, float tileHeight, float padding){
-        ePos = new EPos[numRows][numColumns];
+        mPos = new Tile[numRows][numColumns];
         for(int i = 0; i< numRows; i++){
             for(int j = 0; j<numColumns; j++){
                 float left = padding + (j+1)*(tileWidth+padding), bottom = i*(tileHeight+padding)+padding/2;
-                EPos epos = new EPos(conquestAtlas.findRegion("backgrounds/sunrise_parallax"));
-                ePos[i][j] = epos;
-                setTilePlacementInTerritory(epos,left,bottom,tileWidth,tileHeight);
+                Tile mpos = new Tile(conquestAtlas.findRegion("backgrounds/sunrise_parallax"),font,Utsubyo.generateMonster(5));
+                mpos.addListener(new Battle(nPos,mPos,i));
+
+                mPos[i][j] = mpos;
+                setTilePlacementInTerritory(mpos,left,bottom,tileWidth,tileHeight);
             }
         }
 
     }
-    
+
     private void initNPos(int numNighters, float tileWidth, float tileHeight, float padding){
-        nPos = new NPos[numNighters];
+        nPos = new Tile[numNighters];
         for(int i = 0; i<numNighters;i++){
             float left = padding, bottom = i*(tileHeight+padding)+padding/2;
-            NPos npos = new NPos(conquestAtlas.findRegion("backgrounds/day sky"),NUR.nighters.get(Undead.Lorale));
+            Tile npos = new Tile(conquestAtlas.findRegion("backgrounds/day sky"),font,NUR.nighters.get(Undead.Lorale));
+            nPos[i]= npos;
             setTilePlacementInTerritory(npos,left,bottom,tileWidth,tileHeight);
         }
+
     }
+
 
     private void setTilePlacementInTerritory(Tile tile, float left, float bottom, float tileWidth, float tileHeight){
         tile.setBounds(left, bottom, tileWidth,tileHeight);
         tile.setOrigin(Align.center);
         this.addActor(tile);
     }
-    
-    
 
-
-
-//    private Table positionTable(int numRows, int numColumns, int id){
-//        float padding = 0.1f;
-//        float width = 1f,height = 1f;
-//        Table table = new Table();
-//
-//        for(int i = 0; i< numRows; i++){
-//            for(int j = 0; j<numColumns; j++){
-//                Tile pos = new Tile (conquestAtlas.findRegion("portraits/Lorale"),id);
-//                pos.setBounds(0f,0f,width,height);
-//                table.add(pos).pad(padding).uniform();
-//            }
-//            table.row();
-//
-//        }
-//
-//        return table;
-//    }
+ 
 
 }
 

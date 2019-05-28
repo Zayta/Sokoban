@@ -21,7 +21,7 @@ public class NUR {
     private void initNighters()
     {
         nighters.put(Undead.Lorale,
-                new Nighter(conquestAtlas.findRegion("portraits/Lorale"),100,10,10));
+                new Nighter("Lorale",conquestAtlas.findRegion("portraits/Lorale"),100,10,10));
 
     }
 
