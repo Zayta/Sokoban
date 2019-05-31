@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
+import com.badlogic.gdx.utils.Scaling;
 
 import java.awt.Font;
 
@@ -36,6 +37,7 @@ public class Tile extends Table {
     private void init(){
         setBackground(new TextureRegionDrawable(textureRegion));
         Image image = new Image (soldier.getTextureRegion());
+        image.setScaling(Scaling.fit);
         add(image).expand();
         row();
         add(soldier.getStats());

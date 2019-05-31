@@ -4,11 +4,11 @@ package exp.zhen.zayta.main.game.config;
 public class SizeManager {
 
     //world
-    public static final float WIDTH = 512f; // pixels
-    public static final float HEIGHT = 1024f; // pixels
+    public static final float WIDTH = 1024f; // pixels
+    public static final float HEIGHT = 512f; // pixels
 
-    public static final float HUD_WIDTH = 512f; // world units
-    public static final float HUD_HEIGHT = 1024f; // world units
+    public static final float HUD_WIDTH = WIDTH; // world units
+    public static final float HUD_HEIGHT = HEIGHT; // world units
 
     public static final float WAKE_WORLD_WIDTH = 6.0f; // world units
     public static final float WAKE_WORLD_HEIGHT = 10.0f; // world units
@@ -17,8 +17,8 @@ public class SizeManager {
     public static final float WAKE_WORLD_CENTER_Y = WAKE_WORLD_HEIGHT / 2f; // world units
 
 
-    public static final float CQ_WORLD_WIDTH = 5.0f; // world units
-    public static final float CQ_WORLD_HEIGHT = 8.0f; // world units
+    public static final float CQ_WORLD_WIDTH = 5; // world units
+    public static final float CQ_WORLD_HEIGHT = 8; // world units
 
     public static final float CQ_WORLD_CENTER_X = CQ_WORLD_WIDTH / 2f; // world units
     public static final float CQ_WORLD_CENTER_Y = CQ_WORLD_HEIGHT / 2f; // world units
