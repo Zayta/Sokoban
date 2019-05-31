@@ -1,26 +1,41 @@
 package exp.zhen.zayta.main.game.conquest.soldiers;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Logger;
 
 import java.util.List;
+
+import exp.zhen.zayta.main.game.conquest.Territory;
 
 public abstract class Soldier {
     private final String name;
     private TextureRegion textureRegion;
     private int hp,atk,def;
 
+    private Stats stats;
     private boolean triggeredAbility = false;
+
+    private static final Logger log = new Logger(Soldier.class.getName(), Logger.DEBUG);
+
     public Soldier (String name, TextureRegion textureRegion, int hp, int atk, int def) {
         this.name = name;
         this.textureRegion = textureRegion;
         this.hp = hp; this.atk = atk; this.def=def;
+        stats = new Stats(toString());
+
     }
     public Soldier (TextureRegion textureRegion, int hp, int atk, int def) {
         this.name = "";
         this.textureRegion = textureRegion;
         this.hp = hp; this.atk = atk; this.def=def;
+        stats = new Stats(toString());
     }
 
+    public Stats getStats() {
+        return stats;
+    }
 
     public void activateAbility(List<Soldier> targets){
         for(Soldier target: targets)
@@ -61,6 +76,10 @@ public abstract class Soldier {
 
     public void setHp(int hp) {
         this.hp = hp;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getAtk() {

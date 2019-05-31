@@ -38,7 +38,7 @@ import exp.zhen.zayta.util.GdxUtils;
 
 public class WakeMode implements Screen {
     /*WakeMode mode is when you gather the stones without running into civilians*/
-    /*ConquestScreen mode flip tile to control movement, end when defeat all monsters*/
+    /*Conquest mode flip tile to control movement, end when defeat all monsters*/
     /*Defense mode is when you defend someone's soul from monsters.*/
     private static final Logger log = new Logger(WakeMode.class.getName(),Logger.DEBUG);
     private static final boolean DEBUG = true;

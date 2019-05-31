@@ -17,8 +17,8 @@ public class SizeManager {
     public static final float WAKE_WORLD_CENTER_Y = WAKE_WORLD_HEIGHT / 2f; // world units
 
 
-    public static final float CQ_WORLD_WIDTH = 4.0f; // world units
-    public static final float CQ_WORLD_HEIGHT = 3.0f; // world units
+    public static final float CQ_WORLD_WIDTH = 5.0f; // world units
+    public static final float CQ_WORLD_HEIGHT = 8.0f; // world units
 
     public static final float CQ_WORLD_CENTER_X = CQ_WORLD_WIDTH / 2f; // world units
     public static final float CQ_WORLD_CENTER_Y = CQ_WORLD_HEIGHT / 2f; // world units

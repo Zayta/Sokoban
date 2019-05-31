@@ -10,6 +10,8 @@ import exp.zhen.zayta.main.game.characters.Undead;
 public class NUR {
 
     private TextureAtlas conquestAtlas;
+    private static HashMap<Undead,Nighter> nighters = new HashMap<Undead, Nighter>();
+
     public NUR(TextureAtlas conquestAtlas){
         this.conquestAtlas = conquestAtlas;
         init();
@@ -24,8 +26,12 @@ public class NUR {
                 new Nighter("Lorale",conquestAtlas.findRegion("portraits/Lorale"),100,10,10));
 
     }
+    /*Must make sure nighters is initted*/
+    public static Nighter summon(Undead name){
 
-    public static HashMap<Undead,Nighter> nighters = new HashMap<Undead, Nighter>();
+        Nighter nighter = nighters.get(name);
+        return new Nighter(nighter.getName(),nighter.getTextureRegion(),nighter.getHp(),nighter.getAtk(),nighter.getDef());
+    }
 
     public TextureAtlas getConquestAtlas(){
         return conquestAtlas;

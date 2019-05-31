@@ -56,7 +56,7 @@ public class UndeadXCivilianCollisionSystem extends GameControllingSystem implem
 
             if (civilian != null) {
                 if (checkCollisionBetween(nighter, civilian)) {
-                    log.debug("NighterXCivilian collide");
+//                    log.debug("NighterXCivilian collide");
                     collideEvent(nighter, civilian);
                     break;
                 }

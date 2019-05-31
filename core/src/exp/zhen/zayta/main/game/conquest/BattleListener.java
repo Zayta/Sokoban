@@ -5,16 +5,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.conquest.tiles.Tile;
-import exp.zhen.zayta.main.game.conquest.tiles.Tile;
-import exp.zhen.zayta.main.game.conquest.tiles.Tile;
 
 /*Handles game logic and input*/
-public class Battle extends ClickListener {
-    private static final Logger log = new Logger(Battle.class.getName(), Logger.DEBUG);
+public class BattleListener extends ClickListener {
+    private static final Logger log = new Logger(BattleListener.class.getName(), Logger.DEBUG);
 
     private Tile[] nPos; private Tile[][] mPos;
     private int rowOfBattle;
-    public Battle(Tile[] nPos, Tile[][] mPos, int i){
+    public BattleListener(Tile[] nPos, Tile[][] mPos, int i){
         this.nPos = nPos;
         this.mPos = mPos;
         rowOfBattle = i;
@@ -26,7 +24,7 @@ public class Battle extends ClickListener {
     }
 
     private void fight(){
-        System.out.println("Battle happening at row "+rowOfBattle);
+        System.out.println("BattleListener happening at row "+rowOfBattle);
         System.out.println("nPos"+nPos);
         nPos[rowOfBattle].getSoldier().attack(mPos[rowOfBattle][0].getSoldier());
     }
