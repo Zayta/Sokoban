@@ -1,20 +1,27 @@
 package exp.zhen.zayta.main.game.conquest.soldiers;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.List;
 
+import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.conquest.Territory;
 
 public abstract class Soldier {
     private final String name;
     private TextureRegion textureRegion;
     private int hp,atk,def;
+    private final int FullHP, FullATK, FullDEF;
 
-    private Stats stats;
+    private Label stats;
+    private static BitmapFont statsFont = new BitmapFont();
     private boolean triggeredAbility = false;
 
     private static final Logger log = new Logger(Soldier.class.getName(), Logger.DEBUG);
@@ -23,39 +30,44 @@ public abstract class Soldier {
         this.name = name;
         this.textureRegion = textureRegion;
         this.hp = hp; this.atk = atk; this.def=def;
-        stats = new Stats(toString());
-
+        this.FullHP = hp; this.FullATK = atk; this.FullDEF = def;
+        initStatsLabel();
     }
     public Soldier (TextureRegion textureRegion, int hp, int atk, int def) {
         this.name = "";
         this.textureRegion = textureRegion;
         this.hp = hp; this.atk = atk; this.def=def;
-        stats = new Stats(toString());
+        this.FullHP = hp; this.FullATK = atk; this.FullDEF = def;
+        initStatsLabel();
+    }
+    public void initStatsLabel() {
+        stats = new Label(toString(), new Label.LabelStyle(statsFont,Color.RED));
+        statsFont.setUseIntegerPositions(false);
+
+        stats.setFontScaleX(SizeManager.CQ_WORLD_WIDTH/SizeManager.WIDTH);
+        stats.setFontScaleY(SizeManager.CQ_WORLD_HEIGHT/SizeManager.HEIGHT);
     }
 
-    public Stats getStats() {
-        return stats;
-    }
-
-    public void activateAbility(List<Soldier> targets){
-        for(Soldier target: targets)
-            activateAbility(target);
-    }
     public abstract void activateAbility(Soldier target);
-    public boolean hasTriggeredAbility() {
-        return triggeredAbility;
-    }
-
-    public void setTriggeredAbility(boolean triggeredAbility) {
-        this.triggeredAbility = triggeredAbility;
-    }
-
-    public void changeTriggeredAbility(){
-        triggeredAbility = !triggeredAbility;
-    }
 
     public void attack(Soldier target){
         target.decrementHp(this.atk);
+    }
+    public void decrementHp(int damage){
+        hp-=damage;
+        updateStats();
+    }
+    private void updateStats(){
+        stats.setText(toString());
+    }
+
+    public boolean isKnockedOut(){
+        return hp<=0;
+    }
+
+    /*Setters and getters*/
+    public String getName() {
+        return name;
     }
 
     public TextureRegion getTextureRegion() {
@@ -66,20 +78,13 @@ public abstract class Soldier {
         this.textureRegion = textureRegion;
     }
 
-    public void decrementHp(int damage){
-        hp-=damage;
-    }
-
     public int getHp() {
         return hp;
     }
 
     public void setHp(int hp) {
         this.hp = hp;
-    }
-
-    public String getName() {
-        return name;
+        updateStats();
     }
 
     public int getAtk() {
@@ -88,6 +93,7 @@ public abstract class Soldier {
 
     public void setAtk(int atk) {
         this.atk = atk;
+        updateStats();
     }
 
     public int getDef() {
@@ -96,6 +102,40 @@ public abstract class Soldier {
 
     public void setDef(int def) {
         this.def = def;
+        updateStats();
+    }
+
+    public int getFullHP() {
+        return FullHP;
+    }
+
+    public int getFullATK() {
+        return FullATK;
+    }
+
+    public int getFullDEF() {
+        return FullDEF;
+    }
+
+    public Label getStats() {
+        return stats;
+    }
+
+
+    public BitmapFont getBitmapFont() {
+        return statsFont;
+    }
+
+    public void setBitmapFont(BitmapFont statsFont) {
+        this.statsFont = statsFont;
+    }
+
+    public boolean isTriggeredAbility() {
+        return triggeredAbility;
+    }
+
+    public BitmapFont getStatsFont() {
+        return statsFont;
     }
 
     @Override

@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.conquest.soldiers.nur.NUR;
-import exp.zhen.zayta.main.game.conquest.soldiers.nur.Nighter;
 import exp.zhen.zayta.main.game.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.conquest.tiles.Tile;
 
@@ -77,7 +76,7 @@ public class Territory extends Stage {
             for(int j = 0; j<numColumns; j++){
                 float left = padding + (j+1)*(tileWidth+padding), bottom = i*(tileHeight+padding)+padding/2;
                 Tile mpos = new Tile(conquestAtlas.findRegion("backgrounds/sunrise_parallax"),Utsubyo.generateMonster(5));
-                mpos.addListener(new BattleListener(nPos,mPos,i));
+                mpos.addListener(new Battle(nPos,mPos,i));
 
                 mPos[i][j] = mpos;
                 setTilePlacementInTerritory(mpos,left,bottom,tileWidth,tileHeight);

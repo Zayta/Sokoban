@@ -63,7 +63,7 @@ public class Conquest implements Screen {
     //gamePlay fields
     private Tile[] nPos;
     private Tile[][] mPos;
-    private int numNighters = 5, numMisc = 25;
+    private int numNighters = 3, numMisc = 12;
 
 
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -18,7 +19,7 @@ import java.awt.Font;
 
 import exp.zhen.zayta.main.game.conquest.soldiers.Soldier;
 
-public class Tile extends Table {
+public class Tile extends Stack {
 
 
     private static final Logger log = new Logger(Tile.class.getName(), Logger.DEBUG);
@@ -34,15 +35,30 @@ public class Tile extends Table {
 //        soldier.setOrigin(Align.center);
         init();
     }
+
     private void init(){
-        setBackground(new TextureRegionDrawable(textureRegion));
-        Image image = new Image (soldier.getTextureRegion());
-        image.setScaling(Scaling.fit);
-        add(image).expand();
-        row();
-        add(soldier.getStats());
-        center();
+        if(soldier!=null) {
+        Image image = new Image(soldier.getTextureRegion());
+//        image.setScaling(Scaling.fit);
+        add(image);
+        //Second add wrapped overlay object
+//        Table overlay = new Table();
+//        overlay.add(soldier.getStats()).expand().fillX().bottom().left();
+//        log.debug("tile width"+getWidth());
+            soldier.getStats().setAlignment(Align.bottomLeft, Align.center);
+            add(soldier.getStats());
+        }
     }
+
+//    private void init(){
+//        setBackground(new TextureRegionDrawable(textureRegion));
+//        Image image = new Image (soldier.getTextureRegion());
+//        image.setScaling(Scaling.fit);
+//        add(image).expand();
+//        row();
+//        add(soldier.getStats());
+//        center();
+//    }
 
     public void removeSoldier(){
         soldier = null;
@@ -53,8 +69,11 @@ public class Tile extends Table {
     }
 
     public void setSoldier(Soldier soldier) {
+//        clear();
         this.soldier = soldier;
+        init();
     }
+
 
 
 
