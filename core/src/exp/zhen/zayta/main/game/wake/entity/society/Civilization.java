@@ -4,8 +4,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
+import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
-import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.characters.id_tags.MortalTag;
@@ -31,7 +31,7 @@ public class Civilization extends MovingEntityMaker implements EntityPositioner 
         TextureComponent texture = engine.createComponent(TextureComponent.class);
 
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
-        animationComponent.init(wakePlayAtlas.findRegion(RegionNames.WakePlay.CIVILIAN));
+        animationComponent.init(wakePlayAtlas.findRegion(WakePlayRegionNames.CIVILIAN));
 
 
         Entity entity = engine.createEntity();

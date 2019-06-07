@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import java.util.HashMap;
 
 import exp.zhen.zayta.main.game.characters.Undead;
+import exp.zhen.zayta.main.game.conquest.assets.CQRegionNames;
 import exp.zhen.zayta.main.game.conquest.soldiers.Soldier;
 import exp.zhen.zayta.main.game.conquest.soldiers.nur.Nighter;
 
@@ -30,8 +31,8 @@ public class Utsubyo {
     public static HashMap<Undead,Monster> monsters = new HashMap<Undead, Monster>();
 
     public static Monster generateMonster(int lvl){
-
-            return new Monster(conquestAtlas.findRegion("monsters/reaper"), lvl*10, lvl+5, lvl+2);
+        int index = lvl%CQRegionNames.MONSTERS.length;
+            return new Monster(conquestAtlas.findRegion(CQRegionNames.MONSTERS[index]), lvl*10+10, lvl+5, lvl+2);
     }
 
     public TextureAtlas getConquestAtlas(){

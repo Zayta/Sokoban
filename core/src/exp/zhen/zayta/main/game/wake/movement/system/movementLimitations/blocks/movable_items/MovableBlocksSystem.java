@@ -13,8 +13,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
-import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.characters.id_tags.NighterTag;
@@ -70,7 +70,7 @@ public class MovableBlocksSystem extends EntitySystem  {
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             Entity block = WakeMode.manufacturer.makeEntityInPos(points[i].x,points[i].y,
-                    MovableTag.class,RegionNames.WakePlay.BACKGROUND);
+                    MovableTag.class,WakePlayRegionNames.BACKGROUND);
             movableBlocksBiMap.put(key, block);
             VelocityComponent velocityComponent = engine.createComponent(VelocityComponent.class);
             block.add(velocityComponent);

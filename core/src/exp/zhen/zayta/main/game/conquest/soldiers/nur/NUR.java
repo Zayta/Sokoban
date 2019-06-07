@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
 
-import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.game.characters.Undead;
 
 public class NUR {

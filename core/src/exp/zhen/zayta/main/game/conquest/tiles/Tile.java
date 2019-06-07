@@ -29,16 +29,22 @@ public class Tile extends Stack {
     private TextureRegion textureRegion;
     public Tile(TextureRegion textureRegion, Soldier soldier) {
         this.textureRegion = textureRegion;
-        this.soldier = soldier;
+//        this.soldier = soldier;
         setTouchable(Touchable.enabled);
 //        soldier.setBounds(0,0,getWidth(),getHeight());
 //        soldier.setOrigin(Align.center);
-        init();
+        setSoldier(soldier);
     }
 
-    private void init(){
+    public void setSoldier(Soldier soldier) {
+        clearChildren();
+        this.soldier = soldier;
+        refresh();
+    }
+    private Image image;
+    private void refresh(){
         if(soldier!=null) {
-        Image image = new Image(soldier.getTextureRegion());
+        image = new Image(soldier.getTextureRegion());
 //        image.setScaling(Scaling.fit);
         add(image);
         //Second add wrapped overlay object
@@ -47,6 +53,9 @@ public class Tile extends Stack {
 //        log.debug("tile width"+getWidth());
             soldier.getStats().setAlignment(Align.bottomLeft, Align.center);
             add(soldier.getStats());
+        }
+        else{
+            image = null;
         }
     }
 
@@ -61,17 +70,13 @@ public class Tile extends Stack {
 //    }
 
     public void removeSoldier(){
+        clearChildren();
         soldier = null;
+
     }
 
     public Soldier getSoldier() {
         return soldier;
-    }
-
-    public void setSoldier(Soldier soldier) {
-//        clear();
-        this.soldier = soldier;
-        init();
     }
 
 

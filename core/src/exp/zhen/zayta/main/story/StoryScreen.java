@@ -51,7 +51,7 @@ public class StoryScreen extends ScreenBase {
 //        // setup table
 //        Table contentTable = new Table(uiSkin);
 //        contentTable.defaults().pad(10);
-//        contentTable.setBackground(RegionNames.PANEL);
+//        contentTable.setBackground(UiRegionNames.PANEL);
 //
 //        contentTable.add(label).row();
 //        contentTable.add(easy).row();

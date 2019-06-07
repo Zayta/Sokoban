@@ -12,7 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
-import exp.zhen.zayta.assets.RegionNames;
+import exp.zhen.zayta.assets.UiRegionNames;
+import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
 import exp.zhen.zayta.main.ScreenBase;
 
@@ -32,7 +33,7 @@ public class ShopScreen extends ScreenBase {
         TextureAtlas wakePlayAtlas = assetManager.get(AssetDescriptors.WAKE_PLAY);
         Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
         
-        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(RegionNames.WakePlay.BACKGROUND);
+        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WakePlayRegionNames.BACKGROUND);
 
         // background
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
@@ -56,7 +57,7 @@ public class ShopScreen extends ScreenBase {
         // setup tables
         Table contentTable = new Table(uiSkin);
         contentTable.defaults().pad(20);
-        contentTable.setBackground(RegionNames.PANEL);
+        contentTable.setBackground(UiRegionNames.PANEL);
 
         contentTable.add(pointsText).row();
         contentTable.add(pointsLabel).row();

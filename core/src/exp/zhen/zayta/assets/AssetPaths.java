@@ -3,6 +3,8 @@ package exp.zhen.zayta.assets;
 
 public class AssetPaths {
 
+    public static final String [] CQ_MONSTERS = {};
+
     public static final String UI_FONT = "ui/fonts/ui_font_32.fnt";
 
     public static final String WAKE_PLAY = "gameplay/wakeplay/wakeplay.atlas";

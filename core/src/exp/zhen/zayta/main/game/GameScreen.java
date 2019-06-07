@@ -12,10 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
-import exp.zhen.zayta.assets.RegionNames;
+import exp.zhen.zayta.assets.UiRegionNames;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.game.conquest.Conquest;
 import exp.zhen.zayta.main.game.wake.WakeMode;
+import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
 
 
@@ -34,7 +35,7 @@ public class GameScreen extends ScreenBase {
         TextureAtlas wakePlayAtlas = assetManager.get(AssetDescriptors.WAKE_PLAY);
         Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
 
-        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(RegionNames.WakePlay.BACKGROUND);
+        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WakePlayRegionNames.BACKGROUND);
 
         // background
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
@@ -84,7 +85,7 @@ public class GameScreen extends ScreenBase {
         // setup tables
         Table modeSelectionTable = new Table(uiSkin);
         modeSelectionTable.defaults().pad(20);
-        modeSelectionTable.setBackground(RegionNames.PANEL);
+        modeSelectionTable.setBackground(UiRegionNames.PANEL);
 
         modeSelectionTable.add(wakeButton);
         modeSelectionTable.row();

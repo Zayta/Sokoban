@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
@@ -17,6 +18,7 @@ import exp.zhen.zayta.main.game.conquest.Territory;
 public abstract class Soldier {
     private final String name;
     private TextureRegion textureRegion;
+    private Image image;
     private int hp,atk,def;
     private final int FullHP, FullATK, FullDEF;
 
@@ -28,14 +30,14 @@ public abstract class Soldier {
 
     public Soldier (String name, TextureRegion textureRegion, int hp, int atk, int def) {
         this.name = name;
-        this.textureRegion = textureRegion;
+        this.textureRegion = textureRegion; this.image = new Image(textureRegion);
         this.hp = hp; this.atk = atk; this.def=def;
         this.FullHP = hp; this.FullATK = atk; this.FullDEF = def;
         initStatsLabel();
     }
     public Soldier (TextureRegion textureRegion, int hp, int atk, int def) {
-        this.name = "";
-        this.textureRegion = textureRegion;
+        this.name = "M";
+        this.textureRegion = textureRegion;this.image = new Image(textureRegion);
         this.hp = hp; this.atk = atk; this.def=def;
         this.FullHP = hp; this.FullATK = atk; this.FullDEF = def;
         initStatsLabel();
@@ -138,9 +140,15 @@ public abstract class Soldier {
         return statsFont;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
     @Override
     public String toString() {
-        return name+"\nHP:"+hp+"\nATK:"+atk+"\nDEF:"+def;
+//        return name+"\nHP:"+hp+"\nATK:"+atk+"\nDEF:"+def;
+        return name+" HP:"+hp+" ATK:"+atk+" DEF:"+def;
     }
+
 }
 

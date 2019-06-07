@@ -1,15 +1,7 @@
 package exp.zhen.zayta.assets;
 
-public class RegionNames {
+public class UiRegionNames {
 
-    // == wakeplay.atlas ==
-
-    public class WakePlay {
-        public static final String BACKGROUND = "memLab1";
-        public static final String LORALE = "lorale";
-        public static final String CIVILIAN = "anoni";
-        public static final String STONE = "stones_blackpplstone";
-    }
 
     // == clip.atlas ==
     public static final String LORALE_REFLECTION = "Lorale";
@@ -29,6 +21,6 @@ public class RegionNames {
 //    public static final String PLAY = "play";
 //    public static final String PLAY_PRESSED = "playPressed";
 
-    private RegionNames() {
+    private UiRegionNames() {
     }
 }

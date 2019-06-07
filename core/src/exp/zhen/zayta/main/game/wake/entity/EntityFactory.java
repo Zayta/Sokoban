@@ -6,7 +6,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import exp.zhen.zayta.assets.AssetDescriptors;
-import exp.zhen.zayta.assets.RegionNames;
+import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
@@ -40,7 +40,7 @@ public class EntityFactory {
 
     private void commonBackground(){
         TextureComponent texture=engine.createComponent(TextureComponent.class);
-        texture.setRegion(wakePlayAtlas.findRegion(RegionNames.WakePlay.BACKGROUND));
+        texture.setRegion(wakePlayAtlas.findRegion(WakePlayRegionNames.BACKGROUND));
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
         dimension.set(SizeManager.WAKE_WORLD_WIDTH,SizeManager.WAKE_WORLD_HEIGHT);

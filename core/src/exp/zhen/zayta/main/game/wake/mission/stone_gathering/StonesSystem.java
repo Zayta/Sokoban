@@ -8,9 +8,9 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
@@ -51,7 +51,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             stonesBiMap.put(key,
-                    WakeMode.manufacturer.makeEntityInPos(points[i].x,points[i].y,StoneTag.class,RegionNames.WakePlay.STONE));
+                    WakeMode.manufacturer.makeEntityInPos(points[i].x,points[i].y,StoneTag.class,WakePlayRegionNames.STONE));
 //            log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
 //            +stonesBiMap.get(key));
         }

@@ -75,7 +75,7 @@ public class Territory extends Stage {
         for(int i = 0; i< numRows; i++){
             for(int j = 0; j<numColumns; j++){
                 float left = padding + (j+1)*(tileWidth+padding), bottom = i*(tileHeight+padding)+padding/2;
-                Tile mpos = new Tile(conquestAtlas.findRegion("backgrounds/sunrise_parallax"),Utsubyo.generateMonster(5));
+                Tile mpos = new Tile(conquestAtlas.findRegion("backgrounds/sunrise_parallax"),Utsubyo.generateMonster(j));
                 mpos.addListener(new Battle(nPos,mPos,i));
 
                 mPos[i][j] = mpos;

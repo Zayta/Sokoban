@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
 
+import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.entity.MovingEntityMaker;
 import exp.zhen.zayta.UserData;
-import exp.zhen.zayta.assets.RegionNames;
 import exp.zhen.zayta.main.game.wake.component.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.EntityPositioner;
 import exp.zhen.zayta.main.game.characters.Undead;
@@ -28,7 +28,7 @@ public class NUR_Awake_List extends MovingEntityMaker implements EntityPositione
     private void initConsciousNighters()
     {
         consciousNighters.put(Undead.Lorale,
-                new ConsciousNighter(engine,wakePlayAtlas.findRegion(RegionNames.WakePlay.LORALE)));
+                new ConsciousNighter(engine,wakePlayAtlas.findRegion(WakePlayRegionNames.LORALE)));
 
     }
 

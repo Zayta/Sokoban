@@ -28,6 +28,10 @@ public class AssetDescriptors {
 
 
 
+
+
+
+
     public static final AssetDescriptor<TiledMap> MAP_MEMLAB1 = new AssetDescriptor<TiledMap>(AssetPaths.MAPS_MEMLAB1,TiledMap.class);
     public static final AssetDescriptor<TiledMap> MAP_MEMLAB2 = new AssetDescriptor<TiledMap>(AssetPaths.MAPS_MEMLAB2,TiledMap.class);
     public static final AssetDescriptor<TiledMap> MAP_MEMLABBIG = new AssetDescriptor<TiledMap>(AssetPaths.MAPS_MEMLABBIG,TiledMap.class);
