@@ -45,7 +45,7 @@ public class Territory extends Stage {
         padding = 0.1f;
         tileWidth = (getWidth()-padding -(numColumns+1)*padding)/(numColumns+1);//+1 to account for nighter row
         tileHeight = (getHeight()-numRows*padding)/numRows;
-
+//        menuButton();
     }
 
     private void selectNighters(){

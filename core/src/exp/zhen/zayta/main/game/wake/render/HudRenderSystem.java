@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import exp.zhen.zayta.main.game.config.SizeManager;
+
 public class HudRenderSystem extends EntitySystem {
     private static final Logger log = new Logger(HudRenderSystem.class.getName(),Logger.DEBUG);
     private final Viewport viewport;
@@ -37,27 +39,27 @@ public class HudRenderSystem extends EntitySystem {
     }
 
     private void draw(){
-//        String levelString = "LEVEL: "+RPG.userData.getLevel();
+//        String levelString = "LEVEL: "/*+RPG.userData.getLevel()*/;
 //        layout.setText(font,levelString);
 //        font.draw(batch,levelString,
 //                20,SizeManager.HUD_HEIGHT-layout.height);
 
-//        String stonesString = "STONES IN LEVEL: "+RPG.userData.getStonesInLevel();
-//        layout.setText(font,stonesString);
-//        font.draw(batch,stonesString,
-//                SizeManager.HUD_WIDTH - layout.width-20,SizeManager.HUD_HEIGHT-layout.height);
+        String stonesString = "STONES IN LEVEL: "/*+RPG.userData.getStonesInLevel()*/;
+        layout.setText(font,stonesString);
+        font.draw(batch,stonesString,
+                SizeManager.HUD_WIDTH - layout.width-20,SizeManager.HUD_HEIGHT-layout.height);
 
 //
 //        BattleComponent playerStats = UserData.Player.getComponent(BattleComponent.class);
-//        String HPString = "HP: "+playerStats.getHP();
+//        String HPString = "hp: "+playerStats.getHP();
 //        layout.setText(font,HPString);
 //        font.draw(batch,HPString,20,3*layout.height);
 //
-//        String ATKString = "ATK: "+playerStats.getATK();
+//        String ATKString = "atk: "+playerStats.getATK();
 //        layout.setText(font,ATKString);
 //        font.draw(batch,ATKString,20,2*layout.height);
 //
-//        String DEFString = "DEF: "+playerStats.getATK();
+//        String DEFString = "def: "+playerStats.getATK();
 //        layout.setText(font,DEFString);
 //        font.draw(batch,DEFString,20,layout.height);
 

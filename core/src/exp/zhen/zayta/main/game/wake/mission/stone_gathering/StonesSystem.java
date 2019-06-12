@@ -4,22 +4,27 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
+import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.WakeMode;
 import exp.zhen.zayta.main.game.wake.entity.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.game.wake.component.labels.PlayerTag;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.collision.CollisionListener;
 import exp.zhen.zayta.main.game.wake.collision.GameControllingSystem;
+import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.Position;
+import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapTag;
+import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
 
@@ -27,6 +32,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(StonesSystem.class.getName(),Logger.DEBUG);
+    private TextureAtlas wakePlayAtlas;
 
     private BiMap<Integer,Entity> stonesBiMap;
     //families are entities that can collide
@@ -34,6 +40,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 
     public StonesSystem(RPG game, PooledEngine engine){
         super(game,engine);
+        wakePlayAtlas = game.getAssetManager().get(AssetDescriptors.WAKE_PLAY);
         NIGHTERS = Family.all(
                 PlayerTag.class,
                 CircularBoundsComponent.class
@@ -50,8 +57,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<numStones; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            stonesBiMap.put(key,
-                    WakeMode.manufacturer.makeEntityInPos(points[i].x,points[i].y,StoneTag.class,WakePlayRegionNames.STONE));
+            stonesBiMap.put(key,makeStone(points[i].x,points[i].y,StoneTag.class,WPRegionNames.STONE));
 //            log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
 //            +stonesBiMap.get(key));
         }
@@ -156,6 +162,42 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
     @Override
     public void reset() {
         stonesBiMap.clear();
+    }
+
+
+
+
+    private Entity makeStone(float x, float y,java.lang.Class componentType, String regionName) {
+
+
+        PooledEngine engine = getEngine();
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        texture.setRegion(wakePlayAtlas.findRegion(regionName));
+
+        Entity entity = engine.createEntity();
+
+        entity.add(engine.createComponent(componentType));//adds identifier
+        entity.add(texture);
+        engine.addEntity(entity);
+
+
+        Position position = engine.createComponent(Position.class);
+        position.set(x,y);
+
+        DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
+        dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
+
+        CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
+        bounds.setBounds(x,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
+
+        WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
+
+        entity.add(position);
+        entity.add(dimension);
+        entity.add(bounds);
+        entity.add(worldWrap);
+
+        return entity;
     }
 
 

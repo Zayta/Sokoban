@@ -1,12 +1,11 @@
 package exp.zhen.zayta;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
-import exp.zhen.zayta.main.game.wake.entity.player.nur.ConsciousNighter;
 
-
-public class UserData { /*monitors how much HP a player has left in the game
+public class UserData { /*monitors how much hp a player has left in the game
  and stores levels unlocked and total points earned.*/
 
 
@@ -16,7 +15,7 @@ public class UserData { /*monitors how much HP a player has left in the game
     private Preferences PREFS;
     private int points;
 
-    public static ConsciousNighter Player;
+    public static Entity Player;
 
 
     UserData() {

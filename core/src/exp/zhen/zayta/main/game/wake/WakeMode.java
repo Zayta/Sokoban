@@ -14,11 +14,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.entity.EntityFactory;
-import exp.zhen.zayta.main.game.wake.entity.EntityFactoryController;
-import exp.zhen.zayta.main.game.wake.entity.game_objects.Manufacturer;
+import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
+import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
-import exp.zhen.zayta.main.game.wake.movement.system.movementLimitations.blocks.movable_items.MovableBlocksSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.BoundsSystem;
 import exp.zhen.zayta.main.game.wake.mission.stone_gathering.StonesSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.PositionTrackerSystem;
@@ -26,12 +25,13 @@ import exp.zhen.zayta.main.game.wake.map.MapBlocksSystem;
 import exp.zhen.zayta.main.game.wake.render.HudRenderSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.MovementSystem;
 import exp.zhen.zayta.main.game.wake.render.MapRenderSystem;
-import exp.zhen.zayta.main.game.wake.render.QuestRenderSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.movementLimitations.world_wrap.WorldWrapChangeDirectionSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.movementLimitations.world_wrap.WorldWrapPauseSystem;
+import exp.zhen.zayta.main.game.wake.render.RenderSystem;
+import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapChangeDirectionSystem;
+import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRenderSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
+import exp.zhen.zayta.main.game.wake.render.StatsRenderSystem;
 import exp.zhen.zayta.main.game.wake.visual.AnimationSystem;
 import exp.zhen.zayta.main.game.wake.input.InputSystem;
 import exp.zhen.zayta.util.GdxUtils;
@@ -46,8 +46,8 @@ public class WakeMode implements Screen {
     private final RPG game;
     private final AssetManager assetManager;
 
-    private EntityFactoryController entityFactoryController;
-    public static Manufacturer manufacturer;
+    private EntityLab entityLab;
+//    public static Manufacturer manufacturer;
 
     private MapMaker mapMaker;private TiledMap tiledMap;
 
@@ -73,8 +73,8 @@ public class WakeMode implements Screen {
 
         /*Game Engines*/
         engine = new PooledEngine();
-        entityFactoryController = new EntityFactoryController(new EntityFactory(engine,assetManager));
-        manufacturer = new Manufacturer(assetManager.get(AssetDescriptors.WAKE_PLAY),engine);
+        entityLab = new EntityLab(engine,assetManager);
+//        manufacturer = new Manufacturer(assetManager.get(AssetDescriptors.WAKE_PLAY),engine);
         mapMaker = new MapMaker(assetManager);
         tiledMap = mapMaker.getTiledMap(0);
 
@@ -96,7 +96,7 @@ public class WakeMode implements Screen {
         engine.addSystem(new PositionTrackerSystem());//should be first
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
-        engine.addSystem(new MovableBlocksSystem(engine,viewport));//sb before movement
+        engine.addSystem(new MovableBlocksSystem(engine,viewport,assetManager.get(AssetDescriptors.WAKE_PLAY)));//sb before movement
         engine.addSystem(new WorldWrapPauseSystem(viewport));
         engine.addSystem(new WorldWrapChangeDirectionSystem(viewport));
         engine.addSystem(new MapBlocksSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
@@ -105,7 +105,8 @@ public class WakeMode implements Screen {
         engine.addSystem(new AnimationSystem());
     }
     private void addRenderSystems(){
-        engine.addSystem(new QuestRenderSystem(viewport,game.getBatch()));
+        engine.addSystem(new StatsRenderSystem(hudViewport,game.getBatch(),SizeManager.WIDTH/SizeManager.WAKE_WORLD_WIDTH,SizeManager.HEIGHT/SizeManager.WAKE_WORLD_HEIGHT));
+        engine.addSystem(new RenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(AssetDescriptors.FONT)*/));
 
         if(DEBUG) {
@@ -122,7 +123,7 @@ public class WakeMode implements Screen {
 
 
     private void addEntities() {
-        entityFactoryController.addEntities();
+        entityLab.addEntities();
     }
 
 

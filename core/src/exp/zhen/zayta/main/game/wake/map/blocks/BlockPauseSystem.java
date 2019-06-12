@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.map;
+package exp.zhen.zayta.main.game.wake.map.blocks;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -7,14 +7,15 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.game.wake.map.MapBlocksSystem;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 
-public class MapBlocksSystem extends EntitySystem {
+public class BlockPauseSystem extends EntitySystem {
 
 
     private static final Logger log = new Logger(MapBlocksSystem.class.getName(), Logger.DEBUG);
@@ -23,10 +24,10 @@ public class MapBlocksSystem extends EntitySystem {
     private TiledMapTileLayer collisionLayer;
     private float increment;
     private String blockedKey = "block";
-    public MapBlocksSystem(TiledMapTileLayer collisionLayer)
+    public BlockPauseSystem(TiledMapTileLayer collisionLayer)
     {
         MOVING_ENTITIES = Family.all(
-                NPCTag.class,
+                NighterTag.class,
                 Position.class,
                 VelocityComponent.class).get();
         this.collisionLayer = collisionLayer;
@@ -40,40 +41,51 @@ public class MapBlocksSystem extends EntitySystem {
         ImmutableArray<Entity> entities = getEngine().getEntitiesFor(MOVING_ENTITIES);
         for(Entity entity:entities) {
 
-            Direction currentDirection = Mappers.MOVEMENT.get(entity).getDirection();
-            if(collidedWithBlock(entity,currentDirection))
-            {
-                VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-                //if there is a block, go a random direction upon interaction. should fix later based on tile direction.
-                movement.setDirection(Direction.generateDirectionExcluding(currentDirection));
-            }
+            VelocityComponent movement = Mappers.MOVEMENT.get(entity);
+            handleBlockCollision(entity, movement);
+//            if(collidedWithBlock(entity,currentDirection))
+//            {
+//                VelocityComponent movement = Mappers.MOVEMENT.get(entity);
+//                //if there is a block, go a random direction upon interaction. should fix later based on tile direction.
+//                movement.setDirection(Direction.generateDirectionExcluding(currentDirection));
+//            }
+//
         }
     }
 
-    private boolean collidedWithBlock(Entity entity, Direction currentDirection){
-        float x = Mappers.POSITION.get(entity).getX();
-        float y = Mappers.POSITION.get(entity).getY();
+    private void handleBlockCollision(Entity entity, VelocityComponent movement){
+        Position position = Mappers.POSITION.get(entity);
+        float x = position.getX();
+        float y = position.getY();
 
-        boolean collidedWithBlock = false;
-
-        switch (currentDirection){
+        //todo needa find way to fix position relative to stuck cell.
+        switch (movement.getDirection()){
             case none:
                 break;
             case up:
-                collidedWithBlock = collidesTop(x,y);
+                if(collidesTop(x,y)){
+                    movement.setDirection(Direction.none);
+                };
                 break;
             case down:
-                collidedWithBlock = collidesBottom(x,y);
+                if(collidesBottom(x,y)){
+                    movement.setDirection(Direction.none);
+
+                };
                 break;
             case left:
-                collidedWithBlock = collidesLeft(x,y);
+                if(collidesLeft(x,y)){
+                    movement.setDirection(Direction.none);
+
+                };
                 break;
             case right:
-                collidedWithBlock = collidesRight(x,y);
+                if(collidesRight(x,y)){
+                    movement.setDirection(Direction.none);
+
+                };
                 break;
         }
-
-        return collidedWithBlock;
     }
 
 
@@ -108,7 +120,6 @@ public class MapBlocksSystem extends EntitySystem {
 
     private boolean isCellBlocked(float x, float y) {
         TiledMapTileLayer.Cell cell = collisionLayer.getCell((int) (x), (int) (y));
-
 //        log.debug("cell: "+cell.getTile().getProperties());
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(blockedKey);
     }

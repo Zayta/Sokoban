@@ -2,7 +2,8 @@ package exp.zhen.zayta.main.game.wake.common;
 
 import com.badlogic.ashley.core.ComponentMapper;
 
-import exp.zhen.zayta.main.game.characters.id_tags.MortalTag;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MortalTag;
+import exp.zhen.zayta.main.game.wake.entity.components.properties.BattleComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.mission.stone_gathering.StoneTag;
@@ -10,7 +11,7 @@ import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.wake.component.properties.ObstacleComponent;
+import exp.zhen.zayta.main.game.wake.entity.components.properties.ObstacleComponent;
 import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 
 public class Mappers {
@@ -34,6 +35,8 @@ ComponentMapper.getFor(ObstacleComponent.class);
     public static final ComponentMapper<DimensionComponent> DIMENSION = ComponentMapper.getFor(DimensionComponent.class);
 
     public static final ComponentMapper<PositionTrackerComponent> POSITION_TRACKER = ComponentMapper.getFor(PositionTrackerComponent.class);
+
+    public static final ComponentMapper<BattleComponent> BATTLESTATS = ComponentMapper.getFor(BattleComponent.class);
 
     private Mappers(){}
 }

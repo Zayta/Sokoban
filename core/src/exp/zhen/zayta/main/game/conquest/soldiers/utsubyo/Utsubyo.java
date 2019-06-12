@@ -6,8 +6,6 @@ import java.util.HashMap;
 
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.conquest.assets.CQRegionNames;
-import exp.zhen.zayta.main.game.conquest.soldiers.Soldier;
-import exp.zhen.zayta.main.game.conquest.soldiers.nur.Nighter;
 
 public class Utsubyo {
 
@@ -24,7 +22,7 @@ public class Utsubyo {
     private void initMonsters()
     {
 //        nighters.put(Undead.Lorale,
-//                new Nighter(conquestAtlas.findRegion("portraits/Lorale"),100,10,10));
+//                new Fighter(conquestAtlas.findRegion("portraits/Lorale"),100,10,10));
 
     }
 

@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.component.labels.PlayerTag;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 
 public class KeyboardInputHandler extends InputAdapter {

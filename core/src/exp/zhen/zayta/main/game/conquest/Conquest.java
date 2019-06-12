@@ -9,7 +9,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
@@ -18,6 +24,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.assets.AssetPaths;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.main.game.conquest.soldiers.utsubyo.Utsubyo;
@@ -63,7 +70,7 @@ public class Conquest implements Screen {
     //gamePlay fields
     private Tile[] nPos;
     private Tile[][] mPos;
-    private int numNighters = 3, numMisc = 12;
+    private int numNighters = 3, numMonsters = 12;
 
 
 
@@ -111,10 +118,11 @@ public class Conquest implements Screen {
 
         initGamePlay();
         setFont();
+        makeMenuButton();
     }
 
     private void initGamePlay(){
-        territory.create(Territory.Terrain.LAB,numNighters,numMisc);
+        territory.create(Territory.Terrain.LAB,numNighters,numMonsters);
         nPos = territory.initNPos(nur);
         mPos = territory.initMPos(nPos);
     }
@@ -123,6 +131,33 @@ public class Conquest implements Screen {
         font.setUseIntegerPositions(false);
         font.getData().setScale(2);
     }
+
+    private void makeMenuButton(){
+
+        nPos[0].addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new MenuScreen(game));
+            }
+        });
+    }
+
+//    private void makeMenuButton(){
+//        TextButton menuButton = new TextButton("MENU", new Skin());
+//        menuButton.getSkin().getFont(AssetPaths.UI_FONT).setUseIntegerPositions(false);
+//        menuButton.setScaleX(SizeManager.CQ_WORLD_WIDTH/SizeManager.WIDTH);
+//        menuButton.setScaleY(SizeManager.CQ_WORLD_HEIGHT/SizeManager.HEIGHT);
+//        menuButton.setOrigin(Align.center);
+//        menuButton.addListener(new ChangeListener() {
+//            @Override
+//            public void changed(ChangeEvent event, Actor actor) {
+//                game.setScreen(new MenuScreen(game));
+//            }
+//        });
+//        territory.addActor(menuButton);
+//        menuButton.setBounds(0,0,territory.getPadding(),territory.getPadding());
+////        return menuButton;
+//    }
 
 
 
@@ -207,7 +242,7 @@ public class Conquest implements Screen {
     }
 
     public boolean isGameOver() {
-        //todo determine game over (when all nighters are out of HP)
+        //todo determine game over (when all nighters are out of hp)
         return false;
     }
 

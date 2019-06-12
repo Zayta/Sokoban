@@ -10,10 +10,9 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 //import exp.zhen.zayta.main.game.conquest.battle.BattleComponent;
-import exp.zhen.zayta.main.game.wake.component.labels.UndeadTag;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.UndeadTag;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 
 
@@ -74,10 +73,10 @@ public class UndeadXCivilianCollisionSystem extends GameControllingSystem implem
     @Override
     public void collideEvent(Entity nighter, Entity civilian) {
 //        civilian.getComponent(MortalTag.class).setHit(true);
-        //todo in NighterXWielder System decrease undead HP. if HP is 0 or lower, set Game Over to be true.
+        //todo in NighterXWielder System decrease undead hp. if hp is 0 or lower, set Game Over to be true.
 //
 //        BattleComponent nighterBattleComponent = nighter.getComponent(BattleComponent.class);
-//        nighterBattleComponent.decrementHP(nighterBattleComponent.getHP());//decrements all HP when collide with civilian
+//        nighterBattleComponent.decrementHP(nighterBattleComponent.getHP());//decrements all hp when collide with civilian
 //        if(nighterBattleComponent.getHP()<=0)
 //        {
 //            getEngine().removeEntity(nighter);

@@ -16,6 +16,12 @@ public class SizeManager {
     public static final float WAKE_WORLD_CENTER_X = WAKE_WORLD_WIDTH / 2f; // world units
     public static final float WAKE_WORLD_CENTER_Y = WAKE_WORLD_HEIGHT / 2f; // world units
 
+    public static final float maxBoundsRadius = 0.4f;
+    public static final float maxObjWidth = 2*maxBoundsRadius;//world units
+    public static final float maxObjHeight = 1.0f;
+
+
+
 
     public static final float CQ_WORLD_WIDTH = WIDTH/100; // world units
     public static final float CQ_WORLD_HEIGHT = HEIGHT/100; // world units
@@ -23,10 +29,6 @@ public class SizeManager {
     public static final float CQ_WORLD_CENTER_X = CQ_WORLD_WIDTH / 2f; // world units
     public static final float CQ_WORLD_CENTER_Y = CQ_WORLD_HEIGHT / 2f; // world units
 
-
-    public static final float maxBoundsRadius = 0.3f;
-    public static final float maxObjWidth = 2*maxBoundsRadius;//world units
-    public static final float maxObjHeight = 0.8f;
 //    //sprites
 //    public static final float maxBoundsRadius = 0.4f; // world units
 //    public static final float maxObjHeight = 0.9f;

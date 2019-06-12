@@ -146,7 +146,7 @@ public abstract class Soldier {
 
     @Override
     public String toString() {
-//        return name+"\nHP:"+hp+"\nATK:"+atk+"\nDEF:"+def;
+//        return name+"\nhp:"+hp+"\nATK:"+atk+"\nDEF:"+def;
         return name+" HP:"+hp+" ATK:"+atk+" DEF:"+def;
     }
 

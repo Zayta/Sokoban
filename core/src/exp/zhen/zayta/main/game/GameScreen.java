@@ -16,7 +16,7 @@ import exp.zhen.zayta.assets.UiRegionNames;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.game.conquest.Conquest;
 import exp.zhen.zayta.main.game.wake.WakeMode;
-import exp.zhen.zayta.main.game.wake.assets.WakePlayRegionNames;
+import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
 
 
@@ -35,7 +35,7 @@ public class GameScreen extends ScreenBase {
         TextureAtlas wakePlayAtlas = assetManager.get(AssetDescriptors.WAKE_PLAY);
         Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
 
-        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WakePlayRegionNames.BACKGROUND);
+        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WPRegionNames.BACKGROUND);
 
         // background
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
