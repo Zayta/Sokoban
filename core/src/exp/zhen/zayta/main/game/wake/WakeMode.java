@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
@@ -31,7 +30,7 @@ import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapPauseSy
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRenderSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
-import exp.zhen.zayta.main.game.wake.render.StatsRenderSystem;
+import exp.zhen.zayta.main.game.wake.render.NameTagRenderSystem;
 import exp.zhen.zayta.main.game.wake.visual.AnimationSystem;
 import exp.zhen.zayta.main.game.wake.input.InputSystem;
 import exp.zhen.zayta.util.GdxUtils;
@@ -105,7 +104,7 @@ public class WakeMode implements Screen {
         engine.addSystem(new AnimationSystem());
     }
     private void addRenderSystems(){
-        engine.addSystem(new StatsRenderSystem(hudViewport,game.getBatch(),SizeManager.WIDTH/SizeManager.WAKE_WORLD_WIDTH,SizeManager.HEIGHT/SizeManager.WAKE_WORLD_HEIGHT));
+        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new RenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(AssetDescriptors.FONT)*/));
 

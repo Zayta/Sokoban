@@ -2,6 +2,7 @@ package exp.zhen.zayta.main.game.wake.common;
 
 import com.badlogic.ashley.core.ComponentMapper;
 
+import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.BattleComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
@@ -37,6 +38,8 @@ ComponentMapper.getFor(ObstacleComponent.class);
     public static final ComponentMapper<PositionTrackerComponent> POSITION_TRACKER = ComponentMapper.getFor(PositionTrackerComponent.class);
 
     public static final ComponentMapper<BattleComponent> BATTLESTATS = ComponentMapper.getFor(BattleComponent.class);
+
+    public static final ComponentMapper<NameTag> NAMETAG = ComponentMapper.getFor(NameTag.class);
 
     private Mappers(){}
 }
