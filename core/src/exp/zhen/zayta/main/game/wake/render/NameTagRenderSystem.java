@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -16,6 +17,7 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.BattleComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 
 public class NameTagRenderSystem extends IteratingSystem {
@@ -29,7 +31,7 @@ public class NameTagRenderSystem extends IteratingSystem {
     private Array<Entity> renderQueue = new Array<Entity>();
 
     private static final Family FAMILY = Family.all(
-            Position.class,
+            CircularBoundsComponent.class,
             NameTag.class
     ).get();
 
@@ -44,7 +46,7 @@ public class NameTagRenderSystem extends IteratingSystem {
         this.font = new BitmapFont();
         float scaleX = SizeManager.WAKE_WORLD_WIDTH/SizeManager.WIDTH;
         float scaleY = SizeManager.WAKE_WORLD_HEIGHT/SizeManager.HEIGHT;
-        float fontScale = 3;
+        float fontScale = 2;
         font.setUseIntegerPositions(false);
         font.setColor(Color.RED);
         font.getData().setScale(fontScale*scaleX,fontScale*scaleY);
@@ -80,11 +82,11 @@ public class NameTagRenderSystem extends IteratingSystem {
                 20,SizeManager.HUD_HEIGHT-layout.height);
 
         for(Entity entity:renderQueue) {
-            Position position = Mappers.POSITION.get(entity);
+            CircularBoundsComponent bounds = Mappers.BOUNDS.get(entity);
             NameTag nameTag = Mappers.NAMETAG.get(entity);
 
             layout.setText(font,nameTag.getName());
-            font.draw(batch,layout,position.getX(),position.getY());
+            font.draw(batch,layout,bounds.getX()-layout.width/2,bounds.getY()-layout.height);
         }
 
 
