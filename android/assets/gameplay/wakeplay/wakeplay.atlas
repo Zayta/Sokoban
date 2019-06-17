@@ -1,34 +1,41 @@
 
 wakeplay.png
-size: 512,512
+size: 512,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 anoni
   rotate: false
-  xy: 327, 263
-  size: 128, 192
-  orig: 128, 192
+  xy: 166, 134
+  size: 64, 96
+  orig: 64, 96
   offset: 0, 0
   index: -1
 lorale
   rotate: false
-  xy: 327, 69
-  size: 128, 192
-  orig: 128, 192
+  xy: 232, 134
+  size: 64, 96
+  orig: 64, 96
   offset: 0, 0
   index: -1
 memLab1
   rotate: false
-  xy: 2, 135
-  size: 323, 320
-  orig: 323, 320
+  xy: 2, 70
+  size: 162, 160
+  orig: 162, 160
   offset: 0, 0
   index: -1
 stones_blackpplstone
   rotate: false
   xy: 2, 2
-  size: 140, 131
-  orig: 140, 131
+  size: 70, 66
+  orig: 70, 66
+  offset: 0, 0
+  index: -1
+zemus
+  rotate: false
+  xy: 298, 134
+  size: 64, 96
+  orig: 64, 96
   offset: 0, 0
   index: -1

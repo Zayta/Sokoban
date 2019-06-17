@@ -6,6 +6,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 
+import java.util.Random;
+
 import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
@@ -15,8 +17,10 @@ import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MonsterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
+import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
@@ -31,16 +35,17 @@ import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 public class EntityLab {
     private PooledEngine engine;
     private TextureAtlas wakePlayAtlas;
-    private NUR nur;
+    private NUR nur; private Utsubyo utsubyo;
     public EntityLab(PooledEngine engine, AssetManager assetManager)
     {
         this.engine = engine;
         wakePlayAtlas = assetManager.get(AssetDescriptors.WAKE_PLAY);
-        nur = new NUR(engine,wakePlayAtlas);
+        nur = new NUR(engine,wakePlayAtlas); utsubyo = new Utsubyo(engine,wakePlayAtlas);
     }
 
     public void addEntities() {
-        initCivilization();
+//        initCivilization();
+        initMonsters();
         addPlayer();
     }
 
@@ -62,6 +67,29 @@ public class EntityLab {
     }
 
 
+
+
+    /**For monsters**/
+    private void initMonsters(){
+        //todo also in future make civilians change direction randomly
+        /*add Monsters*/
+        int numMonsters = 1;
+        float minX = 0; float maxX = SizeManager.WAKE_WORLD_WIDTH-SizeManager.maxObjWidth;
+        float minY = 0; float maxY = SizeManager.WAKE_WORLD_HEIGHT-SizeManager.maxObjHeight;
+        for(int i = 0; i<numMonsters; i++) {
+            float civX = MathUtils.random(minX,maxX);
+            float civY = MathUtils.random(minY,maxY);
+            addMonster(civX, civY);
+        }
+
+    }
+    private void addMonster(float x, float y){
+        Entity entity = utsubyo.generateMonster(1);
+        addMovementComponents(engine,entity,x,y,PositionTracker.PositionBiMap.monstersBiMap);
+        engine.addEntity(entity);
+
+        Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());
+    }
 
 
     /**For society**/

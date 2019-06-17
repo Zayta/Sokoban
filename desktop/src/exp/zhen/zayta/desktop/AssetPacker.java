@@ -18,18 +18,18 @@ public class AssetPacker {
         settings.scale = new  float[]{0.5f};
 
         //for conquest
-        TexturePacker.process(settings,
-                RAW_ASSETS_PATH + "/gameplay/conquest",
-                ASSETS_PATH + "/gameplay/conquest",
-                "conquest"
-        );
+//        TexturePacker.process(settings,
+//                RAW_ASSETS_PATH + "/gameplay/conquest",
+//                ASSETS_PATH + "/gameplay/conquest",
+//                "conquest"
+//        );
 
         //for wakeplay
-//        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/gameplay/wakeplay",
-//                ASSETS_PATH + "/gameplay/wakeplay",
-//                "wakeplay"
-//        );
+        TexturePacker.process(settings,
+                RAW_ASSETS_PATH + "/gameplay/wakeplay",
+                ASSETS_PATH + "/gameplay/wakeplay",
+                "wakeplay"
+        );
 
 
     }

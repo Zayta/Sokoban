@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.collision;
+package exp.zhen.zayta.main.game.wake.collision.battle;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -8,15 +8,16 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.game.wake.collision.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-//import exp.zhen.zayta.main.game.conquest.battle.BattleComponent;
+//import exp.zhen.zayta.main.game.conquest.battle.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.UndeadTag;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 
 
-public class UndeadXCivilianCollisionSystem extends GameControllingSystem implements CollisionListener {
+public class UndeadXCivilianCollisionSystem extends GameControllingSystem {
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(UndeadXCivilianCollisionSystem.class.getName(),Logger.DEBUG);
@@ -48,7 +49,7 @@ public class UndeadXCivilianCollisionSystem extends GameControllingSystem implem
             checkCollision(nighter,keys);
         }
     }
-    
+
     private void checkCollision(Entity nighter, int [] keys){
         for (int key: keys) {
             Entity civilian = PositionTracker.PositionBiMap.civiliansBiMap.getBiMap().get(key);
@@ -70,12 +71,11 @@ public class UndeadXCivilianCollisionSystem extends GameControllingSystem implem
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }
 
-    @Override
-    public void collideEvent(Entity nighter, Entity civilian) {
+    private void collideEvent(Entity nighter, Entity civilian) {
 //        civilian.getComponent(MortalTag.class).setHit(true);
         //todo in NighterXWielder System decrease undead hp. if hp is 0 or lower, set Game Over to be true.
 //
-//        BattleComponent nighterBattleComponent = nighter.getComponent(BattleComponent.class);
+//        HealthComponent nighterBattleComponent = nighter.getComponent(HealthComponent.class);
 //        nighterBattleComponent.decrementHP(nighterBattleComponent.getHP());//decrements all hp when collide with civilian
 //        if(nighterBattleComponent.getHP()<=0)
 //        {

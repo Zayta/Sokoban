@@ -11,7 +11,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 
-public class PositionTrackerSystem extends EntitySystem {
+public class PositionTrackerUpdateSystem extends EntitySystem {
 
 //    private final Family NIGHTERS;
 //    private final Family WIELDERS;
@@ -19,7 +19,7 @@ public class PositionTrackerSystem extends EntitySystem {
 //    private final Family MONSTERS;
 
     private final Family TRACKED_ENTITIES;
-    public PositionTrackerSystem()
+    public PositionTrackerUpdateSystem()
     {
         TRACKED_ENTITIES = Family.all(PositionTrackerComponent.class,
                 Position.class,

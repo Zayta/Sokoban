@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -16,12 +15,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
-import exp.zhen.zayta.main.game.wake.entity.components.properties.BattleComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.game.wake.movement.component.Position;
 
 public class NameTagRenderSystem extends IteratingSystem {
-    private static final Logger log = new Logger(HudRenderSystem.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(NameTagRenderSystem.class.getName(),Logger.DEBUG);
     private final Viewport viewport;
     private final SpriteBatch batch;
     private final BitmapFont font;
@@ -48,8 +45,9 @@ public class NameTagRenderSystem extends IteratingSystem {
         float scaleY = SizeManager.WAKE_WORLD_HEIGHT/SizeManager.HEIGHT;
         float fontScale = 2;
         font.setUseIntegerPositions(false);
-        font.setColor(Color.RED);
+        font.setColor(Color.CYAN);
         font.getData().setScale(fontScale*scaleX,fontScale*scaleY);
+
 
 
     }
@@ -72,25 +70,13 @@ public class NameTagRenderSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        draw();
+        CircularBoundsComponent bounds = Mappers.BOUNDS.get(entity);
+        NameTag nameTag = Mappers.NAMETAG.get(entity);
+
+        layout.setText(font,nameTag.getName());
+        font.draw(batch,layout,bounds.getX()-layout.width/2,bounds.getY()+SizeManager.maxObjHeight/2+layout.height+0.1f);//0.1f is offset from bottom
     }
 
-    private void draw(){
-        String levelString = "STATS: "/*+RPG.userData.getLevel()*/;
-        layout.setText(font,levelString);
-        font.draw(batch,levelString,
-                20,SizeManager.HUD_HEIGHT-layout.height);
 
-        for(Entity entity:renderQueue) {
-            CircularBoundsComponent bounds = Mappers.BOUNDS.get(entity);
-            NameTag nameTag = Mappers.NAMETAG.get(entity);
-
-            layout.setText(font,nameTag.getName());
-            font.draw(batch,layout,bounds.getX()-layout.width/2,bounds.getY()-layout.height);
-        }
-
-
-
-    }
 
 }

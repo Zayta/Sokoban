@@ -50,7 +50,7 @@ public class HudRenderSystem extends EntitySystem {
                 SizeManager.HUD_WIDTH - layout.width-20,SizeManager.HUD_HEIGHT-layout.height);
 
 //
-//        BattleComponent playerStats = UserData.Player.getComponent(BattleComponent.class);
+//        HealthComponent playerStats = UserData.Player.getComponent(HealthComponent.class);
 //        String HPString = "hp: "+playerStats.getHP();
 //        layout.setText(font,HPString);
 //        font.draw(batch,HPString,20,3*layout.height);

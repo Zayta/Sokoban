@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.map;
+package exp.zhen.zayta.main.game.wake.map.blocks;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;

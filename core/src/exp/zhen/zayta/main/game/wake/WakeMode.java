@@ -14,23 +14,25 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.wake.collision.battle.MonsterAttacksNighterSystem;
 import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.BoundsSystem;
-import exp.zhen.zayta.main.game.wake.mission.stone_gathering.StonesSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.PositionTrackerSystem;
-import exp.zhen.zayta.main.game.wake.map.MapBlocksSystem;
+import exp.zhen.zayta.main.game.wake.collision.mission.stone_gathering.StonesSystem;
+import exp.zhen.zayta.main.game.wake.movement.system.PositionTrackerUpdateSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.MapBlocksSystem;
 import exp.zhen.zayta.main.game.wake.render.HudRenderSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.MovementSystem;
 import exp.zhen.zayta.main.game.wake.render.MapRenderSystem;
-import exp.zhen.zayta.main.game.wake.render.RenderSystem;
+import exp.zhen.zayta.main.game.wake.render.GameRenderSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapChangeDirectionSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRenderSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
 import exp.zhen.zayta.main.game.wake.render.NameTagRenderSystem;
+import exp.zhen.zayta.main.game.wake.render.StatsRenderSystem;
 import exp.zhen.zayta.main.game.wake.visual.AnimationSystem;
 import exp.zhen.zayta.main.game.wake.input.InputSystem;
 import exp.zhen.zayta.util.GdxUtils;
@@ -92,7 +94,7 @@ public class WakeMode implements Screen {
 
     private void addEntityMovementSystems(){
 
-        engine.addSystem(new PositionTrackerSystem());//should be first
+        engine.addSystem(new PositionTrackerUpdateSystem());//should be first
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new MovableBlocksSystem(engine,viewport,assetManager.get(AssetDescriptors.WAKE_PLAY)));//sb before movement
@@ -104,9 +106,10 @@ public class WakeMode implements Screen {
         engine.addSystem(new AnimationSystem());
     }
     private void addRenderSystems(){
-        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
-        engine.addSystem(new RenderSystem(viewport,game.getBatch()));
+        engine.addSystem(new GameRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(AssetDescriptors.FONT)*/));
+        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
+        engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
 
         if(DEBUG) {
             engine.addSystem(new GridRenderSystem(viewport, shapeRenderer));
@@ -117,6 +120,7 @@ public class WakeMode implements Screen {
 
     private void addGameControllingSystems(){
         engine.addSystem(new StonesSystem(game,engine));
+        engine.addSystem(new MonsterAttacksNighterSystem(game,engine));
 //        engine.addSystem(new UndeadXCivilianCollisionSystem(game,engine));
     }
 

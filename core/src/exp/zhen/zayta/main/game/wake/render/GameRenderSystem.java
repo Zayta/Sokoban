@@ -13,7 +13,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 
-public class RenderSystem extends EntitySystem {
+public class GameRenderSystem extends EntitySystem {
     public static final Family FAMILY = Family.all(
             TextureComponent.class,
             Position.class,
@@ -25,7 +25,7 @@ public class RenderSystem extends EntitySystem {
 
     private Array<Entity> renderQueue = new Array<Entity>();
 
-    public RenderSystem(Viewport viewport, SpriteBatch batch){
+    public GameRenderSystem(Viewport viewport, SpriteBatch batch){
         this.viewport=viewport;
         this.batch = batch;
     }

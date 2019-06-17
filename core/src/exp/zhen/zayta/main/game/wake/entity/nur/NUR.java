@@ -9,7 +9,9 @@ import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.NighterTag;
-import exp.zhen.zayta.main.game.wake.entity.components.properties.BattleComponent;
+import exp.zhen.zayta.main.game.wake.entity.components.properties.AttackComponent;
+import exp.zhen.zayta.main.game.wake.entity.components.properties.DefenseComponent;
+import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.Fighter;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.UndeadTag;
 import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
@@ -52,7 +54,17 @@ public class NUR {
 
         addIdentityComponents(nighter,fighter.getName());
         addAnimationComponents(nighter,fighter.getTextureRegion());
-        addBattleComponents(nighter,fighter.getHp(),fighter.getAtk(),fighter.getDef());
+        addHealthComponent(nighter,fighter.getHp());
+        return nighter;
+    }
+
+    public Entity getWakeNighter(Undead undead){
+        Entity nighter = engine.createEntity();
+        Fighter fighter = nighters.get(undead);
+
+        addIdentityComponents(nighter,fighter.getName());
+        addAnimationComponents(nighter,fighter.getTextureRegion());
+        addHealthComponent(nighter,fighter.getHp());
         return nighter;
     }
 
@@ -100,10 +112,24 @@ public class NUR {
         nighter.add(texture);
         nighter.add(animationComponent);
     }
-    private void addBattleComponents(Entity nighter,int hp, int atk, int def){
-        BattleComponent battleComponent = engine.createComponent(BattleComponent.class);
-        battleComponent.init(hp,atk,def);
-        nighter.add(battleComponent);
+
+
+    private void addBattleComponents(Entity monster,int hp, int atk, int def){
+        addHealthComponent(monster,hp);
+
+        AttackComponent attackComponent = engine.createComponent(AttackComponent.class);
+        attackComponent.init(atk);
+
+        DefenseComponent defenseComponent = engine.createComponent(DefenseComponent.class);
+        defenseComponent.init(def);
+
+        monster.add(attackComponent);
+        monster.add(defenseComponent);
+    }
+    private void addHealthComponent(Entity nighter,int hp){
+        HealthComponent healthComponent = engine.createComponent(HealthComponent.class);
+        healthComponent.init(hp);
+        nighter.add(healthComponent);
     }
 
 }

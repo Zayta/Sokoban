@@ -9,6 +9,7 @@ public class WPRegionNames {
     public static final String CIVILIAN = "anoni";
     public static final String STONE = "stones_blackpplstone";
 
-    public static final String [] monsters = {};
+
+    public static final String [] MONSTERS = {"zemus"};
 
 }
