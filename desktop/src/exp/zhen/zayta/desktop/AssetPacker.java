@@ -14,8 +14,8 @@ public class AssetPacker {
 
     public static void main(String[] args) {
         TexturePacker.Settings settings = new TexturePacker.Settings();
-        settings.debug = DRAW_DEBUG_OUTLINE;
-        settings.scale = new  float[]{0.5f};
+//        settings.debug = DRAW_DEBUG_OUTLINE;
+//        settings.scale = new  float[]{0.5f};
 
         //for conquest
 //        TexturePacker.process(settings,

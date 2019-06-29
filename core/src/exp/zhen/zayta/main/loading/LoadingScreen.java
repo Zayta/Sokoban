@@ -10,8 +10,9 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
 import exp.zhen.zayta.main.menu.MenuScreen;
 import exp.zhen.zayta.util.GdxUtils;
 
@@ -58,18 +59,19 @@ public class LoadingScreen extends ScreenAdapter {
 
     }
     private void loadAssets(){
-        assetManager.load(AssetDescriptors.FONT);
-        assetManager.load(AssetDescriptors.WAKE_PLAY);
-        assetManager.load(AssetDescriptors.CONQUEST);
-        assetManager.load(AssetDescriptors.MENU_CLIP);
+        assetManager.load(UIAssetDescriptors.FONT);
+        assetManager.load(UIAssetDescriptors.WAKE_PLAY);
+        assetManager.load(UIAssetDescriptors.CONQUEST);
+        assetManager.load(UIAssetDescriptors.MENU_CLIP);
 
-        assetManager.load(AssetDescriptors.UI_SKIN);
-        assetManager.load(AssetDescriptors.HIT_SOUND);
+        assetManager.load(UIAssetDescriptors.UI_SKIN);
+        assetManager.load(UIAssetDescriptors.HIT_SOUND);
     }
     private void loadMap(){
         //todo in future when use TiledMap, load here
         assetManager.setLoader(TiledMap.class,new TmxMapLoader());
-        assetManager.load(AssetDescriptors.MAP_MEMLAB2);
+        assetManager.load(WPAssetDescriptors.MAP_MEMLAB2);
+        assetManager.load(WPAssetDescriptors.MAP_IRONDALE);
 
     }
 

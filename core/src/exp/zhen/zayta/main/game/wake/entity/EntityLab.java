@@ -6,10 +6,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 
-import java.util.Random;
-
 import exp.zhen.zayta.UserData;
-import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
@@ -17,7 +15,6 @@ import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MonsterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
 import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
@@ -28,7 +25,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapTag;
+import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
 import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 
@@ -39,7 +36,7 @@ public class EntityLab {
     public EntityLab(PooledEngine engine, AssetManager assetManager)
     {
         this.engine = engine;
-        wakePlayAtlas = assetManager.get(AssetDescriptors.WAKE_PLAY);
+        wakePlayAtlas = assetManager.get(UIAssetDescriptors.WAKE_PLAY);
         nur = new NUR(engine,wakePlayAtlas); utsubyo = new Utsubyo(engine,wakePlayAtlas);
     }
 

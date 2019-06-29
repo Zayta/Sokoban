@@ -26,7 +26,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.entity.Arrangements;
-import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapTag;
+import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 

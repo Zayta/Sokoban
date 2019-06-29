@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.game.GameScreen;
 import exp.zhen.zayta.main.game.config.SizeManager;
@@ -32,7 +32,7 @@ public class MenuScreen extends ScreenBase {
     protected Actor createUi() {
         Table table = new Table();
 
-        TextureAtlas menuAtlas = assetManager.get(AssetDescriptors.MENU_CLIP);
+        TextureAtlas menuAtlas = assetManager.get(UIAssetDescriptors.MENU_CLIP);
 
         TextureRegion backgroundRegion = menuAtlas.findRegion("fullscanner");
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
@@ -65,7 +65,7 @@ public class MenuScreen extends ScreenBase {
 
 
     private Table buttonTable(){
-        Skin uiskin = assetManager.get(AssetDescriptors.UI_SKIN);
+        Skin uiskin = assetManager.get(UIAssetDescriptors.UI_SKIN);
         // play button
         TextButton playButton = new TextButton("PLAY", uiskin);
         playButton.addListener(new ChangeListener() {

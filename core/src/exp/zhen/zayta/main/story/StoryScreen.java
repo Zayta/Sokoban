@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.menu.MenuScreen;
 
@@ -28,7 +28,7 @@ public class StoryScreen extends ScreenBase {
 
     @Override
     protected Actor createUi() {
-        Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
+        Skin uiSkin = assetManager.get(UIAssetDescriptors.UI_SKIN);
         TextButton backButton = new TextButton("BACK", uiSkin);
         backButton.addListener(new ChangeListener() {
             @Override

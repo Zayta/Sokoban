@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.RPG;
@@ -23,7 +23,7 @@ import exp.zhen.zayta.main.game.wake.collision.CollisionListener;
 import exp.zhen.zayta.main.game.wake.collision.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
-import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapTag;
+import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
@@ -40,7 +40,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 
     public StonesSystem(RPG game, PooledEngine engine){
         super(game,engine);
-        wakePlayAtlas = game.getAssetManager().get(AssetDescriptors.WAKE_PLAY);
+        wakePlayAtlas = game.getAssetManager().get(UIAssetDescriptors.WAKE_PLAY);
         NIGHTERS = Family.all(
                 PlayerTag.class,
                 CircularBoundsComponent.class

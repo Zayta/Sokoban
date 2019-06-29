@@ -12,7 +12,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.assets.AssetDescriptors;
+import exp.zhen.zayta.UserData;
+import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.collision.battle.MonsterAttacksNighterSystem;
 import exp.zhen.zayta.main.game.wake.entity.EntityLab;
@@ -20,14 +21,16 @@ import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.BoundsSystem;
 import exp.zhen.zayta.main.game.wake.collision.mission.stone_gathering.StonesSystem;
+import exp.zhen.zayta.main.game.wake.movement.system.CameraUpdateSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.PositionTrackerUpdateSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.MapBlocksSystem;
+import exp.zhen.zayta.main.game.wake.movement.system.npc_movement.IntervalChangeDirectionSystem;
 import exp.zhen.zayta.main.game.wake.render.HudRenderSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.MovementSystem;
 import exp.zhen.zayta.main.game.wake.render.MapRenderSystem;
 import exp.zhen.zayta.main.game.wake.render.GameRenderSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapChangeDirectionSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.world_wrap.WorldWrapPauseSystem;
+import exp.zhen.zayta.main.game.wake.movement.system.npc_movement.WorldWrapChangeDirectionSystem;
+import exp.zhen.zayta.main.game.wake.movement.system.player_movement.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRenderSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
@@ -75,16 +78,16 @@ public class WakeMode implements Screen {
         /*Game Engines*/
         engine = new PooledEngine();
         entityLab = new EntityLab(engine,assetManager);
-//        manufacturer = new Manufacturer(assetManager.get(AssetDescriptors.WAKE_PLAY),engine);
+//        manufacturer = new Manufacturer(assetManager.get(UIAssetDescriptors.WAKE_PLAY),engine);
         mapMaker = new MapMaker(assetManager);
-        tiledMap = mapMaker.getTiledMap(0);
+        tiledMap = mapMaker.getTiledMap(MapMaker.Map.irondale);
 
 
         addEntities();
         addSystems();
     }
     private void addSystems(){
-        engine.addSystem(new MapRenderSystem(tiledMap,viewport));
+//        engine.addSystem(new MapRenderSystem(tiledMap,viewport));
         engine.addSystem(new InputSystem(engine));
 //        engine.addSystem(new TiledMapStageSystem(tiledMap,viewport,engine));
         addEntityMovementSystems();
@@ -97,17 +100,20 @@ public class WakeMode implements Screen {
         engine.addSystem(new PositionTrackerUpdateSystem());//should be first
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
-        engine.addSystem(new MovableBlocksSystem(engine,viewport,assetManager.get(AssetDescriptors.WAKE_PLAY)));//sb before movement
-        engine.addSystem(new WorldWrapPauseSystem(viewport));
-        engine.addSystem(new WorldWrapChangeDirectionSystem(viewport));
-        engine.addSystem(new MapBlocksSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
+        engine.addSystem(new MovableBlocksSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before movement
+        engine.addSystem(new WorldWrapPauseSystem(tiledMap));
+        engine.addSystem(new WorldWrapChangeDirectionSystem(tiledMap));
+        engine.addSystem(new IntervalChangeDirectionSystem(5));
+        engine.addSystem(new MapBlocksSystem((TiledMapTileLayer) tiledMap.getLayers().get("Collision Layer")));
 //        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
 
         engine.addSystem(new AnimationSystem());
+        engine.addSystem(new CameraUpdateSystem(orthographicCamera,UserData.Player,tiledMap));
     }
     private void addRenderSystems(){
+        engine.addSystem(new MapRenderSystem(tiledMap,viewport));
         engine.addSystem(new GameRenderSystem(viewport,game.getBatch()));
-        engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(AssetDescriptors.FONT)*/));
+        engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(UIAssetDescriptors.FONT)*/));
         engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
 

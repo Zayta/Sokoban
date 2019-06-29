@@ -54,22 +54,22 @@ public class Battle extends ClickListener {
             tiles[rowOfBattle][i+1].removeSoldier();
         }
 
-//        for(Tile t: tiles[rowOfBattle]){
+//        for(Tile t: morgue_tiles[rowOfBattle]){
 //            log.debug("Tile "+t+" has soldier "+t.getSoldier());
 //        }
 
     }
-//    private void shiftLeft(int startIndex, Tile[][] tiles){
+//    private void shiftLeft(int startIndex, Tile[][] morgue_tiles){
 //        log.debug("called shiftLeft");
-//        if(startIndex<0||startIndex>=tiles.length) {
+//        if(startIndex<0||startIndex>=morgue_tiles.length) {
 //            System.out.println("Array Index out of bounds");
 //            return;
 //        }
 //
-//        for(int i = startIndex; i<tiles[rowOfBattle].length-1;i++){
-//            tiles[rowOfBattle][i].setSoldier(tiles[rowOfBattle][i+1].getSoldier());
+//        for(int i = startIndex; i<morgue_tiles[rowOfBattle].length-1;i++){
+//            morgue_tiles[rowOfBattle][i].setSoldier(morgue_tiles[rowOfBattle][i+1].getSoldier());
 //        }
-//        tiles[rowOfBattle][tiles.length-1] = null;
+//        morgue_tiles[rowOfBattle][morgue_tiles.length-1] = null;
 //    }
 
 

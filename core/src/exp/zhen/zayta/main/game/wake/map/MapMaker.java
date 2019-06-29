@@ -3,22 +3,30 @@ package exp.zhen.zayta.main.game.wake.map;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
-import exp.zhen.zayta.assets.AssetDescriptors;
+import java.util.Hashtable;
+
+import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
 
 public class MapMaker {
     private AssetManager assetManager;
-    private TiledMap [] tiledMaps;
+//    private TiledMap [] tiledMaps;
+    private Hashtable<Map,TiledMap> tiledMaps;
+    public enum Map {
+        irondale,memLab
+    }
     //todo make list of tiled maps in the future
     public MapMaker (AssetManager assetManager){
         this.assetManager = assetManager;
-        tiledMaps = new TiledMap[30];
-        tiledMaps[0] = assetManager.get(AssetDescriptors.MAP_MEMLAB2);
+        tiledMaps = new Hashtable<Map, TiledMap>();
+        initTiledMaps();
     }
 
-    public TiledMap getTiledMap(int lvl) {
-        if(lvl<tiledMaps.length)
-            return tiledMaps[lvl];
-        else
-            return tiledMaps[tiledMaps.length-1];
+    public TiledMap getTiledMap(Map map) {
+        return tiledMaps.get(map);
     }
+    private void initTiledMaps(){
+        tiledMaps.put(Map.memLab,assetManager.get(WPAssetDescriptors.MAP_MEMLAB2));
+        tiledMaps.put(Map.irondale,assetManager.get(WPAssetDescriptors.MAP_IRONDALE));
+    }
+
 }

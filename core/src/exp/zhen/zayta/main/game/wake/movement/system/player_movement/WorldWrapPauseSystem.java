@@ -1,9 +1,10 @@
-package exp.zhen.zayta.main.game.wake.movement.system.world_wrap;
+package exp.zhen.zayta.main.game.wake.movement.system.player_movement;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
@@ -11,6 +12,7 @@ import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 
 public class WorldWrapPauseSystem extends IteratingSystem {
 
@@ -23,12 +25,14 @@ public class WorldWrapPauseSystem extends IteratingSystem {
     ).get();
 
 
-    private final Viewport viewport;
+    private final MapProperties mapProperties;
 
-    public WorldWrapPauseSystem(Viewport viewport)
+    public WorldWrapPauseSystem(TiledMap tiledMap)
     {
         super(FAMILY);
-        this.viewport = viewport;
+        this.mapProperties = tiledMap.getProperties();
+
+//        this.viewport = viewport;
     }
 
     @Override
@@ -39,8 +43,9 @@ public class WorldWrapPauseSystem extends IteratingSystem {
 
         Direction direction = movement.getDirection();
         float x = position.getX(); float y = position.getY();
-        float maxX = viewport.getWorldWidth()-dimension.getWidth();
-        float maxY = viewport.getWorldHeight()-dimension.getHeight();
+
+        float maxX = mapProperties.get("width", Integer.class)-dimension.getWidth();
+        float maxY = mapProperties.get("height", Integer.class)-dimension.getHeight();
 
         if(direction==Direction.up&&y>maxY){
             movement.setDirection(Direction.none);

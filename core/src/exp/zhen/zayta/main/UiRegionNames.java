@@ -1,10 +1,10 @@
-package exp.zhen.zayta.assets;
+package exp.zhen.zayta.main;
 
 public class UiRegionNames {
 
-
-    // == clip.atlas ==
-    public static final String LORALE_REFLECTION = "Lorale";
+//
+//    // == clip.atlas ==
+//    public static final String LORALE_REFLECTION = "Lorale";
 
     // == fonts.atlas ==
 //    public static final String BACK = "back";

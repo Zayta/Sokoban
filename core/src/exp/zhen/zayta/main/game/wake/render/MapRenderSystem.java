@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MapRenderSystem extends EntitySystem{
 
-    public static float unitScale = 1/32f;
+    public static float unitScale = 1/16f;
 
     private OrthogonalTiledMapRenderer mapRenderer;
     private final Viewport viewport;

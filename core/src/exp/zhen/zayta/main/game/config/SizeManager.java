@@ -10,8 +10,8 @@ public class SizeManager {
     public static final float HUD_WIDTH = WIDTH; // world units
     public static final float HUD_HEIGHT = HEIGHT; // world units
 
-    public static final float WAKE_WORLD_WIDTH = 6.0f; // world units
-    public static final float WAKE_WORLD_HEIGHT = 10.0f; // world units
+    public static final float WAKE_WORLD_WIDTH = 10.0f; // world units
+    public static final float WAKE_WORLD_HEIGHT = WAKE_WORLD_WIDTH*HEIGHT/WIDTH; // world units
 
     public static final float WAKE_WORLD_CENTER_X = WAKE_WORLD_WIDTH / 2f; // world units
     public static final float WAKE_WORLD_CENTER_Y = WAKE_WORLD_HEIGHT / 2f; // world units

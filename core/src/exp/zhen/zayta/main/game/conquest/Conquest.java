@@ -9,22 +9,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.assets.AssetDescriptors;
-import exp.zhen.zayta.assets.AssetPaths;
+import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.main.game.conquest.soldiers.utsubyo.Utsubyo;
@@ -83,7 +77,7 @@ public class Conquest implements Screen {
         assetManager = game.getAssetManager();
         batch = game.getBatch();
 
-        nur = new NUR(assetManager.get(AssetDescriptors.CONQUEST));
+        nur = new NUR(assetManager.get(UIAssetDescriptors.CONQUEST));
         utsubyo = new Utsubyo(nur.getConquestAtlas());
     }
 
