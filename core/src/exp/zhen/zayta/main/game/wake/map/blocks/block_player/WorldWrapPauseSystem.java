@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.movement.system.player_movement;
+package exp.zhen.zayta.main.game.wake.map.blocks.block_player;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

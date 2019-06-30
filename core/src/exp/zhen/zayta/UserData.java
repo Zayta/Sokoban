@@ -21,6 +21,7 @@ public class UserData { /*monitors how much hp a player has left in the game
     UserData() {
         PREFS = Gdx.app.getPreferences(RPG.class.getSimpleName());
         points = PREFS.getInteger(POINTS, 0);
+
     }
 
     public String getPointsString() {

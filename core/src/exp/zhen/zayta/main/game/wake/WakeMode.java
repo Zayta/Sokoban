@@ -19,18 +19,19 @@ import exp.zhen.zayta.main.game.wake.collision.battle.MonsterAttacksNighterSyste
 import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.block_player.BlockPauseSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.BoundsSystem;
 import exp.zhen.zayta.main.game.wake.collision.mission.stone_gathering.StonesSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.CameraUpdateSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.PositionTrackerUpdateSystem;
-import exp.zhen.zayta.main.game.wake.map.blocks.MapBlocksSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.npc_movement.IntervalChangeDirectionSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.BlockChangeDirectionSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.IntervalChangeDirectionSystem;
 import exp.zhen.zayta.main.game.wake.render.HudRenderSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.MovementSystem;
 import exp.zhen.zayta.main.game.wake.render.MapRenderSystem;
 import exp.zhen.zayta.main.game.wake.render.GameRenderSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.npc_movement.WorldWrapChangeDirectionSystem;
-import exp.zhen.zayta.main.game.wake.movement.system.player_movement.WorldWrapPauseSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.WorldWrapChangeDirectionSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.block_player.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRenderSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
@@ -98,18 +99,22 @@ public class WakeMode implements Screen {
     private void addEntityMovementSystems(){
 
         engine.addSystem(new PositionTrackerUpdateSystem());//should be first
-        engine.addSystem(new MovementSystem());
-        engine.addSystem(new BoundsSystem());
         engine.addSystem(new MovableBlocksSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before movement
         engine.addSystem(new WorldWrapPauseSystem(tiledMap));
         engine.addSystem(new WorldWrapChangeDirectionSystem(tiledMap));
         engine.addSystem(new IntervalChangeDirectionSystem(5));
-        engine.addSystem(new MapBlocksSystem((TiledMapTileLayer) tiledMap.getLayers().get("Collision Layer")));
-//        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(0)));
+        engine.addSystem(new BlockChangeDirectionSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));
+        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));//sb before movement
 
+
+        engine.addSystem(new MovementSystem());
+        engine.addSystem(new BoundsSystem());
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new CameraUpdateSystem(orthographicCamera,UserData.Player,tiledMap));
     }
+
+
+
     private void addRenderSystems(){
         engine.addSystem(new MapRenderSystem(tiledMap,viewport));
         engine.addSystem(new GameRenderSystem(viewport,game.getBatch()));

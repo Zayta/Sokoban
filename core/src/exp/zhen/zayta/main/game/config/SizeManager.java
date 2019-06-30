@@ -29,6 +29,11 @@ public class SizeManager {
     public static final float CQ_WORLD_CENTER_X = CQ_WORLD_WIDTH / 2f; // world units
     public static final float CQ_WORLD_CENTER_Y = CQ_WORLD_HEIGHT / 2f; // world units
 
+
+    public static void init(){
+
+    }
+
 //    //sprites
 //    public static final float maxBoundsRadius = 0.4f; // world units
 //    public static final float maxObjHeight = 0.9f;
@@ -39,4 +44,5 @@ public class SizeManager {
 //    public static final float STONE_SIZE = 2*STONE_BOUNDS_RADIUS;
 
     private SizeManager() {}
+
 }

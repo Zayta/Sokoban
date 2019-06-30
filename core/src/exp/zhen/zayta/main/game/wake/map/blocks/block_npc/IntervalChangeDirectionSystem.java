@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.movement.system.npc_movement;
+package exp.zhen.zayta.main.game.wake.map.blocks.block_npc;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

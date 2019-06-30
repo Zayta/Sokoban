@@ -8,6 +8,9 @@ import java.util.Hashtable;
 import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
 
 public class MapMaker {
+
+    public static final String collisionLayer = "Collision Layer";
+
     private AssetManager assetManager;
 //    private TiledMap [] tiledMaps;
     private Hashtable<Map,TiledMap> tiledMaps;
