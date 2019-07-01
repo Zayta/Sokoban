@@ -1,11 +1,16 @@
 package exp.zhen.zayta.main.game.config;
 
 
+import com.badlogic.gdx.Gdx;
+
 public class SizeManager {
 
     //world
-    public static final float WIDTH = 1024f; // pixels
-    public static final float HEIGHT = 512f; // pixels
+    private static int screenWidth = Gdx.graphics.getWidth();
+    private static int screenHeight = Gdx.graphics.getHeight();
+
+    public static final float WIDTH = screenWidth < screenHeight ? 512f : 1024f; // pixels
+    public static final float HEIGHT = screenWidth < screenHeight ? 1024f : 512f; // pixels
 
     public static final float HUD_WIDTH = WIDTH; // world units
     public static final float HUD_HEIGHT = HEIGHT; // world units
@@ -29,10 +34,6 @@ public class SizeManager {
     public static final float CQ_WORLD_CENTER_X = CQ_WORLD_WIDTH / 2f; // world units
     public static final float CQ_WORLD_CENTER_Y = CQ_WORLD_HEIGHT / 2f; // world units
 
-
-    public static void init(){
-
-    }
 
 //    //sprites
 //    public static final float maxBoundsRadius = 0.4f; // world units

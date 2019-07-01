@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.collision.mission.stone_gathering;
+package exp.zhen.zayta.main.game.wake.game_mechanics.stone_gathering;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -19,8 +19,8 @@ import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.entity.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.wake.collision.CollisionListener;
-import exp.zhen.zayta.main.game.wake.collision.GameControllingSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.collision.CollisionListener;
+import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
@@ -57,7 +57,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<numStones; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            stonesBiMap.put(key,makeStone(points[i].x,points[i].y,StoneTag.class,WPRegionNames.STONE));
+            stonesBiMap.put(key,makeStone(points[i].x,points[i].y, exp.zhen.zayta.main.game.wake.game_mechanics.stone_gathering.StoneTag.class,WPRegionNames.STONE));
 //            log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
 //            +stonesBiMap.get(key));
         }

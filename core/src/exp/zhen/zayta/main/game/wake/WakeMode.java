@@ -15,13 +15,13 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.collision.battle.MonsterAttacksNighterSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.battle.MonsterAttacksNighterSystem;
 import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.block_player.BlockPauseSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.BoundsSystem;
-import exp.zhen.zayta.main.game.wake.collision.mission.stone_gathering.StonesSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.stone_gathering.StonesSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.CameraUpdateSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.PositionTrackerUpdateSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.BlockChangeDirectionSystem;
@@ -88,9 +88,9 @@ public class WakeMode implements Screen {
         addSystems();
     }
     private void addSystems(){
-//        engine.addSystem(new MapRenderSystem(tiledMap,viewport));
         engine.addSystem(new InputSystem(engine));
 //        engine.addSystem(new TiledMapStageSystem(tiledMap,viewport,engine));
+
         addEntityMovementSystems();
         addRenderSystems();
         addGameControllingSystems();
@@ -99,6 +99,8 @@ public class WakeMode implements Screen {
     private void addEntityMovementSystems(){
 
         engine.addSystem(new PositionTrackerUpdateSystem());//should be first
+
+
         engine.addSystem(new MovableBlocksSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before movement
         engine.addSystem(new WorldWrapPauseSystem(tiledMap));
         engine.addSystem(new WorldWrapChangeDirectionSystem(tiledMap));
@@ -106,7 +108,7 @@ public class WakeMode implements Screen {
         engine.addSystem(new BlockChangeDirectionSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));
         engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));//sb before movement
 
-
+        /*after mechs are set, add base movement systems*/
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new AnimationSystem());
@@ -140,15 +142,6 @@ public class WakeMode implements Screen {
         entityLab.addEntities();
     }
 
-
-//    private void setInputHandler(){
-//        if(Gdx.app.getType()==Application.ApplicationType.Desktop) {
-//            Gdx.input.setInputProcessor(new KeyboardInputHandler(engine));
-//        }
-//        else {
-//            Gdx.input.setInputProcessor(new GestureDetector(new GestureInputHandler(engine)));
-//        }
-//    }
 
     @Override
     public void render(float delta) {

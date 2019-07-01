@@ -38,12 +38,12 @@ public class ShopScreen extends ScreenBase {
         // background
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
 
-        // highscore text
-        Label pointsText = new Label("TOTAL POINTS", uiSkin);
+        // essence text
+        Label title = new Label("Essence", uiSkin);
 
         // total points label
-        String pointsString = RPG.userData.getPointsString();
-        Label pointsLabel = new Label(pointsString, uiSkin);
+        int amountEssence = RPG.userData.getEssence();
+        Label essenceLabel = new Label(String.valueOf(amountEssence), uiSkin);
 
         // back button
         TextButton backButton = new TextButton("BACK", uiSkin);
@@ -59,8 +59,8 @@ public class ShopScreen extends ScreenBase {
         contentTable.defaults().pad(20);
         contentTable.setBackground(UiRegionNames.PANEL);
 
-        contentTable.add(pointsText).row();
-        contentTable.add(pointsLabel).row();
+        contentTable.add(title).row();
+        contentTable.add(essenceLabel).row();
         contentTable.add(backButton);
 
         contentTable.center();

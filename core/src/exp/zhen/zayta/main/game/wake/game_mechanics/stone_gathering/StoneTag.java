@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.collision.mission.stone_gathering;
+package exp.zhen.zayta.main.game.wake.game_mechanics.stone_gathering;
 
 import com.badlogic.ashley.core.Component;
 

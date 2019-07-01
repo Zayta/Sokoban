@@ -7,7 +7,7 @@ import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.main.game.wake.collision.mission.stone_gathering.StoneTag;
+import exp.zhen.zayta.main.game.wake.game_mechanics.stone_gathering.StoneTag;
 import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;

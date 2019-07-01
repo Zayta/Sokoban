@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.collision;
+package exp.zhen.zayta.main.game.wake.game_mechanics.collision;
 
 import com.badlogic.ashley.core.Entity;
 

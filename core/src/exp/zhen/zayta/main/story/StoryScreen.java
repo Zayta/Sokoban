@@ -1,25 +1,26 @@
 package exp.zhen.zayta.main.story;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
+import exp.zhen.zayta.main.UiRegionNames;
+import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
 
 
 public class StoryScreen extends ScreenBase {
-
-
-    private ButtonGroup<CheckBox> checkBoxGroup;
-    private CheckBox easy;
-    private CheckBox medium;
-    private CheckBox hard;
 
     public StoryScreen(RPG game) {
         super(game);
@@ -28,7 +29,24 @@ public class StoryScreen extends ScreenBase {
 
     @Override
     protected Actor createUi() {
+        Table table = new Table();
+
+        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.WAKE_PLAY);
         Skin uiSkin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+
+        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WPRegionNames.BACKGROUND);
+
+        // background
+        table.setBackground(new TextureRegionDrawable(backgroundRegion));
+
+        // Title
+        Label title = new Label("Memories", uiSkin);
+
+        // memories label
+        int numScenesUnlocked = RPG.userData.getNumScenesUnlocked();
+        Label pointsLabel = new Label(String.valueOf(numScenesUnlocked), uiSkin);
+
+        // back button
         TextButton backButton = new TextButton("BACK", uiSkin);
         backButton.addListener(new ChangeListener() {
             @Override
@@ -36,58 +54,29 @@ public class StoryScreen extends ScreenBase {
                 back();
             }
         });
-//
-//        ChangeListener listener = new ChangeListener() {
-//            @Override
-//            public void changed(ChangeEvent event, Actor actor) {
-//                difficultyChanged();
-//            }
-//        };
-//
-//        easy.addListener(listener);
-//        medium.addListener(listener);
-//        hard.addListener(listener);
-//
-//        // setup table
-//        Table contentTable = new Table(uiSkin);
-//        contentTable.defaults().pad(10);
-//        contentTable.setBackground(UiRegionNames.PANEL);
-//
-//        contentTable.add(label).row();
-//        contentTable.add(easy).row();
-//        contentTable.add(medium).row();
-//        contentTable.add(hard).row();
-//        contentTable.add(backButton);
-//
-//        table.add(contentTable);
-//        table.center();
-//        table.setFillParent(true);
-//        table.pack();
-//
-//        return table;
-        return null;
+
+        // setup tables
+        Table contentTable = new Table(uiSkin);
+        contentTable.defaults().pad(20);
+        contentTable.setBackground(UiRegionNames.PANEL);
+
+        contentTable.add(title).row();
+        contentTable.add(pointsLabel).row();
+        contentTable.add(backButton);
+
+        contentTable.center();
+
+        table.add(contentTable);
+        table.center();
+        table.setFillParent(true);
+        table.pack();
+
+        return table;
     }
 
     private void back() {
+//        log.debug("back()");
         game.setScreen(new MenuScreen(game));
     }
 
-    private void difficultyChanged() {
-        CheckBox checked = checkBoxGroup.getChecked();
-
-//        if (checked == easy) {
-//            GameManager.INSTANCE.updateDifficulty(DifficultyLevel.EASY);
-//        } else if (checked == medium) {
-//            GameManager.INSTANCE.updateDifficulty(DifficultyLevel.MEDIUM);
-//        } else if (checked == hard) {
-//            GameManager.INSTANCE.updateDifficulty(DifficultyLevel.HARD);
-//        }
-    }
-
-    private static CheckBox checkBox(String text, Skin skin) {
-        CheckBox checkBox = new CheckBox(text, skin);
-        checkBox.left().pad(8);
-        checkBox.getLabelCell().pad(8);
-        return checkBox;
-    }
 }

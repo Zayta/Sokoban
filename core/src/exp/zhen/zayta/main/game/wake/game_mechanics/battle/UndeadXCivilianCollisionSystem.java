@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.collision.battle;
+package exp.zhen.zayta.main.game.wake.game_mechanics.battle;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.game.wake.collision.GameControllingSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 //import exp.zhen.zayta.main.game.conquest.battle.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.UndeadTag;

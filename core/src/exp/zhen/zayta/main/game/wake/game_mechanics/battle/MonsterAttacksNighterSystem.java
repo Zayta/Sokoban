@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.collision.battle;
+package exp.zhen.zayta.main.game.wake.game_mechanics.battle;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -7,10 +7,8 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
-import java.util.Set;
-
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.game.wake.collision.GameControllingSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.AttackComponent;
