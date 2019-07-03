@@ -106,8 +106,8 @@ public class Tile extends Stack {
 //
 //        }
 //        super.draw(batch,parentAlpha);
-////        if(font!=null){
-////            font.draw(batch,soldier.toString(),getX(),getY());
+////        if(fonts!=null){
+////            fonts.draw(batch,soldier.toString(),getX(),getY());
 ////        }
 //    }
 

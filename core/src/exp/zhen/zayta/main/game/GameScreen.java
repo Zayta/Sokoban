@@ -85,7 +85,7 @@ public class GameScreen extends ScreenBase {
         // setup tables
         Table modeSelectionTable = new Table(uiSkin);
         modeSelectionTable.defaults().pad(20);
-        modeSelectionTable.setBackground(UiRegionNames.PANEL);
+        modeSelectionTable.setBackground(UiRegionNames.WINDOW);
 
         modeSelectionTable.add(wakeButton);
         modeSelectionTable.row();

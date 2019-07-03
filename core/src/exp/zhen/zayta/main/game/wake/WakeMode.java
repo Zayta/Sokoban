@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.game_mechanics.battle.MonsterAttacksNighterSystem;
@@ -21,7 +20,7 @@ import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.block_player.BlockPauseSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.BoundsSystem;
-import exp.zhen.zayta.main.game.wake.game_mechanics.stone_gathering.StonesSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.mission.stone_gathering.StonesSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.CameraUpdateSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.PositionTrackerUpdateSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.BlockChangeDirectionSystem;
@@ -38,7 +37,7 @@ import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
 import exp.zhen.zayta.main.game.wake.render.NameTagRenderSystem;
 import exp.zhen.zayta.main.game.wake.render.StatsRenderSystem;
 import exp.zhen.zayta.main.game.wake.visual.AnimationSystem;
-import exp.zhen.zayta.main.game.wake.input.InputSystem;
+import exp.zhen.zayta.main.game.wake.input.standard.StandardInputSystem;
 import exp.zhen.zayta.util.GdxUtils;
 
 public class WakeMode implements Screen {
@@ -88,7 +87,7 @@ public class WakeMode implements Screen {
         addSystems();
     }
     private void addSystems(){
-        engine.addSystem(new InputSystem(engine));
+        engine.addSystem(new StandardInputSystem(engine));
 //        engine.addSystem(new TiledMapStageSystem(tiledMap,viewport,engine));
 
         addEntityMovementSystems();
@@ -112,7 +111,7 @@ public class WakeMode implements Screen {
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new AnimationSystem());
-        engine.addSystem(new CameraUpdateSystem(orthographicCamera,UserData.Player,tiledMap));
+        engine.addSystem(new CameraUpdateSystem(orthographicCamera,RPG.userData.Player,tiledMap));
     }
 
 
@@ -120,7 +119,7 @@ public class WakeMode implements Screen {
     private void addRenderSystems(){
         engine.addSystem(new MapRenderSystem(tiledMap,viewport));
         engine.addSystem(new GameRenderSystem(viewport,game.getBatch()));
-        engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch()/*,assetManager.get(UIAssetDescriptors.FONT)*/));
+        engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch(),assetManager.get(UIAssetDescriptors.FONT)));
         engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
 

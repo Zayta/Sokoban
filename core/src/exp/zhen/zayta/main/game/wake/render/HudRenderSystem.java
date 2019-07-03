@@ -18,11 +18,11 @@ public class HudRenderSystem extends EntitySystem {
     private final GlyphLayout layout = new GlyphLayout();
 
 
-    public HudRenderSystem(Viewport viewport,SpriteBatch batch/*, BitmapFont font*/)
+    public HudRenderSystem(Viewport viewport,SpriteBatch batch, BitmapFont font)
     {
         this.viewport = viewport;
         this.batch = batch;
-        this.font = new BitmapFont();
+        this.font = font;
         font.getData().setScale(2,2);
     }
 
@@ -40,8 +40,8 @@ public class HudRenderSystem extends EntitySystem {
 
     private void draw(){
 //        String levelString = "LEVEL: "/*+RPG.userData.getLevel()*/;
-//        layout.setText(font,levelString);
-//        font.draw(batch,levelString,
+//        layout.setText(fonts,levelString);
+//        fonts.draw(batch,levelString,
 //                20,SizeManager.HUD_HEIGHT-layout.height);
 
         String stonesString = "STONES IN LEVEL: "/*+RPG.userData.getStonesInLevel()*/;
@@ -52,16 +52,16 @@ public class HudRenderSystem extends EntitySystem {
 //
 //        HealthComponent playerStats = UserData.Player.getComponent(HealthComponent.class);
 //        String HPString = "hp: "+playerStats.getHP();
-//        layout.setText(font,HPString);
-//        font.draw(batch,HPString,20,3*layout.height);
+//        layout.setText(fonts,HPString);
+//        fonts.draw(batch,HPString,20,3*layout.height);
 //
 //        String ATKString = "atk: "+playerStats.getATK();
-//        layout.setText(font,ATKString);
-//        font.draw(batch,ATKString,20,2*layout.height);
+//        layout.setText(fonts,ATKString);
+//        fonts.draw(batch,ATKString,20,2*layout.height);
 //
 //        String DEFString = "def: "+playerStats.getATK();
-//        layout.setText(font,DEFString);
-//        font.draw(batch,DEFString,20,layout.height);
+//        layout.setText(fonts,DEFString);
+//        fonts.draw(batch,DEFString,20,layout.height);
 
 
     }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 
+import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
@@ -60,7 +61,7 @@ public class EntityLab {
         engine.addEntity(consciousNighter);
 
 
-        UserData.Player = consciousNighter;
+        RPG.userData.Player = consciousNighter;
     }
 
 

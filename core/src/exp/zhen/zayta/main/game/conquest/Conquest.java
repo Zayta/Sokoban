@@ -209,20 +209,20 @@ public class Conquest implements Screen {
 //            Tile npos = nPos[i];
 ////            log.debug("nPos ["+i+"] x is "+npos.getX(Align.bottomLeft)+", and scaled is "+npos.getX(Align.bottomLeft)*scaleWidthOfStatsViewportToViewport);
 //            String stats = npos.getSoldier().toString();
-//            layout.setText(font, stats);
-//            font.draw(batch, layout, (npos.getX(Align.left))*scaleWidthOfStatsViewportToViewport,(npos.getY(Align.bottom))*scaleHeightOfStatsViewportToViewport+layout.height);
+//            layout.setText(fonts, stats);
+//            fonts.draw(batch, layout, (npos.getX(Align.left))*scaleWidthOfStatsViewportToViewport,(npos.getY(Align.bottom))*scaleHeightOfStatsViewportToViewport+layout.height);
 //
-////            font.draw(batch,stats, -130,(npos.getY(Align.center))*scaleHeightOfStatsViewportToViewport);
+////            fonts.draw(batch,stats, -130,(npos.getY(Align.center))*scaleHeightOfStatsViewportToViewport);
 //        }
 ////        // draw lives
 ////        String livesText = "LIVES: " + lives;
-////        layout.setText(font, livesText);
-////        font.draw(batch, layout, PADDING, GameConfig.HUD_HEIGHT - layout.height);
+////        layout.setText(fonts, livesText);
+////        fonts.draw(batch, layout, PADDING, GameConfig.HUD_HEIGHT - layout.height);
 ////
 ////        // draw score
 ////        String scoreText = "SCORE: " + displayScore;
-////        layout.setText(font, scoreText);
-////        font.draw(batch, layout,
+////        layout.setText(fonts, scoreText);
+////        fonts.draw(batch, layout,
 ////                GameConfig.HUD_WIDTH - layout.width - PADDING,
 ////                GameConfig.HUD_HEIGHT - layout.height
 ////        );

@@ -14,7 +14,7 @@ public class UserData { /*monitors how much hp a player has left in the game
     private final String essence = "essence";
     private Preferences preferences;
 
-    public static Entity Player;
+    public Entity Player;
 
 
     UserData() {
@@ -30,6 +30,9 @@ public class UserData { /*monitors how much hp a player has left in the game
     public void setEssence(int essence) {
         preferences.putInteger(this.essence,essence);
         preferences.flush();
+    }
+    public void unlockScene(){
+        setNumScenesUnlocked(preferences.getInteger(numScenesUnlocked)+1);
     }
 
     public int getNumScenesUnlocked() {

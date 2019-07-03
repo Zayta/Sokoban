@@ -57,7 +57,7 @@ public class ShopScreen extends ScreenBase {
         // setup tables
         Table contentTable = new Table(uiSkin);
         contentTable.defaults().pad(20);
-        contentTable.setBackground(UiRegionNames.PANEL);
+        contentTable.setBackground(UiRegionNames.WINDOW);
 
         contentTable.add(title).row();
         contentTable.add(essenceLabel).row();

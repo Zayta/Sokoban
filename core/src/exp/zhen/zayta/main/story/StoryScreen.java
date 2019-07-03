@@ -26,6 +26,8 @@ public class StoryScreen extends ScreenBase {
         super(game);
     }
 
+    //todo make array of n story-pics, and draw UserData.numScenesUnlocked of the n pics
+
 
     @Override
     protected Actor createUi() {
@@ -58,7 +60,7 @@ public class StoryScreen extends ScreenBase {
         // setup tables
         Table contentTable = new Table(uiSkin);
         contentTable.defaults().pad(20);
-        contentTable.setBackground(UiRegionNames.PANEL);
+        contentTable.setBackground(UiRegionNames.WINDOW);
 
         contentTable.add(title).row();
         contentTable.add(pointsLabel).row();

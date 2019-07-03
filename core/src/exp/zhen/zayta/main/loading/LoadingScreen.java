@@ -52,6 +52,7 @@ public class LoadingScreen extends ScreenAdapter {
         viewport = new FitViewport(SizeManager.HUD_WIDTH, SizeManager.HUD_HEIGHT, orthographicCamera);
         renderer = new ShapeRenderer();
 
+
         loadAssets();
         loadMap();
 
@@ -65,7 +66,6 @@ public class LoadingScreen extends ScreenAdapter {
         assetManager.load(UIAssetDescriptors.MENU_CLIP);
 
         assetManager.load(UIAssetDescriptors.UI_SKIN);
-        assetManager.load(UIAssetDescriptors.HIT_SOUND);
     }
     private void loadMap(){
         //todo in future when use TiledMap, load here

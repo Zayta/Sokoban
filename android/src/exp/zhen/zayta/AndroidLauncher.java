@@ -12,5 +12,15 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new RPG(), config);
+
+
+		JoystickView joystick = (JoystickView) findViewById(R.id.joystickView);
+		joystick.setOnMoveListener(new JoystickView.OnMoveListener() {
+			@Override
+			public void onMove(int angle, int strength) {
+				// do whatever you want
+			}
+		});
+
 	}
 }

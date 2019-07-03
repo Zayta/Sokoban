@@ -17,10 +17,12 @@ public class UiRegionNames {
 //    public static final String MEDIUM = "medium";
 //    public static final String OPTIONS = "options";
 //    public static final String OPTIONS_PRESSED = "optionsPressed";
-    public static final String PANEL = "panel";
+//    public static final String PANEL = "panel";
 //    public static final String PLAY = "play";
 //    public static final String PLAY_PRESSED = "playPressed";
+    public static final String WINDOW = "window";
 
+    //    public static final String PANEL = "panel";
     private UiRegionNames() {
     }
 }
