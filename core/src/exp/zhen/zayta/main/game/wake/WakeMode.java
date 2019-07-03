@@ -1,13 +1,18 @@
 package exp.zhen.zayta.main.game.wake;
 
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Logger;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -16,6 +21,7 @@ import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.game_mechanics.battle.MonsterAttacksNighterSystem;
 import exp.zhen.zayta.main.game.wake.entity.EntityLab;
+import exp.zhen.zayta.main.game.wake.input.joystick.JoyStickControlSystem;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.movable_items.MovableBlocksSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.block_player.BlockPauseSystem;
@@ -48,7 +54,7 @@ public class WakeMode implements Screen {
     private static final boolean DEBUG = true;
 
     private final RPG game;
-    private final AssetManager assetManager;
+    private final AssetManager assetManager; private Skin skin;
 
     private EntityLab entityLab;
 //    public static Manufacturer manufacturer;
@@ -75,6 +81,9 @@ public class WakeMode implements Screen {
         viewport = new FitViewport(SizeManager.WAKE_WORLD_WIDTH,SizeManager.WAKE_WORLD_HEIGHT,orthographicCamera);
         hudViewport = new FitViewport(SizeManager.HUD_WIDTH,SizeManager.HUD_HEIGHT);
 
+        /*Text*/
+        skin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+
         /*Game Engines*/
         engine = new PooledEngine();
         entityLab = new EntityLab(engine,assetManager);
@@ -87,12 +96,24 @@ public class WakeMode implements Screen {
         addSystems();
     }
     private void addSystems(){
-        engine.addSystem(new StandardInputSystem(engine));
-//        engine.addSystem(new TiledMapStageSystem(tiledMap,viewport,engine));
 
         addEntityMovementSystems();
         addRenderSystems();
         addGameControllingSystems();
+        addInputSystems();
+    }
+    private void addInputSystems(){
+        switch(Gdx.app.getType()) {
+            case Android:
+                engine.addSystem(new JoyStickControlSystem(engine,hudViewport,game.getBatch(),skin));
+                break;
+            case Desktop:
+                engine.addSystem(new StandardInputSystem(engine));
+                break;
+            default:
+                engine.addSystem(new StandardInputSystem(engine));
+        }
+//        engine.addSystem(new TiledMapStageSystem(tiledMap,viewport,engine));
     }
 
     private void addEntityMovementSystems(){
@@ -137,6 +158,7 @@ public class WakeMode implements Screen {
     }
 
 
+
     private void addEntities() {
         entityLab.addEntities();
     }
@@ -152,8 +174,10 @@ public class WakeMode implements Screen {
 
     @Override
     public void resize(int width, int height) {
+        SizeManager.config(width,height);
         viewport.update(width,height,true);
         hudViewport.update(width,height,true);
+        log.debug("Resize is called\nWidth = "+width+"\nHeight = "+height+"\nWORLD HEIGHT: "+SizeManager.WAKE_WORLD_HEIGHT);
     }
 
     @Override
