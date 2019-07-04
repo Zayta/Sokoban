@@ -1,7 +1,6 @@
 package exp.zhen.zayta.main.game.wake;
 
 import com.badlogic.ashley.core.PooledEngine;
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
@@ -11,15 +10,13 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Logger;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.game_mechanics.battle.MonsterAttacksNighterSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.collide_and_fight.MonsterAttacksNighterSystem;
 import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.input.joystick.JoyStickControlSystem;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
@@ -64,6 +61,7 @@ public class WakeMode implements Screen {
     private OrthographicCamera orthographicCamera;
     private Viewport viewport;
     private Viewport hudViewport;
+
     private ShapeRenderer shapeRenderer;
 
     private PooledEngine engine;
@@ -79,6 +77,7 @@ public class WakeMode implements Screen {
         shapeRenderer = new ShapeRenderer();
         orthographicCamera = new OrthographicCamera();
         viewport = new FitViewport(SizeManager.WAKE_WORLD_WIDTH,SizeManager.WAKE_WORLD_HEIGHT,orthographicCamera);
+
         hudViewport = new FitViewport(SizeManager.HUD_WIDTH,SizeManager.HUD_HEIGHT);
 
         /*Text*/
@@ -175,9 +174,12 @@ public class WakeMode implements Screen {
     @Override
     public void resize(int width, int height) {
         SizeManager.config(width,height);
+        viewport.setWorldSize(SizeManager.WAKE_WORLD_WIDTH,SizeManager.WAKE_WORLD_HEIGHT);
         viewport.update(width,height,true);
+        hudViewport.setWorldSize(SizeManager.HUD_WIDTH,SizeManager.HUD_HEIGHT);
         hudViewport.update(width,height,true);
         log.debug("Resize is called\nWidth = "+width+"\nHeight = "+height+"\nWORLD HEIGHT: "+SizeManager.WAKE_WORLD_HEIGHT);
+
     }
 
     @Override

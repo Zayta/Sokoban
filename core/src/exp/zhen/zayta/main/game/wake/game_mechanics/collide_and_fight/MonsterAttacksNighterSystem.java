@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.game_mechanics.battle;
+package exp.zhen.zayta.main.game.wake.game_mechanics.collide_and_fight;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

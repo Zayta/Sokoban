@@ -19,7 +19,7 @@ import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.entity.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.wake.game_mechanics.collision.CollisionListener;
+import exp.zhen.zayta.main.game.wake.game_mechanics.template_for_collision_system.CollisionListener;
 import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;

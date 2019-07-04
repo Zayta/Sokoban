@@ -2,22 +2,12 @@ package exp.zhen.zayta.main.game.wake.input.joystick;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.PooledEngine;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad.TouchpadStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
@@ -26,11 +16,7 @@ public class JoyStickControlSystem extends EntitySystem {
     private PooledEngine engine;
 
     private Stage stage;
-    private Touchpad touchpad;
-    private TouchpadStyle touchpadStyle;
-    private Skin touchpadSkin;
-    private Drawable touchBackground;
-    private Drawable touchKnob;
+    private JoyStickController joyStickController;
 
 
     public JoyStickControlSystem(PooledEngine engine, Viewport viewport, Batch batch,Skin skin){
@@ -38,23 +24,23 @@ public class JoyStickControlSystem extends EntitySystem {
 
         stage = new Stage(viewport,new SpriteBatch());
         initTouchpad(skin);
-        stage.addActor(touchpad);
+        stage.addActor(joyStickController);
 
         Gdx.input.setInputProcessor(stage);
 
     }
     private void initTouchpad(Skin skin){
-        touchpad = new Touchpad(10, skin);
-        touchpad.setBounds(0, 0, 150, 150);
+        joyStickController = new JoyStickController(10, skin);
+        joyStickController.setBounds(0, 0, SizeManager.CONTROLLER_DIAMETER, SizeManager.CONTROLLER_DIAMETER);
 
-        touchpad.addListener(new JoyStickController(engine));
+        joyStickController.addListener(new JoyStickListener(engine));
 
     }
 
     @Override
     public void update(float deltaTime) {
         stage.act(deltaTime);
-
+        stage.getViewport().apply();
         stage.draw();
     }
 

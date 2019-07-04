@@ -60,30 +60,34 @@ public class BlockPauseSystem extends EntitySystem {
         float x = position.getX();
         float y = position.getY();
 
-        //todo needa find way to fix position relative to stuck cell.
+        float stepBack = SizeManager.maxObjHeight/16;//step back so can change direction when stuck at block.
+
         switch (movement.getDirection()){
             case none:
                 break;
             case up:
                 if(collidesTop(x,y)){
                     movement.setDirection(Direction.none);
+                    position.setY(y-stepBack);
                 };
                 break;
             case down:
                 if(collidesBottom(x,y)){
                     movement.setDirection(Direction.none);
+                    position.setY(y+stepBack);
 
                 };
                 break;
             case left:
                 if(collidesLeft(x,y)){
                     movement.setDirection(Direction.none);
-
+                    position.setX(x+stepBack);
                 };
                 break;
             case right:
                 if(collidesRight(x,y)){
                     movement.setDirection(Direction.none);
+                    position.setX(x-stepBack);
 
                 };
                 break;
