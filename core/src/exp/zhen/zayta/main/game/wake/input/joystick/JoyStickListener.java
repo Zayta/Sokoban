@@ -32,8 +32,8 @@ public class JoyStickListener extends ChangeListener {
     @Override
     public void changed(ChangeEvent event, Actor actor) {
         // This is run when anything is changed on this actor.
-        float deltaX = ((Touchpad) actor).getKnobPercentX();
-        float deltaY = ((Touchpad) actor).getKnobPercentY();
+        float deltaX = ((JoyStickController) actor).getKnobPercentX();
+        float deltaY = ((JoyStickController) actor).getKnobPercentY();
 
         if(deltaX==0&&deltaY==0){
             updateAllPlayableCharacters(Direction.none);
