@@ -6,6 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Logger;
+
+import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.loading.LoadingScreen;
 
 public class RPG extends Game {

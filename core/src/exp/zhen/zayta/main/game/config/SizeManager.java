@@ -30,7 +30,8 @@ public class SizeManager {
     public static float maxObjHeight = 1.0f;
 
 
-    public static final float GAME_TO_CONTROL_RATIO =Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? 0.75f:1f;
+    public static final float GAME_TO_CONTROL_RATIO =Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? 0.8125f:1f;
+
     public static int CONTROLLER_DIAMETER = screenWidth < screenHeight ?
             (int)((1-GAME_TO_CONTROL_RATIO)*HEIGHT):(int)((1-GAME_TO_CONTROL_RATIO)*WIDTH);
 
@@ -39,30 +40,12 @@ public class SizeManager {
     public static void config(int screenWidth,int screenHeight){
         //todo problem: users see dif content depending on whether they have device landscape or portrait.
         if(screenWidth>screenHeight)
-            configLandScape(screenWidth,screenHeight);
+            configLandScape();
         else
-            configPortrait(screenWidth,screenHeight);
-//        WIDTH = screenWidth < screenHeight ? 512f : 1024f; // pixels
-//        HEIGHT = screenWidth < screenHeight ? 1024f : 512f; // pixels
-//
-//        HUD_WIDTH = WIDTH; // world units
-//        HUD_HEIGHT = HEIGHT; // world units
-//
-//        WAKE_WORLD_WIDTH = 10.0f; // world units
-//        WAKE_WORLD_HEIGHT = WAKE_WORLD_WIDTH*HEIGHT/WIDTH; // world units
-//
-//        WAKE_WORLD_CENTER_X = WAKE_WORLD_WIDTH / 2f; // world units
-//        WAKE_WORLD_CENTER_Y = WAKE_WORLD_HEIGHT / 2f; // world units
-//
-//        maxBoundsRadius = 0.4f;
-//        maxObjWidth = 2*maxBoundsRadius;//world units
-//        maxObjHeight = 1.0f;
-//
-//        CONTROLLER_DIAMETER = Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? (int)((1-GAME_TO_CONTROL_RATIO)*HEIGHT):0;
-
+            configPortrait();
     }
 
-    private static void configLandScape(int screenWidth, int screenHeight){
+    private static void configLandScape(){
         log.debug("configLandscape");
         WIDTH = 1024f; // pixels
         HEIGHT = 512f; // pixels
@@ -84,7 +67,7 @@ public class SizeManager {
     }
 
 
-    private static void configPortrait(int screenWidth, int screenHeight){
+    private static void configPortrait(){
         log.debug("configPortrait");
         WIDTH = 512f; // pixels
         HEIGHT = 1024f; // pixels

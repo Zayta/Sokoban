@@ -69,6 +69,8 @@ public class WakeMode implements Screen {
     public WakeMode(RPG game) {
         this.game = game;
         assetManager = game.getAssetManager();
+
+        SizeManager.config(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
     }
 
     @Override

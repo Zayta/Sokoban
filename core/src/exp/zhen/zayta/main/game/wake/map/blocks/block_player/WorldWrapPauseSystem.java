@@ -49,19 +49,19 @@ public class WorldWrapPauseSystem extends IteratingSystem {
 
         if(direction==Direction.up&&y>maxY){
             movement.setDirection(Direction.none);
-            position.set(x,maxY);
+//            position.set(x,maxY);
         }
         else if(direction==Direction.down&&y<0){
             movement.setDirection(Direction.none);
-            position.set(x,0);
+//            position.set(x,0);
         }
         else if(direction==Direction.left&&x<0){
             movement.setDirection(Direction.none);
-            position.set(0,y);
+//            position.set(0,y);
         }
         else if(direction==Direction.right&&x>maxX){
             movement.setDirection(Direction.none);
-            position.set(maxX,y);
+//            position.set(maxX,y);
         }
 
     }

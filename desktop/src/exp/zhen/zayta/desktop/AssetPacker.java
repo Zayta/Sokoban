@@ -24,11 +24,18 @@ public class AssetPacker {
 //                "conquest"
 //        );
 
-        //for wakeplay
+//        //for wakeplay
+//        TexturePacker.process(settings,
+//                RAW_ASSETS_PATH + "/gameplay/wakeplay",
+//                ASSETS_PATH + "/gameplay/wakeplay",
+//                "wakeplay"
+//        );
+
+        //for ui
         TexturePacker.process(settings,
-                RAW_ASSETS_PATH + "/gameplay/wakeplay",
-                ASSETS_PATH + "/gameplay/wakeplay",
-                "wakeplay"
+                RAW_ASSETS_PATH +"/ui_skin/neon_skin_raw",
+                ASSETS_PATH + "/ui/neon_skin",
+                "neon-ui"
         );
 
 

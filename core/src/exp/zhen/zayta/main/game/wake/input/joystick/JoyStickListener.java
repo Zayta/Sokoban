@@ -34,6 +34,12 @@ public class JoyStickListener extends ChangeListener {
         // This is run when anything is changed on this actor.
         float deltaX = ((Touchpad) actor).getKnobPercentX();
         float deltaY = ((Touchpad) actor).getKnobPercentY();
+
+        if(deltaX==0&&deltaY==0){
+            updateAllPlayableCharacters(Direction.none);
+            return;
+        }
+
         if(Math.abs(deltaX)>Math.abs(deltaY)) {
             if (deltaX > 0)
                 updateAllPlayableCharacters(Direction.right);

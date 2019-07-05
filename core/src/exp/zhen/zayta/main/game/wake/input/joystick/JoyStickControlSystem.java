@@ -21,7 +21,6 @@ public class JoyStickControlSystem extends EntitySystem {
 
     public JoyStickControlSystem(PooledEngine engine, Viewport viewport, Batch batch,Skin skin){
         this.engine = engine;
-
         stage = new Stage(viewport,new SpriteBatch());
         initTouchpad(skin);
         stage.addActor(joyStickController);
@@ -30,9 +29,17 @@ public class JoyStickControlSystem extends EntitySystem {
 
     }
     private void initTouchpad(Skin skin){
-        joyStickController = new JoyStickController(10, skin);
-        joyStickController.setBounds(0, 0, SizeManager.CONTROLLER_DIAMETER, SizeManager.CONTROLLER_DIAMETER);
+        float backgroundDiameter = SizeManager.CONTROLLER_DIAMETER*0.9f;
+        float knobToBackgroundRatio =0.5f;
 
+        joyStickController = new JoyStickController(20, skin);
+        joyStickController.setBounds(0, 0, SizeManager.CONTROLLER_DIAMETER, SizeManager.CONTROLLER_DIAMETER);
+        Touchpad.TouchpadStyle touchpadStyle = joyStickController.getStyle();
+        touchpadStyle.background.setRightWidth(backgroundDiameter);
+        touchpadStyle.background.setTopHeight(backgroundDiameter);
+
+        touchpadStyle.knob.setMinWidth(backgroundDiameter*knobToBackgroundRatio);
+        touchpadStyle.knob.setMinHeight(backgroundDiameter*knobToBackgroundRatio);
         joyStickController.addListener(new JoyStickListener(engine));
 
     }

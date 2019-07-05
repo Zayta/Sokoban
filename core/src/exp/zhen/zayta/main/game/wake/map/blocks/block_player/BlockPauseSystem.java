@@ -45,13 +45,8 @@ public class BlockPauseSystem extends EntitySystem {
 
             VelocityComponent movement = Mappers.MOVEMENT.get(entity);
             handleBlockCollision(entity, movement);
-//            if(collidedWithBlock(entity,currentDirection))
-//            {
-//                VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-//                //if there is a block, go a random direction upon interaction. should fix later based on tile direction.
-//                movement.setDirection(Direction.generateDirectionExcluding(currentDirection));
-//            }
-//
+
+
         }
     }
 
@@ -60,7 +55,7 @@ public class BlockPauseSystem extends EntitySystem {
         float x = position.getX();
         float y = position.getY();
 
-        float stepBack = SizeManager.maxObjHeight/16;//step back so can change direction when stuck at block.
+        float stepBack = 0;//SizeManager.maxObjHeight/32;//step back so can change direction when stuck at block.
 
         switch (movement.getDirection()){
             case none:
@@ -68,26 +63,30 @@ public class BlockPauseSystem extends EntitySystem {
             case up:
                 if(collidesTop(x,y)){
                     movement.setDirection(Direction.none);
-                    position.setY(y-stepBack);
+//                    if(!collidesBottom(x,y-stepBack))
+//                        position.setY(y-stepBack);
                 };
                 break;
             case down:
                 if(collidesBottom(x,y)){
                     movement.setDirection(Direction.none);
-                    position.setY(y+stepBack);
+//                    if(!collidesTop(x,y+stepBack))
+//                        position.setY(y+stepBack);
 
                 };
                 break;
             case left:
                 if(collidesLeft(x,y)){
                     movement.setDirection(Direction.none);
-                    position.setX(x+stepBack);
+//                    if(!collidesRight(x+stepBack,y))
+//                        position.setX(x+stepBack);
                 };
                 break;
             case right:
                 if(collidesRight(x,y)){
                     movement.setDirection(Direction.none);
-                    position.setX(x-stepBack);
+//                    if(!collidesLeft(x-stepBack,y))
+//                        position.setX(x-stepBack);
 
                 };
                 break;
@@ -96,21 +95,21 @@ public class BlockPauseSystem extends EntitySystem {
 
 
     public boolean collidesRight(float x, float y) {
-        for(float step = 0; step <= SizeManager.maxObjHeight; step += increment)
+        for(float step = 0; step < SizeManager.maxObjHeight; step += increment)
             if(isCellBlocked(x + SizeManager.maxObjWidth, y + step))
                 return true;
         return false;
     }
 
     public boolean collidesLeft(float x, float y) {
-        for(float step = 0; step <= SizeManager.maxObjHeight; step += increment)
+        for(float step = 0; step < SizeManager.maxObjHeight; step += increment)
             if(isCellBlocked(x, y + step))
                 return true;
         return false;
     }
 
     public boolean collidesTop(float x, float y) {
-        for(float step = 0; step <= SizeManager.maxObjWidth; step += increment)
+        for(float step = 0; step < SizeManager.maxObjWidth; step += increment)
             if(isCellBlocked(x + step, y + SizeManager.maxObjHeight))
                 return true;
         return false;
@@ -118,7 +117,7 @@ public class BlockPauseSystem extends EntitySystem {
     }
 
     public boolean collidesBottom(float x, float y) {
-        for(float step = 0; step <= SizeManager.maxObjWidth; step += increment)
+        for(float step = 0; step < SizeManager.maxObjWidth; step += increment)
             if(isCellBlocked(x + step, y))
                 return true;
         return false;
