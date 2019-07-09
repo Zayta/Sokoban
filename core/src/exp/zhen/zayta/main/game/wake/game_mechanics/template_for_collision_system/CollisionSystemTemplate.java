@@ -67,7 +67,7 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
     }
 
     private void collideEvent(Entity nighter, Entity civilian) {
-
+        //implement what happens during collision
     }
 
 }

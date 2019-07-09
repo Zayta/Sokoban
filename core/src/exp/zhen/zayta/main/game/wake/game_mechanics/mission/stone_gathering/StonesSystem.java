@@ -16,7 +16,7 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.entity.Arrangements;
+import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.game_mechanics.template_for_collision_system.CollisionListener;

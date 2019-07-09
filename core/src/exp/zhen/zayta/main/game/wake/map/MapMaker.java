@@ -2,15 +2,10 @@ package exp.zhen.zayta.main.game.wake.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.Hashtable;
 
-import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
-import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
-import exp.zhen.zayta.main.game.wake.entity.Arrangements;
-import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 
 public class MapMaker {
 

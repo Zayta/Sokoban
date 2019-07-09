@@ -9,7 +9,7 @@ import exp.zhen.zayta.main.game.characters.Monster;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MonsterTag;
+import exp.zhen.zayta.main.game.wake.entity.id_tags.MonsterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.AttackComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.DefenseComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;

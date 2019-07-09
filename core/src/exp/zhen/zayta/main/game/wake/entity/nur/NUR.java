@@ -5,10 +5,14 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import java.util.ArrayList;
+
+import exp.zhen.zayta.main.game.characters.CharacterClass;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.NighterTag;
+import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.ExplosiveHolderComponent;
+import exp.zhen.zayta.main.game.wake.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.AttackComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.DefenseComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
@@ -54,17 +58,8 @@ public class NUR {
 
         addIdentityComponents(nighter,fighter.getName());
         addAnimationComponents(nighter,fighter.getTextureRegion());
-        addHealthComponent(nighter,fighter.getHp());
-        return nighter;
-    }
-
-    public Entity getWakeNighter(Undead undead){
-        Entity nighter = engine.createEntity();
-        Fighter fighter = nighters.get(undead);
-
-        addIdentityComponents(nighter,fighter.getName());
-        addAnimationComponents(nighter,fighter.getTextureRegion());
-        addHealthComponent(nighter,fighter.getHp());
+        addBattleComponents(nighter,fighter.getHp(),fighter.getAtk(),fighter.getDef());
+        addAbilities(nighter,undead.getAttributes(),fighter.getAtk());
         return nighter;
     }
 
@@ -114,8 +109,8 @@ public class NUR {
     }
 
 
-    private void addBattleComponents(Entity monster,int hp, int atk, int def){
-        addHealthComponent(monster,hp);
+    private void addBattleComponents(Entity nighter, int hp, int atk, int def){
+        addHealthComponent(nighter,hp);
 
         AttackComponent attackComponent = engine.createComponent(AttackComponent.class);
         attackComponent.init(atk);
@@ -123,13 +118,27 @@ public class NUR {
         DefenseComponent defenseComponent = engine.createComponent(DefenseComponent.class);
         defenseComponent.init(def);
 
-        monster.add(attackComponent);
-        monster.add(defenseComponent);
+        nighter.add(attackComponent);
+        nighter.add(defenseComponent);
     }
+
     private void addHealthComponent(Entity nighter,int hp){
         HealthComponent healthComponent = engine.createComponent(HealthComponent.class);
         healthComponent.init(hp);
         nighter.add(healthComponent);
+    }
+
+    private void addAbilities(Entity nighter,ArrayList<CharacterClass> characterClasses,int abilityStrength){
+
+        for(CharacterClass characterClass : characterClasses){
+            switch (characterClass){
+                case Bomber:
+                    ExplosiveHolderComponent explosivePocket = engine.createComponent(ExplosiveHolderComponent.class);
+                    explosivePocket.setCharge(abilityStrength);
+                    nighter.add(explosivePocket);
+                    break;
+            }
+        }
     }
 
 }

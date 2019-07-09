@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
@@ -16,7 +15,7 @@ import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MortalTag;
+import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
 import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
@@ -144,7 +143,7 @@ public class EntityLab {
     }
 
 
-    public void addPositionComponents(PooledEngine engine, Entity entity, float x, float y){
+    public static void addPositionComponents(PooledEngine engine, Entity entity, float x, float y){
         Position position = engine.createComponent(Position.class);
         position.set(x,y);
 

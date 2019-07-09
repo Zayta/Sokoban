@@ -3,7 +3,7 @@ package exp.zhen.zayta.main.game.wake.common;
 import com.badlogic.ashley.core.ComponentMapper;
 
 import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.MortalTag;
+import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;

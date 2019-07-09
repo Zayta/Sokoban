@@ -12,7 +12,6 @@ import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.BlockChangeDirectionSy
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 

@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags;
+package exp.zhen.zayta.main.game.wake.entity.id_tags;
 
 import com.badlogic.ashley.core.Component;
 

@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.entity;
+package exp.zhen.zayta.main.game.wake.entity.util;
 
 import com.badlogic.gdx.math.Vector2;
 

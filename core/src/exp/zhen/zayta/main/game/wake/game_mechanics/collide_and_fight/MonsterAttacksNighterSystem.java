@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.id_tags.NighterTag;
+import exp.zhen.zayta.main.game.wake.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.AttackComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
