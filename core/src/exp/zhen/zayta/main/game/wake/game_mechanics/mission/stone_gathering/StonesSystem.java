@@ -11,6 +11,9 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
+import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.template_for_collision_system.CollisionListener;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
@@ -18,13 +21,10 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.wake.game_mechanics.template_for_collision_system.CollisionListener;
-import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
-import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
 
@@ -153,7 +153,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         getEngine().removeEntity(stone);
         stonesBiMap.removeKey(stone);
         if(stonesBiMap.size()==0){
-            setNextLevel();
+            completeMission();
         }
 
     }

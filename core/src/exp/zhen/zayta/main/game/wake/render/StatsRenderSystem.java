@@ -58,7 +58,7 @@ public class StatsRenderSystem extends IteratingSystem {
 
         Position position = Mappers.POSITION.get(entity);
         DimensionComponent dimension = Mappers.DIMENSION.get(entity);
-        HealthComponent healthComponent = Mappers.BATTLESTATS.get(entity);
+        HealthComponent healthComponent = Mappers.HEALTH.get(entity);
 
         float height = dimension.getHeight()/10;
 

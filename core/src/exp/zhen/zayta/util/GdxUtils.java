@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 
+import java.util.Random;
+
 
 public class GdxUtils {
 
+    public static final Random RANDOM = new Random();
     public static void clearScreen() {
         clearScreen(Color.BLACK);
     }

@@ -5,12 +5,12 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.utils.Pool;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.UserData;
 import exp.zhen.zayta.main.menu.MenuScreen;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 
 public abstract class GameControllingSystem extends EntitySystem implements Pool.Poolable {
     private RPG game; private PooledEngine engine;
+    private int numMissions;
 
     public GameControllingSystem(RPG game, PooledEngine engine) {
         this.game = game;
@@ -22,7 +22,21 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
         return engine;
     }
 
-    public void setNextLevel(){
+    public int getNumMissions() {
+        return numMissions;
+    }
+
+    public void setNumMissions(int numMissions) {
+        this.numMissions = numMissions;
+    }
+    public void completeMission(){
+        numMissions-=1;
+        if(numMissions<=0){
+            setNextLevel();
+        }
+    };
+
+    private void setNextLevel(){
         RPG.userData.unlockScene();
         goToMenu();
     }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -62,10 +63,12 @@ public class LoadingScreen extends ScreenAdapter {
     private void loadAssets(){
         assetManager.load(UIAssetDescriptors.FONT);
         assetManager.load(UIAssetDescriptors.WAKE_PLAY);
+        assetManager.load(UIAssetDescriptors.MAP_GENERATOR);
         assetManager.load(UIAssetDescriptors.CONQUEST);
         assetManager.load(UIAssetDescriptors.MENU_CLIP);
 
         assetManager.load(UIAssetDescriptors.UI_SKIN);
+
     }
     private void loadMap(){
         //todo in future when use TiledMap, load here

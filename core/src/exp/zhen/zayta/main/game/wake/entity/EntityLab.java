@@ -26,8 +26,8 @@ import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
-import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
-import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.sprite.SpriteAnimationComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 
 public class EntityLab {
     private PooledEngine engine;
@@ -110,8 +110,8 @@ public class EntityLab {
 
         TextureComponent texture = engine.createComponent(TextureComponent.class);
 
-        AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
-        animationComponent.init(wakePlayAtlas.findRegion(WPRegionNames.CIVILIAN));
+        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
+        spriteAnimationComponent.init(wakePlayAtlas.findRegion(WPRegionNames.CIVILIAN));
 
 
         Entity entity = engine.createEntity();
@@ -119,7 +119,7 @@ public class EntityLab {
         entity.add(npcTag);
         entity.add(mortalTag);
         entity.add(texture);
-        entity.add(animationComponent);
+        entity.add(spriteAnimationComponent);
         engine.addEntity(entity);
 
         Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());

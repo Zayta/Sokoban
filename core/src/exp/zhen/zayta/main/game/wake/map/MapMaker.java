@@ -5,11 +5,15 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import java.util.Hashtable;
 
+import exp.zhen.zayta.main.UIAssetDescriptors;
+import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
+import exp.zhen.zayta.main.game.wake.map.my_generated_map.World;
 
 public class MapMaker {
 
     public static final String collisionLayer = "Collision Layer";
+
 
     private AssetManager assetManager;
 //    private TiledMap [] tiledMaps;
@@ -32,6 +36,9 @@ public class MapMaker {
         tiledMaps.put(Map.irondale,assetManager.get(WPAssetDescriptors.MAP_IRONDALE));
     }
 
+    public World generateMap(){
+        return new World((int) SizeManager.WAKE_WORLD_WIDTH,(int) SizeManager.WAKE_WORLD_HEIGHT, assetManager.get(UIAssetDescriptors.MAP_GENERATOR));
+    };
 
     public void generateMaze(){
 //

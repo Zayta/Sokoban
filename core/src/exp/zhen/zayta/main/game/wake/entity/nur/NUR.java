@@ -18,8 +18,8 @@ import exp.zhen.zayta.main.game.wake.entity.components.properties.DefenseCompone
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.Fighter;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.UndeadTag;
-import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
-import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.sprite.SpriteAnimationComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
 public class NUR {
@@ -101,11 +101,11 @@ public class NUR {
     private void addAnimationComponents(Entity nighter,TextureRegion textureRegion){
         TextureComponent texture = engine.createComponent(TextureComponent.class);
 
-        AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
-        animationComponent.init(textureRegion);
+        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
+        spriteAnimationComponent.init(textureRegion);
 
         nighter.add(texture);
-        nighter.add(animationComponent);
+        nighter.add(spriteAnimationComponent);
     }
 
 

@@ -15,8 +15,8 @@ import exp.zhen.zayta.main.game.wake.entity.components.properties.DefenseCompone
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.Fighter;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.UndeadTag;
-import exp.zhen.zayta.main.game.wake.visual.AnimationComponent;
-import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.sprite.SpriteAnimationComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
 public class Utsubyo {
@@ -111,11 +111,11 @@ public class Utsubyo {
     private void addAnimationComponents(Entity monster,TextureRegion textureRegion){
         TextureComponent texture = engine.createComponent(TextureComponent.class);
 
-        AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
-        animationComponent.init(textureRegion);
+        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
+        spriteAnimationComponent.init(textureRegion);
 
         monster.add(texture);
-        monster.add(animationComponent);
+        monster.add(spriteAnimationComponent);
     }
     private void addBattleComponents(Entity monster,int hp, int atk, int def){
         HealthComponent healthComponent = engine.createComponent(HealthComponent.class);

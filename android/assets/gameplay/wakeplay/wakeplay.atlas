@@ -1,23 +1,9 @@
 
 wakeplay.png
-size: 1024,512
+size: 512,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-anoni
-  rotate: false
-  xy: 327, 263
-  size: 128, 192
-  orig: 128, 192
-  offset: 0, 0
-  index: -1
-lorale
-  rotate: false
-  xy: 457, 263
-  size: 128, 192
-  orig: 128, 192
-  offset: 0, 0
-  index: -1
 memLab1
   rotate: false
   xy: 2, 135
@@ -32,10 +18,393 @@ stones_blackpplstone
   orig: 140, 131
   offset: 0, 0
   index: -1
-zemus
+
+wakeplay2.png
+size: 2048,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+characters/anoni
   rotate: false
-  xy: 587, 263
+  xy: 2, 2
   size: 128, 192
   orig: 128, 192
   offset: 0, 0
   index: -1
+characters/letra
+  rotate: false
+  xy: 132, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/lorale
+  rotate: false
+  xy: 262, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/purple_anoni
+  rotate: false
+  xy: 392, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/red_anoni
+  rotate: false
+  xy: 522, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/taria
+  rotate: false
+  xy: 652, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/tenyu
+  rotate: false
+  xy: 782, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/xif
+  rotate: false
+  xy: 912, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+
+wakeplay3.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+flames/explosion_fire
+  rotate: false
+  xy: 1028, 1266
+  size: 768, 630
+  orig: 768, 630
+  offset: 0, 0
+  index: -1
+flames/preset_explosion_fire
+  rotate: false
+  xy: 2, 2
+  size: 768, 630
+  orig: 768, 630
+  offset: 0, 0
+  index: -1
+flames/preset_ring_fire
+  rotate: false
+  xy: 2, 1266
+  size: 1024, 630
+  orig: 1024, 630
+  offset: 0, 0
+  index: -1
+flames/ring_fire
+  rotate: false
+  xy: 2, 634
+  size: 1024, 630
+  orig: 1024, 630
+  offset: 0, 0
+  index: -1
+
+wakeplay4.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+light_effects/light_effects
+  rotate: false
+  xy: 2, 1034
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+light_effects/light_effects2
+  rotate: false
+  xy: 2, 776
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+light_effects/light_effects3
+  rotate: false
+  xy: 2, 518
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+light_effects/light_effects4
+  rotate: false
+  xy: 2, 260
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+light_effects/light_effects5
+  rotate: false
+  xy: 2, 2
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+
+wakeplay5.png
+size: 256,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+monsters/zemus
+  rotate: false
+  xy: 2, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+
+wakeplay6.png
+size: 256,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+orange_weapon_slash/1/Alternative_3
+  rotate: false
+  xy: 2, 306
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 1
+orange_weapon_slash/1/Alternative_3
+  rotate: false
+  xy: 130, 306
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 2
+orange_weapon_slash/1/Alternative_3
+  rotate: false
+  xy: 2, 154
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 4
+orange_weapon_slash/1/Alternative_3
+  rotate: false
+  xy: 130, 154
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 5
+orange_weapon_slash/1/Alternative_3
+  rotate: false
+  xy: 2, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 3
+orange_weapon_slash/1/Alternative_3
+  rotate: false
+  xy: 129, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 6
+
+wakeplay7.png
+size: 256,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+orange_weapon_slash/2/Alternative_3
+  rotate: false
+  xy: 2, 306
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 7
+orange_weapon_slash/2/Alternative_3
+  rotate: false
+  xy: 130, 306
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 8
+orange_weapon_slash/2/Alternative_3
+  rotate: false
+  xy: 2, 154
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 10
+orange_weapon_slash/2/Alternative_3
+  rotate: false
+  xy: 130, 154
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 11
+orange_weapon_slash/2/Alternative_3
+  rotate: false
+  xy: 2, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 9
+orange_weapon_slash/2/Alternative_3
+  rotate: false
+  xy: 129, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 12
+
+wakeplay8.png
+size: 256,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+orange_weapon_slash/3/Alternative_3
+  rotate: false
+  xy: 2, 306
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 13
+orange_weapon_slash/3/Alternative_3
+  rotate: false
+  xy: 130, 306
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 14
+orange_weapon_slash/3/Alternative_3
+  rotate: false
+  xy: 2, 154
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 16
+orange_weapon_slash/3/Alternative_3
+  rotate: false
+  xy: 130, 154
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 17
+orange_weapon_slash/3/Alternative_3
+  rotate: false
+  xy: 2, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 15
+orange_weapon_slash/3/Alternative_3
+  rotate: false
+  xy: 129, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 18
+
+wakeplay9.png
+size: 256,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+orange_weapon_slash/4/Alternative_3
+  rotate: false
+  xy: 2, 306
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 19
+orange_weapon_slash/4/Alternative_3
+  rotate: false
+  xy: 130, 306
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 20
+orange_weapon_slash/4/Alternative_3
+  rotate: false
+  xy: 2, 154
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 22
+orange_weapon_slash/4/Alternative_3
+  rotate: false
+  xy: 130, 154
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 23
+orange_weapon_slash/4/Alternative_3
+  rotate: false
+  xy: 2, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 21
+orange_weapon_slash/4/Alternative_3
+  rotate: false
+  xy: 129, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 24
+
+wakeplay10.png
+size: 256,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+orange_weapon_slash/5/Alternative_3
+  rotate: false
+  xy: 2, 306
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 25
+orange_weapon_slash/5/Alternative_3
+  rotate: false
+  xy: 130, 306
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 26
+orange_weapon_slash/5/Alternative_3
+  rotate: false
+  xy: 2, 154
+  size: 126, 150
+  orig: 126, 150
+  offset: 0, 0
+  index: 28
+orange_weapon_slash/5/Alternative_3
+  rotate: false
+  xy: 130, 154
+  size: 124, 150
+  orig: 124, 150
+  offset: 0, 0
+  index: 29
+orange_weapon_slash/5/Alternative_3
+  rotate: false
+  xy: 2, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 27
+orange_weapon_slash/5/Alternative_3
+  rotate: false
+  xy: 129, 2
+  size: 125, 150
+  orig: 125, 150
+  offset: 0, 0
+  index: 30

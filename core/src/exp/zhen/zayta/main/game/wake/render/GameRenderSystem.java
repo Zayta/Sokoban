@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
-import exp.zhen.zayta.main.game.wake.visual.TextureComponent;
+import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 
 public class GameRenderSystem extends EntitySystem {
     public static final Family FAMILY = Family.all(

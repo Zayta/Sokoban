@@ -13,8 +13,8 @@ public class SizeManager {
     private static int screenWidth = Gdx.graphics.getWidth();
     private static int screenHeight = Gdx.graphics.getHeight();
 
-    public static float WIDTH = screenWidth < screenHeight ? 512f : 1024f; // pixels
-    public static float HEIGHT = screenWidth < screenHeight ? 1024f : 512f; // pixels
+    public static float WIDTH = screenWidth < screenHeight ? 720f : 1024f; // pixels
+    public static float HEIGHT = screenWidth < screenHeight ? 1024f : 720f; // pixels
 
     public static float HUD_WIDTH = WIDTH; // world units
     public static float HUD_HEIGHT = HEIGHT; // world units
@@ -30,7 +30,7 @@ public class SizeManager {
     public static float maxObjHeight = 1.0f;
 
 
-    public static final float GAME_TO_CONTROL_RATIO =Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? 0.8125f:1f;
+    public static final float GAME_TO_CONTROL_RATIO =Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? 0.8f:1f;
 
     public static int CONTROLLER_DIAMETER = screenWidth < screenHeight ?
             (int)((1-GAME_TO_CONTROL_RATIO)*HEIGHT):(int)((1-GAME_TO_CONTROL_RATIO)*WIDTH);
@@ -48,7 +48,7 @@ public class SizeManager {
     private static void configLandScape(){
         log.debug("configLandscape");
         WIDTH = 1024f; // pixels
-        HEIGHT = 512f; // pixels
+        HEIGHT = 720f; // pixels
 
         HUD_WIDTH = WIDTH; // world units
         HUD_HEIGHT = HEIGHT; // world units
@@ -69,7 +69,7 @@ public class SizeManager {
 
     private static void configPortrait(){
         log.debug("configPortrait");
-        WIDTH = 512f; // pixels
+        WIDTH = 720f; // pixels
         HEIGHT = 1024f; // pixels
 
         HUD_WIDTH = WIDTH; // world units

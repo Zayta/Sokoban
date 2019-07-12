@@ -2,6 +2,10 @@ package exp.zhen.zayta.main.game.wake.movement;
 
 import java.util.Random;
 
+import exp.zhen.zayta.util.GdxUtils;
+
+import static exp.zhen.zayta.util.GdxUtils.RANDOM;
+
 public enum Direction{
     none(0,0),
     up(0,1),
@@ -111,7 +115,6 @@ public enum Direction{
     }
     private static final Direction[] VALUES = values();
     private static final int SIZE = VALUES.length;
-    private static final Random RANDOM = new Random();
 
     /***Direction Generators***/
     public static Direction generateRandomDirection()  {
