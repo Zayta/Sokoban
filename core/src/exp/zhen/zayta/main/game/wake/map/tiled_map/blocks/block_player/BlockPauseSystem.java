@@ -38,7 +38,7 @@ public class BlockPauseSystem extends EntitySystem {
     public void update(float deltaTime) {
         // calculate the increment for step in #collidesBottom() and #collidesTop()
         increment = collisionLayer.getTileHeight();
-        increment = SizeManager.maxObjHeight < increment ? SizeManager.maxObjHeight / 2 : increment / 2;
+        increment = SizeManager.maxObjWidth < increment ? SizeManager.maxObjWidth / 2 : increment / 2;
         ImmutableArray<Entity> entities = getEngine().getEntitiesFor(MOVING_ENTITIES);
         for(Entity entity:entities) {
 
@@ -54,69 +54,57 @@ public class BlockPauseSystem extends EntitySystem {
         float x = position.getX();
         float y = position.getY();
 
-        float stepBack = 0;//SizeManager.maxObjHeight/32;//step back so can change direction when stuck at block.
-
         switch (movement.getDirection()){
             case none:
                 break;
             case up:
                 if(collidesTop(x,y)){
                     movement.setDirection(Direction.none);
-//                    if(!collidesBottom(x,y-stepBack))
-//                        position.setY(y-stepBack);
                 };
                 break;
             case down:
                 if(collidesBottom(x,y)){
                     movement.setDirection(Direction.none);
-//                    if(!collidesTop(x,y+stepBack))
-//                        position.setY(y+stepBack);
-
                 };
                 break;
             case left:
                 if(collidesLeft(x,y)){
                     movement.setDirection(Direction.none);
-//                    if(!collidesRight(x+stepBack,y))
-//                        position.setX(x+stepBack);
                 };
                 break;
             case right:
                 if(collidesRight(x,y)){
                     movement.setDirection(Direction.none);
-//                    if(!collidesLeft(x-stepBack,y))
-//                        position.setX(x-stepBack);
-
                 };
                 break;
         }
     }
 
 
-    public boolean collidesRight(float x, float y) {
-        for(float step = 0; step < SizeManager.maxObjHeight; step += increment)
+    private boolean collidesRight(float x, float y) {
+        for(float step = 0; step <= SizeManager.maxObjHeight; step += increment)
             if(isCellBlocked(x + SizeManager.maxObjWidth, y + step))
                 return true;
         return false;
     }
 
-    public boolean collidesLeft(float x, float y) {
-        for(float step = 0; step < SizeManager.maxObjHeight; step += increment)
+    private boolean collidesLeft(float x, float y) {
+        for(float step = 0; step <= SizeManager.maxObjHeight; step += increment)
             if(isCellBlocked(x, y + step))
                 return true;
         return false;
     }
 
-    public boolean collidesTop(float x, float y) {
-        for(float step = 0; step < SizeManager.maxObjWidth; step += increment)
+    private boolean collidesTop(float x, float y) {
+        for(float step = 0; step <= SizeManager.maxObjWidth; step += increment)
             if(isCellBlocked(x + step, y + SizeManager.maxObjHeight))
                 return true;
         return false;
 
     }
 
-    public boolean collidesBottom(float x, float y) {
-        for(float step = 0; step < SizeManager.maxObjWidth; step += increment)
+    private boolean collidesBottom(float x, float y) {
+        for(float step = 0; step <= SizeManager.maxObjWidth; step += increment)
             if(isCellBlocked(x + step, y))
                 return true;
         return false;
@@ -128,7 +116,7 @@ public class BlockPauseSystem extends EntitySystem {
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(blockedKey);
     }
 
-    public void setCollisionLayer(TiledMapTileLayer collisionLayer) {
+    private void setCollisionLayer(TiledMapTileLayer collisionLayer) {
         this.collisionLayer = collisionLayer;
     }
 

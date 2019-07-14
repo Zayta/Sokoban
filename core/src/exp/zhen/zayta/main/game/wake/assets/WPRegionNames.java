@@ -4,6 +4,7 @@ import exp.zhen.zayta.util.BiMap;
 
 public class WPRegionNames {
 
+    //maps
     public static final String MAPS_MEMLAB1 = "gameplay/wakeplay/maps/memLab/memLab1.tmx";
     public static final String MAPS_MEMLAB2 = "gameplay/wakeplay/maps/memLab/memLab2.tmx";
     public static final String MAPS_MEMLABBIG = "gameplay/wakeplay/maps/memLab/memLabBig.tmx";

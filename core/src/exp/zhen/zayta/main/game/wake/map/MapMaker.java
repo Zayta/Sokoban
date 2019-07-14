@@ -6,17 +6,19 @@ import com.badlogic.gdx.utils.Logger;
 
 import java.util.Hashtable;
 
-import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
-import exp.zhen.zayta.main.game.wake.map.my_generated_map.MapGenerator;
-//import exp.zhen.zayta.main.game.wake.map.my_generated_map.World;
+import exp.zhen.zayta.main.game.wake.map.tiled_map.map_generator.MapGenerator;
+import exp.zhen.zayta.main.game.wake.map.tiled_map.map_generator.MapType;
+//import exp.zhen.zayta.main.game.wake.map.tiled_map.my_generated_map.World;
 
 public class MapMaker {
 
     private static final Logger log = new Logger(MapMaker.class.getName(),Logger.DEBUG);
 
     public static final String collisionLayer = "Collision Layer";
+    public static final String visibleLayer = "Visible Layer";
+
     private final MapGenerator mapGenerator;
 
     private AssetManager assetManager;
@@ -43,7 +45,7 @@ public class MapMaker {
 
     public TiledMap generateMap(){
 //        return new World((int) SizeManager.WAKE_WORLD_WIDTH,(int) SizeManager.WAKE_WORLD_HEIGHT, assetManager.get(UIAssetDescriptors.MAP_GENERATOR));
-        return mapGenerator.generateWorld();
+        return mapGenerator.generateWorld(MapType.NONE);
     };
 
     public void generateMaze(){

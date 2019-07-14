@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.map.my_generated_map.noise;
+package exp.zhen.zayta.main.game.wake.map.tiled_map.map_generator.noise;
 
 import java.util.Random;
 

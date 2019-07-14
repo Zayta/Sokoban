@@ -6,6 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -125,8 +127,13 @@ public class WakeMode implements Screen {
         engine.addSystem(new WorldWrapPauseSystem(tiledMap));
         engine.addSystem(new WorldWrapChangeDirectionSystem(tiledMap));
         engine.addSystem(new IntervalChangeDirectionSystem(5));
-//        engine.addSystem(new BlockChangeDirectionSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));
-//        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));//sb before movement
+
+        TiledMapTileLayer collisionLayer = (TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer);
+        log.debug("CollisionLayer is "+collisionLayer);
+        if(collisionLayer!=null){
+        engine.addSystem(new BlockChangeDirectionSystem(collisionLayer));
+        engine.addSystem(new BlockPauseSystem(collisionLayer));//sb before movement
+        }
 
         /*after mechs are set, add base movement systems*/
         engine.addSystem(new MovementSystem());

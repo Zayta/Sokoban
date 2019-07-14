@@ -63,7 +63,8 @@ public class SizeManager {
         maxObjWidth = 2*maxBoundsRadius;//world units
         maxObjHeight = 1.0f;
 
-        CONTROLLER_DIAMETER = Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? (int)((1-GAME_TO_CONTROL_RATIO)*WIDTH):0;
+        CONTROLLER_DIAMETER = screenWidth < screenHeight ?
+                (int)((1-GAME_TO_CONTROL_RATIO)*HEIGHT):(int)((1-GAME_TO_CONTROL_RATIO)*WIDTH);
     }
 
 
