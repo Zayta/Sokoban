@@ -80,6 +80,9 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
         CircularBoundsComponent playerBounds = Mappers.BOUNDS.get(nighter);
         CircularBoundsComponent obstacleBounds = Mappers.BOUNDS.get(monster);
 
+//        log.debug("playerBounds is "+playerBounds);
+//        log.debug("obstacleBounds is "+obstacleBounds);
+
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }
 

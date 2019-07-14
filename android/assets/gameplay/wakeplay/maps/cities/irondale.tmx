@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="27" nextobjectid="13">
  <tileset firstgid="1" source="city_tiles/roguelikeCity_tile_set.tsx"/>
- <tileset firstgid="1037" source="collision_tile_set.tsx"/>
+ <tileset firstgid="1037" source="../collision_tile_set.tsx"/>
  <layer id="12" name="Base Layer" width="32" height="32" locked="1">
   <data encoding="csv">
 188,188,188,11,11,11,188,188,188,188,188,188,7,10,749,787,788,747,748,748,748,748,748,748,748,748,748,748,748,748,748,748,

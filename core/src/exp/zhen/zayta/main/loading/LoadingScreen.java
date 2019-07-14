@@ -63,11 +63,12 @@ public class LoadingScreen extends ScreenAdapter {
     private void loadAssets(){
         assetManager.load(UIAssetDescriptors.FONT);
         assetManager.load(UIAssetDescriptors.WAKE_PLAY);
-        assetManager.load(UIAssetDescriptors.MAP_GENERATOR);
         assetManager.load(UIAssetDescriptors.CONQUEST);
         assetManager.load(UIAssetDescriptors.MENU_CLIP);
-
         assetManager.load(UIAssetDescriptors.UI_SKIN);
+
+
+        assetManager.load(WPAssetDescriptors.MAP_GENERATOR);
 
     }
     private void loadMap(){
@@ -75,6 +76,7 @@ public class LoadingScreen extends ScreenAdapter {
         assetManager.setLoader(TiledMap.class,new TmxMapLoader());
         assetManager.load(WPAssetDescriptors.MAP_MEMLAB2);
         assetManager.load(WPAssetDescriptors.MAP_IRONDALE);
+        assetManager.load(WPAssetDescriptors.MAP_TILE_STORAGE);
 
     }
 

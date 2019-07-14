@@ -94,8 +94,8 @@ public class WakeMode implements Screen {
         entityLab = new EntityLab(engine,assetManager);
 //        manufacturer = new Manufacturer(assetManager.get(UIAssetDescriptors.WAKE_PLAY),engine);
         mapMaker = new MapMaker(assetManager);
-        tiledMap = mapMaker.getTiledMap(MapMaker.Map.irondale);
-
+//        tiledMap = mapMaker.getTiledMap(MapMaker.Map.irondale);
+        tiledMap = mapMaker.generateMap();
 
         addEntities();
         addSystems();
@@ -125,8 +125,8 @@ public class WakeMode implements Screen {
         engine.addSystem(new WorldWrapPauseSystem(tiledMap));
         engine.addSystem(new WorldWrapChangeDirectionSystem(tiledMap));
         engine.addSystem(new IntervalChangeDirectionSystem(5));
-        engine.addSystem(new BlockChangeDirectionSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));
-        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));//sb before movement
+//        engine.addSystem(new BlockChangeDirectionSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));
+//        engine.addSystem(new BlockPauseSystem((TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer)));//sb before movement
 
         /*after mechs are set, add base movement systems*/
         engine.addSystem(new MovementSystem());

@@ -2,18 +2,22 @@ package exp.zhen.zayta.main.game.wake.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.utils.Logger;
 
 import java.util.Hashtable;
 
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
-import exp.zhen.zayta.main.game.wake.map.my_generated_map.World;
+import exp.zhen.zayta.main.game.wake.map.my_generated_map.MapGenerator;
+//import exp.zhen.zayta.main.game.wake.map.my_generated_map.World;
 
 public class MapMaker {
 
-    public static final String collisionLayer = "Collision Layer";
+    private static final Logger log = new Logger(MapMaker.class.getName(),Logger.DEBUG);
 
+    public static final String collisionLayer = "Collision Layer";
+    private final MapGenerator mapGenerator;
 
     private AssetManager assetManager;
 //    private TiledMap [] tiledMaps;
@@ -24,6 +28,7 @@ public class MapMaker {
     //todo make list of tiled maps in the future
     public MapMaker (AssetManager assetManager){
         this.assetManager = assetManager;
+        mapGenerator = new MapGenerator((int)SizeManager.WAKE_WORLD_WIDTH,(int)SizeManager.WAKE_WORLD_HEIGHT,assetManager.get(WPAssetDescriptors.MAP_GENERATOR),assetManager.get(WPAssetDescriptors.MAP_TILE_STORAGE));
         tiledMaps = new Hashtable<Map, TiledMap>();
         initTiledMaps();
     }
@@ -36,8 +41,9 @@ public class MapMaker {
         tiledMaps.put(Map.irondale,assetManager.get(WPAssetDescriptors.MAP_IRONDALE));
     }
 
-    public World generateMap(){
-        return new World((int) SizeManager.WAKE_WORLD_WIDTH,(int) SizeManager.WAKE_WORLD_HEIGHT, assetManager.get(UIAssetDescriptors.MAP_GENERATOR));
+    public TiledMap generateMap(){
+//        return new World((int) SizeManager.WAKE_WORLD_WIDTH,(int) SizeManager.WAKE_WORLD_HEIGHT, assetManager.get(UIAssetDescriptors.MAP_GENERATOR));
+        return mapGenerator.generateWorld();
     };
 
     public void generateMaze(){

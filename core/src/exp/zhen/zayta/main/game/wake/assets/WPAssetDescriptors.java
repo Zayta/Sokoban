@@ -1,6 +1,7 @@
 package exp.zhen.zayta.main.game.wake.assets;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 
@@ -22,9 +23,12 @@ public class WPAssetDescriptors {
     private static final String MAPS_IRONDALE = "gameplay/wakeplay/maps/cities/irondale.tmx";
     public static final AssetDescriptor<TiledMap> MAP_IRONDALE = new AssetDescriptor<TiledMap>(MAPS_IRONDALE,TiledMap.class);
 
+    private static final String MAPS_TILE_STORAGE = "gameplay/wakeplay/maps/blank_map.tmx";
+    public static final AssetDescriptor<TiledMap> MAP_TILE_STORAGE = new AssetDescriptor<TiledMap>(MAPS_TILE_STORAGE,TiledMap.class);
 
-    /*TileSets*/
-    private static final String TILESET_MAP_GENERATOR_PATH = "gameplay/wakeplay/maps/generator_tile_set.tsx";
-    public static final AssetDescriptor<TiledMapTileSet> TILESET_MAP_GENERATOR = new AssetDescriptor<TiledMapTileSet>(TILESET_MAP_GENERATOR_PATH,TiledMapTileSet.class);
+
+
+    public static final AssetDescriptor<TextureAtlas> MAP_GENERATOR =
+            new AssetDescriptor<TextureAtlas>("gameplay/wakeplay/maps/generated_map_tiles/generated_map_tiles.atlas", TextureAtlas.class);
 
 }

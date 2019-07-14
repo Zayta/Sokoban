@@ -13,9 +13,6 @@ public class UIAssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> WAKE_PLAY =
             new AssetDescriptor<TextureAtlas>("gameplay/wakeplay/wakeplay.atlas", TextureAtlas.class);
 
-    public static final AssetDescriptor<TextureAtlas> MAP_GENERATOR =
-            new AssetDescriptor<TextureAtlas>("gameplay/wakeplay/generated_map_tiles/generated_map_tiles.atlas", TextureAtlas.class);
-
     public static final AssetDescriptor<TextureAtlas> CONQUEST =
             new AssetDescriptor<TextureAtlas>("gameplay/conquest/conquest.atlas", TextureAtlas.class);
 

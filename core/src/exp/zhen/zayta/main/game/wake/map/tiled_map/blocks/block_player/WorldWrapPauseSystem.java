@@ -5,7 +5,9 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.game.wake.WakeMode;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
@@ -15,6 +17,8 @@ import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 
 public class WorldWrapPauseSystem extends IteratingSystem {
+
+    private static final Logger log = new Logger(WorldWrapPauseSystem.class.getName(),Logger.DEBUG);
 
     private static final Family FAMILY = Family.all(
             PlayerTag.class,
@@ -43,7 +47,6 @@ public class WorldWrapPauseSystem extends IteratingSystem {
 
         Direction direction = movement.getDirection();
         float x = position.getX(); float y = position.getY();
-
         float maxX = mapProperties.get("width", Integer.class)-dimension.getWidth();
         float maxY = mapProperties.get("height", Integer.class)-dimension.getHeight();
 
