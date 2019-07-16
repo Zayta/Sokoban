@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.collide_and_fight;
+package exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.collide_and_fight;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -13,7 +13,7 @@ import exp.zhen.zayta.main.game.wake.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.AttackComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.util.BiMap;
 
@@ -25,7 +25,7 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
     private final Family NIGHTERS = Family.all(
             NighterTag.class,
             PositionTrackerComponent.class,
-            CircularBoundsComponent.class,
+            RectangularBoundsComponent.class,
             HealthComponent.class
     ).get();
 
@@ -77,8 +77,8 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
     }
     private boolean checkCollisionBetween(Entity nighter, Entity monster)
     {
-        CircularBoundsComponent playerBounds = Mappers.BOUNDS.get(nighter);
-        CircularBoundsComponent obstacleBounds = Mappers.BOUNDS.get(monster);
+        RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(nighter);
+        RectangularBoundsComponent obstacleBounds = Mappers.RECTANGULAR_BOUNDS.get(monster);
 
 //        log.debug("playerBounds is "+playerBounds);
 //        log.debug("obstacleBounds is "+obstacleBounds);

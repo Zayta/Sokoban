@@ -38,6 +38,8 @@ public class WPRegionNames {
 
     //misc
     public static final String BACKGROUND = "memLab1";
+
+    public static final String [] BLOCKS = {};
     public static final String STONE = "stones_blackpplstone";
 
 

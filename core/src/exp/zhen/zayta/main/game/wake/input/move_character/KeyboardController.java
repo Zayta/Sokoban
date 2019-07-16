@@ -14,7 +14,7 @@ import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.ExplosiveHolderComponent;
-import exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.bomb_trigger.LandmineExplosionSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.bomb_trigger.LandmineExplosionSystem;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;

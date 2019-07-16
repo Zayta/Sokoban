@@ -21,6 +21,8 @@ public class RPG extends Game {
     public void create() {
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
+        SizeManager.config(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+
         assetManager = new AssetManager();
         assetManager.getLogger().setLevel(Logger.DEBUG);
 

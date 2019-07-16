@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
-import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 
 public class NameTagRenderSystem extends IteratingSystem {
     private static final Logger log = new Logger(NameTagRenderSystem.class.getName(),Logger.DEBUG);
@@ -28,7 +28,7 @@ public class NameTagRenderSystem extends IteratingSystem {
     private Array<Entity> renderQueue = new Array<Entity>();
 
     private static final Family FAMILY = Family.all(
-            CircularBoundsComponent.class,
+            RectangularBoundsComponent.class,
             NameTag.class
     ).get();
 
@@ -70,7 +70,7 @@ public class NameTagRenderSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        CircularBoundsComponent bounds = Mappers.BOUNDS.get(entity);
+        RectangularBoundsComponent bounds = Mappers.RECTANGULAR_BOUNDS.get(entity);
         NameTag nameTag = Mappers.NAMETAG.get(entity);
 
         layout.setText(font,nameTag.getName());

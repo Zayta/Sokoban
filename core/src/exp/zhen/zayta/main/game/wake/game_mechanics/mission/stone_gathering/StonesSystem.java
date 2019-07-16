@@ -13,7 +13,7 @@ import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
-import exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.template_for_collision_system.CollisionListener;
+import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
@@ -21,6 +21,7 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
@@ -43,7 +44,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         wakePlayAtlas = game.getAssetManager().get(UIAssetDescriptors.WAKE_PLAY);
         NIGHTERS = Family.all(
                 PlayerTag.class,
-                CircularBoundsComponent.class
+                RectangularBoundsComponent.class
         ).get();
 
 
@@ -137,10 +138,10 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
     }
     private boolean checkCollisionBetween(Entity nighter, Entity stone)
     {
-        CircularBoundsComponent playerBounds = Mappers.BOUNDS.get(nighter);
-        CircularBoundsComponent stoneBounds = Mappers.BOUNDS.get(stone);
+        RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(nighter);
+        CircularBoundsComponent stoneBounds = Mappers.CIRCULAR_BOUNDS.get(stone);
 
-        return Intersector.overlaps(playerBounds.getBounds(),stoneBounds.getBounds());
+        return Intersector.overlaps(stoneBounds.getBounds(),playerBounds.getBounds());
     }
 
     @Override
@@ -187,7 +188,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
 
         CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
-        bounds.setBounds(x,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
+        bounds.setBounds(x,y-dimension.getHeight()/2,Math.min(dimension.getWidth(),dimension.getHeight())/2);
 
         WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
 

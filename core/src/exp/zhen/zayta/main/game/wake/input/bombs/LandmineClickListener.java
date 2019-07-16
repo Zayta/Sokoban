@@ -6,8 +6,6 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Logger;
 
@@ -16,7 +14,7 @@ import exp.zhen.zayta.main.game.wake.entity.EntityLab;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.ExplosiveHolderComponent;
-import exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.template_for_collision_system.CollisionSystemTemplate;
+import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.template_for_collision_system.CollisionSystemTemplate;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.wake.render.animation.particle.ParticleAnimationComponent;

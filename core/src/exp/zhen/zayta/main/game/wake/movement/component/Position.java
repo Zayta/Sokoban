@@ -3,7 +3,7 @@ package exp.zhen.zayta.main.game.wake.movement.component;
 import com.badlogic.ashley.core.Component;
 
 public class Position implements Component{
-
+    //x and y are centerX and centerY??
     private float x,y;
 //    public Position(float initX, float initY){
 //        this.x = initX;
@@ -16,7 +16,7 @@ public class Position implements Component{
         y+=vy;
     }
 
-    public void set(float x, float y)
+    public void set(float centerX, float centerY)
     {
         this.x = x;
         this.y = y;

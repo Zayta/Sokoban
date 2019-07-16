@@ -1,6 +1,7 @@
 package exp.zhen.zayta.main.game.wake.map;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Logger;
 
@@ -10,10 +11,13 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
 import exp.zhen.zayta.main.game.wake.map.tiled_map.map_generator.MapGenerator;
 import exp.zhen.zayta.main.game.wake.map.tiled_map.map_generator.MapType;
-//import exp.zhen.zayta.main.game.wake.map.tiled_map.my_generated_map.World;
 
 public class MapMaker {
 
+
+    private float mapBoundmaxX = SizeManager.WAKE_WORLD_WIDTH - SizeManager.maxObjWidth,
+                    mapBoundmaxY = SizeManager.WAKE_WORLD_HEIGHT - SizeManager.maxObjHeight;
+    
     private static final Logger log = new Logger(MapMaker.class.getName(),Logger.DEBUG);
 
     public static final String collisionLayer = "Collision Layer";
@@ -30,7 +34,7 @@ public class MapMaker {
     //todo make list of tiled maps in the future
     public MapMaker (AssetManager assetManager){
         this.assetManager = assetManager;
-        mapGenerator = new MapGenerator((int)SizeManager.WAKE_WORLD_WIDTH,(int)SizeManager.WAKE_WORLD_HEIGHT,assetManager.get(WPAssetDescriptors.MAP_GENERATOR),assetManager.get(WPAssetDescriptors.MAP_TILE_STORAGE));
+        mapGenerator = new MapGenerator((int)mapBoundmaxX,(int)mapBoundmaxY,assetManager.get(WPAssetDescriptors.MAP_GENERATOR),assetManager.get(WPAssetDescriptors.MAP_TILE_STORAGE));
         tiledMaps = new Hashtable<Map, TiledMap>();
         initTiledMaps();
     }
@@ -45,7 +49,12 @@ public class MapMaker {
 
     public TiledMap generateMap(){
 //        return new World((int) SizeManager.WAKE_WORLD_WIDTH,(int) SizeManager.WAKE_WORLD_HEIGHT, assetManager.get(UIAssetDescriptors.MAP_GENERATOR));
-        return mapGenerator.generateWorld(MapType.NONE);
+        TiledMap tiledMap = mapGenerator.generateWorld(MapType.NONE);
+
+        MapProperties mapProperties = tiledMap.getProperties();
+        setMapBoundmaxX(mapProperties.get("width", Integer.class)-SizeManager.maxObjWidth);
+        setMapBoundmaxY(mapProperties.get("height", Integer.class)-SizeManager.maxObjHeight);
+        return tiledMap;
     };
 
     public void generateMaze(){
@@ -59,4 +68,19 @@ public class MapMaker {
 //        }
     }
 
+    public void setMapBoundmaxX(float mapBoundmaxX) {
+        this.mapBoundmaxX = mapBoundmaxX;
+    }
+
+    public void setMapBoundmaxY(float mapBoundmaxY) {
+        this.mapBoundmaxY = mapBoundmaxY;
+    }
+
+    public float getMapBoundmaxX() {
+        return mapBoundmaxX;
+    }
+
+    public float getMapBoundmaxY() {
+        return mapBoundmaxY;
+    }
 }

@@ -20,7 +20,8 @@ import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
 import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
@@ -140,6 +141,9 @@ public class EntityLab {
         movement.setSpeed(SpeedManager.DEFAULT_SPEED,SpeedManager.DEFAULT_SPEED);
         entity.add(movement);
 
+        MovementLimitationComponent movementLimitationComponent = engine.createComponent(MovementLimitationComponent.class);
+        entity.add(movementLimitationComponent);
+        //todo for ghostification remove movementLimitationComponent
     }
 
 
@@ -150,9 +154,11 @@ public class EntityLab {
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
         dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
 
-        CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
-        bounds.setBounds(x,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
-
+        RectangularBoundsComponent bounds = engine.createComponent(RectangularBoundsComponent.class);
+//        bounds.setBounds(x-dimension.getWidth()/2,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
+//        bounds.setBounds(x,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
+//        bounds.setBounds(x-dimension.getWidth()/2,y-dimension.getHeight()/2,dimension.getWidth(),dimension.getHeight());
+        bounds.setBounds(x,y-dimension.getHeight()/2,dimension.getWidth(),dimension.getHeight());
         WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
 
         entity.add(position);

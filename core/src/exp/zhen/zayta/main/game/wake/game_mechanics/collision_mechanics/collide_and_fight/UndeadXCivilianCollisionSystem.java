@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.collide_and_fight;
+package exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.collide_and_fight;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -11,7 +11,7 @@ import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 //import exp.zhen.zayta.main.game.conquest.battle.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.UndeadTag;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
-import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 
 
@@ -19,16 +19,16 @@ public class UndeadXCivilianCollisionSystem extends EntitySystem {
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(UndeadXCivilianCollisionSystem.class.getName(),Logger.DEBUG);
+
     //families are entities that can collide
     private final Family UNDEADS;
-
 
 
     public UndeadXCivilianCollisionSystem(){
         UNDEADS = Family.all(
                 UndeadTag.class,
                 PositionTrackerComponent.class,
-                CircularBoundsComponent.class
+                RectangularBoundsComponent.class
         ).get();
     }
 
@@ -62,8 +62,8 @@ public class UndeadXCivilianCollisionSystem extends EntitySystem {
     }
     private boolean checkCollisionBetween(Entity undead, Entity obstacle)
     {
-        CircularBoundsComponent playerBounds = Mappers.BOUNDS.get(undead);
-        CircularBoundsComponent obstacleBounds = Mappers.BOUNDS.get(obstacle);
+        RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(undead);
+        RectangularBoundsComponent obstacleBounds = Mappers.RECTANGULAR_BOUNDS.get(obstacle);
 
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }

@@ -2,7 +2,9 @@ package exp.zhen.zayta.main.game.wake.map.tiled_map.map_generator;
 
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -71,7 +73,13 @@ public class MapGenerator {
         return tiledMap;
     }
     
-    
+    private MapLayer collisionLayerWithObjects(){
+	    MapLayer collisionLayer = new MapLayer();
+	    collisionLayer.getObjects().add(new MapObject());
+
+	    return collisionLayer;
+    }
+
     private TiledMapTileLayer collisionLayer(){
 
         TiledMapTileSet tileSet = tileStorage.getTileSets().getTileSet(COLLISION_LAYER);

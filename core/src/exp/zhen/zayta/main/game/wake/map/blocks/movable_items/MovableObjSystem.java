@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.map.tiled_map.blocks.movable_items;
+package exp.zhen.zayta.main.game.wake.map.blocks.movable_items;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -30,7 +30,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
-public class MovableBlocksSystem extends EntitySystem  {
+public class MovableObjSystem extends EntitySystem  {
 
     /*todo this system is flawed. can only move one block at a time and left and down movements are laggy.
      * I suspect some of the lagginess is because of circular bounds. Maybe I should switch to rectangular*/
@@ -43,7 +43,7 @@ public class MovableBlocksSystem extends EntitySystem  {
         */
 
     private PooledEngine engine; private final Viewport viewport; private TextureAtlas wakePlayAtlas;
-    private static final Logger log = new Logger(MovableBlocksSystem.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(MovableObjSystem.class.getName(),Logger.DEBUG);
 
     private BiMap<Integer,Entity> movableBlocksBiMap;
     //families are entities that can collide
@@ -52,7 +52,7 @@ public class MovableBlocksSystem extends EntitySystem  {
 //    private ArrayList<Entity> currentParents;
 //    Stack<Entity> blocksToBePushed;
 
-    public MovableBlocksSystem(PooledEngine engine, Viewport viewport, TextureAtlas wakePlayAtlas){
+    public MovableObjSystem(PooledEngine engine, Viewport viewport, TextureAtlas wakePlayAtlas){
         this.engine = engine; this.viewport = viewport; this.wakePlayAtlas = wakePlayAtlas;
         UNDEADS = Family.all(
                 NighterTag.class,//todo for debug only, remove when done
@@ -171,8 +171,8 @@ public class MovableBlocksSystem extends EntitySystem  {
     private Vector2 calculateNextPos(Entity block,Entity entityThatPushes,Direction direction){
         Position posOfEntityThatPushes = Mappers.POSITION.get(entityThatPushes);
         Position posOfBlock = Mappers.POSITION.get(block);
-        CircularBoundsComponent boundsOfEntityThatPushes = Mappers.BOUNDS.get(entityThatPushes);
-        CircularBoundsComponent boundsOfBlock = Mappers.BOUNDS.get(block);
+        CircularBoundsComponent boundsOfEntityThatPushes = Mappers.CIRCULAR_BOUNDS.get(entityThatPushes);
+        CircularBoundsComponent boundsOfBlock = Mappers.CIRCULAR_BOUNDS.get(block);
         float offset = boundsOfEntityThatPushes.getRadius()+boundsOfBlock.getRadius();
         float nextPosX=posOfBlock.getX(), nextPosY=posOfBlock.getY();
         //todo update velocity of block before using this method whne a block does the pushing
@@ -252,8 +252,8 @@ public class MovableBlocksSystem extends EntitySystem  {
     }
     private boolean collisionBetween(Entity entity, Entity block)
     {
-        CircularBoundsComponent playerBounds = Mappers.BOUNDS.get(entity);
-        CircularBoundsComponent blockBounds = Mappers.BOUNDS.get(block);
+        CircularBoundsComponent playerBounds = Mappers.CIRCULAR_BOUNDS.get(entity);
+        CircularBoundsComponent blockBounds = Mappers.CIRCULAR_BOUNDS.get(block);
 
         return Intersector.overlaps(playerBounds.getBounds(),blockBounds.getBounds());
     }
@@ -377,7 +377,7 @@ public class MovableBlocksSystem extends EntitySystem  {
         dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
 
         CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
-        bounds.setBounds(x,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
+        bounds.setBounds(x,y-dimension.getHeight()/2,Math.min(dimension.getWidth(),dimension.getHeight())/2);
 
         WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
 

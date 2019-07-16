@@ -1,27 +1,24 @@
-package exp.zhen.zayta.main.game.wake.map.tiled_map.blocks.block_player;
+package exp.zhen.zayta.main.game.wake.map.blocks.block_npc;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.wake.WakeMode;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
+import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 
-public class WorldWrapPauseSystem extends IteratingSystem {
-
-    private static final Logger log = new Logger(WorldWrapPauseSystem.class.getName(),Logger.DEBUG);
+public class WorldWrapChangeDirectionSystem extends IteratingSystem {
 
     private static final Family FAMILY = Family.all(
-            PlayerTag.class,
+            NPCTag.class,
+//            MortalTag.class,
             WorldWrapTag.class,
             Position.class,
             DimensionComponent.class,
@@ -31,12 +28,10 @@ public class WorldWrapPauseSystem extends IteratingSystem {
 
     private final MapProperties mapProperties;
 
-    public WorldWrapPauseSystem(TiledMap tiledMap)
+    public WorldWrapChangeDirectionSystem(TiledMap tiledMap)
     {
         super(FAMILY);
         this.mapProperties = tiledMap.getProperties();
-
-//        this.viewport = viewport;
     }
 
     @Override
@@ -50,28 +45,19 @@ public class WorldWrapPauseSystem extends IteratingSystem {
         float maxX = mapProperties.get("width", Integer.class)-dimension.getWidth();
         float maxY = mapProperties.get("height", Integer.class)-dimension.getHeight();
 
+
         if(direction==Direction.up&&y>maxY){
-            movement.setDirection(Direction.none);
-//            position.set(x,maxY);
+            movement.setDirection(Direction.generateDirectionExcluding(Direction.up));
         }
         else if(direction==Direction.down&&y<0){
-            movement.setDirection(Direction.none);
-//            position.set(x,0);
+            movement.setDirection(Direction.generateDirectionExcluding(Direction.down));
         }
         else if(direction==Direction.left&&x<0){
-            movement.setDirection(Direction.none);
-//            position.set(0,y);
+            movement.setDirection(Direction.generateDirectionExcluding(Direction.left));
         }
         else if(direction==Direction.right&&x>maxX){
-            movement.setDirection(Direction.none);
-//            position.set(maxX,y);
+            movement.setDirection(Direction.generateDirectionExcluding(Direction.right));
         }
 
-    }
-    private boolean cannotMove(Direction direction, float x, float y, float maxX, float maxY){
-        return (direction==Direction.up&&y>maxY)
-                ||(direction==Direction.down&&y<0) //it is assumed minX and minY are 0
-                ||(direction==Direction.left&&x<0)
-                ||(direction==Direction.right&&x>maxX);
     }
 }

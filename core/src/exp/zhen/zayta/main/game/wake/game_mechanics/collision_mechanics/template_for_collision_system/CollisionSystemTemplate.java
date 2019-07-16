@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.template_for_collision_system;
+package exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.template_for_collision_system;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -34,7 +34,7 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(FAMILY);
 
         for(Entity nighter: nighters) {
-            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+            int key = Mappers.POSITION_TRACKER.get(nighter).getPositionBiMap().getBiMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -46,6 +46,7 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
 
     private void checkCollision(Entity nighter, int [] keys){
         for (int key: keys) {
+            //todo change whatever the nighter is colliding with
             Entity civilian = PositionTracker.PositionBiMap.civiliansBiMap.getBiMap().get(key);
 
             if (civilian != null) {
@@ -58,8 +59,8 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
     }
     private boolean checkCollisionBetween(Entity undead, Entity obstacle)
     {
-        CircularBoundsComponent playerBounds = Mappers.BOUNDS.get(undead);
-        CircularBoundsComponent obstacleBounds = Mappers.BOUNDS.get(obstacle);
+        CircularBoundsComponent playerBounds = Mappers.CIRCULAR_BOUNDS.get(undead);
+        CircularBoundsComponent obstacleBounds = Mappers.CIRCULAR_BOUNDS.get(obstacle);
 
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }

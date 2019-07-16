@@ -1,21 +1,19 @@
-package exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.bomb_trigger;
+package exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.bomb_trigger;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MonsterTag;
-import exp.zhen.zayta.main.game.wake.game_mechanics.war_mechanics.template_for_collision_system.CollisionSystemTemplate;
+import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.template_for_collision_system.CollisionSystemTemplate;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.util.BiMap;
 
@@ -34,7 +32,7 @@ public class LandmineExplosionSystem extends EntitySystem {
                 MonsterTag.class,
                 PositionTrackerComponent.class,
                 HealthComponent.class,
-                CircularBoundsComponent.class
+                RectangularBoundsComponent.class
         ).get();
     }
 
@@ -78,8 +76,8 @@ public class LandmineExplosionSystem extends EntitySystem {
     }
     private boolean checkCollisionBetween(Entity entity, Entity obstacle)
     {
-        CircularBoundsComponent playerBounds = Mappers.BOUNDS.get(entity);
-        CircularBoundsComponent obstacleBounds = Mappers.BOUNDS.get(obstacle);
+        RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(entity);
+        RectangularBoundsComponent obstacleBounds = Mappers.RECTANGULAR_BOUNDS.get(obstacle);
 
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }

@@ -8,9 +8,11 @@ import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.Expl
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.game_mechanics.mission.MissionComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.game_mechanics.mission.stone_gathering.StoneTag;
+import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.render.animation.particle.ParticleAnimationComponent;
 import exp.zhen.zayta.main.game.wake.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
@@ -22,12 +24,14 @@ import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 public class Mappers {
     public static final ComponentMapper<PlayerTag> PLAYER = ComponentMapper.getFor(PlayerTag.class);
 
-    public static final ComponentMapper<CircularBoundsComponent> BOUNDS = ComponentMapper.getFor(CircularBoundsComponent.class);
+    public static final ComponentMapper<CircularBoundsComponent> CIRCULAR_BOUNDS = ComponentMapper.getFor(CircularBoundsComponent.class);
+    public static final ComponentMapper<RectangularBoundsComponent> RECTANGULAR_BOUNDS = ComponentMapper.getFor(RectangularBoundsComponent.class);
 
     public static final ComponentMapper<VelocityComponent> MOVEMENT = ComponentMapper.getFor(VelocityComponent.class);
+    public static final ComponentMapper<MovementLimitationComponent> MOVEMENT_LIMITATION = ComponentMapper.getFor(MovementLimitationComponent.class);
 
     public static final ComponentMapper<Position> POSITION = ComponentMapper.getFor(Position.class);
-    public static final ComponentMapper<MortalTag> CIVILIAN =
+    public static final ComponentMapper<MortalTag> MORTAL =
             ComponentMapper.getFor(MortalTag.class);
 
     public static final ComponentMapper<StoneTag> STONE = ComponentMapper.getFor(StoneTag.class);

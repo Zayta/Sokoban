@@ -10,14 +10,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 
-public class DebugRenderSystem extends IteratingSystem {
+public class DebugCircularBoundsRenderSystem extends IteratingSystem {
 
     private static final Family FAMILY = Family.all(CircularBoundsComponent.class).get();
 
     private final Viewport viewport;
     private final ShapeRenderer renderer;
 
-    public DebugRenderSystem(Viewport viewport,ShapeRenderer renderer)
+    public DebugCircularBoundsRenderSystem(Viewport viewport, ShapeRenderer renderer)
     {
         super(FAMILY);
         this.viewport = viewport;
@@ -42,7 +42,7 @@ public class DebugRenderSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        CircularBoundsComponent circularBoundsComponent = Mappers.BOUNDS.get(entity);
+        CircularBoundsComponent circularBoundsComponent = Mappers.CIRCULAR_BOUNDS.get(entity);
         renderer.circle(circularBoundsComponent.getX(), circularBoundsComponent.getY(), circularBoundsComponent.getRadius(),30);
     }
 }
