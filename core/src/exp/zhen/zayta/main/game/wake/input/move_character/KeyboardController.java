@@ -81,12 +81,13 @@ public class KeyboardController extends InputAdapter {
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-            MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(entity);
-          if(movementLimitation!=null)
-            if(direction!=movementLimitation.getBlockedDirection()||direction==Direction.none)
-                movement.setDirection(direction);
-            else
-                movement.setDirection(Direction.none);
+            movement.setDirection(direction);
+//            MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(entity);
+//          if(movementLimitation!=null)
+//            if(direction!=movementLimitation.getBlockedDirection()||direction==Direction.none)
+//                movement.setDirection(direction);
+//            else
+//                movement.setDirection(Direction.none);
 
         }
     }
