@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 
 import exp.zhen.zayta.main.game.wake.common.Mappers;
+import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 
@@ -30,6 +31,10 @@ public class MovementSystem extends EntitySystem {
     private void move(Entity entity) {
         Position position = Mappers.POSITION.get(entity);
         VelocityComponent movement = Mappers.MOVEMENT.get(entity);
+        MovementLimitationComponent movementLimitationComponent = Mappers.MOVEMENT_LIMITATION.get(entity);
+        if(movementLimitationComponent!=null)
+            if(movement.getDirection()==movementLimitationComponent.getBlockedDirection())
+                return;
         position.update(movement.getVelX(), movement.getVelY());
     }
 

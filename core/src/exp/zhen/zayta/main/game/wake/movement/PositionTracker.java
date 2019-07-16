@@ -43,10 +43,14 @@ public class PositionTracker {
 //        return i*n+j;
 //    }
 
-    public static int generateKey(float centerX, float centerY){
-        int i = (int)(centerY/SizeManager.maxObjHeight),j = (int)(centerX/SizeManager.maxObjWidth);
-        return i*n+j;
+    public static int generateKey(float left, float bottom){
+        int i = (int)(left/SizeManager.maxObjHeight),j = (int)(bottom/SizeManager.maxObjWidth);
+        return j*n+i;
     }
+//    public static int generateKey(float centerX, float centerY){
+//        int i = (int)(centerY/SizeManager.maxObjHeight),j = (int)(centerX/SizeManager.maxObjWidth);
+//        return i*n+j;
+//    }
 
     public static void reset() {
         nightersBiMap.clear();

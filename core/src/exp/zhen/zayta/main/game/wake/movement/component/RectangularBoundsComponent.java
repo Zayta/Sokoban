@@ -6,12 +6,18 @@ import com.badlogic.gdx.math.Rectangle;
 public class RectangularBoundsComponent implements Component {
 
     private Rectangle bounds = new Rectangle();
-    public void setBounds(float centerX, float centerY, float width, float height){
-        bounds.set(centerX-width/2,centerY-height/2,width,height);
+//    public void setBounds(float centerX, float centerY, float width, float height){
+//        bounds.set(centerX,centerY,width,height);
+//    }
+    public void setBounds(float x, float y, float width, float height){
+        bounds.set(x,y,width,height);
     }
-    public void setBounds(float centerX, float centerY){
-        bounds.setPosition(centerX-getWidth()/2,centerY-getHeight()/2);
+    public void setBounds(float left, float bottom){
+        bounds.setPosition(left,bottom);
     }
+//    public void setBounds(float centerX, float centerY){
+//        bounds.setPosition(centerX-getWidth()/2,centerY-getHeight()/2);
+//    }
 //    public void setBounds(float left, float bottom, float width, float height){
 //        bounds.set(left,bottom,width,height);
 //    }

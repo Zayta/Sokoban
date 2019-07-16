@@ -30,8 +30,8 @@ public class RectangularBoundsSystem extends IteratingSystem {
         RectangularBoundsComponent bounds = Mappers.RECTANGULAR_BOUNDS.get(entity);
         Position position = Mappers.POSITION.get(entity);
         DimensionComponent dimension = Mappers.DIMENSION.get(entity);
-        float newBoundx = position.getX()+ dimension.getWidth()/2;
-        float newBoundy = position.getY()+dimension.getHeight()/2;
+        float newBoundx = position.getX();//+ dimension.getWidth()/2;
+        float newBoundy = position.getY();//+dimension.getHeight()/2;
         bounds.setBounds(newBoundx,newBoundy);
     }
 

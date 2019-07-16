@@ -65,8 +65,8 @@ public class PositionTrackerUpdateSystem extends EntitySystem {
         DimensionComponent dimension = Mappers.DIMENSION.get(entity);
 
         PositionTracker.updateBiMap(posMap.getBiMap(),entity,
-                position.getX()+dimension.getWidth()/2,
-                position.getY()+dimension.getHeight()/2);
+                position.getX(),
+                position.getY());
     }
 
 }

@@ -11,13 +11,14 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
+import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 
 public class JoyStickMovementListener extends ChangeListener {
     private static final Logger log = new Logger(JoyStickMovementListener.class.getName(),Logger.DEBUG);
 
     private Direction direction=Direction.none;
-    private final static Family playableCharacters = Family.all(
+    private final static Family PLAYABLE_CHARACTERS = Family.all(
             VelocityComponent.class,PlayerTag.class
     ).get();
     private PooledEngine engine;
@@ -56,11 +57,27 @@ public class JoyStickMovementListener extends ChangeListener {
 
     /*changes all playable character's directoins*/
     private void updateAllPlayableCharacters(Direction direction){
-        entities = engine.getEntitiesFor(playableCharacters);
+
+        entities = engine.getEntitiesFor(PLAYABLE_CHARACTERS);
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-            movement.setDirection(direction);
+            MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(entity);
+            if(movementLimitation!=null)
+                if(direction!=movementLimitation.getBlockedDirection()||direction==Direction.none)
+                    movement.setDirection(direction);
+                else
+                    movement.setDirection(Direction.none);
+
         }
     }
+//    /*changes all playable character's directoins*/
+//    private void updateAllPlayableCharacters(Direction direction){
+//        entities = engine.getEntitiesFor(playableCharacters);
+//        for (int i = 0; i < entities.size(); ++i) {
+//            Entity entity = entities.get(i);
+//            VelocityComponent movement = Mappers.MOVEMENT.get(entity);
+//            movement.setDirection(direction);
+//        }
+//    }
 }
