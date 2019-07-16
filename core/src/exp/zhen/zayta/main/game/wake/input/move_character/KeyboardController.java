@@ -18,6 +18,7 @@ import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.bomb_tri
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
+import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
@@ -28,7 +29,8 @@ public class KeyboardController extends InputAdapter {
 
     private Direction direction=Direction.none;
     private final static Family PLAYABLE_CHARACTERS = Family.all(
-            VelocityComponent.class,PlayerTag.class
+            VelocityComponent.class,
+            PlayerTag.class
     ).get();
     private Family LANDMINERS = Family.all(
             PlayerTag.class,
@@ -74,11 +76,16 @@ public class KeyboardController extends InputAdapter {
 
     /*changes all playable character's directoins*/
     private void updateAllPlayableCharacters(Direction direction){
+
         entities = engine.getEntitiesFor(PLAYABLE_CHARACTERS);
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-            movement.setDirection(direction);
+//            MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(entity);
+//          if(movementLimitation!=null)
+//            if(direction!=movementLimitation.getBlockedDirection()||direction==Direction.none)
+                movement.setDirection(direction);
+
         }
     }
 

@@ -5,12 +5,14 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
+import exp.zhen.zayta.main.game.wake.WakeMode;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
@@ -31,6 +33,8 @@ import exp.zhen.zayta.main.game.wake.render.animation.sprite.SpriteAnimationComp
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 
 public class EntityLab {
+
+    private static final Logger log = new Logger(EntityLab.class.getName(),Logger.DEBUG);
     private PooledEngine engine;
     private TextureAtlas wakePlayAtlas;
     private NUR nur; private Utsubyo utsubyo;
@@ -52,7 +56,6 @@ public class EntityLab {
         /*add NighterPool*/
         float playerStartX = (SizeManager.WAKE_WORLD_WIDTH - SizeManager.maxObjWidth)/2;
         float playerStartY = 1-SizeManager.maxObjHeight/2;
-
         Entity consciousNighter = nur.getNighter(Undead.Lorale);
 
         PlayerTag playerTag = engine.createComponent(PlayerTag.class);

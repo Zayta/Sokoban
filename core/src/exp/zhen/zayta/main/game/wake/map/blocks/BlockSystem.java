@@ -30,7 +30,7 @@ import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.GdxUtils;
 
 
-public class BlockSystem extends EntitySystem {
+public class BlockSystem extends EntitySystem implements CollisionListener{
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(BlockSystem.class.getName(),Logger.DEBUG);
@@ -42,7 +42,7 @@ public class BlockSystem extends EntitySystem {
     //families are entities that can collide
     private Family MOVING_ENTITIES;
     //todo add "add or remove" block feature
-    
+
     public BlockSystem(PooledEngine engine, TextureAtlas wakePlayAtlas){
 //        super();
         this.engine = engine;
@@ -76,48 +76,51 @@ public class BlockSystem extends EntitySystem {
 
             VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
             Direction direction = movement.getDirection();
-
-            int[] keys = new int[6];
+//
+//            int[] keys = new int[6];
 
             int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionBiMap().getBiMap().getKey(movingEntity);
             int keyAbove = key + PositionTracker.n;
             int keyBelow = key - PositionTracker.n;
-            switch (direction) {
-                case none:
-                    Entity block = blocksBiMap.get(key);
-                    if (block != null)
-                        checkCollisionBetween(movingEntity, block);
-                    continue;
-                case up:
-                    keys[0] = keyAbove;
-                    keys[1] = keyAbove + 1;
-                    keys[2] = keyAbove - 1;
-                    keys[3] = key - 1;
-                    keys[4] = key + 1;
-                    break;
-                case down:
-                    keys[0] = keyBelow;
-                    keys[1] = keyBelow + 1;
-                    keys[2] = keyBelow - 1;
-                    keys[3] = key - 1;
-                    keys[4] = key + 1;
-                    break;
-                case left:
-                    keys[0] = keyAbove - 1;
-                    keys[1] = key - 1;
-                    keys[2] = keyBelow - 1;
-                    keys[3] = keyAbove;
-                    keys[4] = keyBelow;
-                    break;
-                case right:
-                    keys[0] = keyAbove + 1;
-                    keys[1] = key + 1;
-                    keys[2] = keyBelow + 1;
-                    keys[3] = keyAbove;
-                    keys[4] = keyBelow;
-                    break;
-            }
-            keys[5] = key;
+            int [] keys = new int []{
+              key,key-1,key+1,keyAbove-1,keyAbove,keyAbove+1,keyBelow-1,keyBelow,keyBelow+1
+            };
+//            switch (direction) {
+//                case none:
+//                    Entity block = blocksBiMap.get(key);
+//                    if (block != null)
+//                        checkCollisionBetween(movingEntity, block);
+//                    continue;
+//                case up:
+//                    keys[0] = keyAbove;
+//                    keys[1] = keyAbove + 1;
+//                    keys[2] = keyAbove - 1;
+//                    keys[3] = key - 1;
+//                    keys[4] = key + 1;
+//                    break;
+//                case down:
+//                    keys[0] = keyBelow;
+//                    keys[1] = keyBelow + 1;
+//                    keys[2] = keyBelow - 1;
+//                    keys[3] = key - 1;
+//                    keys[4] = key + 1;
+//                    break;
+//                case left:
+//                    keys[0] = keyAbove - 1;
+//                    keys[1] = key - 1;
+//                    keys[2] = keyBelow - 1;
+//                    keys[3] = keyAbove;
+//                    keys[4] = keyBelow;
+//                    break;
+//                case right:
+//                    keys[0] = keyAbove + 1;
+//                    keys[1] = key + 1;
+//                    keys[2] = keyBelow + 1;
+//                    keys[3] = keyAbove;
+//                    keys[4] = keyBelow;
+//                    break;
+//            }
+//            keys[5] = key;
             checkCollision(movingEntity, keys);
 
         }
@@ -126,8 +129,16 @@ public class BlockSystem extends EntitySystem {
         for (int key: keys) {
             Entity block = blocksBiMap.get(key);
 
+//            MovementLimitationComponent movementLimitationComponent =
+//                    Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+//            if(movementLimitationComponent.getBlockedDirection()!=Direction.none)
+//                movementLimitationComponent.setBlockedDirection(Direction.none);
             if (block != null) {
                 if (checkCollisionBetween(movingEntity, block)) {
+
+//                    movementLimitationComponent.setBlockedDirection(
+//                            Mappers.MOVEMENT.get(movingEntity).getDirection()
+//                    );
                     collideEvent(movingEntity, block);
                 }
             }
@@ -145,11 +156,12 @@ public class BlockSystem extends EntitySystem {
         Position position = Mappers.POSITION.get(movingEntity);
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
         VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
+
         switch (movement.getDirection()){
             case up:
                 position.setY(blockBounds.getBottom());
                 break;
-            case down:
+            case down://down and left are working ok
                 position.setY(blockBounds.getTop());
                 break;
             case left:
@@ -165,16 +177,18 @@ public class BlockSystem extends EntitySystem {
 
     }
 
-    private void collideEvent(Entity movingEntity, Entity block) {
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-        MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-        if(movement.getDirection()==movementLimitation.getBlockedDirection()) {
-            blockEntity(movingEntity,block);
-        }
-        else {
-
-            movementLimitation.setBlockedDirection(movement.getDirection());
-        }
+    public void collideEvent(Entity movingEntity, Entity block) {
+        blockEntity(movingEntity,block);
+//        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
+//        MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+//        if(movement.getDirection()==movementLimitation.getBlockedDirection()) {
+//            blockEntity(movingEntity,block);
+////            movement.setDirection(Direction.none);
+//        }
+//        else {
+//
+//            movementLimitation.setBlockedDirection(movement.getDirection());
+//        }
 
     }
 

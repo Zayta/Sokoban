@@ -40,10 +40,10 @@ public class RectangularBoundsComponent implements Component {
         return bounds.y+bounds.height/2;
     }
     public float getLeft(){
-        return getX();
+        return getX()-bounds.width;
     }
     public float getBottom(){
-        return getY();
+        return getY()-bounds.height;
     }
     public float getTop(){
         return bounds.y+bounds.height;

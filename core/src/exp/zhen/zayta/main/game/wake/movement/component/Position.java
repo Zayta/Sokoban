@@ -18,8 +18,8 @@ public class Position implements Component{
 
     public void set(float centerX, float centerY)
     {
-        this.x = x;
-        this.y = y;
+        this.x = centerX;
+        this.y = centerY;
     }
 
     public float getX() {

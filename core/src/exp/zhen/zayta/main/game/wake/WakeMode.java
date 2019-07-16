@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.PlayerReaperSystem;
@@ -129,6 +130,7 @@ public class WakeMode implements Screen {
 
     private void addEntityMovementSystems(){
 
+
         engine.addSystem(new PositionTrackerUpdateSystem());//should be first
 
         engine.addSystem(new MovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before movement
@@ -142,7 +144,6 @@ public class WakeMode implements Screen {
         engine.addSystem(new MovementSystem());
         engine.addSystem(new RectangularBoundsSystem());
         engine.addSystem(new CircularBoundsSystem());
-
     }
 
 
@@ -155,7 +156,7 @@ public class WakeMode implements Screen {
 //        engine.addSystem(new GeneratedMapRenderSystem(mapMaker.generateMap(),viewport,game.getBatch()));
         engine.addSystem(new GameRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch(),assetManager.get(UIAssetDescriptors.FONT)));
-        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
+//        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
 
         if(DEBUG) {
@@ -163,6 +164,7 @@ public class WakeMode implements Screen {
             engine.addSystem(new DebugCircularBoundsRenderSystem(viewport, shapeRenderer));
             engine.addSystem(new DebugRectangularBoundsRenderSystem(viewport,shapeRenderer));
             engine.addSystem(new DebugCameraSystem(orthographicCamera, SizeManager.WAKE_WORLD_CENTER_X, SizeManager.WAKE_WORLD_CENTER_Y));
+            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
         }
     }
 
