@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.input.bombs.LandmineClickListener;
+import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.bomb_trigger.LandmineMaker;
 import exp.zhen.zayta.main.game.wake.input.move_character.joystick.JoyStickMovementController;
 import exp.zhen.zayta.main.game.wake.input.move_character.joystick.JoyStickMovementListener;
 import exp.zhen.zayta.main.game.wake.input.move_character.FlingController;
@@ -31,7 +31,7 @@ public class InputSystem extends EntitySystem {
     private PooledEngine engine;
     private Viewport viewport;
     //joystick
-    private Skin skin; private boolean enableJoystick = true;
+    private Skin skin; private boolean enableJoystick = false;//todo joystick controller is a mess
     private Stage stage;
     public InputSystem(PooledEngine engine, Viewport viewport, Skin skin, TextureAtlas wakePlayAtlas){
         this.engine = engine;
@@ -42,17 +42,17 @@ public class InputSystem extends EntitySystem {
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         if(Gdx.app.getType()==Application.ApplicationType.Desktop){
             inputMultiplexer.addProcessor(new KeyboardController(engine,wakePlayAtlas));
-            /*for debug*/
-
-            stage = new Stage(viewport,new SpriteBatch());
-            stage.addActor(inputTable(skin,wakePlayAtlas));
-            inputMultiplexer.addProcessor(stage);
+//            /*for debug*/
+//
+//            stage = new Stage(viewport,new SpriteBatch());
+//            stage.addActor(inputTable(skin,wakePlayAtlas));
+//            inputMultiplexer.addProcessor(stage);
         }
         else {
             /**Movement**/
             if(enableJoystick) {
                 stage = new Stage(viewport,new SpriteBatch());
-                stage.addActor(inputTable(skin,wakePlayAtlas));
+                stage.addActor(joyStickMovementController(skin));
                 inputMultiplexer.addProcessor(stage);
             }
             else {
@@ -66,21 +66,21 @@ public class InputSystem extends EntitySystem {
 
 
 
-    private Table inputTable(Skin skin, TextureAtlas wakePlayAtlas){
-        Table table = new Table(skin);
-        table.align(Align.bottomLeft);
-        table.setBounds(0, 0, viewport.getWorldWidth(), SizeManager.CONTROLLER_DIAMETER);
-        //movement
-        table.add(joyStickMovementController(skin));
-        /**Bomb planting**/
-        table.add(landmineButton(engine,wakePlayAtlas)).align(Align.right);
-        return table;
-    }
+//    private Table inputTable(Skin skin, TextureAtlas wakePlayAtlas){
+//        Table table = new Table(skin);
+//        table.align(Align.bottomLeft);
+//        table.setBounds(0, 0, viewport.getWorldWidth(), SizeManager.CONTROLLER_DIAMETER);
+//        //movement
+//        table.add(joyStickMovementController(skin));
+//        /**Bomb planting**/
+//        table.add(landmineButton(engine,wakePlayAtlas)).align(Align.right);
+//        return table;
+//    }
 
     private Button landmineButton(PooledEngine engine, TextureAtlas wakePlayAtlas){
         Button landmineButton = new Button(skin);
         landmineButton.setBounds(SizeManager.CONTROLLER_DIAMETER,0,SizeManager.CONTROLLER_DIAMETER,SizeManager.CONTROLLER_DIAMETER);
-        landmineButton.addListener(new LandmineClickListener(engine,wakePlayAtlas));
+        landmineButton.addListener(new LandmineMaker(engine,wakePlayAtlas));
         return landmineButton;
     }
 

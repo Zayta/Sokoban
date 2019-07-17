@@ -133,7 +133,7 @@ public class WakeMode implements Screen {
 
         engine.addSystem(new PositionTrackerUpdateSystem());//should be first
 
-        engine.addSystem(new MovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before movement
+//        engine.addSystem(new MovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before movement. defective.
 
         engine.addSystem(new WorldWrapPauseSystem(mapMaker.getMapBoundmaxX(),mapMaker.getMapBoundmaxY()));
         engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before npcnonstopmovmentsystem
@@ -164,7 +164,7 @@ public class WakeMode implements Screen {
             engine.addSystem(new DebugCircularBoundsRenderSystem(viewport, shapeRenderer));
             engine.addSystem(new DebugRectangularBoundsRenderSystem(viewport,shapeRenderer));
             engine.addSystem(new DebugCameraSystem(orthographicCamera, SizeManager.WAKE_WORLD_CENTER_X, SizeManager.WAKE_WORLD_CENTER_Y));
-            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
+//            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
         }
     }
 

@@ -25,12 +25,12 @@ public class SizeManager {
 
     public static void config(int screenWidth,int screenHeight){
 
-//        maxBoundsRadius = 0.2f;
-//        maxObjWidth = 0.75f;//world units
-//        maxObjHeight = 0.9f;
-        maxBoundsRadius = 0.5f;
-        maxObjWidth = 1f;
-        maxObjHeight = 1f;
+        maxBoundsRadius = 0.2f;
+        maxObjWidth = 0.75f;//world units
+        maxObjHeight = 0.9f;
+//        maxBoundsRadius = 0.5f;
+//        maxObjWidth = 1f;
+//        maxObjHeight = 1f;
         if(screenWidth>screenHeight)
             configLandScape();
         else

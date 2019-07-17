@@ -22,6 +22,7 @@ import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
 import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
+import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
@@ -149,6 +150,12 @@ public class EntityLab {
         //todo for ghostification remove movementLimitationComponent
     }
 
+    public static void addRoundPositionComponents(PooledEngine engine,Entity entity,float x, float y){
+
+        CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
+        entity.add(bounds);
+        addPositionComponents(engine,entity,x,y);
+    }
 
     public static void addPositionComponents(PooledEngine engine, Entity entity, float x, float y){
         Position position = engine.createComponent(Position.class);
