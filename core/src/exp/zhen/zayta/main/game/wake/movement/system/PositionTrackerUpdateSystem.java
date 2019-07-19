@@ -22,7 +22,8 @@ public class PositionTrackerUpdateSystem extends EntitySystem {
     private final Family TRACKED_ENTITIES;
     public PositionTrackerUpdateSystem()
     {
-        TRACKED_ENTITIES = Family.all(PositionTrackerComponent.class,
+        TRACKED_ENTITIES = Family.all(
+                PositionTrackerComponent.class,
                 Position.class
 //                DimensionComponent.class
         ).get();

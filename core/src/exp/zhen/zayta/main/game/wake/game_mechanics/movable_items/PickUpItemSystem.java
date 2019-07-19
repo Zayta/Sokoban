@@ -27,6 +27,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.wake.render.animation.particle.ParticleAnimationComponent;
 import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.GdxUtils;
 
 public class PickUpItemSystem extends EntitySystem  {
 
@@ -36,11 +37,12 @@ public class PickUpItemSystem extends EntitySystem  {
     private BiMap<Integer,Entity> movableBlocksBiMap;
     //families are entities that can collide
     private final Family ENTITIES;
+
+    private int numBlocks = GdxUtils.RANDOM.nextInt(10)+3;
     
     public PickUpItemSystem(PooledEngine engine, Viewport viewport, TextureAtlas wakePlayAtlas){
         this.engine = engine; this.viewport = viewport; this.wakePlayAtlas = wakePlayAtlas;
         ENTITIES = Family.all(
-                NighterTag.class,//todo for debug only, remove when done
                 PositionTrackerComponent.class,
                 Position.class,
                 VelocityComponent.class,
@@ -52,8 +54,7 @@ public class PickUpItemSystem extends EntitySystem  {
     }
 
     private void initMovableBlocks(){
-        int numBlocks = 5;
-        Vector2[] points = Arrangements.circle(numBlocks,SizeManager.WAKE_WORLD_CENTER_X,SizeManager.WAKE_WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/3);
+        Vector2[] points = Arrangements.circle(numBlocks,SizeManager.WAKE_WORLD_CENTER_X,SizeManager.WAKE_WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/4);
         for(int i =0; i<numBlocks; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
@@ -85,7 +86,6 @@ public class PickUpItemSystem extends EntitySystem  {
             if (movable_item != null) {
                 if (checkCollisionBetween(entity, movable_item)) {
                     collideEvent(entity, movable_item);
-                    break;
                 }
             }
         }
@@ -101,8 +101,11 @@ public class PickUpItemSystem extends EntitySystem  {
     private void collideEvent(Entity entity, Entity movable_item) {
         //implement what happens during collision
         Direction entityDirection = Mappers.MOVEMENT.get(entity).getDirection();
-        Mappers.POCKET.get(entity).add(movable_item);
-        Mappers.ITEM_SHOVE.get(movable_item).setDirection(entityDirection);
+        PocketComponent pocketComponent = Mappers.POCKET.get(entity);
+        if(!pocketComponent.getCarriedItems().contains(movable_item)&&entityDirection!=Direction.none){//if pocket does not already hold tht item
+            pocketComponent.add(movable_item);
+            Mappers.ITEM_SHOVE.get(movable_item).setDirection(entityDirection);
+        }
     }
     
     public void reset() {
@@ -137,20 +140,14 @@ public class PickUpItemSystem extends EntitySystem  {
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
         positionTrackerComponent.setPositionBiMap(movableBlocksBiMap);
 
-
-//        VelocityComponent movement = engine.createComponent(VelocityComponent.class);
-//        movement.setDirection(Direction.none);
-
-        ParticleAnimationComponent particleAnimationComponent = engine.createComponent(ParticleAnimationComponent.class);
-        particleAnimationComponent.init(texture.getRegion(),1,5);
+        PocketComponent pocketComponent = engine.createComponent(PocketComponent.class);
 
         entity.add(position);
         entity.add(dimension);
         entity.add(bounds);
         entity.add(worldWrap);
         entity.add(positionTrackerComponent);
-//        entity.add(movement);
-        entity.add(particleAnimationComponent);
+        entity.add(pocketComponent);
 
         return entity;
     }

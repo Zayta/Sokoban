@@ -34,17 +34,19 @@ public class RemoveItemSystem extends IteratingSystem {
         PocketComponent pocket = Mappers.POCKET.get(entity);
         ArrayList<Entity> items = pocket.getCarriedItems();
 
-        for( int i = 0; i < items.size(); i++ )
-        {
-            Entity item = items.get(i);
-
-            MovableTag itemMovement = Mappers.ITEM_SHOVE.get(item);
-            if(entityDirection!=itemMovement.getDirection()){
-                pocket.remove(item);
-                //todo take this away for block to keep moving
-                itemMovement.setDirection(Direction.none);
-                i--;
+        if(entityDirection == Direction.none) //if entity is not moving, remove all items from it since it is not pushing anything
+            items.clear();
+        else
+            for( int i = 0; i < items.size(); i++ )
+            {
+                Entity item = items.get(i);
+                MovableTag itemMovement = Mappers.ITEM_SHOVE.get(item);
+                if(entityDirection!=itemMovement.getDirection()&&entityDirection!=Direction.none){
+                    pocket.remove(item);
+                    //todo take this away for block to keep moving
+                    itemMovement.setDirection(Direction.none);
+                    i--;
+                }
             }
-        }
     }
 }

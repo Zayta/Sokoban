@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.debug.debug_system.DebugMovableBlocksSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.NPCReaperSystem;
@@ -148,7 +149,7 @@ public class WakeMode implements Screen {
 
     }
     private void addMovableItemSystems(){
-        engine.addSystem(new RemoveItemSystem());
+        engine.addSystem(new RemoveItemSystem());//sb before pickup and move
         engine.addSystem(new PickUpItemSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));
         engine.addSystem(new MoveItemSystem());//sb after movement and bounds system
     }
@@ -171,7 +172,8 @@ public class WakeMode implements Screen {
             engine.addSystem(new DebugCircularBoundsRenderSystem(viewport, shapeRenderer));
             engine.addSystem(new DebugRectangularBoundsRenderSystem(viewport,shapeRenderer));
             engine.addSystem(new DebugCameraSystem(orthographicCamera, SizeManager.WAKE_WORLD_CENTER_X, SizeManager.WAKE_WORLD_CENTER_Y));
-            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
+            engine.addSystem(new DebugMovableBlocksSystem(viewport,game.getBatch()));
+//            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
         }
     }
 
