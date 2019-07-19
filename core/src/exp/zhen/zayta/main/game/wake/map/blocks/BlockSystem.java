@@ -79,7 +79,7 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
 //
 //            int[] keys = new int[6];
 
-            int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionBiMap().getBiMap().getKey(movingEntity);
+            int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionBiMap().getKey(movingEntity);
             int keyAbove = key + PositionTracker.n;
             int keyBelow = key - PositionTracker.n;
             int [] keys = new int []{

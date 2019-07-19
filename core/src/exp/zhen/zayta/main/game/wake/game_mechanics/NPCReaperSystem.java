@@ -32,7 +32,7 @@ public class NPCReaperSystem extends EntitySystem {
             HealthComponent healthComponent = (Mappers.HEALTH.get(npc));
             if(healthComponent.getHp()<=0){
                 PositionTrackerComponent positionTrackerComponent = Mappers.POSITION_TRACKER.get(npc);
-                positionTrackerComponent.getPositionBiMap().getBiMap().removeKey(npc);
+                positionTrackerComponent.getPositionBiMap().removeKey(npc);
                 getEngine().removeEntity(npc);
 
             }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 
+import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.AttackComponent;

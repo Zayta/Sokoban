@@ -20,6 +20,7 @@ import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
 import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PocketComponent;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
@@ -62,6 +63,11 @@ public class EntityLab {
         PlayerTag playerTag = engine.createComponent(PlayerTag.class);
         consciousNighter.add(playerTag);
         addMovementComponents(engine, consciousNighter,playerStartX,playerStartY,PositionTracker.PositionBiMap.nightersBiMap);
+
+
+        PocketComponent pocketComponent = engine.createComponent(PocketComponent.class);
+        consciousNighter.add(pocketComponent);
+
         engine.addEntity(consciousNighter);
 
 
@@ -88,6 +94,9 @@ public class EntityLab {
     private void addMonster(float x, float y){
         Entity entity = utsubyo.generateMonster(1);
         addMovementComponents(engine,entity,x,y,PositionTracker.PositionBiMap.monstersBiMap);
+        PocketComponent pocketComponent = engine.createComponent(PocketComponent.class);
+        entity.add(pocketComponent);
+
         engine.addEntity(entity);
 
         Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());

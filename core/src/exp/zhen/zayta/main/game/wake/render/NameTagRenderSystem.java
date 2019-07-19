@@ -74,7 +74,7 @@ public class NameTagRenderSystem extends IteratingSystem {
         NameTag nameTag = Mappers.NAMETAG.get(entity);
 
         layout.setText(font,nameTag.getName());
-        font.draw(batch,layout,bounds.getX()-layout.width/2,bounds.getY()+SizeManager.maxObjHeight/2+layout.height+0.1f);//0.1f is offset from bottom
+        font.draw(batch,layout,bounds.getCenterX()-layout.width/2,bounds.getTop()+layout.height+0.1f);//0.1f is offset from bottom
     }
 
 

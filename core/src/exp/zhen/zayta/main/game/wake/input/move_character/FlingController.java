@@ -53,6 +53,8 @@ public class FlingController extends GestureDetector.GestureAdapter {
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             VelocityComponent movement = Mappers.MOVEMENT.get(entity);
+            if(movement.getDirection()==direction)
+                continue;
             movement.setDirection(direction);
         }
     }

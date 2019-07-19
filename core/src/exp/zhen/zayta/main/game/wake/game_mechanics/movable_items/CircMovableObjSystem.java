@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.wake.map.blocks.movable_items;
+package exp.zhen.zayta.main.game.wake.game_mechanics.movable_items;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -29,8 +29,8 @@ import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
-
-public class MovableObjSystem extends EntitySystem  {
+@Deprecated
+public class CircMovableObjSystem extends EntitySystem  {
 
     /*todo this system is flawed. can only move one block at a time and left and down movements are laggy.
      * I suspect some of the lagginess is because of circular bounds. Maybe I should switch to rectangular*/
@@ -43,7 +43,7 @@ public class MovableObjSystem extends EntitySystem  {
         */
 
     private PooledEngine engine; private final Viewport viewport; private TextureAtlas wakePlayAtlas;
-    private static final Logger log = new Logger(MovableObjSystem.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(CircMovableObjSystem.class.getName(),Logger.DEBUG);
 
     private BiMap<Integer,Entity> movableBlocksBiMap;
     //families are entities that can collide
@@ -52,7 +52,7 @@ public class MovableObjSystem extends EntitySystem  {
 //    private ArrayList<Entity> currentParents;
 //    Stack<Entity> blocksToBePushed;
 
-    public MovableObjSystem(PooledEngine engine, Viewport viewport, TextureAtlas wakePlayAtlas){
+    public CircMovableObjSystem(PooledEngine engine, Viewport viewport, TextureAtlas wakePlayAtlas){
         this.engine = engine; this.viewport = viewport; this.wakePlayAtlas = wakePlayAtlas;
         UNDEADS = Family.all(
                 NighterTag.class,//todo for debug only, remove when done
@@ -235,7 +235,7 @@ public class MovableObjSystem extends EntitySystem  {
 
         if(movableBlocksBiMap.containsValue(entity))//if entity is a block return key from block bimap. clumsy code r
             return movableBlocksBiMap.getKey(entity);
-        return Mappers.POSITION_TRACKER.get(entity).getPositionBiMap().getBiMap().getKey(entity);
+        return Mappers.POSITION_TRACKER.get(entity).getPositionBiMap().getKey(entity);
     }
 
     private boolean withinBounds(Entity block, float newPosX, float newPosY){

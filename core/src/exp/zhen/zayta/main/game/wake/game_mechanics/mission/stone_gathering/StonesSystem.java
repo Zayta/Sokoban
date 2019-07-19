@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
+import exp.zhen.zayta.main.game.wake.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
@@ -41,9 +42,10 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 
     public StonesSystem(RPG game, PooledEngine engine){
         super(game,engine);
+        addMission();
         wakePlayAtlas = game.getAssetManager().get(UIAssetDescriptors.WAKE_PLAY);
         NIGHTERS = Family.all(
-                PlayerTag.class,
+                NighterTag.class,
                 RectangularBoundsComponent.class
         ).get();
 

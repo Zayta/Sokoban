@@ -1,14 +1,17 @@
 package exp.zhen.zayta.main.game.wake.movement;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.wake.WakeMode;
 import exp.zhen.zayta.util.BiMap;
 
 public class PositionTracker {
     //warning: all objects in project must be same size.
 
 
+    private static final Logger log = new Logger(PositionTracker.class.getName(),Logger.DEBUG);
     //todo make enum such that each element in enum points to dif biMap
     public enum PositionBiMap{
         nightersBiMap(PositionTracker.nightersBiMap),
@@ -38,19 +41,14 @@ public class PositionTracker {
 
     public static int n = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
 
-//    public static int generateKey(float left, float bottom){
-//        int i = (int)(left/SizeManager.maxObjHeight),j = (int)(bottom/SizeManager.maxObjWidth);
-//        return i*n+j;
-//    }
 
-    public static int generateKey(float left, float bottom){
-        int i = (int)(left/SizeManager.maxObjHeight),j = (int)(bottom/SizeManager.maxObjWidth);
-        return j*n+i;
+    public static int generateKey(float left, float bottom/*, int maxObjWidth, int maxObjHeight*/)
+    {//todo this may cause error as i*maxObjHeight might be bigger than screenHeight
+        float top = bottom+SizeManager.maxObjHeight;
+        int i = (int)(top/SizeManager.maxObjHeight),j = (int)(left/SizeManager.maxObjWidth)/*, n= mapWidth/maxObjWidth*/;
+        return i*n+j;
     }
-//    public static int generateKey(float centerX, float centerY){
-//        int i = (int)(centerY/SizeManager.maxObjHeight),j = (int)(centerX/SizeManager.maxObjWidth);
-//        return i*n+j;
-//    }
+
 
     public static void reset() {
         nightersBiMap.clear();

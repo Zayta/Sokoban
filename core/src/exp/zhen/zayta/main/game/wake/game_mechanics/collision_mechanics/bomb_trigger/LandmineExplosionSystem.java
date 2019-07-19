@@ -7,6 +7,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MonsterTag;

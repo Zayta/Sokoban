@@ -5,6 +5,8 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
+
 
 public class SizeManager {
 
@@ -19,6 +21,8 @@ public class SizeManager {
     public static float maxBoundsRadius, maxObjWidth, maxObjHeight;
     public static final float GAME_TO_CONTROL_RATIO =Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? 0.8f:1f;
     public static int CONTROLLER_DIAMETER;
+//    public static int numObjPerRow = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
+
 
 
     //todo problem: users see dif content depending on whether they have device landscape or portrait.
@@ -35,6 +39,10 @@ public class SizeManager {
             configLandScape();
         else
             configPortrait();
+
+//        numObjPerRow = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
+//         must be after configs
+        PositionTracker.n = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
     }
 
     private static void configLandScape(){

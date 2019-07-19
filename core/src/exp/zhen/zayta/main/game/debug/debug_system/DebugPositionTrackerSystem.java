@@ -80,10 +80,10 @@ public class DebugPositionTrackerSystem extends IteratingSystem {
         Position position = Mappers.POSITION.get(entity);
         PositionTrackerComponent positionTrackerComponent = Mappers.POSITION_TRACKER.get(entity);
 
-        layout.setText(font,"Position: ("+position.getX()+","+position.getY()+")\n"+
+        layout.setText(font,/*"Position: ("+position.getX()+","+position.getY()+")\n"+
                 "Position Raw Key: "+PositionTracker.generateKey(position.getX(),position.getY())+"\n"+
-                "Bounds Raw Key: "+PositionTracker.generateKey(bounds.getX(),bounds.getY())+"\n"+
-                "Position Tracker Key: "+positionTrackerComponent.getPositionBiMap().getBiMap().getKey(entity));
+                "Bounds Raw Key: "+PositionTracker.generateKey(bounds.getX(),bounds.getY())+"\n"+*/
+                "Position Tracker Key: "+positionTrackerComponent.getPositionBiMap().getKey(entity));
         font.draw(batch,layout,bounds.getX()-layout.width/2,bounds.getY()+SizeManager.maxObjHeight/2+layout.height-0.1f);//0.1f is offset from bottom
     }
 

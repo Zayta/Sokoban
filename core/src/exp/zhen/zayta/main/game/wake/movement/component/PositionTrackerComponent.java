@@ -1,18 +1,25 @@
 package exp.zhen.zayta.main.game.wake.movement.component;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Entity;
 
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
+import exp.zhen.zayta.util.BiMap;
 
 public class PositionTrackerComponent implements Component {
 
-    private PositionTracker.PositionBiMap positionBiMap;
+    private BiMap<Integer,Entity> positionBiMap;
+//    private PositionTracker.PositionBiMap positionBiMap;
 
     public void setPositionBiMap(PositionTracker.PositionBiMap positionBiMap) {
+        this.positionBiMap = positionBiMap.getBiMap();
+    }
+
+    public void setPositionBiMap(BiMap <Integer,Entity> positionBiMap) {
         this.positionBiMap = positionBiMap;
     }
 
-    public PositionTracker.PositionBiMap getPositionBiMap() {
+    public BiMap<Integer, Entity> getPositionBiMap() {
         return positionBiMap;
     }
 }

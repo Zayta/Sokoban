@@ -10,6 +10,7 @@ import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
+import exp.zhen.zayta.util.BiMap;
 
 public class PositionTrackerUpdateSystem extends EntitySystem {
 
@@ -22,8 +23,9 @@ public class PositionTrackerUpdateSystem extends EntitySystem {
     public PositionTrackerUpdateSystem()
     {
         TRACKED_ENTITIES = Family.all(PositionTrackerComponent.class,
-                Position.class,
-                DimensionComponent.class).get();
+                Position.class
+//                DimensionComponent.class
+        ).get();
 //        NIGHTERS = Family.all(NighterTag.class,Position.class,DimensionComponent.class).get();
 //        WIELDERS = Family.all(WielderTag.class,Position.class,DimensionComponent.class).get();
 //        CIVILIANS = Family.all(MortalTag.class,Position.class,DimensionComponent.class).get();
@@ -34,7 +36,7 @@ public class PositionTrackerUpdateSystem extends EntitySystem {
     public void update(float deltaTime) {
         ImmutableArray<Entity> trackedEntities = getEngine().getEntitiesFor(TRACKED_ENTITIES);
         for(Entity entity:trackedEntities) {
-            PositionTracker.PositionBiMap posMap = Mappers.POSITION_TRACKER.get(entity).getPositionBiMap();
+            BiMap<Integer,Entity> posMap = Mappers.POSITION_TRACKER.get(entity).getPositionBiMap();
             updateEntityInTracker(entity,posMap);
         }
     }
@@ -60,11 +62,11 @@ public class PositionTrackerUpdateSystem extends EntitySystem {
 //        }
 //    }
 
-    private void updateEntityInTracker(Entity entity,PositionTracker.PositionBiMap posMap) {
+    private void updateEntityInTracker(Entity entity,BiMap<Integer,Entity> posMap) {
         Position position = Mappers.POSITION.get(entity);
-        DimensionComponent dimension = Mappers.DIMENSION.get(entity);
+//        DimensionComponent dimension = Mappers.DIMENSION.get(entity);
 
-        PositionTracker.updateBiMap(posMap.getBiMap(),entity,
+        PositionTracker.updateBiMap(posMap,entity,
                 position.getX(),
                 position.getY());
     }

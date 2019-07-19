@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
@@ -34,7 +35,7 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(FAMILY);
 
         for(Entity nighter: nighters) {
-            int key = Mappers.POSITION_TRACKER.get(nighter).getPositionBiMap().getBiMap().getKey(nighter);
+            int key = Mappers.POSITION_TRACKER.get(nighter).getPositionBiMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,

@@ -8,6 +8,8 @@ import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.Expl
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.game_mechanics.mission.MissionComponent;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.MovableTag;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PocketComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
@@ -55,6 +57,8 @@ ComponentMapper.getFor(ObstacleComponent.class);
 
     public static final ComponentMapper<ExplosiveComponent> EXPLOSIVE = ComponentMapper.getFor(ExplosiveComponent.class);
 
+    public static final ComponentMapper<PocketComponent> POCKET = ComponentMapper.getFor(PocketComponent.class);
+    public static final ComponentMapper<MovableTag> ITEM_SHOVE = ComponentMapper.getFor(MovableTag.class);
 
     private Mappers(){}
 }
