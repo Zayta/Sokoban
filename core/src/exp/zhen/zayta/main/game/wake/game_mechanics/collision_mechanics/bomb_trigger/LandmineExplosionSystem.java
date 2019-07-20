@@ -89,7 +89,7 @@ public class LandmineExplosionSystem extends EntitySystem {
 
     private void collideEvent(Entity monster, Entity landmine) {
         //implement what happens during collision
-        log.debug("mosnter collided w landmine");
+//        log.debug("mosnter collided w landmine");
         HealthComponent monsterHp = Mappers.HEALTH.get(monster);
         ExplosiveComponent explosiveComponent = Mappers.EXPLOSIVE.get(landmine);
         if(explosiveComponent!=null)

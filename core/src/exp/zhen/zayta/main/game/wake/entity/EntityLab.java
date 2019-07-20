@@ -12,7 +12,6 @@ import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
-import exp.zhen.zayta.main.game.wake.WakeMode;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
@@ -20,7 +19,7 @@ import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
 import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
-import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PocketComponent;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PushComponent;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
@@ -65,7 +64,7 @@ public class EntityLab {
         addMovementComponents(engine, consciousNighter,playerStartX,playerStartY,PositionTracker.PositionBiMap.nightersBiMap);
 
 
-        PocketComponent pocketComponent = engine.createComponent(PocketComponent.class);
+        PushComponent pocketComponent = engine.createComponent(PushComponent.class);
         consciousNighter.add(pocketComponent);
 
         engine.addEntity(consciousNighter);
@@ -94,7 +93,7 @@ public class EntityLab {
     private void addMonster(float x, float y){
         Entity entity = utsubyo.generateMonster(1);
         addMovementComponents(engine,entity,x,y,PositionTracker.PositionBiMap.monstersBiMap);
-        PocketComponent pocketComponent = engine.createComponent(PocketComponent.class);
+        PushComponent pocketComponent = engine.createComponent(PushComponent.class);
         entity.add(pocketComponent);
 
         engine.addEntity(entity);

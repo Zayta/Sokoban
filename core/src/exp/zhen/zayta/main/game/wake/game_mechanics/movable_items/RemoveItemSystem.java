@@ -23,7 +23,7 @@ public class RemoveItemSystem extends IteratingSystem {
                         Position.class,
                         VelocityComponent.class,
                         RectangularBoundsComponent.class,
-                        PocketComponent.class
+                        PushComponent.class
                 ).get()
         );
     }
@@ -31,7 +31,7 @@ public class RemoveItemSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         Direction entityDirection = Mappers.MOVEMENT.get(entity).getDirection();
-        PocketComponent pocket = Mappers.POCKET.get(entity);
+        PushComponent pocket = Mappers.POCKET.get(entity);
         ArrayList<Entity> items = pocket.getCarriedItems();
 
         if(entityDirection == Direction.none) //if entity is not moving, remove all items from it since it is not pushing anything
@@ -45,6 +45,7 @@ public class RemoveItemSystem extends IteratingSystem {
                     pocket.remove(item);
                     //todo take this away for block to keep moving
                     itemMovement.setDirection(Direction.none);
+                    Mappers.MOVEMENT.get(item).setDirection(Direction.none);
                     i--;
                 }
             }

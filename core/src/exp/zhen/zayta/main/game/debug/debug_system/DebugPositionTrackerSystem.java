@@ -32,7 +32,7 @@ public class DebugPositionTrackerSystem extends IteratingSystem {
     private Array<Entity> renderQueue = new Array<Entity>();
 
     private static final Family FAMILY = Family.all(
-            PlayerTag.class,
+//            PlayerTag.class,
             PositionTrackerComponent.class,
             Position.class,
             RectangularBoundsComponent.class

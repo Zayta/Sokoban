@@ -31,10 +31,10 @@ public class MovementSystem extends EntitySystem {
     private void move(Entity entity) {
         Position position = Mappers.POSITION.get(entity);
         VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-        MovementLimitationComponent movementLimitationComponent = Mappers.MOVEMENT_LIMITATION.get(entity);
-        if(movementLimitationComponent!=null)
-            if(movement.getDirection()==movementLimitationComponent.getBlockedDirection())
-                return;
+//        MovementLimitationComponent movementLimitationComponent = Mappers.MOVEMENT_LIMITATION.get(entity);
+//        if(movementLimitationComponent!=null)
+//            if(movement.getDirection()==movementLimitationComponent.getBlockedDirection())
+//                return;
         position.update(movement.getVelX(), movement.getVelY());
     }
 

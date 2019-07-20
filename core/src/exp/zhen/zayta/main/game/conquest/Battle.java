@@ -32,7 +32,7 @@ public class Battle extends ClickListener {
         if(monster0!=null && nighter!=null){
             nighter.attack(monster0);
             if(monster0.isKnockedOut()){
-                log.debug("monster0.isKnockedOut is true");
+//                log.debug("monster0.isKnockedOut is true");
 //                mPos[rowOfBattle][0].removeSoldier();
                 shiftLeft(0,mPos);
             }

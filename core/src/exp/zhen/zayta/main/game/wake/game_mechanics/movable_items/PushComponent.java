@@ -5,8 +5,20 @@ import com.badlogic.ashley.core.Entity;
 
 import java.util.ArrayList;
 
-public class PocketComponent implements Component {
-    private ArrayList<Entity> carriedItems = new ArrayList<Entity>();
+import exp.zhen.zayta.main.game.wake.movement.Direction;
+
+public class PushComponent implements Component {
+    private Direction direction = Direction.none;
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    private final ArrayList<Entity> carriedItems = new ArrayList<Entity>();
 
     public void add(Entity item){
         carriedItems.add(item);

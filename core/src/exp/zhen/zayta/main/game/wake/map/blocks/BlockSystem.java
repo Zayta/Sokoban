@@ -51,7 +51,7 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
                 Position.class,
                 PositionTrackerComponent.class,
                 VelocityComponent.class,
-                MovementLimitationComponent.class,
+//                MovementLimitationComponent.class,
                 RectangularBoundsComponent.class
         ).get();
         blocksBiMap = new BiMap<Integer, Entity>();
@@ -72,10 +72,10 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
     public void update(float deltaTime) {
         ImmutableArray<Entity> movingEntities = getEngine().getEntitiesFor(MOVING_ENTITIES);
 
+        log.debug("There are this many entities that can be blocked: "+movingEntities.size());
         for(Entity movingEntity: movingEntities) {
-
-            VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-            Direction direction = movement.getDirection();
+//            VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
+//            Direction direction = movement.getDirection();
 //
 //            int[] keys = new int[6];
 
@@ -129,16 +129,16 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
         for (int key: keys) {
             Entity block = blocksBiMap.get(key);
 
-            MovementLimitationComponent movementLimitationComponent =
-                    Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-            if(movementLimitationComponent.getBlockedDirection()!=Direction.none)
-                movementLimitationComponent.setBlockedDirection(Direction.none);
+//            MovementLimitationComponent movementLimitationComponent =
+//                    Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+//            if(movementLimitationComponent.getBlockedDirection()!=Direction.none)
+//                movementLimitationComponent.setBlockedDirection(Direction.none);
             if (block != null) {
                 if (checkCollisionBetween(movingEntity, block)) {
 
-                    movementLimitationComponent.setBlockedDirection(
-                            Mappers.MOVEMENT.get(movingEntity).getDirection()
-                    );
+//                    movementLimitationComponent.setBlockedDirection(
+//                            Mappers.MOVEMENT.get(movingEntity).getDirection()
+//                    );
                     collideEvent(movingEntity, block);
                 }
             }

@@ -30,7 +30,7 @@ public class MoveItemSystem extends IteratingSystem {
             Position.class,
             VelocityComponent.class,
             RectangularBoundsComponent.class,
-            PocketComponent.class
+            PushComponent.class
     ).get();
 
     public MoveItemSystem() {

@@ -47,7 +47,7 @@ public class PickUpItemSystem extends EntitySystem  {
                 Position.class,
                 VelocityComponent.class,
                 RectangularBoundsComponent.class,
-                PocketComponent.class
+                PushComponent.class
         ).get();
         movableBlocksBiMap = new BiMap<Integer, Entity>();
         initMovableBlocks();
@@ -101,10 +101,11 @@ public class PickUpItemSystem extends EntitySystem  {
     private void collideEvent(Entity entity, Entity movable_item) {
         //implement what happens during collision
         Direction entityDirection = Mappers.MOVEMENT.get(entity).getDirection();
-        PocketComponent pocketComponent = Mappers.POCKET.get(entity);
+        PushComponent pocketComponent = Mappers.POCKET.get(entity);
         if(!pocketComponent.getCarriedItems().contains(movable_item)&&entityDirection!=Direction.none){//if pocket does not already hold tht item
             pocketComponent.add(movable_item);
             Mappers.ITEM_SHOVE.get(movable_item).setDirection(entityDirection);
+            Mappers.MOVEMENT.get(movable_item).setDirection(entityDirection);
         }
     }
     
@@ -140,7 +141,10 @@ public class PickUpItemSystem extends EntitySystem  {
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
         positionTrackerComponent.setPositionBiMap(movableBlocksBiMap);
 
-        PocketComponent pocketComponent = engine.createComponent(PocketComponent.class);
+        PushComponent pocketComponent = engine.createComponent(PushComponent.class);
+
+        VelocityComponent movement = engine.createComponent(VelocityComponent.class);
+        entity.add(movement);
 
         entity.add(position);
         entity.add(dimension);

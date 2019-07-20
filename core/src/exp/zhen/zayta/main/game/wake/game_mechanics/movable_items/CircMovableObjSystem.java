@@ -111,7 +111,7 @@ public class CircMovableObjSystem extends EntitySystem  {
 //            blocksToBePushed.remove(blockToBePushed);
             if(!blocksAroundBlockToBePushed.isEmpty()){
                 pushBlocksBy(blockToBePushed,blocksAroundBlockToBePushed,direction);
-                log.debug("Block has blocks around it");
+//                log.debug("Block has blocks around it");
             }
 
         }

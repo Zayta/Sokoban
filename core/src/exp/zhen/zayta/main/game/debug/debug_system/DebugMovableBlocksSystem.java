@@ -21,6 +21,7 @@ import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 
 public class DebugMovableBlocksSystem extends IteratingSystem {
     private static final Logger log = new Logger(DebugPositionTrackerSystem.class.getName(),Logger.DEBUG);
@@ -35,7 +36,8 @@ public class DebugMovableBlocksSystem extends IteratingSystem {
     private static final Family FAMILY = Family.all(
             Position.class,
             RectangularBoundsComponent.class,
-            MovableTag.class
+            MovableTag.class,
+            VelocityComponent.class
     ).get();
 
 
@@ -79,11 +81,10 @@ public class DebugMovableBlocksSystem extends IteratingSystem {
         RectangularBoundsComponent bounds = Mappers.RECTANGULAR_BOUNDS.get(entity);
         Position position = Mappers.POSITION.get(entity);
         MovableTag movableTag = Mappers.ITEM_SHOVE.get(entity);
+        VelocityComponent movement = Mappers.MOVEMENT.get(entity);
 
-        layout.setText(font,/*"Position: ("+position.getX()+","+position.getY()+")\n"+
-                "Position Raw Key: "+PositionTracker.generateKey(position.getX(),position.getY())+"\n"+
-                "Bounds Raw Key: "+PositionTracker.generateKey(bounds.getX(),bounds.getY())+"\n"+*/
-                "ItemDir: "+movableTag.getDirection());
+        layout.setText(font,"ItemMovementDir: "+movement.getDirection()+"\n"+
+                "ItemShoveDir: "+movableTag.getDirection());
         font.draw(batch,layout,bounds.getX()-layout.width/2,bounds.getY()+SizeManager.maxObjHeight/2+layout.height-0.1f);//0.1f is offset from bottom
     }
 
