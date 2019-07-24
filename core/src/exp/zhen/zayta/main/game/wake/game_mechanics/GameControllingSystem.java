@@ -12,13 +12,13 @@ import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 
 public abstract class GameControllingSystem extends EntitySystem implements Pool.Poolable {
     private RPG game; private PooledEngine engine;
-    private static int numMissions=0;
+    private static int numMissions=0;//needs to be static so that any gameControlling system can update it without having it as their own private numMissions
 
     private static final Logger log = new Logger(GameControllingSystem.class.getName(),Logger.DEBUG);
     public GameControllingSystem(RPG game, PooledEngine engine) {
         this.game = game;
         this.engine = engine;
-//        log.debug("numMissionsLeft:"+numMissions);
+        log.debug("numMissionsLeft:"+numMissions);
     }
 
     @Override
@@ -45,11 +45,13 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
     };
 
     private void setNextLevel(){
+        numMissions = 0;
         RPG.userData.unlockScene();
         goToMenu();
     }
 
     public void setGameOver(){
+        numMissions = 0;
         goToMenu();
     }
     private void goToMenu(){

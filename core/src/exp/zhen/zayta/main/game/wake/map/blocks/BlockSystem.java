@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
@@ -17,7 +18,7 @@ import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
+import exp.zhen.zayta.main.game.wake.map.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
@@ -30,7 +31,7 @@ import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.GdxUtils;
 
 
-public class BlockSystem extends EntitySystem implements CollisionListener{
+public class BlockSystem extends IteratingSystem implements CollisionListener{
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(BlockSystem.class.getName(),Logger.DEBUG);
@@ -38,28 +39,27 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
     private TextureAtlas wakePlayAtlas;
 
     private int numBlocks = GdxUtils.RANDOM.nextInt(10);
-    private BiMap<Integer,Entity> blocksBiMap;
+    private final BiMap<Integer,Entity> blocksBiMap;
     //families are entities that can collide
-    private Family MOVING_ENTITIES;
+    private static Family MOVING_ENTITIES = Family.all(
+            Position.class,
+            PositionTrackerComponent.class,
+            VelocityComponent.class,
+            MovementLimitationComponent.class,
+            RectangularBoundsComponent.class
+    ).get();
     //todo add "add or remove" block feature
 
     public BlockSystem(PooledEngine engine, TextureAtlas wakePlayAtlas){
-//        super();
+        super(MOVING_ENTITIES);
         this.engine = engine;
         this.wakePlayAtlas = wakePlayAtlas;
-        MOVING_ENTITIES = Family.all(
-                Position.class,
-                PositionTrackerComponent.class,
-                VelocityComponent.class,
-//                MovementLimitationComponent.class,
-                RectangularBoundsComponent.class
-        ).get();
         blocksBiMap = new BiMap<Integer, Entity>();
         initBlocks();
     }
 
     private void initBlocks(){
-        Vector2[] points = Arrangements.circle(numBlocks,SizeManager.WAKE_WORLD_CENTER_X,SizeManager.WAKE_WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/3);
+        Vector2[] points = MapMaker.generateRandomCoordinates(numBlocks);
         for(int i =0; i<numBlocks; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
@@ -69,11 +69,7 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
     }
 
     @Override
-    public void update(float deltaTime) {
-        ImmutableArray<Entity> movingEntities = getEngine().getEntitiesFor(MOVING_ENTITIES);
-
-        log.debug("There are this many entities that can be blocked: "+movingEntities.size());
-        for(Entity movingEntity: movingEntities) {
+    public void processEntity(Entity movingEntity,float deltaTime) {
 //            VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
 //            Direction direction = movement.getDirection();
 //
@@ -123,25 +119,22 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
 //            keys[5] = key;
             checkCollision(movingEntity, keys);
 
-        }
+
     }
     private void checkCollision(Entity movingEntity, int [] keys){
         for (int key: keys) {
             Entity block = blocksBiMap.get(key);
 
-//            MovementLimitationComponent movementLimitationComponent =
-//                    Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-//            if(movementLimitationComponent.getBlockedDirection()!=Direction.none)
-//                movementLimitationComponent.setBlockedDirection(Direction.none);
-            if (block != null) {
-                if (checkCollisionBetween(movingEntity, block)) {
+            MovementLimitationComponent movementLimitationComponent =
+                    Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+            if (block != null&&checkCollisionBetween(movingEntity, block)) {
 
-//                    movementLimitationComponent.setBlockedDirection(
-//                            Mappers.MOVEMENT.get(movingEntity).getDirection()
-//                    );
-                    collideEvent(movingEntity, block);
-                }
+                movementLimitationComponent.setBlock(block,
+                        Mappers.MOVEMENT.get(movingEntity).getDirection()
+                );
+                collideEvent(movingEntity, block);
             }
+
         }
     }
     private boolean checkCollisionBetween(Entity movingEntity, Entity block)
@@ -150,6 +143,21 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
 
         return Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
+    }
+
+    public void collideEvent(Entity movingEntity, Entity block) {
+        blockEntity(movingEntity,block);
+//        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
+//        MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+//        if(movement.getDirection()==movementLimitation.getBlockedDirection()) {
+//            blockEntity(movingEntity,block);
+////            movement.setDirection(Direction.none);
+//        }
+//        else {
+//
+//            movementLimitation.setBlockedDirection(movement.getDirection());
+//        }
+
     }
 
     private void blockEntity(Entity movingEntity, Entity block){
@@ -174,22 +182,6 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
                 break;
         }
         movement.setDirection(Direction.none);
-
-    }
-
-    public void collideEvent(Entity movingEntity, Entity block) {
-        blockEntity(movingEntity,block);
-//        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-//        MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-//        if(movement.getDirection()==movementLimitation.getBlockedDirection()) {
-//            blockEntity(movingEntity,block);
-////            movement.setDirection(Direction.none);
-//        }
-//        else {
-//
-//            movementLimitation.setBlockedDirection(movement.getDirection());
-//        }
-
     }
 
 
@@ -224,5 +216,7 @@ public class BlockSystem extends EntitySystem implements CollisionListener{
         return entity;
     }
 
-
+    public BiMap<Integer, Entity> getBlocksBiMap() {
+        return blocksBiMap;
+    }
 }

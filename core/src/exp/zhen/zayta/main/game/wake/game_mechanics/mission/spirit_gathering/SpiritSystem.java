@@ -1,7 +1,6 @@
 package exp.zhen.zayta.main.game.wake.game_mechanics.mission.spirit_gathering;
 
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
@@ -16,12 +15,11 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.wake.entity.components.labels.NPCTag;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.NighterTag;
-import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
+import exp.zhen.zayta.main.game.wake.map.MapMaker;
+import exp.zhen.zayta.main.game.wake.map.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
-import exp.zhen.zayta.main.game.wake.game_mechanics.mission.spirit_gathering.SpiritTag;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
@@ -32,12 +30,12 @@ import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsCompone
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
-import exp.zhen.zayta.main.game.wake.render.animation.particle.ParticleAnimationComponent;
 import exp.zhen.zayta.util.BiMap;
 
 public class SpiritSystem extends GameControllingSystem implements CollisionListener {
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
+    private int numSpirits = 5;
     private static final Logger log = new Logger(exp.zhen.zayta.main.game.wake.game_mechanics.mission.spirit_gathering.SpiritSystem.class.getName(),Logger.DEBUG);
     private TextureAtlas wakePlayAtlas;
 
@@ -60,12 +58,11 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
     }
 
     private void initSpirits(){
-        int numSpirits = 5;
-        Vector2[] points = Arrangements.circle(numSpirits,SizeManager.WAKE_WORLD_CENTER_X,SizeManager.WAKE_WORLD_CENTER_Y,SizeManager.WAKE_WORLD_WIDTH/3);
+        Vector2[] points = MapMaker.generateRandomCoordinates(numSpirits);
         for(int i =0; i<numSpirits; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            spiritsBiMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,WPRegionNames.LIGHT_EFFECTS[1]));
+            spiritsBiMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,WPRegionNames.EMOJI_SPECIAL[0]));
         }
     }
 
@@ -75,48 +72,51 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 
         for(Entity nighter: nighters) {
 
-            Direction direction = Mappers.MOVEMENT.get(nighter).getDirection();
-            int [] keys = new int [6];
-
+//            Direction direction = Mappers.MOVEMENT.get(nighter).getDirection();
+//            int [] keys = new int [6];
+//
             int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
-            switch (direction){
-                case none:
-                    Entity spirit = spiritsBiMap.get(key);
-                    if(spirit!=null)
-                        checkCollisionBetween(nighter,spirit);
-                    continue;
-                case up:
-                    keys[0]= keyAbove;
-                    keys[1]= keyAbove+1;
-                    keys[2]= keyAbove-1;
-                    keys[3] = key-1;
-                    keys[4] = key+1;
-                    break;
-                case down:
-                    keys[0]= keyBelow;
-                    keys[1]= keyBelow+1;
-                    keys[2]= keyBelow-1;
-                    keys[3] = key-1;
-                    keys[4] = key+1;
-                    break;
-                case left:
-                    keys[0]= keyAbove-1;
-                    keys[1]= key-1;
-                    keys[2]= keyBelow-1;
-                    keys[3] = keyAbove;
-                    keys[4] = keyBelow;
-                    break;
-                case right:
-                    keys[0]= keyAbove+1;
-                    keys[1]= key+1;
-                    keys[2]= keyBelow+1;
-                    keys[3] = keyAbove;
-                    keys[4] = keyBelow;
-                    break;
-            }
-            keys[5] = key;
+            int [] keys = {key-1, key, key+1,
+                            keyAbove-1, keyAbove, keyAbove+1,
+                            keyBelow-1, keyBelow, keyBelow+1};
+//            switch (direction){
+//                case none:
+//                    Entity spirit = spiritsBiMap.get(key);
+//                    if(spirit!=null)
+//                        checkCollisionBetween(nighter,spirit);
+//                    break;
+//                case up:
+//                    keys[0]= keyAbove;
+//                    keys[1]= keyAbove+1;
+//                    keys[2]= keyAbove-1;
+//                    keys[3] = key-1;
+//                    keys[4] = key+1;
+//                    break;
+//                case down:
+//                    keys[0]= keyBelow;
+//                    keys[1]= keyBelow+1;
+//                    keys[2]= keyBelow-1;
+//                    keys[3] = key-1;
+//                    keys[4] = key+1;
+//                    break;
+//                case left:
+//                    keys[0]= keyAbove-1;
+//                    keys[1]= key-1;
+//                    keys[2]= keyBelow-1;
+//                    keys[3] = keyAbove;
+//                    keys[4] = keyBelow;
+//                    break;
+//                case right:
+//                    keys[0]= keyAbove+1;
+//                    keys[1]= key+1;
+//                    keys[2]= keyBelow+1;
+//                    keys[3] = keyAbove;
+//                    keys[4] = keyBelow;
+//                    break;
+//            }
+//            keys[5] = key;
             checkCollision(nighter,keys);
         }
     }
@@ -194,8 +194,9 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
         VelocityComponent movement = engine.createComponent(VelocityComponent.class);
         movement.setDirection(Direction.generateRandomDirection());
 
-        ParticleAnimationComponent particleAnimationComponent = engine.createComponent(ParticleAnimationComponent.class);
-        particleAnimationComponent.init(texture.getRegion(),1,5);
+//        ParticleAnimationComponent particleAnimationComponent = engine.createComponent(ParticleAnimationComponent.class);
+//        particleAnimationComponent.init(texture.getRegion(),1,5);
+//        entity.add(particleAnimationComponent);
 
         entity.add(position);
         entity.add(dimension);
@@ -203,7 +204,6 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
         entity.add(worldWrap);
         entity.add(positionTrackerComponent);
         entity.add(movement);
-        entity.add(particleAnimationComponent);
 
         //for certain movement systems
         NPCTag npcTag = engine.createComponent(NPCTag.class);

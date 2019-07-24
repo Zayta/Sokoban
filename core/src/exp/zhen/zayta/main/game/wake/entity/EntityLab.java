@@ -19,7 +19,7 @@ import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.nur.NUR;
 import exp.zhen.zayta.main.game.wake.entity.utsubyo.Utsubyo;
-import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PushComponent;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.PushComponent;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;

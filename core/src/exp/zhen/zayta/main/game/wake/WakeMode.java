@@ -16,15 +16,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.debug.debug_system.DebugBlocksSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugMovableBlocksSystem;
-import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.PlayerReaperSystem;
-import exp.zhen.zayta.main.game.wake.game_mechanics.mission.spirit_gathering.SpiritSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.MoveItemSystem;
-import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PickUpItemSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PickUpMovableItem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.RemoveItemSystem;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.UpdatePushDirectionSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.npc_ai.NPCNonstopMovementSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.bomb_trigger.LandmineExplosionSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.collide_and_fight.MonsterAttacksNighterSystem;
@@ -33,6 +33,7 @@ import exp.zhen.zayta.main.game.wake.game_mechanics.mission.stone_gathering.Ston
 import exp.zhen.zayta.main.game.wake.input.InputSystem;
 import exp.zhen.zayta.main.game.wake.map.MapMaker;
 import exp.zhen.zayta.main.game.wake.map.blocks.BlockSystem;
+import exp.zhen.zayta.main.game.wake.map.blocks.UnblockSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.block_player.MapBlockPauseSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.CircularBoundsSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.RectangularBoundsSystem;
@@ -42,7 +43,8 @@ import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.MapBlockChangeDirectio
 import exp.zhen.zayta.main.game.wake.map.blocks.block_npc.IntervalChangeDirectionSystem;
 import exp.zhen.zayta.main.game.wake.render.HudRenderSystem;
 import exp.zhen.zayta.main.game.wake.movement.system.MovementSystem;
-import exp.zhen.zayta.main.game.wake.render.GameRenderSystem;
+import exp.zhen.zayta.main.game.wake.render.MonoColorEntityRenderSystem;
+import exp.zhen.zayta.main.game.wake.render.MultiColorEntityRenderSystem;
 import exp.zhen.zayta.main.game.wake.map.blocks.block_player.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCircularBoundsRenderSystem;
@@ -116,9 +118,8 @@ public class WakeMode implements Screen {
         addGameControllingSystems();
     }
     private void addTiledMapSystems(){
-        TiledMap tiledMap = mapMaker.generateMap();
+        TiledMap tiledMap = mapMaker.getTiledMap(MapMaker.Map.irondale);
 //        engine.addSystem(new WorldWrapChangeDirectionSystem(tiledMap));
-
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer);
         log.debug("CollisionLayer is "+collisionLayer);
         if(collisionLayer!=null){
@@ -138,6 +139,7 @@ public class WakeMode implements Screen {
 //        engine.addSystem(new CircMovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before movement. defective.
 
         engine.addSystem(new WorldWrapPauseSystem(mapMaker.getMapBoundmaxX(),mapMaker.getMapBoundmaxY()));
+        log.debug("maxX: "+mapMaker.getMapBoundmaxX()+", maxY: "+mapMaker.getMapBoundmaxY());
         engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));//sb before npcnonstopmovmentsystem
         engine.addSystem(new NPCNonstopMovementSystem());
         engine.addSystem(new IntervalChangeDirectionSystem(5));
@@ -150,8 +152,12 @@ public class WakeMode implements Screen {
     }
     private void addMovableItemSystems(){
         engine.addSystem(new RemoveItemSystem());//sb before pickup and move
-        engine.addSystem(new PickUpItemSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));
+//        engine.addSystem(new PickUpMovableItemSystem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));
+        engine.addSystem(new PickUpMovableItem(engine,viewport,assetManager.get(UIAssetDescriptors.WAKE_PLAY)));
+        engine.addSystem(new UpdatePushDirectionSystem());
         engine.addSystem(new MoveItemSystem());//sb after movement and bounds system
+        engine.addSystem(new UnblockSystem());
+
     }
 
 
@@ -162,17 +168,20 @@ public class WakeMode implements Screen {
 
     private void addRenderSystems(){
 //        engine.addSystem(new GeneratedMapRenderSystem(mapMaker.generateMap(),viewport,game.getBatch()));
-        engine.addSystem(new GameRenderSystem(viewport,game.getBatch()));
+        engine.addSystem(new MultiColorEntityRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch(),assetManager.get(UIAssetDescriptors.FONT)));
 //        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
+
+        engine.addSystem(new MonoColorEntityRenderSystem(viewport));//sb last cuz it changes batch color.
 
         if(DEBUG) {
             engine.addSystem(new GridRenderSystem(viewport, shapeRenderer));
             engine.addSystem(new DebugCircularBoundsRenderSystem(viewport, shapeRenderer));
             engine.addSystem(new DebugRectangularBoundsRenderSystem(viewport,shapeRenderer));
             engine.addSystem(new DebugCameraSystem(orthographicCamera, SizeManager.WAKE_WORLD_CENTER_X, SizeManager.WAKE_WORLD_CENTER_Y));
-            engine.addSystem(new DebugMovableBlocksSystem(viewport,game.getBatch()));
+            engine.addSystem(new DebugBlocksSystem(viewport,game.getBatch()));
+//            engine.addSystem(new DebugMovableBlocksSystem(viewport,game.getBatch()));
 //            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
         }
     }
@@ -185,7 +194,7 @@ public class WakeMode implements Screen {
 
     private void addGameControllingSystems(){
         engine.addSystem(new StonesSystem(game,engine));
-        engine.addSystem(new SpiritSystem(game,engine));
+//        engine.addSystem(new SpiritSystem(game,engine));
         engine.addSystem(new PlayerReaperSystem(game,engine));
     }
 

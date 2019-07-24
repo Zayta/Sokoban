@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.wake.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.wake.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.wake.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
@@ -20,7 +19,7 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
-import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
+import exp.zhen.zayta.main.game.wake.map.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;

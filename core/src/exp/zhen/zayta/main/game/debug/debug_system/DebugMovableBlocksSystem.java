@@ -14,12 +14,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
-import exp.zhen.zayta.main.game.wake.entity.components.NameTag;
-import exp.zhen.zayta.main.game.wake.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.MovableTag;
-import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.MovableTag;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
-import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 
@@ -36,8 +32,8 @@ public class DebugMovableBlocksSystem extends IteratingSystem {
     private static final Family FAMILY = Family.all(
             Position.class,
             RectangularBoundsComponent.class,
-            MovableTag.class,
-            VelocityComponent.class
+            MovableTag.class
+//            VelocityComponent.class
     ).get();
 
 
@@ -82,9 +78,14 @@ public class DebugMovableBlocksSystem extends IteratingSystem {
         Position position = Mappers.POSITION.get(entity);
         MovableTag movableTag = Mappers.ITEM_SHOVE.get(entity);
         VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-
-        layout.setText(font,"ItemMovementDir: "+movement.getDirection()+"\n"+
-                "ItemShoveDir: "+movableTag.getDirection());
+        if(movement!=null){
+            layout.setText(font,"ItemMovementDir: "+movement.getDirection()+"\n"+
+                    "ItemShoveDir: "+movableTag.getDirection());
+        }
+        else {
+            layout.setText(font,//"ItemMovementDir: "+movement.getDirection()+"\n"+
+                    "ItemShoveDir: " + movableTag.getDirection());
+        }
         font.draw(batch,layout,bounds.getX()-layout.width/2,bounds.getY()+SizeManager.maxObjHeight/2+layout.height-0.1f);//0.1f is offset from bottom
     }
 

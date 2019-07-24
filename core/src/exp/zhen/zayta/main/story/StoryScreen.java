@@ -1,84 +1,83 @@
 package exp.zhen.zayta.main.story;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-
-import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
-import exp.zhen.zayta.main.ScreenBase;
-import exp.zhen.zayta.main.UiRegionNames;
-import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
-import exp.zhen.zayta.main.menu.MenuScreen;
+import com.badlogic.gdx.utils.Logger;
 
 
-public class StoryScreen extends ScreenBase {
+public class StoryScreen implements Screen {
 
-    public StoryScreen(RPG game) {
-        super(game);
+    private static final Logger log = new Logger(StoryScreen.class.getName(),Logger.DEBUG);
+    //plays a single episode, but stores all episode data
+    private FileHandle storyFile = Gdx.files.internal("story/story.txt");
+    private TextureAtlas pictures;
+    private String [] episodes = new String [30];
+    private int currentEpisode;
+//    StoryParser storyParser = new StoryParser(Gdx.files.internal("story/story.txt"));
+
+
+
+    public String [] parse(String s){
+        String delims = "[\"\t\n]+"; // use + to treat consecutive delims as one;
+        // omit to treat consecutive delims separately
+        String[] tokens = s.split(delims);
+
+        return tokens;
     }
 
-    //todo make array of n story-pics, and draw UserData.numScenesUnlocked of the n pics
+
 
 
     @Override
-    protected Actor createUi() {
-        Table table = new Table();
+    public void show() {
 
-        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.WAKE_PLAY);
-        Skin uiSkin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+        String fullStory = storyFile.readString();
+//        episodes = fullStory.replaceAll("label","]").split("]");
+        episodes = fullStory.split("label");
 
-        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WPRegionNames.BACKGROUND);
+        for(int i = 0; i<episodes.length;i++){
+            log.debug("Episode "+i+":\n"+episodes[i]+"\n\n\n");
+        }
 
-        // background
-        table.setBackground(new TextureRegionDrawable(backgroundRegion));
-
-        // Title
-        Label title = new Label("Memories", uiSkin);
-
-        // memories label
-        int numScenesUnlocked = RPG.userData.getNumScenesUnlocked();
-        Label pointsLabel = new Label(String.valueOf(numScenesUnlocked), uiSkin);
-
-        // back button
-        TextButton backButton = new TextButton("BACK", uiSkin);
-        backButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                back();
-            }
-        });
-
-        // setup tables
-        Table contentTable = new Table(uiSkin);
-        contentTable.defaults().pad(20);
-        contentTable.setBackground(UiRegionNames.WINDOW);
-
-        contentTable.add(title).row();
-        contentTable.add(pointsLabel).row();
-        contentTable.add(backButton);
-
-        contentTable.center();
-
-        table.add(contentTable);
-        table.center();
-        table.setFillParent(true);
-        table.pack();
-
-        return table;
+//        String string = "";
+//        String [] tokens = parse();
+//        for(int i = 0; i<tokens.length;i++){
+//            string+=tokens[i]+",";
+////            if(i%2==0)
+////                string+="\n";
+//        }
+//        log.debug("Story: \n"+string);
     }
 
-    private void back() {
-//        log.debug("back()");
-        game.setScreen(new MenuScreen(game));
+    @Override
+    public void render(float delta) {
+
     }
 
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
 }

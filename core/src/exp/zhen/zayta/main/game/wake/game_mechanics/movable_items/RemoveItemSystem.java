@@ -5,9 +5,10 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import exp.zhen.zayta.main.game.wake.common.Mappers;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.MovableTag;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.PushComponent;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
@@ -45,7 +46,7 @@ public class RemoveItemSystem extends IteratingSystem {
                     pocket.remove(item);
                     //todo take this away for block to keep moving
                     itemMovement.setDirection(Direction.none);
-                    Mappers.MOVEMENT.get(item).setDirection(Direction.none);
+//                    Mappers.MOVEMENT.get(item).setDirection(Direction.none);
                     i--;
                 }
             }

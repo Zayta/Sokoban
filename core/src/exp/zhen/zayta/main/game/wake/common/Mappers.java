@@ -8,8 +8,8 @@ import exp.zhen.zayta.main.game.wake.entity.components.properties.explosion.Expl
 import exp.zhen.zayta.main.game.wake.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.wake.game_mechanics.mission.MissionComponent;
-import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.MovableTag;
-import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.PushComponent;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.MovableTag;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.PushComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
@@ -22,6 +22,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.entity.components.properties.ObstacleComponent;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
+import exp.zhen.zayta.main.game.wake.render.mono_color.MonoColorComponent;
 
 public class Mappers {
     public static final ComponentMapper<PlayerTag> PLAYER = ComponentMapper.getFor(PlayerTag.class);
@@ -59,6 +60,7 @@ ComponentMapper.getFor(ObstacleComponent.class);
 
     public static final ComponentMapper<PushComponent> POCKET = ComponentMapper.getFor(PushComponent.class);
     public static final ComponentMapper<MovableTag> ITEM_SHOVE = ComponentMapper.getFor(MovableTag.class);
+    public static final ComponentMapper<MonoColorComponent> MONO_COLOR = ComponentMapper.getFor(MonoColorComponent.class);
 
     private Mappers(){}
 }

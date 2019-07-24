@@ -17,7 +17,7 @@ import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.game.GameScreen;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.shop.ShopScreen;
-import exp.zhen.zayta.main.story.StoryScreen;
+import exp.zhen.zayta.main.story.StoryBoardScreen;
 
 
 public class MenuScreen extends ScreenBase {
@@ -124,7 +124,7 @@ public class MenuScreen extends ScreenBase {
     }
 
     private void story() {
-        game.setScreen(new StoryScreen(game));
+        game.setScreen(new StoryBoardScreen(game));
     }
 
     private void quit() {

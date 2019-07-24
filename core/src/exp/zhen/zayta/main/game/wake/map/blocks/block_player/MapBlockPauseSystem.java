@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Logger;
 
@@ -91,8 +92,9 @@ public class MapBlockPauseSystem extends EntitySystem {
 
     private boolean collidesRight(float x, float y) {
         for(float step = 0; step <= SizeManager.maxObjHeight; step += increment)
-            if(isCellBlocked(x + SizeManager.maxObjWidth, y + step))
+            if(isCellBlocked(x + SizeManager.maxObjWidth, y + step)) {
                 return true;
+            }
         return false;
     }
 
@@ -121,6 +123,7 @@ public class MapBlockPauseSystem extends EntitySystem {
     private boolean isCellBlocked(float x, float y) {
         TiledMapTileLayer.Cell cell = collisionLayer.getCell((int) (x), (int) (y));
 //        log.debug("cell: "+cell.getTile().getProperties());
+
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(blockedKey);
     }
 

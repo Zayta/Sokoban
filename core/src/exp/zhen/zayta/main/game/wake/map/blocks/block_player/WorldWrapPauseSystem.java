@@ -3,6 +3,7 @@ package exp.zhen.zayta.main.game.wake.map.blocks.block_player;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Logger;
@@ -38,8 +39,9 @@ public class WorldWrapPauseSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         Position position = Mappers.POSITION.get(entity);
-        DimensionComponent dimension=Mappers.DIMENSION.get(entity);
+//        DimensionComponent dimension=Mappers.DIMENSION.get(entity);
         VelocityComponent movement = Mappers.MOVEMENT.get(entity);
+//        log.debug("num world wrap entities: "+getEngine().getEntitiesFor(FAMILY).size());
 
         Direction direction = movement.getDirection();
         float x = position.getX(); float y = position.getY();

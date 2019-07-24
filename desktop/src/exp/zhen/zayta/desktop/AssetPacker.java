@@ -26,11 +26,11 @@ public class AssetPacker {
 //        );
 
 //        //for wakeplay
-//        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/gameplay/wakeplay",
-//                ASSETS_PATH + "/gameplay/wakeplay",
-//                "wakeplay"
-//        );
+        TexturePacker.process(settings,
+                RAW_ASSETS_PATH + "/gameplay/wakeplay",
+                ASSETS_PATH + "/gameplay/wakeplay",
+                "wakeplay"
+        );
 
         //for ui
 //        TexturePacker.process(settings,
@@ -40,11 +40,11 @@ public class AssetPacker {
 //        );
 
 //        //misc
-        TexturePacker.process(settings,
-                RAW_ASSETS_PATH + "/gameplay/wakeplay/generated_map_tiles",
-                ASSETS_PATH + "/gameplay/wakeplay/generated_map_tiles",
-                "generated_map_tiles"
-        );
+//        TexturePacker.process(settings,
+//                RAW_ASSETS_PATH + "/gameplay/wakeplay/generated_map_tiles",
+//                ASSETS_PATH + "/gameplay/wakeplay/generated_map_tiles",
+//                "generated_map_tiles"
+//        );
 
 
     }

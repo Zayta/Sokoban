@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 
 import exp.zhen.zayta.main.game.wake.common.Mappers;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.NonAutoMotionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
@@ -15,7 +16,7 @@ public class MovementSystem extends EntitySystem {
     private final Family MOVING_ENTITIES;
     public MovementSystem()
     {
-        MOVING_ENTITIES = Family.all(Position.class,VelocityComponent.class).get();
+        MOVING_ENTITIES = Family.all(Position.class,VelocityComponent.class).exclude(NonAutoMotionComponent.class).get();//remove the .exclude part to make moveable blocks auto-move
     }
 
     @Override

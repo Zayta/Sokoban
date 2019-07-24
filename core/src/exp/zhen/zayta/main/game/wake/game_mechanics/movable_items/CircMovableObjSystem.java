@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
+import exp.zhen.zayta.main.game.wake.game_mechanics.movable_items.components.MovableTag;
 import exp.zhen.zayta.main.game.wake.movement.Direction;
 import exp.zhen.zayta.main.game.wake.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
@@ -25,7 +26,7 @@ import exp.zhen.zayta.main.game.wake.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.Position;
 import exp.zhen.zayta.main.game.wake.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.wake.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.wake.entity.util.Arrangements;
+import exp.zhen.zayta.main.game.wake.map.util.Arrangements;
 import exp.zhen.zayta.main.game.wake.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.wake.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;

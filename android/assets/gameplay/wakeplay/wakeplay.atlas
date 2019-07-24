@@ -82,6 +82,506 @@ characters/xif
   index: -1
 
 wakeplay3.png
+size: 64,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+emotes/cubikopp/blue/tile000
+  rotate: false
+  xy: 2, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile001
+  rotate: false
+  xy: 2, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile002
+  rotate: false
+  xy: 20, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile003
+  rotate: false
+  xy: 2, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile004
+  rotate: false
+  xy: 20, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile005
+  rotate: false
+  xy: 38, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile006
+  rotate: false
+  xy: 2, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile007
+  rotate: false
+  xy: 20, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile008
+  rotate: false
+  xy: 38, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile009
+  rotate: false
+  xy: 2, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile010
+  rotate: false
+  xy: 20, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile011
+  rotate: false
+  xy: 38, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile012
+  rotate: false
+  xy: 2, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile013
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile014
+  rotate: false
+  xy: 20, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile015
+  rotate: false
+  xy: 38, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile016
+  rotate: false
+  xy: 20, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile017
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile018
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+
+wakeplay4.png
+size: 64,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+emotes/cubikopp/red/tile000
+  rotate: false
+  xy: 2, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile001
+  rotate: false
+  xy: 2, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile002
+  rotate: false
+  xy: 20, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile003
+  rotate: false
+  xy: 2, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile004
+  rotate: false
+  xy: 20, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile005
+  rotate: false
+  xy: 38, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile006
+  rotate: false
+  xy: 2, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile007
+  rotate: false
+  xy: 20, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile008
+  rotate: false
+  xy: 38, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile009
+  rotate: false
+  xy: 2, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile010
+  rotate: false
+  xy: 20, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile011
+  rotate: false
+  xy: 38, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile012
+  rotate: false
+  xy: 2, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile013
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile014
+  rotate: false
+  xy: 20, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile015
+  rotate: false
+  xy: 38, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile016
+  rotate: false
+  xy: 20, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile017
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile018
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+
+wakeplay5.png
+size: 64,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+emotes/cubikopp/yellow/icon_angry
+  rotate: false
+  xy: 2, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_bigsmile
+  rotate: false
+  xy: 2, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_blush
+  rotate: false
+  xy: 20, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_confused
+  rotate: false
+  xy: 2, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_cool
+  rotate: false
+  xy: 20, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_cry
+  rotate: false
+  xy: 38, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_eek
+  rotate: false
+  xy: 2, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_important
+  rotate: false
+  xy: 20, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_kiss
+  rotate: false
+  xy: 38, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_lol
+  rotate: false
+  xy: 2, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_neutral
+  rotate: false
+  xy: 20, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_sad
+  rotate: false
+  xy: 38, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_sick
+  rotate: false
+  xy: 2, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_smile
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_surprised
+  rotate: false
+  xy: 20, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_think
+  rotate: false
+  xy: 38, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_tongue
+  rotate: false
+  xy: 20, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_twisted
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_wink
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+
+wakeplay6.png
+size: 2048,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+emotes/special/1024
+  rotate: false
+  xy: 920, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/128
+  rotate: false
+  xy: 614, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/16
+  rotate: false
+  xy: 308, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/2
+  rotate: false
+  xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/2048
+  rotate: false
+  xy: 1022, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/256
+  rotate: false
+  xy: 716, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/32
+  rotate: false
+  xy: 410, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/4
+  rotate: false
+  xy: 104, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/512
+  rotate: false
+  xy: 818, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/64
+  rotate: false
+  xy: 512, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+emotes/special/8
+  rotate: false
+  xy: 206, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+
+wakeplay7.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
@@ -115,7 +615,349 @@ flames/ring_fire
   offset: 0, 0
   index: -1
 
-wakeplay4.png
+wakeplay8.png
+size: 256,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+generated_map_tiles/corner-0
+  rotate: false
+  xy: 2, 65
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-1
+  rotate: false
+  xy: 29, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-10
+  rotate: false
+  xy: 137, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-11
+  rotate: false
+  xy: 155, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-12
+  rotate: false
+  xy: 173, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-13
+  rotate: false
+  xy: 191, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-14
+  rotate: false
+  xy: 209, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-2
+  rotate: false
+  xy: 2, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-3
+  rotate: false
+  xy: 47, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-4
+  rotate: false
+  xy: 2, 29
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-5
+  rotate: false
+  xy: 65, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-6
+  rotate: false
+  xy: 2, 11
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-7
+  rotate: false
+  xy: 83, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-8
+  rotate: false
+  xy: 101, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/corner-9
+  rotate: false
+  xy: 119, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/cornerF-0
+  rotate: false
+  xy: 227, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/cornerF-1
+  rotate: false
+  xy: 20, 65
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/cornerF-3
+  rotate: false
+  xy: 20, 47
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/cornerF-7
+  rotate: false
+  xy: 20, 29
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-0
+  rotate: false
+  xy: 20, 11
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-1
+  rotate: false
+  xy: 38, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-11
+  rotate: false
+  xy: 38, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-2
+  rotate: false
+  xy: 38, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-3
+  rotate: false
+  xy: 56, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-5
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-7
+  rotate: false
+  xy: 56, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeF-8
+  rotate: false
+  xy: 74, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-0
+  rotate: false
+  xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-1
+  rotate: false
+  xy: 56, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-10
+  rotate: false
+  xy: 74, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-11
+  rotate: false
+  xy: 92, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-12
+  rotate: false
+  xy: 110, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-13
+  rotate: false
+  xy: 128, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-14
+  rotate: false
+  xy: 92, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-2
+  rotate: false
+  xy: 74, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-3
+  rotate: false
+  xy: 92, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-4
+  rotate: false
+  xy: 56, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-5
+  rotate: false
+  xy: 56, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-6
+  rotate: false
+  xy: 74, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-7
+  rotate: false
+  xy: 92, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-8
+  rotate: false
+  xy: 110, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeL-9
+  rotate: false
+  xy: 74, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeS-11
+  rotate: false
+  xy: 146, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeS-2
+  rotate: false
+  xy: 92, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeS-5
+  rotate: false
+  xy: 110, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edgeS-8
+  rotate: false
+  xy: 128, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/edges_convex
+  rotate: false
+  xy: 2, 110
+  size: 240, 16
+  orig: 240, 16
+  offset: 0, 0
+  index: -1
+generated_map_tiles/white
+  rotate: false
+  xy: 2, 83
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+
+wakeplay9.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
@@ -156,7 +998,7 @@ light_effects/light_effects5
   offset: 0, 0
   index: -1
 
-wakeplay5.png
+wakeplay10.png
 size: 256,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -169,7 +1011,7 @@ monsters/zemus
   offset: 0, 0
   index: -1
 
-wakeplay6.png
+wakeplay11.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -217,7 +1059,7 @@ orange_weapon_slash/1/Alternative_3
   offset: 0, 0
   index: 6
 
-wakeplay7.png
+wakeplay12.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -265,7 +1107,7 @@ orange_weapon_slash/2/Alternative_3
   offset: 0, 0
   index: 12
 
-wakeplay8.png
+wakeplay13.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -313,7 +1155,7 @@ orange_weapon_slash/3/Alternative_3
   offset: 0, 0
   index: 18
 
-wakeplay9.png
+wakeplay14.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -361,7 +1203,7 @@ orange_weapon_slash/4/Alternative_3
   offset: 0, 0
   index: 24
 
-wakeplay10.png
+wakeplay15.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
