@@ -3,8 +3,6 @@ package exp.zhen.zayta.main.story;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -17,7 +15,7 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.UiRegionNames;
-import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
+import exp.zhen.zayta.main.game.personality_engineering_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
 
 
@@ -36,7 +34,7 @@ public class StoryBoardScreen extends ScreenBase {
     protected Actor createUi() {
         Table table = new Table();
 
-        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.WAKE_PLAY);
+        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.LAB);
         Skin uiSkin = assetManager.get(UIAssetDescriptors.UI_SKIN);
 
         TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WPRegionNames.BACKGROUND);

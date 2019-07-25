@@ -5,7 +5,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.wake.movement.PositionTracker;
+import exp.zhen.zayta.main.game.personality_engineering_lab.movement.PositionTracker;
 
 
 public class SizeManager {

@@ -15,8 +15,8 @@ import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.UiRegionNames;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.game.conquest.Conquest;
-import exp.zhen.zayta.main.game.wake.WakeMode;
-import exp.zhen.zayta.main.game.wake.assets.WPRegionNames;
+import exp.zhen.zayta.main.game.personality_engineering_lab.LabGame;
+import exp.zhen.zayta.main.game.personality_engineering_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
 
 
@@ -32,7 +32,7 @@ public class GameScreen extends ScreenBase {
     protected Actor createUi() {
         Table table = new Table();
 
-        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.WAKE_PLAY);
+        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.LAB);
         Skin uiSkin = assetManager.get(UIAssetDescriptors.UI_SKIN);
 
         TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WPRegionNames.BACKGROUND);
@@ -106,7 +106,7 @@ public class GameScreen extends ScreenBase {
 
 
     private void playWakeMode() {
-        game.setScreen(new WakeMode(game));
+        game.setScreen(new LabGame(game));
     }
 
     private void playConquest() {

@@ -5,7 +5,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -13,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.wake.assets.WPAssetDescriptors;
+import exp.zhen.zayta.main.game.personality_engineering_lab.assets.WPAssetDescriptors;
 import exp.zhen.zayta.main.menu.MenuScreen;
 import exp.zhen.zayta.util.GdxUtils;
 
@@ -62,7 +61,7 @@ public class LoadingScreen extends ScreenAdapter {
     }
     private void loadAssets(){
         assetManager.load(UIAssetDescriptors.FONT);
-        assetManager.load(UIAssetDescriptors.WAKE_PLAY);
+        assetManager.load(UIAssetDescriptors.LAB);
         assetManager.load(UIAssetDescriptors.CONQUEST);
         assetManager.load(UIAssetDescriptors.MENU_CLIP);
         assetManager.load(UIAssetDescriptors.UI_SKIN);
