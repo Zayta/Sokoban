@@ -8,8 +8,9 @@ The game centers around various half-dead souls in the Essence Lab. Your goal is
 
 ## Entities
 * Souls - have essence requirement/capacity, and color (Red, orange, yellow, green, blue, purple, white, black). If essence<=0 or essence>capacity, soul disappears.
-* Essence - the "HP" for a soul
+* Essence - has value and color. the "HP" for a soul
 * Monsters - damage souls by removing essence from them.
+  * Colored Monsters - Do extra dmg to souls of its color.
 * Blocks: hinder movement
   * Moveable Blocks - Blocks that can be pushed. They also act as keys for essence.
     * Colored movable blocks - blocks that can only be pushed by souls of its color
