@@ -13,6 +13,7 @@ The game centers around various half-dead souls in the Essence Lab. Your goal is
 * Blocks: hinder movement
   * Moveable Blocks - Blocks that can be pushed. They also act as keys for essence.
     * Colored movable blocks - blocks that can only be pushed by souls of its color
+  * Slideable Blocks - Blocks that keep moving when pushed, until they encounter a wall or immovable block  
   * Immovable Blocks - Blocks that have fixed position
   * Moving Blocks - Blocks that continuously move in a pattern around a fixed point.
 * Items
