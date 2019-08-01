@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class UIAssetDescriptors {
 
     public static final AssetDescriptor<TextureAtlas> LAB =
-            new AssetDescriptor<TextureAtlas>("gameplay/personality_engineering_lab/personality_engineering_lab.atlas", TextureAtlas.class);
+            new AssetDescriptor<TextureAtlas>("gameplay/essence_lab/essence_lab.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> CONQUEST =
             new AssetDescriptor<TextureAtlas>("gameplay/conquest/conquest.atlas", TextureAtlas.class);

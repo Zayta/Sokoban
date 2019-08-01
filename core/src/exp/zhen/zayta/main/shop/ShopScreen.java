@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.UiRegionNames;
-import exp.zhen.zayta.main.game.personality_engineering_lab.assets.WPRegionNames;
+import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;
 import exp.zhen.zayta.main.ScreenBase;
 

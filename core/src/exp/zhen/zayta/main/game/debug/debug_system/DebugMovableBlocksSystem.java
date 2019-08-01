@@ -13,11 +13,11 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.personality_engineering_lab.common.Mappers;
-import exp.zhen.zayta.main.game.personality_engineering_lab.game_mechanics.mission.movable_items.components.MovableTag;
-import exp.zhen.zayta.main.game.personality_engineering_lab.movement.component.Position;
-import exp.zhen.zayta.main.game.personality_engineering_lab.movement.component.RectangularBoundsComponent;
-import exp.zhen.zayta.main.game.personality_engineering_lab.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.MovableTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
 
 public class DebugMovableBlocksSystem extends IteratingSystem {
     private static final Logger log = new Logger(DebugPositionTrackerSystem.class.getName(),Logger.DEBUG);

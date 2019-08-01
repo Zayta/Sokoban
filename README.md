@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-"# NUR_Nighters" 
-=======
+
 This is a work of fiction.
 # NUR 
 ### *Would you ever wish for immortality?*
@@ -35,4 +33,3 @@ Use arrow keys to move playable characters and spacebar to put down unit.
 Swipe to move and tap to put down unit.
 *Swipe up and all playable characters move up, down and all down, etc*
 
->>>>>>> dc6d43aa17e66777019722afd2afc56439f3f799

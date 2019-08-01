@@ -25,11 +25,11 @@ public class AssetPacker {
 //                "conquest"
 //        );
 
-//        //for personality_engineering_lab
+//        //for essence_lab
         TexturePacker.process(settings,
-                RAW_ASSETS_PATH + "/gameplay/personality_engineering_lab",
-                ASSETS_PATH + "/gameplay/personality_engineering_lab",
-                "personality_engineering_lab"
+                RAW_ASSETS_PATH + "/gameplay/essence_lab",
+                ASSETS_PATH + "/gameplay/essence_lab",
+                "essence_lab"
         );
 
         //for ui
@@ -41,8 +41,8 @@ public class AssetPacker {
 
 //        //misc
 //        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/gameplay/personality_engineering_lab/generated_map_tiles",
-//                ASSETS_PATH + "/gameplay/personality_engineering_lab/generated_map_tiles",
+//                RAW_ASSETS_PATH + "/gameplay/essence_lab/generated_map_tiles",
+//                ASSETS_PATH + "/gameplay/essence_lab/generated_map_tiles",
 //                "generated_map_tiles"
 //        );
 
