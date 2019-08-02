@@ -22,7 +22,7 @@ public class MapMaker {
 
 //    private static float mapBoundmaxX = SizeManager.WAKE_WORLD_WIDTH - SizeManager.maxObjWidth,
 //                    mapBoundmaxY = SizeManager.WAKE_WORLD_HEIGHT - SizeManager.maxObjHeight;
-    private static Rectangle mapBounds = new Rectangle();
+    private static Rectangle mapBounds = new Rectangle(0,0,SizeManager.WAKE_WORLD_WIDTH - SizeManager.maxObjWidth,SizeManager.WAKE_WORLD_HEIGHT - SizeManager.maxObjHeight);
 
     private static final Logger log = new Logger(MapMaker.class.getName(),Logger.DEBUG);
 
@@ -48,7 +48,7 @@ public class MapMaker {
 
     private void initMapBounds(float left, float bottom, float width, float height) {
         MapMaker.mapBounds.set(left,bottom,width,height);
-        Arrangements.initAvailableKeys(mapBounds.width,(int)mapBounds.height);
+        Arrangements.initAvailableKeys(mapBounds.width,mapBounds.height);
     }
 
     public TiledMap getTiledMap(Map map) {

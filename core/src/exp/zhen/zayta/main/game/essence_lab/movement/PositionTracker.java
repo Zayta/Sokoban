@@ -41,13 +41,12 @@ public class PositionTracker {
 
 //    public static int n = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
 
-    public static int n = (int)((MapMaker.getMapBoundmaxX()+SizeManager.maxObjWidth)/SizeManager.maxObjWidth);
+    public static int n = (int)((MapMaker.getMapBounds().getWidth())/SizeManager.maxObjWidth);
 
-
+    //todo when modifything generateKey, make sure to modify Arrangements.generateKey too
     public static int generateKey(float left, float bottom/*, int maxObjWidth, int maxObjHeight*/)
     {//todo this may cause error as i*maxObjHeight might be bigger than screenHeight
-        float top = bottom+SizeManager.maxObjHeight;
-        int i = (int)(top/SizeManager.maxObjHeight),j = (int)(left/SizeManager.maxObjWidth)/*, n= mapWidth/maxObjWidth*/;
+        int i = (int)(bottom/SizeManager.maxObjHeight),j = (int)(left/SizeManager.maxObjWidth)/*, n= mapWidth/maxObjWidth*/;
         return i*n+j;
     }
 

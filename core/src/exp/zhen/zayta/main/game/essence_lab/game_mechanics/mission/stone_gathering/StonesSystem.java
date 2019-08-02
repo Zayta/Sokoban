@@ -59,6 +59,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
+            log.debug("Point "+i+ " is: ("+points[i].x+","+points[i].y+") and key is "+key);
             stonesBiMap.put(key,makeStone(points[i].x,points[i].y, StoneTag.class,WPRegionNames.STONE));
 //            log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
 //            +stonesBiMap.get(key));

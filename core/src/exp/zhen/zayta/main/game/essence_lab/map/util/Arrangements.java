@@ -25,14 +25,19 @@ public class Arrangements
 
 //    private static HashSet <Integer> availableKeys = new HashSet<Integer>();
     private static ArrayList <Integer> availableKeys = new ArrayList<Integer>();
-    public static void initAvailableKeys(float mapWidth, float mapHeight){
-        int numRows = (int) (mapHeight/SizeManager.maxObjHeight), numColumns = PositionTracker.n;
-        int capacity = numRows*numColumns;
+    public static void initAvailableKeys(float mapWidth,float mapHeight){
+//        log.debug("MapHeight is "+mapHeight);
+//        int numRows = (int) (mapHeight/SizeManager.maxObjHeight), numColumns = PositionTracker.n;
+//        log.debug("NumRows is "+numRows);
+//        log.debug("NumColumns is "+numColumns);
+        int capacity = PositionTracker.generateKey(mapWidth,mapHeight);//the last key
+        log.debug("Capacity is "+capacity);
         for(int i = 0; i<capacity; i++){
             availableKeys.add(i);
         }
     }
 
+    //todo when modifying this, make sure to change PositionTracker too
     public static Vector2[] generateRandomUCoordinates(int maxNumCoordinates){
         ArrayList<Vector2> points = new ArrayList<Vector2>();
 
@@ -51,10 +56,12 @@ public class Arrangements
         }
             int keyIndex = GdxUtils.RANDOM.nextInt(availableKeys.size());
             int key = availableKeys.get(keyIndex);
+
             //make rectangle from key
-            rectangle.setPosition(key/PositionTracker.n,key%PositionTracker.n);
+            rectangle.setPosition((key%PositionTracker.n)*SizeManager.maxObjWidth,(key/PositionTracker.n)*SizeManager.maxObjHeight);
             availableKeys.remove(keyIndex);
             points.add(new Vector2(rectangle.x,rectangle.y));
+            log.debug("Point "+i+" should be: ("+rectangle.x+","+rectangle.y+"), and availKey used was: "+key+"but PositionTracker key is "+PositionTracker.generateKey(rectangle.x,rectangle.y));
         }
         log.debug("Available Keys: "+availableKeys);
         Vector2[] ret= points.toArray(new Vector2[points.size()]);
