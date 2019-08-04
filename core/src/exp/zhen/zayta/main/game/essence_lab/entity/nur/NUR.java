@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
@@ -21,7 +22,7 @@ import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
 public class NUR {
-  
+  private static final Logger log = new Logger(NUR.class.getName(),Logger.DEBUG);
     private PooledEngine engine;
     private TextureAtlas labAtlas;
     private BiMap <Undead, Fighter> nighters;
@@ -35,15 +36,19 @@ public class NUR {
     }
     
     private void initNighters(){
+        nighters.put(Undead.Tenyu, new Fighter("Tenyu",
+                labAtlas.findRegion(WPRegionNames.TENYU),
+                100,10,10));
         nighters.put(Undead.Lorale, new Fighter("Lorale",
                 labAtlas.findRegion(WPRegionNames.LORALE),
-                100,10,10));    
+                100,10,10));
+
     }
 
     public Entity getNighter(Undead undead){
         Entity nighter = engine.createEntity();
         Fighter fighter = nighters.get(undead);
-
+//        log.debug("Fighter is "+fighter);
         addIdentityComponents(nighter,fighter.getName());
         addAnimationComponents(nighter,fighter.getTextureRegion());
         addBattleComponents(nighter,fighter.getHp(),fighter.getAtk(),fighter.getDef());

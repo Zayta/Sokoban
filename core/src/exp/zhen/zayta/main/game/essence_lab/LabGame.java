@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.debug.debug_system.DebugBlocksSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.NPCReaperSystem;
@@ -24,6 +23,7 @@ import exp.zhen.zayta.main.game.essence_lab.game_mechanics.PlayerReaperSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.MoveItemSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.PickUpMovableItem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.RemoveItemSystem;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.locker.LockerByColorSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.UpdatePushDirectionSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.npc_ai.NPCNonstopMovementSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.bomb_trigger.LandmineExplosionSystem;
@@ -32,20 +32,21 @@ import exp.zhen.zayta.main.game.essence_lab.entity.EntityLab;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.stone_gathering.StonesSystem;
 import exp.zhen.zayta.main.game.essence_lab.input.InputSystem;
 import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
-import exp.zhen.zayta.main.game.essence_lab.map.blocks.BlockSystem;
-import exp.zhen.zayta.main.game.essence_lab.map.blocks.UnblockSystem;
-import exp.zhen.zayta.main.game.essence_lab.map.blocks.block_player.MapBlockPauseSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.BlockSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.UnblockSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.MapBlockPauseSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CircularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.RectangularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CameraUpdateSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.PositionTrackerUpdateSystem;
-import exp.zhen.zayta.main.game.essence_lab.map.blocks.block_npc.MapBlockChangeDirectionSystem;
-import exp.zhen.zayta.main.game.essence_lab.map.blocks.block_npc.IntervalChangeDirectionSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.block_npc.MapBlockChangeDirectionSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.block_npc.IntervalChangeDirectionSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.HudRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.MovementSystem;
+import exp.zhen.zayta.main.game.essence_lab.render.LockerRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.MonoColorEntityRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.MultiColorEntityRenderSystem;
-import exp.zhen.zayta.main.game.essence_lab.map.blocks.block_player.WorldWrapPauseSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCircularBoundsRenderSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
@@ -127,7 +128,7 @@ public class LabGame implements Screen {
             engine.addSystem(new MapBlockPauseSystem(collisionLayer));//sb before movement
         }
 
-        engine.addSystem(new CameraUpdateSystem(orthographicCamera,RPG.userData.Player,tiledMap));
+        engine.addSystem(new CameraUpdateSystem(orthographicCamera,tiledMap));
 
         engine.addSystem(new TiledMapRenderSystem(tiledMap,viewport));
 
@@ -167,6 +168,7 @@ public class LabGame implements Screen {
     }
 
     private void addRenderSystems(){
+        engine.addSystem(new LockerRenderSystem(viewport,shapeRenderer));//must be first cuz its background
 //        engine.addSystem(new GeneratedMapRenderSystem(mapMaker.generateMap(),viewport,game.getBatch()));
         engine.addSystem(new MultiColorEntityRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch(),assetManager.get(UIAssetDescriptors.FONT)));
@@ -174,7 +176,6 @@ public class LabGame implements Screen {
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
 
         engine.addSystem(new MonoColorEntityRenderSystem(viewport));//sb last cuz it changes batch color.
-
         if(DEBUG) {
             engine.addSystem(new GridRenderSystem(viewport, shapeRenderer));
             engine.addSystem(new DebugCircularBoundsRenderSystem(viewport, shapeRenderer));
@@ -194,6 +195,7 @@ public class LabGame implements Screen {
 
     private void addGameControllingSystems(){
         engine.addSystem(new StonesSystem(game,engine));
+        engine.addSystem(new LockerByColorSystem(game,engine));
 //        engine.addSystem(new SpiritSystem(game,engine));
         engine.addSystem(new PlayerReaperSystem(game,engine));
     }

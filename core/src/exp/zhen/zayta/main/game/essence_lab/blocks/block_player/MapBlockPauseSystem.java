@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.map.blocks.block_player;
+package exp.zhen.zayta.main.game.essence_lab.blocks.block_player;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.essence_lab.map.blocks.block_npc.MapBlockChangeDirectionSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.block_npc.MapBlockChangeDirectionSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;

@@ -1,6 +1,7 @@
 package exp.zhen.zayta.main.game.essence_lab.movement;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
@@ -43,11 +44,17 @@ public class PositionTracker {
 
     public static int n = (int)((MapMaker.getMapBounds().getWidth())/SizeManager.maxObjWidth);
 
-    //todo when modifything generateKey, make sure to modify Arrangements.generateKey too
+    //todo when modifything generateKey, make sure to modify getPositionFromKey too
     public static int generateKey(float left, float bottom/*, int maxObjWidth, int maxObjHeight*/)
     {//todo this may cause error as i*maxObjHeight might be bigger than screenHeight
         int i = (int)(bottom/SizeManager.maxObjHeight),j = (int)(left/SizeManager.maxObjWidth)/*, n= mapWidth/maxObjWidth*/;
         return i*n+j;
+    }
+    /*returns bottom left corner of entity from its key*/
+    public static Vector2 getPositionFromKey(int key){
+        return new Vector2(
+                (key%PositionTracker.n)*SizeManager.maxObjWidth,
+                (key/PositionTracker.n)*SizeManager.maxObjHeight);
     }
 
 

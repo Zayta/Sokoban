@@ -17,6 +17,7 @@ import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorCo
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.MovableTag;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.NonAutoMotionComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.PushComponent;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.locker.LockerKeyTag;
 import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
@@ -171,6 +172,9 @@ public class PickUpMovableItem extends EntitySystem  {
         ColorComponent colorComponent = engine.createComponent(ColorComponent.class);
         colorComponent.setColor(Color.CYAN);
         entity.add(colorComponent);
+
+        LockerKeyTag lockerKeyTag = engine.createComponent(LockerKeyTag.class);
+        entity.add(lockerKeyTag);
 
         return entity;
     }

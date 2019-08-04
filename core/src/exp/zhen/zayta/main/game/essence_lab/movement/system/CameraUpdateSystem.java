@@ -2,37 +2,55 @@ package exp.zhen.zayta.main.game.essence_lab.movement.system;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Logger;
 
+import java.util.ArrayList;
+
+import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 
 public class CameraUpdateSystem extends EntitySystem {
 
     private static final Logger log = new Logger(CameraUpdateSystem.class.getName(),Logger.DEBUG);
-    private Camera camera; private Entity player; private TiledMap tiledMap;
+    private Camera camera; private TiledMap tiledMap;
 
-    public CameraUpdateSystem(Camera camera, Entity player, TiledMap tiledMap){
-        this.camera = camera; this.player = player;
+    private Family PLAYABLE_CHARACTERS = Family.all(
+            PlayerTag.class,Position.class
+    ).get();
+    private ImmutableArray<Entity> playableCharacters;
+    public CameraUpdateSystem(Camera camera, TiledMap tiledMap){
+        this.camera = camera;
         this.tiledMap = tiledMap;
+        this.playableCharacters = getEngine().getEntitiesFor(PLAYABLE_CHARACTERS);
     }
 
     @Override
     public void update(float deltaTime) {
-        Position playerPos = player.getComponent(Position.class);
-        if(playerPos!=null) {
-            camera.position.x = playerPos.getX();
-            camera.position.y = playerPos.getY();
+        //todo need to make a way to zoom out if two players are too far apart, then can't see either of them.
+        int num = playableCharacters.size();
+        float posX =0, posY =0;
+        for(int i = 0; i<num;i++) {
+            Entity player = this.playableCharacters.get(i);
 
-           checkBoundsOfCamera();
-
-
-            camera.update();
+            Position playerPos = player.getComponent(Position.class);
+            posX +=playerPos.getX();
+            posY +=playerPos.getY();
         }
+        camera.position.x = posX/num;
+        camera.position.y = posY/num;
+
+        checkBoundsOfCamera();
+
+
+        camera.update();
 
     }
+
     private void checkBoundsOfCamera(){
         MapProperties prop = tiledMap.getProperties();
 

@@ -26,12 +26,12 @@ public class PlayerReaperSystem extends GameControllingSystem {
 
     @Override
     public void update(float deltaTime) {
-        boolean failed = true;
         for(Entity playable_character:entities){ //if all playable characters have no hp, player failed mission.
-            failed = failed && (Mappers.HEALTH.get(playable_character).getHp()<=0);
-        }
-        if(failed){
-            setGameOver();
+            if(Mappers.HEALTH.get(playable_character).getHp()<=0){
+                getEngine().removeEntity(playable_character);
+                if(entities.size()<=0)
+                    setGameOver();
+            }
         }
 
     }

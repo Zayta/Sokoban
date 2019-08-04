@@ -55,6 +55,7 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
     }
     private void goToMenu(){
         PositionTracker.reset();
+//        RPG.userData.Player.clear();
         getEngine().removeAllEntities();
         game.setScreen(new MenuScreen(game));
     }

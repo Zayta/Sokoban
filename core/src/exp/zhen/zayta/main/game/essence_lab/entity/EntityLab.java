@@ -5,14 +5,15 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
+import exp.zhen.zayta.main.game.essence_lab.blocks.BlockComponent;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.PlayerTag;
@@ -20,6 +21,7 @@ import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.nur.NUR;
 import exp.zhen.zayta.main.game.essence_lab.entity.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.PushComponent;
+import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsComponent;
@@ -39,6 +41,7 @@ public class EntityLab {
     private PooledEngine engine;
     private TextureAtlas labAtlas;
     private NUR nur; private Utsubyo utsubyo;
+
     public EntityLab(PooledEngine engine, AssetManager assetManager)
     {
         this.engine = engine;
@@ -49,28 +52,23 @@ public class EntityLab {
     public void addEntities() {
 //        initCivilization();
         initMonsters();
-        addPlayer();
+        addNighters(2);
     }
 
     /**For player**/
-    private void addPlayer(){
+    private void addNighters(int numNighters){
         /*add NighterPool*/
-        float playerStartX = (SizeManager.WAKE_WORLD_WIDTH - SizeManager.maxObjWidth)/2;
-        float playerStartY = 1-SizeManager.maxObjHeight/2;
-        Entity consciousNighter = nur.getNighter(Undead.Lorale);
+        Vector2[] points = Arrangements.generateRandomUCoordinates(numNighters);
 
-        PlayerTag playerTag = engine.createComponent(PlayerTag.class);
-        consciousNighter.add(playerTag);
-        addMovementComponents(engine, consciousNighter,playerStartX,playerStartY,PositionTracker.PositionBiMap.nightersBiMap);
-
-
-        PushComponent pocketComponent = engine.createComponent(PushComponent.class);
-        consciousNighter.add(pocketComponent);
-
-        engine.addEntity(consciousNighter);
-
-
-        RPG.userData.Player = consciousNighter;
+        for(int i = 0; i<points.length;i++) {
+            Entity nighter = nur.getNighter(Undead.values()[i]);
+            PlayerTag playerTag = engine.createComponent(PlayerTag.class);
+            nighter.add(playerTag);
+            addMovementComponents(engine, nighter, points[i].x, points[i].y, PositionTracker.PositionBiMap.nightersBiMap);
+            PushComponent pocketComponent = engine.createComponent(PushComponent.class);
+            nighter.add(pocketComponent);
+            engine.addEntity(nighter);
+        }
     }
 
 
@@ -155,7 +153,9 @@ public class EntityLab {
 
         MovementLimitationComponent movementLimitationComponent = engine.createComponent(MovementLimitationComponent.class);
         entity.add(movementLimitationComponent);
-        //todo for ghostification remove movementLimitationComponent
+        //todo for ghostification remove movementLimitationComponent and block component
+        BlockComponent blockComponent = engine.createComponent(BlockComponent.class);
+        entity.add(blockComponent);
     }
 
     public static void addRoundPositionComponents(PooledEngine engine,Entity entity,float x, float y){

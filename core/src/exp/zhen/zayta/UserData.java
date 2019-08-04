@@ -4,6 +4,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
+import java.util.ArrayList;
+
 
 public class UserData { /*monitors how much hp a player has left in the game
  and stores levels unlocked and total points earned.*/
@@ -14,7 +16,7 @@ public class UserData { /*monitors how much hp a player has left in the game
     private final String essence = "essence";
     private Preferences preferences;
 
-    public Entity Player;
+//    public ArrayList<Entity> Player = new;
 
 
     UserData() {

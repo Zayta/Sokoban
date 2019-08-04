@@ -8,6 +8,7 @@ import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorCo
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.MissionComponent;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.locker.LockerComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.MovableTag;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.PushComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitationComponent;
@@ -52,5 +53,7 @@ public class Mappers {
     public static final ComponentMapper<PushComponent> POCKET = ComponentMapper.getFor(PushComponent.class);
     public static final ComponentMapper<MovableTag> ITEM_SHOVE = ComponentMapper.getFor(MovableTag.class);
     public static final ComponentMapper<ColorComponent> COLOR = ComponentMapper.getFor(ColorComponent.class);
+    public static final ComponentMapper<LockerComponent> LOCKER = ComponentMapper.getFor(LockerComponent.class);
+
     private Mappers(){}
 }

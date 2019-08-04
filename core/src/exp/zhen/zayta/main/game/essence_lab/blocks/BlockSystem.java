@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.map.blocks;
+package exp.zhen.zayta.main.game.essence_lab.blocks;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
-import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
@@ -28,6 +27,8 @@ import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.GdxUtils;
 
+import static exp.zhen.zayta.main.game.essence_lab.blocks.BlocksTrackerSystem.blocksBiMap;
+
 
 public class BlockSystem extends IteratingSystem implements CollisionListener{
 
@@ -37,7 +38,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
     private TextureAtlas labAtlas;
 
     private int numBlocks = GdxUtils.RANDOM.nextInt(10);
-    private final BiMap<Integer,Entity> blocksBiMap;
+//    private final BiMap<Integer,Entity> blocksBiMap;
     //families are entities that can collide
     private static Family MOVING_ENTITIES = Family.all(
             Position.class,
@@ -52,7 +53,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         super(MOVING_ENTITIES);
         this.engine = engine;
         this.labAtlas = labAtlas;
-        blocksBiMap = new BiMap<Integer, Entity>();
+//        blocksBiMap = BlocksTrackerSystem.blocksBiMap;
         initBlocks();
     }
 

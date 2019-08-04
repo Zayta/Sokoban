@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.map.blocks;
+package exp.zhen.zayta.main.game.essence_lab.blocks;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

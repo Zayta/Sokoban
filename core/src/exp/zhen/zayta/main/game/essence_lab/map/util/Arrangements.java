@@ -20,16 +20,8 @@ public class Arrangements
 
     private static final Logger log = new Logger(Arrangements.class.getName(),Logger.DEBUG);
 //    //todo this occupiedPositions BiMap only accounts for initial positions. It is not like PositionTracker which has a system that updates. TO make it account for moving positions, do the same as in PositionTracker(Make a system and entities to have a certain component, and put them in teh biMap
-//    private static BiMap<Integer,Entity> occupiedPositions = new BiMap<Integer, Entity>();
-//    private static ArrayList<Integer> generatedCoordinates = new ArrayList<Integer>();
-
-//    private static HashSet <Integer> availableKeys = new HashSet<Integer>();
     private static ArrayList <Integer> availableKeys = new ArrayList<Integer>();
     public static void initAvailableKeys(float mapWidth,float mapHeight){
-//        log.debug("MapHeight is "+mapHeight);
-//        int numRows = (int) (mapHeight/SizeManager.maxObjHeight), numColumns = PositionTracker.n;
-//        log.debug("NumRows is "+numRows);
-//        log.debug("NumColumns is "+numColumns);
         int capacity = PositionTracker.generateKey(mapWidth,mapHeight);//the last key
         log.debug("Capacity is "+capacity);
         for(int i = 0; i<capacity; i++){
@@ -58,7 +50,8 @@ public class Arrangements
             int key = availableKeys.get(keyIndex);
 
             //make rectangle from key
-            rectangle.setPosition((key%PositionTracker.n)*SizeManager.maxObjWidth,(key/PositionTracker.n)*SizeManager.maxObjHeight);
+            Vector2 decodedPos = PositionTracker.getPositionFromKey(key);
+            rectangle.setPosition(decodedPos.x,decodedPos.y);
             availableKeys.remove(keyIndex);
             points.add(new Vector2(rectangle.x,rectangle.y));
             log.debug("Point "+i+" should be: ("+rectangle.x+","+rectangle.y+"), and availKey used was: "+key+"but PositionTracker key is "+PositionTracker.generateKey(rectangle.x,rectangle.y));
@@ -67,83 +60,6 @@ public class Arrangements
         Vector2[] ret= points.toArray(new Vector2[points.size()]);
         return ret;
     }
-
-
-
-
-
-//    private static void refreshAvailableKeys(int currentKey,Rectangle rectangle){
-//            float right = rectangle.x+rectangle.width, top = rectangle.y+rectangle.height;
-//            int [] keys = {
-//                    currentKey,
-//                    PositionTracker.generateKey(rectangle.x,top),
-//                    PositionTracker.generateKey(right,rectangle.y),
-//                    PositionTracker.generateKey(right,top)
-//            };
-////            int keyAbove = currentKey+PositionTracker.n;
-////            int keyBelow = currentKey-PositionTracker.n;
-////            int [] keys = new int[]{
-////                    currentKey-1,currentKey,currentKey+1,
-////                    keyAbove-1, keyAbove, keyAbove+1,
-////                    keyBelow-1, keyBelow, keyBelow+1
-////            };
-//            for(int key:keys){
-//                availableKeys.remove(key);
-//            }
-//            log.debug("removed keys: "+ Arrays.toString(keys));
-//
-//    }
-//    public static boolean allFourKeysAvailable(Rectangle rectangle,int currentKey){
-//        float right = rectangle.x+rectangle.width, top = rectangle.y+rectangle.height;
-//        int [] keys = {
-//                currentKey,
-//                PositionTracker.generateKey(rectangle.x,top),
-//                PositionTracker.generateKey(right,rectangle.y),
-//                PositionTracker.generateKey(right,top)
-//        };
-//        return availableKeys.contains(PositionTracker.generateKey(rectangle.x, rectangle.y))&&
-//                availableKeys.contains(PositionTracker.generateKey(right, rectangle.y))&&
-//                availableKeys.contains(PositionTracker.generateKey(rectangle.x, top))&&
-//                availableKeys.contains(PositionTracker.generateKey(rectangle.x, top));
-//    }
-//    @Override
-//    public boolean contains(Object o) {
-//        boolean hasValue = false;
-//        for(Object i: this){
-//            hasValue = hasValue || i.equals(o);
-//        }
-//        return hasValue;
-//    }
-//};
-
-//    public static Vector2[] generateRandomUCoordinates(int maxNumCoordinates){
-//        ArrayList<Vector2> points = new ArrayList<Vector2>();
-//
-//
-//        Rectangle mapBounds = MapMaker.getMapBounds();
-//        int maxX = (int)(mapBounds.width);
-//        int maxY = (int)(mapBounds.height);
-//
-//        Rectangle rectangle = new Rectangle();
-//        rectangle.width = SizeManager.maxObjWidth;
-//        rectangle.height = SizeManager.maxObjHeight;
-//        for(int i = 0; i<maxNumCoordinates;i++) {
-//            if(availableKeys.size()<4)//if no more available keys, dont generate.
-//                break;
-//            int key;
-//            do {
-//                rectangle.x = GdxUtils.RANDOM.nextInt(maxX) + GdxUtils.RANDOM.nextFloat();
-//                rectangle.y = GdxUtils.RANDOM.nextInt(maxY) + GdxUtils.RANDOM.nextFloat();
-//
-//                key =PositionTracker.generateKey(rectangle.x,rectangle.y);
-//            } while ((!withinBounds(rectangle))||!allFourKeysAvailable(rectangle,key));
-//            refreshAvailableKeys(key,rectangle);
-//            points.add(new Vector2(rectangle.x,rectangle.y));
-//        }
-//        log.debug("Available Keys: "+availableKeys);
-//        Vector2[] ret= points.toArray(new Vector2[points.size()]);
-//        return ret;
-//    }
 
 
     public static Vector2[] generateRandomCoordinates(int numCoordinates){

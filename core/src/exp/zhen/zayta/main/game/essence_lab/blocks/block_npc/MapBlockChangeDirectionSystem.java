@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.map.blocks.block_npc;
+package exp.zhen.zayta.main.game.essence_lab.blocks.block_npc;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;

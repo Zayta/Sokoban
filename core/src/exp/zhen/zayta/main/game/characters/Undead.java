@@ -1,9 +1,9 @@
 package exp.zhen.zayta.main.game.characters;
 
 public enum Undead {
-    Ruzo,
-    Tenyu,
     Lorale,
+    Tenyu,
+    Ruzo,
     Letra,
     Taria,
     Cumin,
