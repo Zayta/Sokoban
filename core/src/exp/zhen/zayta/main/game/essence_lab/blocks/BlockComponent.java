@@ -8,9 +8,9 @@ import exp.zhen.zayta.util.BiMap;
 public class BlockComponent implements Component {
 //    private static BiMap<Integer,Entity> blocksBiMap = new BiMap<Integer, Entity>();
 //
-    public void init(int key, Entity entity){
-        BlocksTrackerSystem.blocksBiMap.put(key, entity);
-    }
+//    public void init(int key, Entity entity){
+//        BlocksTrackerSystem.blocksBiMap.put(key, entity);
+//    }
 
 
 }

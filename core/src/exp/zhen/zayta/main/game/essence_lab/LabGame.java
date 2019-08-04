@@ -18,6 +18,7 @@ import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
+//import exp.zhen.zayta.main.game.essence_lab.blocks.BlocksTrackerSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.PlayerReaperSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.MoveItemSystem;
@@ -136,7 +137,7 @@ public class LabGame implements Screen {
 
     private void addEntityMovementSystems(){
         engine.addSystem(new PositionTrackerUpdateSystem());//should be first
-
+//        engine.addSystem(new BlocksTrackerSystem());
 //        engine.addSystem(new CircMovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));//sb before movement. defective.
 
         engine.addSystem(new WorldWrapPauseSystem(mapMaker.getMapBoundmaxX(),mapMaker.getMapBoundmaxY()));

@@ -4,9 +4,13 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
+
+import java.util.Arrays;
 
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
@@ -50,6 +54,8 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
             checkCollision(nighter,keys);
 //            updateCurrentBattles(nighter);
         }
+        log.debug("NumNighters are "+nighters.size());
+        log.debug("\nCurrentFighters are: "+ currentFighters);
     }
 
     private void checkCollision(Entity nighter, int [] keys){
@@ -61,16 +67,13 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
 //                    log.debug("NighterXCivilian collide");
                     if(collisionUnhandled(nighter,monster)) {
                         collideEvent(nighter, monster);
-                        currentFighters.put(nighter,monster);
+//                        currentFighters.put(nighter,monster);
                         currentFighters.put(monster,nighter);
-                        //todo engine.add(new ParticleAnimationSystem()) //store particleAnimationSystem as a variable. make entity w animation and position and texture and dimension components.
-
                         break;
                     }
                 }
                 else{
                     updateCurrentBattles(nighter,monster);
-                    //todo engine.remove(ParticleAnimationSystem)
                 }
             }
         }

@@ -27,8 +27,6 @@ import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.GdxUtils;
 
-import static exp.zhen.zayta.main.game.essence_lab.blocks.BlocksTrackerSystem.blocksBiMap;
-
 
 public class BlockSystem extends IteratingSystem implements CollisionListener{
 
@@ -38,7 +36,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
     private TextureAtlas labAtlas;
 
     private int numBlocks = GdxUtils.RANDOM.nextInt(10);
-//    private final BiMap<Integer,Entity> blocksBiMap;
+    private final BiMap<Integer,Entity> blocksBiMap;
     //families are entities that can collide
     private static Family MOVING_ENTITIES = Family.all(
             Position.class,
@@ -53,7 +51,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         super(MOVING_ENTITIES);
         this.engine = engine;
         this.labAtlas = labAtlas;
-//        blocksBiMap = BlocksTrackerSystem.blocksBiMap;
+        blocksBiMap = new BiMap<Integer, Entity>();
         initBlocks();
     }
 

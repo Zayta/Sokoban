@@ -22,4 +22,6 @@ public class PositionTrackerComponent implements Component {
     public BiMap<Integer, Entity> getPositionBiMap() {
         return positionBiMap;
     }
+
+
 }

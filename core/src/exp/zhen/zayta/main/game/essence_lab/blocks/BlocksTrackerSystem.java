@@ -17,7 +17,7 @@ public class BlocksTrackerSystem extends IteratingSystem {
     private static Family family = Family.all(BlockComponent.class,Position.class).get();
     public BlocksTrackerSystem() {
         super(family);
-        ImmutableArray<Entity> trackedEntities = getEngine().getEntitiesFor(family);
+//        ImmutableArray<Entity> trackedEntities = getEngine().getEntitiesFor(family);
 //        for(Entity entity:trackedEntities){
 //
 //        }

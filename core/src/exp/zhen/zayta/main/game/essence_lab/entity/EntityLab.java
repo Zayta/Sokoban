@@ -154,8 +154,8 @@ public class EntityLab {
         MovementLimitationComponent movementLimitationComponent = engine.createComponent(MovementLimitationComponent.class);
         entity.add(movementLimitationComponent);
         //todo for ghostification remove movementLimitationComponent and block component
-        BlockComponent blockComponent = engine.createComponent(BlockComponent.class);
-        entity.add(blockComponent);
+//        BlockComponent blockComponent = engine.createComponent(BlockComponent.class);
+//        entity.add(blockComponent);//adding block component to entity causes lag cuz of the setPosition taht is used with the blocks.
     }
 
     public static void addRoundPositionComponents(PooledEngine engine,Entity entity,float x, float y){
