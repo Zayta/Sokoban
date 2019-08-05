@@ -43,7 +43,7 @@ public class PlayerReaperSystem extends GameControllingSystem {
 
         if(entities.size()<=0)
             setGameOver();
-        log.debug("\nReaper system Players.size is "+entities.size());
+//        log.debug("\nReaper system Players.size is "+entities.size());
 
     }
 
