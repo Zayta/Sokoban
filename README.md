@@ -1,15 +1,18 @@
 This is a work of fiction
-# NUR_Exchange
-### **
-Once upon a time, there was a fairy who wanted people to be happy. She especially empathized with suffering souls. To make their lives better, she offered to help them by using her only power in the human world: possession.
+#NUR_Nighters
+###*Would you ever wish for immortality?*
+NUR is an organization that strives to build an afterlife for humans. It consists of Nighters, half-dead souls. When people who die without anyone knowing in certain areas of the world, they are offered life-extension iff they gather enough essence from the Essence Lab, which is NUR's screening process for selection of Nighters.
 
-If they wallowed, "I wish someone would make me rich", the fairy would go into their body and pilot their life until they become rich. If they wallowed, "I want friends", the fairy would pilot them and make friends for them. She granted any and all wishes to her selected targets. 
+# NUR_Exchange
+Once upon a time, there was a fairy who wanted people to be happy. She empathized with suffering souls, and wanted to make their lives better. To each soul she heard and believed trustworthy, she offered to help them by using her only power in the human world: possession.
+
+If they wallowed, "I wish someone would make me rich", the fairy would go into their body and pilot their life until they become rich. If they wallowed, "I want friends", the fairy would pilot them and make friends for them. She granted any and all wishes.
 
 However, her identity must remain secret, and therefore she signed contracts with every patron she had. She would possess their body and help them obtain their dream lives, and when she gave them their bodies back, they must never reveal her identity or else they would face instant death. Hence, no one talked about her and only those whom she helped knew about her. 
-### Lab of Styx
-While she is in possession of the bodies, the souls of those bodies wait inside the Lab of Styx. This is a laboratory located near the river Styx, the line between the living and the dead. The Undertaker, one of the leaders of NUR whose job is to guide dead souls to the underworld, watches over it. Because of the fairy's activities, his laire was flooded with souls who did not need to be transported. As a result, he was furious.
+### Essence Lab
+While she is in possession of the bodies, the souls of those bodies wait inside NUR's Essence Lab. The Undertaker watches over it. Because of the fairy's activities, the Essence Lab has been flooded with souls who did not belong. The overpopulation of the Essence Lab has made it difficult for the Undertaker, and as a result he was furious.  
 
-### How to Stay Alive in Styx
+### How to Stay Alive in the Essence Lab
 * Do not touch other souls (instant death)
 * Maintain essence (your soul's health) 
     * Avoid the Guardians
@@ -17,6 +20,7 @@ While she is in possession of the bodies, the souls of those bodies wait inside 
 ### How to Leave Styx
 * Gather enough essence from color-coded compartments.
     * Push the number of blocks with the same color as the compartment into the compartment. (You will unlock a vision of your past.)
+    * Souls can only push blocks of their own color.
     
 ## Gameplay
 ### Entities
