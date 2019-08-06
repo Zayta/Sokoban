@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.debug.debug_system.DebugMovableBlocksSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
 //import exp.zhen.zayta.main.game.essence_lab.blocks.BlocksTrackerSystem;
@@ -183,8 +184,8 @@ public class LabGame implements Screen {
             engine.addSystem(new DebugRectangularBoundsRenderSystem(viewport,shapeRenderer));
             engine.addSystem(new DebugCameraSystem(orthographicCamera, SizeManager.WAKE_WORLD_CENTER_X, SizeManager.WAKE_WORLD_CENTER_Y));
 //            engine.addSystem(new DebugBlocksSystem(viewport,game.getBatch()));
-//            engine.addSystem(new DebugMovableBlocksSystem(viewport,game.getBatch()));
-            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
+            engine.addSystem(new DebugMovableBlocksSystem(viewport,game.getBatch()));
+//            engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
         }
     }
 

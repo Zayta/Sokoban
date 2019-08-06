@@ -91,7 +91,7 @@ public class PickUpMovableItem extends EntitySystem  {
             Entity movable_item = movableBlocksBiMap.get(key);
 
             if (movable_item != null) {
-                if (checkCollisionBetween(entity, movable_item)) {
+                if (movable_item!=entity&& checkCollisionBetween(entity, movable_item)) {//first condition is to make sure if entity is a block, the block that can push is not itself
                     collideEvent(entity, movable_item);
                 }
             }
@@ -109,10 +109,14 @@ public class PickUpMovableItem extends EntitySystem  {
         //implement what happens during collision
         Direction entityDirection = Mappers.MOVEMENT.get(entity).getDirection();
         PushComponent pocketComponent = Mappers.POCKET.get(entity);
-        if(!pocketComponent.getCarriedItems().contains(movable_item)&&entityDirection!=Direction.none){//if pocket does not already hold tht item
-            pocketComponent.add(movable_item);
-            Mappers.ITEM_SHOVE.get(movable_item).setDirection(entityDirection);
-//            Mappers.MOVEMENT.get(movable_item).setDirection(entityDirection);
+        if(!pocketComponent.getCarriedItems().contains(movable_item)
+                &&entityDirection!=Direction.none){//if pocket does not already hold tht item
+
+            PushComponent itemPocket = Mappers.POCKET.get(movable_item);
+            if(itemPocket!=null && !itemPocket.getCarriedItems().contains(entity)) {//if the item to be held does not contain this item
+                pocketComponent.add(movable_item);
+                Mappers.ITEM_SHOVE.get(movable_item).setDirection(entityDirection);
+            }
         }
     }
 
@@ -152,8 +156,8 @@ public class PickUpMovableItem extends EntitySystem  {
         entity.add(positionTrackerComponent);
 
 
-//        PushComponent pocketComponent = engine.createComponent(PushComponent.class);
-//        entity.add(pocketComponent);//todo this makes everything laggy
+        PushComponent pocketComponent = engine.createComponent(PushComponent.class);
+        entity.add(pocketComponent);//todo this makes everything laggy
 
         VelocityComponent movement = engine.createComponent(VelocityComponent.class);
         entity.add(movement);

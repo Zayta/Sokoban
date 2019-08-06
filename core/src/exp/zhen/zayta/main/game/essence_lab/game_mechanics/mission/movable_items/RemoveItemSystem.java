@@ -42,7 +42,7 @@ public class RemoveItemSystem extends IteratingSystem {
             {
                 Entity item = items.get(i);
                 MovableTag itemMovement = Mappers.ITEM_SHOVE.get(item);
-                if(entityDirection!=itemMovement.getDirection()&&entityDirection!=Direction.none){
+                if(entityDirection!=itemMovement.getDirection()){
                     pocket.remove(item);
                     //todo take this away for block to keep moving
                     itemMovement.setDirection(Direction.none);

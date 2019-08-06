@@ -3,6 +3,7 @@ package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_item
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
@@ -28,6 +29,14 @@ public class MoveItemSystem extends IteratingSystem {
     ).get();
     public MoveItemSystem() {
         super(HOLDERS);
+    }
+
+    @Override
+    public void update(float deltaTime) {
+        ImmutableArray<Entity> entities = getEntities();
+        for (int i = entities.size()-1; i >= 0; i--) {
+            processEntity(entities.get(i), deltaTime);
+        }
     }
 
     @Override
