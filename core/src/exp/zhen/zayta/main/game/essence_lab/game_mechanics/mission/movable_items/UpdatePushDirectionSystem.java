@@ -17,8 +17,6 @@ public class UpdatePushDirectionSystem extends IteratingSystem {
         super(
                 Family.all(
                         VelocityComponent.class,
-//                        PushComponent.class,
-//                        NonAutoMotionComponent.class,
                         MovableTag.class
                 ).get()
         );

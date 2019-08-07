@@ -51,7 +51,6 @@ public class PickUpMovableItem extends EntitySystem  {
         this.engine = engine; this.viewport = viewport; this.labAtlas = labAtlas;
         ENTITIES = Family.all(
                 PositionTrackerComponent.class,
-                Position.class,
                 VelocityComponent.class,
                 RectangularBoundsComponent.class,
                 PushComponent.class
