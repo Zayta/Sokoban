@@ -13,7 +13,6 @@ import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
-import exp.zhen.zayta.main.game.essence_lab.blocks.BlockComponent;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.PlayerTag;
@@ -21,6 +20,7 @@ import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.MortalTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.nur.NUR;
 import exp.zhen.zayta.main.game.essence_lab.entity.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.PushComponent;
+import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
@@ -31,7 +31,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponen
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 
@@ -177,7 +177,7 @@ public class EntityLab {
 //        bounds.setBounds(x,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
 //        bounds.setBounds(x-dimension.getWidth()/2,y-dimension.getHeight()/2,dimension.getWidth(),dimension.getHeight());
         bounds.setBounds(x,y-dimension.getHeight()/2,dimension.getWidth(),dimension.getHeight());
-        WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
+        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
 
         entity.add(position);
         entity.add(dimension);

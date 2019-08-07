@@ -46,7 +46,7 @@ public class SizeManager {
     }
 
     private static void configLandScape(){
-        log.debug("configLandscape");
+        //log.debug("configLandscape");
         WIDTH = 1024f; // pixels
         HEIGHT = 720f; // pixels
 
@@ -65,7 +65,7 @@ public class SizeManager {
 
 
     private static void configPortrait(){
-        log.debug("configPortrait");
+        //log.debug("configPortrait");
         WIDTH = 720f; // pixels
         HEIGHT = 1024f; // pixels
 

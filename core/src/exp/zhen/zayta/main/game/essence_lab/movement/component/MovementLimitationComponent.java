@@ -10,7 +10,7 @@ public class MovementLimitationComponent implements Component {
 
     private int ghostificationLvl = 0;
     private Direction blockedDirection = Direction.none;
-    private Entity block;
+    private Entity block; private float minX = 0, minY = 0, maxX, maxY;
 
     public Direction getBlockedDirection() {
         return blockedDirection;
@@ -22,6 +22,22 @@ public class MovementLimitationComponent implements Component {
     public void setBlock(Entity block, Direction direction){
         this.block = block;
         this.blockedDirection = direction;
+    }
+    public void setBlock(float blockedCoordinate,Direction direction){
+        switch (direction){
+            case up:
+                maxY = blockedCoordinate;
+                break;
+            case down:
+                minY = blockedCoordinate;
+                break;
+            case left:
+                minX = blockedCoordinate;
+                break;
+            case right:
+                maxX = blockedCoordinate;
+                break;
+        }
     }
     public void reset(){
         this.block = null;

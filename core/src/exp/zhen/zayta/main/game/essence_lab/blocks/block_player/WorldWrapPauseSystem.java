@@ -10,31 +10,31 @@ import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
+//import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
 
 public class WorldWrapPauseSystem extends IteratingSystem {
 
     private static final Logger log = new Logger(WorldWrapPauseSystem.class.getName(),Logger.DEBUG);
 
     private static final Family FAMILY = Family.all(
-            WorldWrapTag.class,
+            WorldWrapComponent.class,
             Position.class,
 //            DimensionComponent.class,
             VelocityComponent.class,
             MovementLimitationComponent.class
     ).get();
 
-    private float maxX, maxY;
-    public WorldWrapPauseSystem(float maxX, float maxY)
+//    private float maxX, maxY;
+    public WorldWrapPauseSystem()
     {
         super(FAMILY);
-        this.maxX = maxX;
-        this.maxY = maxY;
 //        this.viewport = viewport;
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+        WorldWrapComponent worldWrapComponent = Mappers.WORLD_WRAP.get(entity);
         Position position = Mappers.POSITION.get(entity);
         MovementLimitationComponent movementLimitationComponent =
                 Mappers.MOVEMENT_LIMITATION.get(entity);
@@ -45,24 +45,24 @@ public class WorldWrapPauseSystem extends IteratingSystem {
         Direction direction = movement.getDirection();
         float x = position.getX(); float y = position.getY();
 
-        if(direction==Direction.up&&y>maxY){
+        if(direction==Direction.up&&y>worldWrapComponent.getTop()){
             movement.setDirection(Direction.none);
-            position.set(x,maxY);
+            position.set(x,worldWrapComponent.getTop());
             movementLimitationComponent.setBlock(null,direction);
         }
-        else if(direction==Direction.down&&y<0){
+        else if(direction==Direction.down&&y<worldWrapComponent.getBottom()){
             movement.setDirection(Direction.none);
-            position.set(x,0);
+            position.set(x,worldWrapComponent.getBottom());
             movementLimitationComponent.setBlock(null,direction);
         }
-        else if(direction==Direction.left&&x<0){
+        else if(direction==Direction.left&&x<worldWrapComponent.getLeft()){
             movement.setDirection(Direction.none);
-            position.set(0,y);
+            position.set(worldWrapComponent.getLeft(),y);
             movementLimitationComponent.setBlock(null,direction);
         }
-        else if(direction==Direction.right&&x>maxX){
+        else if(direction==Direction.right&&x>worldWrapComponent.getRight()){
             movement.setDirection(Direction.none);
-            position.set(maxX,y);
+            position.set(worldWrapComponent.getRight(),y);
             movementLimitationComponent.setBlock(null,direction);
         }
 

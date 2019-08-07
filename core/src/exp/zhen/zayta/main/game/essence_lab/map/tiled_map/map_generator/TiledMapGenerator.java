@@ -183,9 +183,9 @@ public class TiledMapGenerator {
 
 	/*for debug*/
     private void printTileSetNames(){
-        log.debug("TileSet Names: ");
+        //log.debug("TileSet Names: ");
         for(TiledMapTileSet tiledMapTileSet: tileStorage.getTileSets()){
-            log.debug("\n"+tiledMapTileSet.getName());
+            //log.debug("\n"+tiledMapTileSet.getName());
         }
 
     }

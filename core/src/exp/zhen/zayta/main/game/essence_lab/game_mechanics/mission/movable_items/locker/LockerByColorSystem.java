@@ -16,13 +16,13 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.MovableTag;
+import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.util.BiMap;
 
 public class LockerByColorSystem extends GameControllingSystem {
@@ -58,7 +58,7 @@ public class LockerByColorSystem extends GameControllingSystem {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             lockersBiMap.put(key,makeLocker(points[i].x,points[i].y, LockerComponent.class/*,WPRegionNames.EMOTES_BLUE_EEK*/));
         }
-//        log.debug("lockerBiMap: "+lockersBiMap);
+//        //log.debug("lockerBiMap: "+lockersBiMap);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class LockerByColorSystem extends GameControllingSystem {
 
             if (locker != null) {
                 if (isInside(locker,lockerKey)&&isSameColor(locker,lockerKey)) {
-                    log.debug("IsInside and same color");
+                    //log.debug("IsInside and same color");
                     unlock(locker,lockerKey);
                 }
             }
@@ -92,7 +92,7 @@ public class LockerByColorSystem extends GameControllingSystem {
     private boolean isSameColor(Entity locker, Entity lockerKey)
     {
         Color lockerColor = Mappers.COLOR.get(locker).getColor();
-        log.debug("LockerKey is " +lockerKey);
+        //log.debug("LockerKey is " +lockerKey);
         Color lockerKeyColor = Mappers.COLOR.get(lockerKey).getColor();
         return lockerColor==lockerKeyColor;
     }
@@ -153,7 +153,7 @@ public class LockerByColorSystem extends GameControllingSystem {
         bounds.setBounds(x,y,dimension.getWidth(),dimension.getHeight());
         entity.add(bounds);
 
-        WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
+        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
 
         ColorComponent colorComponent = engine.createComponent(ColorComponent.class);
         colorComponent.setColor(Color.CYAN);//todo rn all lockers are orange. Change later.

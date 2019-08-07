@@ -48,7 +48,7 @@ public class NUR {
     public Entity getNighter(Undead undead){
         Entity nighter = engine.createEntity();
         Fighter fighter = nighters.get(undead);
-//        log.debug("Fighter is "+fighter);
+//        //log.debug("Fighter is "+fighter);
         addIdentityComponents(nighter,fighter.getName());
         addAnimationComponents(nighter,fighter.getTextureRegion());
         addBattleComponents(nighter,fighter.getHp(),fighter.getAtk(),fighter.getDef());

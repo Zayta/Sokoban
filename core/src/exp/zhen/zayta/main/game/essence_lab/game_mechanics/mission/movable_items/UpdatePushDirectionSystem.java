@@ -26,7 +26,7 @@ public class UpdatePushDirectionSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-//        log.debug("num of updater entities"+getEngine().getEntities().size());
+//        //log.debug("num of updater entities"+getEngine().getEntities().size());
         Mappers.MOVEMENT.get(entity).setDirection(
                 Mappers.ITEM_SHOVE.get(entity).getDirection()
         );

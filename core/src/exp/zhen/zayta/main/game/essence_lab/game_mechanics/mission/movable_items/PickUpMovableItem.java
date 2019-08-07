@@ -30,7 +30,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponen
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.mono_color.MonoColorRenderTag;
 import exp.zhen.zayta.util.BiMap;
@@ -148,7 +148,7 @@ public class PickUpMovableItem extends EntitySystem  {
         bounds.setBounds(x,y,dimension.getWidth(),dimension.getHeight());
         entity.add(bounds);
 
-        WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
+        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
         entity.add(worldWrap);
 
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);

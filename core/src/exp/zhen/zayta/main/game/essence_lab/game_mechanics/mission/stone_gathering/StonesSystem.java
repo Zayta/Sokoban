@@ -14,6 +14,7 @@ import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
+import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
@@ -24,7 +25,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsCom
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
@@ -59,12 +60,12 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            log.debug("Point "+i+ " is: ("+points[i].x+","+points[i].y+") and key is "+key);
+            //log.debug("Point "+i+ " is: ("+points[i].x+","+points[i].y+") and key is "+key);
             stonesBiMap.put(key,makeStone(points[i].x,points[i].y, StoneTag.class,WPRegionNames.STONE));
-//            log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
+//            //log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
 //            +stonesBiMap.get(key));
         }
-        log.debug("stoneBiMap: "+stonesBiMap);
+        //log.debug("stoneBiMap: "+stonesBiMap);
     }
 
     @Override
@@ -192,7 +193,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
         bounds.setBounds(x,y-dimension.getHeight()/2,Math.min(dimension.getWidth(),dimension.getHeight())/2);
 
-        WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
+        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
 
         entity.add(position);
         entity.add(dimension);

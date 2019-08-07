@@ -16,9 +16,9 @@ import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
-import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
+import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
@@ -28,7 +28,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 
@@ -185,7 +185,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
         CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
         bounds.setBounds(x,y-dimension.getHeight()/2,Math.min(dimension.getWidth(),dimension.getHeight())/2);
 
-        WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
+        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
 
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
         positionTrackerComponent.setPositionBiMap(spiritsBiMap);

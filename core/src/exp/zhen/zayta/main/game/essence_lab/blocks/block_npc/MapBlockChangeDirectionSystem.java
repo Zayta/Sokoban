@@ -109,7 +109,7 @@ public class MapBlockChangeDirectionSystem extends EntitySystem {
     private boolean isCellBlocked(float x, float y) {
         TiledMapTileLayer.Cell cell = collisionLayer.getCell((int) (x), (int) (y));
 
-//        log.debug("cell: "+cell.getTile().getProperties());
+//        //log.debug("cell: "+cell.getTile().getProperties());
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(blockedKey);
     }
 

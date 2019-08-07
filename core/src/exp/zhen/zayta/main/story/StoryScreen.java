@@ -38,7 +38,7 @@ public class StoryScreen implements Screen {
         episodes = fullStory.split("label");
 
         for(int i = 0; i<episodes.length;i++){
-            log.debug("Episode "+i+":\n"+episodes[i]+"\n\n\n");
+            //log.debug("Episode "+i+":\n"+episodes[i]+"\n\n\n");
         }
 
 //        String string = "";
@@ -48,7 +48,7 @@ public class StoryScreen implements Screen {
 ////            if(i%2==0)
 ////                string+="\n";
 //        }
-//        log.debug("Story: \n"+string);
+//        //log.debug("Story: \n"+string);
     }
 
     @Override

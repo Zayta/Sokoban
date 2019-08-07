@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
+import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
@@ -22,7 +23,8 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBounds
 import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
+//import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.GdxUtils;
@@ -203,8 +205,8 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         RectangularBoundsComponent bounds = engine.createComponent(RectangularBoundsComponent.class);
         bounds.setBounds(x-dimension.getWidth()/2,y-dimension.getHeight()/2,dimension.getWidth(),dimension.getHeight());
 
-        WorldWrapTag worldWrap = engine.createComponent(WorldWrapTag.class);
-
+        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class);
+        worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
         entity.add(position);
         entity.add(dimension);
         entity.add(bounds);

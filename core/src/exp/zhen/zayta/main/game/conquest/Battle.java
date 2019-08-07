@@ -32,18 +32,18 @@ public class Battle extends ClickListener {
         if(monster0!=null && nighter!=null){
             nighter.attack(monster0);
             if(monster0.isKnockedOut()){
-//                log.debug("monster0.isKnockedOut is true");
+//                //log.debug("monster0.isKnockedOut is true");
 //                mPos[rowOfBattle][0].removeSoldier();
                 shiftLeft(0,mPos);
             }
         }
-//        log.debug("Monster fought is "+monster0);
+//        //log.debug("Monster fought is "+monster0);
     }
 
     //shifts soldiers left until the first soldier is at the startIndex
 
     private void shiftLeft(int startIndex, Tile[][] tiles){
-//        log.debug("called shiftLeft");
+//        //log.debug("called shiftLeft");
         if(startIndex<0||startIndex>=tiles.length) {
             System.out.println("Array Index out of bounds");
             return;
@@ -55,12 +55,12 @@ public class Battle extends ClickListener {
         }
 
 //        for(Tile t: morgue_tiles[rowOfBattle]){
-//            log.debug("Tile "+t+" has soldier "+t.getSoldier());
+//            //log.debug("Tile "+t+" has soldier "+t.getSoldier());
 //        }
 
     }
 //    private void shiftLeft(int startIndex, Tile[][] morgue_tiles){
-//        log.debug("called shiftLeft");
+//        //log.debug("called shiftLeft");
 //        if(startIndex<0||startIndex>=morgue_tiles.length) {
 //            System.out.println("Array Index out of bounds");
 //            return;

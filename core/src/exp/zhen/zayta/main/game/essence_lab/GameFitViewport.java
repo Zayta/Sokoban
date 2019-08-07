@@ -37,7 +37,7 @@ public class GameFitViewport extends FitViewport {
 
 
     private void landscapeView(int screenWidth, int screenHeight, boolean centerCamera){
-        log.debug("landscapeView was called");
+        //log.debug("landscapeView was called");
 
         int gameWidth = (int)(screenWidth*SizeManager.GAME_TO_CONTROL_RATIO);
         Vector2 scaled = getScaling().apply(getWorldWidth(), getWorldHeight(), gameWidth, screenHeight);

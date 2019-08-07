@@ -15,6 +15,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitatio
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.particle.ParticleAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsComponent;
@@ -27,6 +28,9 @@ public class Mappers {
 
     public static final ComponentMapper<CircularBoundsComponent> CIRCULAR_BOUNDS = ComponentMapper.getFor(CircularBoundsComponent.class);
     public static final ComponentMapper<RectangularBoundsComponent> RECTANGULAR_BOUNDS = ComponentMapper.getFor(RectangularBoundsComponent.class);
+
+    public static final ComponentMapper<WorldWrapComponent> WORLD_WRAP = ComponentMapper.getFor(WorldWrapComponent.class);
+
 
     public static final ComponentMapper<VelocityComponent> MOVEMENT = ComponentMapper.getFor(VelocityComponent.class);
     public static final ComponentMapper<MovementLimitationComponent> MOVEMENT_LIMITATION = ComponentMapper.getFor(MovementLimitationComponent.class);

@@ -23,7 +23,7 @@ public class Arrangements
     private static ArrayList <Integer> availableKeys = new ArrayList<Integer>();
     public static void initAvailableKeys(float mapWidth,float mapHeight){
         int capacity = PositionTracker.generateKey(mapWidth,mapHeight);//the last key
-        log.debug("Capacity is "+capacity);
+        //log.debug("Capacity is "+capacity);
         for(int i = 0; i<capacity; i++){
             availableKeys.add(i);
         }
@@ -43,7 +43,7 @@ public class Arrangements
         rectangle.height = SizeManager.maxObjHeight;
         for(int i = 0; i<maxNumCoordinates;i++) {
             if (availableKeys.isEmpty()){//if no more available keys, dont generate.
-                log.debug("availableKeys all taken");
+                //log.debug("availableKeys all taken");
                 break;
         }
             int keyIndex = GdxUtils.RANDOM.nextInt(availableKeys.size());
@@ -54,9 +54,9 @@ public class Arrangements
             rectangle.setPosition(decodedPos.x,decodedPos.y);
             availableKeys.remove(keyIndex);
             points.add(new Vector2(rectangle.x,rectangle.y));
-            log.debug("Point "+i+" should be: ("+rectangle.x+","+rectangle.y+"), and availKey used was: "+key+"but PositionTracker key is "+PositionTracker.generateKey(rectangle.x,rectangle.y));
+            //log.debug("Point "+i+" should be: ("+rectangle.x+","+rectangle.y+"), and availKey used was: "+key+"but PositionTracker key is "+PositionTracker.generateKey(rectangle.x,rectangle.y));
         }
-        log.debug("Available Keys: "+availableKeys);
+        //log.debug("Available Keys: "+availableKeys);
         Vector2[] ret= points.toArray(new Vector2[points.size()]);
         return ret;
     }
@@ -98,7 +98,7 @@ public class Arrangements
 //        for(int k: keys){
 //            ret = ret || generatedCoordinates.contains(k);
 //        }
-//        log.debug("Ret has been "+ret);
+//        //log.debug("Ret has been "+ret);
 //        return ret;
 //    }
     private static boolean withinBounds(Rectangle objBounds){
@@ -120,7 +120,7 @@ public class Arrangements
             float centerY = GdxUtils.RANDOM.nextInt(maxY)+GdxUtils.RANDOM.nextFloat();
 //            float radius = GdxUtils.RANDOM.nextInt(Math.min(maxX, maxY))+GdxUtils.RANDOM.nextFloat();
             circle.set(centerX,centerY,radius);
-            log.debug("mapBounds Contain Radius "+mapBounds.contains(circle));
+            //log.debug("mapBounds Contain Radius "+mapBounds.contains(circle));
 
         }while((!mapBounds.contains(circle)||circle.radius<=minDim));
 

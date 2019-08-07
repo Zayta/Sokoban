@@ -141,7 +141,7 @@ public class LabGame implements Screen {
 //        engine.addSystem(new BlocksTrackerSystem());
 //        engine.addSystem(new CircMovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));//sb before movement. defective.
 
-        engine.addSystem(new WorldWrapPauseSystem(mapMaker.getMapBoundmaxX(),mapMaker.getMapBoundmaxY()));
+        engine.addSystem(new WorldWrapPauseSystem());
 //        log.debug("maxX: "+mapMaker.getMapBoundmaxX()+", maxY: "+mapMaker.getMapBoundmaxY());
         engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.LAB)));//sb before npcnonstopmovmentsystem
         engine.addSystem(new NPCNonstopMovementSystem());
