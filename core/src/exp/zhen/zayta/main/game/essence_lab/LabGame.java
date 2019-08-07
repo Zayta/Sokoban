@@ -158,7 +158,7 @@ public class LabGame implements Screen {
         engine.addSystem(new RemoveItemSystem());//sb before pickup and move
         engine.addSystem(new PickUpMovableItem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));
         engine.addSystem(new UpdatePushDirectionSystem());
-        engine.addSystem(new MoveItemSystem(engine));//sb after movement and bounds system
+        engine.addSystem(new MoveItemSystem());//sb after movement and bounds system
 
 //        engine.addSystem(new MovementLimitationBoundClipSystem()); //todo Nighter gets sticky wit this system
         engine.addSystem(new UnblockSystem());

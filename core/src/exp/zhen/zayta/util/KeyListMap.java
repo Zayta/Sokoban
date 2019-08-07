@@ -4,47 +4,63 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class KeyListMap<K,V>{
-    private BiMap<K, ArrayList<V>> biMap = new BiMap<K,ArrayList<V>>();
+    /*
+    * K = Key = PositionTracker position key. Each key K is associated with a list, which contains object V
+    * List = list of V
+    * V = object stored in list
+    * */
+    private BiMap<K, ArrayList<V>> keyList = new BiMap<K,ArrayList<V>>();
+    private BiMap<V,K> objKeys = new BiMap<V, K>();
 
     public void put(K k, V v) {
-        ArrayList<V> list = biMap.get(k);
+        ArrayList<V> list = keyList.get(k);
         if(list==null){
             list = new ArrayList<V>();
-            biMap.put(k,list);
+            keyList.put(k,list);
         }
         list.add(v);
-    }
 
-    public ArrayList<V> get(K k) {
-        return biMap.get(k);
+        objKeys.put(v,k);
     }
-
-    public int size()
+    public V remove(K key)
     {
-        return biMap.size();
+        V removedObj = objKeys.getKey(key);
+        keyList.get(key).remove(removedObj);
+        return removedObj;
+    }
+
+    public ArrayList<V> getList(K k) {
+        return keyList.get(k);
+    }
+    public K getKey(V v) {
+        return objKeys.get(v);
+    }
+    public V get(K k){
+        return objKeys.getKey(k);
+    }
+
+    public int keyListSize()
+    {
+        return keyList.size();
+    }
+    public int numObjects(){
+        return objKeys.size();//this is different from keyListSize because it lists out distinct items. Keylist lists number of lists
     }
 
     public Set<K> keySet()
     {
-        return biMap.keySet();
+        return keyList.keySet();
+    }
+
+    public Set<V> objects()
+    {
+        return objKeys.keySet();
     }
 
     public void clear()
     {
-        biMap.clear();
+        keyList.clear();
+        objKeys.clear();
     }
-
-    public ArrayList<V> remove(Object key)
-    {
-        ArrayList<V> ret = biMap.remove(key);
-        return ret;
-    }
-    public boolean containsKey(Object key)
-    {
-        return biMap.containsKey(key);
-    }
-    public boolean containsValue(Object value)
-    {
-        return biMap.containsValue(value);
-    }
+    
 }

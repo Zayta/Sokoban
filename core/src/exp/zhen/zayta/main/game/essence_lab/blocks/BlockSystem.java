@@ -12,8 +12,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
@@ -23,6 +25,7 @@ import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.essence_lab.movement.PositionComparator;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
@@ -54,35 +57,6 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
             MovementLimitationComponent.class,
             RectangularBoundsComponent.class
     ).get();
-    //todo add "add or remove" block feature
-    private ImmutableArray<Entity> entities;
-
-    private PriorityQueue<Entity> upMovingEntities,downMovingEntities,leftMovingEntities,rightMovingEntities;
-
-    public static Comparator<Entity> verticalComparator = new Comparator<Entity>() {
-        @Override
-        public int compare(Entity entity1, Entity entity2) {
-            float scalar = 100;//arbitrary scalar
-            Position position1 = Mappers.POSITION.get(entity1);
-            Position position2 = Mappers.POSITION.get(entity2);
-            // ascending order
-            return (int)(scalar*position2.getY())-(int)(scalar*position1.getY());
-            // descending order
-            // return fruit1.getQuantity() - fruit2.getQuantity()
-        }
-    };
-    public static Comparator<Entity> horizontalComparator = new Comparator<Entity>() {
-        @Override
-        public int compare(Entity entity1, Entity entity2) {
-            float scalar = 100;//arbitrary scalar
-            Position position1 = Mappers.POSITION.get(entity1);
-            Position position2 = Mappers.POSITION.get(entity2);
-            // ascending order
-            return (int)(scalar*position2.getX())-(int)(scalar*position1.getX());
-            // descending order
-            // return fruit1.getQuantity() - fruit2.getQuantity()
-        }
-    };
 
     public BlockSystem(PooledEngine engine, TextureAtlas labAtlas){
         super(MOVING_ENTITIES);
@@ -100,6 +74,14 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             blocksBiMap.put(key,makeBlock(points[i].x,points[i].y, BlockComponent.class,WPRegionNames.BACKGROUND));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 
+        }
+    }
+    @Override
+    public void update(float deltaTime) {
+        List<Entity> entities = Arrays.asList(getEntities().toArray());
+        Collections.sort(entities, new PositionComparator());
+        for (int i = 0; i < entities.size(); ++i) {
+            processEntity(entities.get(i), deltaTime);
         }
     }
 
