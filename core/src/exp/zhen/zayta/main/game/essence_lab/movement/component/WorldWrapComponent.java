@@ -7,6 +7,10 @@ import com.badlogic.gdx.math.Rectangle;
 public class WorldWrapComponent implements Component {
     private Rectangle boundsOfMovement = new Rectangle();
 
+    public void setBoundsOfMovement(float left, float bottom, float width, float height) {
+        this.boundsOfMovement.set(left,bottom,width,height);
+    }
+
     public void setBoundsOfMovement(Rectangle boundsOfMovement) {
         this.boundsOfMovement.set(boundsOfMovement);
     }

@@ -146,7 +146,7 @@ public class LockerByColorSystem extends GameControllingSystem {
 
         //todo not sure about what the dimension should be. need AI random generator to make sure still doable with certain dimension
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
-        dimension.set(SizeManager.maxObjWidth*2,SizeManager.maxObjHeight*2);
+        dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
 
 
         RectangularBoundsComponent bounds = engine.createComponent(RectangularBoundsComponent.class);
