@@ -1,13 +1,20 @@
 package exp.zhen.zayta.main.game.essence_lab.blocks;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
@@ -48,6 +55,34 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
             RectangularBoundsComponent.class
     ).get();
     //todo add "add or remove" block feature
+    private ImmutableArray<Entity> entities;
+
+    private PriorityQueue<Entity> upMovingEntities,downMovingEntities,leftMovingEntities,rightMovingEntities;
+
+    public static Comparator<Entity> verticalComparator = new Comparator<Entity>() {
+        @Override
+        public int compare(Entity entity1, Entity entity2) {
+            float scalar = 100;//arbitrary scalar
+            Position position1 = Mappers.POSITION.get(entity1);
+            Position position2 = Mappers.POSITION.get(entity2);
+            // ascending order
+            return (int)(scalar*position2.getY())-(int)(scalar*position1.getY());
+            // descending order
+            // return fruit1.getQuantity() - fruit2.getQuantity()
+        }
+    };
+    public static Comparator<Entity> horizontalComparator = new Comparator<Entity>() {
+        @Override
+        public int compare(Entity entity1, Entity entity2) {
+            float scalar = 100;//arbitrary scalar
+            Position position1 = Mappers.POSITION.get(entity1);
+            Position position2 = Mappers.POSITION.get(entity2);
+            // ascending order
+            return (int)(scalar*position2.getX())-(int)(scalar*position1.getX());
+            // descending order
+            // return fruit1.getQuantity() - fruit2.getQuantity()
+        }
+    };
 
     public BlockSystem(PooledEngine engine, TextureAtlas labAtlas){
         super(MOVING_ENTITIES);
@@ -55,6 +90,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         this.labAtlas = labAtlas;
         blocksBiMap = new BiMap<Integer, Entity>();
         initBlocks();
+
     }
 
     private void initBlocks(){
@@ -69,10 +105,11 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
 
     @Override
     public void processEntity(Entity movingEntity,float deltaTime) {
+        //todo need to process entity in order of direction.
 //            VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
 //            Direction direction = movement.getDirection();
-//
-//            int[] keys = new int[6];
+////
+////            int[] keys = new int[6];
 
             int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionBiMap().getKey(movingEntity);
             int keyAbove = key + PositionTracker.n;
@@ -224,4 +261,10 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
     public BiMap<Integer, Entity> getBlocksBiMap() {
         return blocksBiMap;
     }
+
+
+
+
+
+
 }

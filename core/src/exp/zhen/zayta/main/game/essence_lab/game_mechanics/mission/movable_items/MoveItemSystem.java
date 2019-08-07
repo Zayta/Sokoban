@@ -1,12 +1,17 @@
 package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.PushComponent;
@@ -17,7 +22,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerCo
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
 
-public class MoveItemSystem extends IteratingSystem {
+public class MoveItemSystem extends EntitySystem {
 
     private static final Logger log = new Logger(MoveItemSystem.class.getName(),Logger.DEBUG);
     private static Family HOLDERS = Family.all(
@@ -27,19 +32,88 @@ public class MoveItemSystem extends IteratingSystem {
             RectangularBoundsComponent.class,
             PushComponent.class
     ).get();
-    public MoveItemSystem() {
-        super(HOLDERS);
+    private ImmutableArray<Entity> entities;
+    private PriorityQueue<Entity> upMovingEntities,downMovingEntities,leftMovingEntities,rightMovingEntities;
+
+    //    private PriorityQueue<Entity> upMovingEntities,downMovingEntities,leftMovingEntities,rightMovingEntities;
+
+    public static Comparator<Entity> verticalComparator = new Comparator<Entity>() {
+        @Override
+        public int compare(Entity entity1, Entity entity2) {
+            float scalar = 100;//arbitrary scalar
+            Position position1 = Mappers.POSITION.get(entity1);
+            Position position2 = Mappers.POSITION.get(entity2);
+            // ascending order
+            return (int)(scalar*position2.getY())-(int)(scalar*position1.getY());
+            // descending order
+            // return fruit1.getQuantity() - fruit2.getQuantity()
+        }
+    };
+    public static Comparator<Entity> horizontalComparator = new Comparator<Entity>() {
+        @Override
+        public int compare(Entity entity1, Entity entity2) {
+            float scalar = 100;//arbitrary scalar
+            Position position1 = Mappers.POSITION.get(entity1);
+            Position position2 = Mappers.POSITION.get(entity2);
+            // ascending order
+            return (int)(scalar*position2.getX())-(int)(scalar*position1.getX());
+            // descending order
+            // return fruit1.getQuantity() - fruit2.getQuantity()
+        }
+    };
+    public MoveItemSystem(PooledEngine engine) {
+//        super(HOLDERS);
+        entities = engine.getEntitiesFor(HOLDERS);
+        int size = entities.size();
+        upMovingEntities = new PriorityQueue<Entity>(size,Collections.<Entity>reverseOrder(verticalComparator));
+        downMovingEntities = new PriorityQueue<Entity>(size,verticalComparator);
+        leftMovingEntities = new PriorityQueue<Entity>(size, horizontalComparator);
+        rightMovingEntities = new PriorityQueue<Entity>(size, Collections.<Entity>reverseOrder(horizontalComparator));
+
     }
 
     @Override
     public void update(float deltaTime) {
-        ImmutableArray<Entity> entities = getEntities();
-        for (int i = entities.size()-1; i >= 0; i--) {
-            processEntity(entities.get(i), deltaTime);
+
+        for(Entity entity:entities){
+            switch (Mappers.MOVEMENT.get(entity).getDirection()){
+                case up:
+                    upMovingEntities.offer(entity);
+                    break;
+                case down:
+                    downMovingEntities.offer(entity);
+                    break;
+                case left:
+                    leftMovingEntities.offer(entity);
+                    break;
+                case right:
+                    rightMovingEntities.offer(entity);
+                    break;
+            }
         }
+
+
+        while(!upMovingEntities.isEmpty()){
+            processEntity(upMovingEntities.poll(),deltaTime);
+        }
+
+        while(!downMovingEntities.isEmpty()){
+            processEntity(downMovingEntities.poll(),deltaTime);
+        }
+
+        while(!leftMovingEntities.isEmpty()){
+            processEntity(leftMovingEntities.poll(),deltaTime);
+        }
+
+        while(!rightMovingEntities.isEmpty()){
+            processEntity(rightMovingEntities.poll(),deltaTime);
+        }
+//        for (int i = entities.size()-1; i >= 0; i--) {
+//            processEntity(entities.get(i), deltaTime);
+//        }
     }
 
-    @Override
+//    @Override
     protected void processEntity(Entity entity, float deltaTime) {
         VelocityComponent entityMovement = Mappers.MOVEMENT.get(entity);
         RectangularBoundsComponent entityBounds = Mappers.RECTANGULAR_BOUNDS.get(entity);

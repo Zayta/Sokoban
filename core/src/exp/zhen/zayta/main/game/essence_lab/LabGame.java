@@ -38,6 +38,7 @@ import exp.zhen.zayta.main.game.essence_lab.blocks.BlockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.UnblockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.MapBlockPauseSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CircularBoundsSystem;
+import exp.zhen.zayta.main.game.essence_lab.movement.system.MovementLimitationBoundClipSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.RectangularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CameraUpdateSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.PositionTrackerUpdateSystem;
@@ -155,10 +156,11 @@ public class LabGame implements Screen {
     }
     private void addMovableItemSystems(){
         engine.addSystem(new RemoveItemSystem());//sb before pickup and move
-//        engine.addSystem(new PickUpMovableItemSystem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));
         engine.addSystem(new PickUpMovableItem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));
         engine.addSystem(new UpdatePushDirectionSystem());
-        engine.addSystem(new MoveItemSystem());//sb after movement and bounds system
+        engine.addSystem(new MoveItemSystem(engine));//sb after movement and bounds system
+
+//        engine.addSystem(new MovementLimitationBoundClipSystem()); //todo Nighter gets sticky wit this system
         engine.addSystem(new UnblockSystem());
 
     }

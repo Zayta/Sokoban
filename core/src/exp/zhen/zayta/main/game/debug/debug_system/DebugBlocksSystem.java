@@ -74,7 +74,7 @@ public class DebugBlocksSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         RectangularBoundsComponent bounds = Mappers.RECTANGULAR_BOUNDS.get(entity);
-        Position position = Mappers.POSITION.get(entity);
+//        Position position = Mappers.POSITION.get(entity);
         MovementLimitationComponent movementLimitationComponent = Mappers.MOVEMENT_LIMITATION.get(entity);
         layout.setText(font,"Entity blocked by: "+movementLimitationComponent.getBlock());
 
