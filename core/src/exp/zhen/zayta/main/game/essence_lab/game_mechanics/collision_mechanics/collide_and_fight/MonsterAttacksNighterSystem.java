@@ -54,8 +54,8 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
             checkCollision(nighter,keys);
 //            updateCurrentBattles(nighter);
         }
-        //log.debug("NumNighters are "+nighters.size());
-        //log.debug("\nCurrentFighters are: "+ currentFighters);
+        ////log.debug("NumNighters are "+nighters.size());
+        ////log.debug("\nCurrentFighters are: "+ currentFighters);
     }
 
     private void checkCollision(Entity nighter, int [] keys){
@@ -82,8 +82,8 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
         RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(nighter);
         RectangularBoundsComponent obstacleBounds = Mappers.RECTANGULAR_BOUNDS.get(monster);
 
-//        //log.debug("playerBounds is "+playerBounds);
-//        //log.debug("obstacleBounds is "+obstacleBounds);
+//        ////log.debug("playerBounds is "+playerBounds);
+//        ////log.debug("obstacleBounds is "+obstacleBounds);
 
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }
@@ -98,7 +98,7 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
         AttackComponent monsterAtk = monster.getComponent(AttackComponent.class);
 
         nighterHp.decrement(monsterAtk.getAtk());
-//        //log.debug("Monster attackedd Nighter");
+//        ////log.debug("Monster attackedd Nighter");
 //        if(nighterHp.getHp()<=0){
 //            setGameOver();
 //        }

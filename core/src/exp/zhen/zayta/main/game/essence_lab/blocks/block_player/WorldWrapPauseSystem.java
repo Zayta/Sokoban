@@ -40,7 +40,7 @@ public class WorldWrapPauseSystem extends IteratingSystem {
                 Mappers.MOVEMENT_LIMITATION.get(entity);
 //        DimensionComponent dimension=Mappers.DIMENSION.get(entity);
         VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-//        log.debug("num world wrap entities: "+getEngine().getEntitiesFor(FAMILY).size());
+//        //log.debug("num world wrap entities: "+getEngine().getEntitiesFor(FAMILY).size());
 
         Direction direction = movement.getDirection();
         float x = position.getX(); float y = position.getY();

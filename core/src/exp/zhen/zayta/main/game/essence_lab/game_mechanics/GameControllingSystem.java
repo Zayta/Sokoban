@@ -17,7 +17,7 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
     public GameControllingSystem(RPG game, PooledEngine engine) {
         this.game = game;
         this.engine = engine;
-        //log.debug("numMissionsLeft:"+numMissions);
+        ////log.debug("numMissionsLeft:"+numMissions);
     }
 
     @Override

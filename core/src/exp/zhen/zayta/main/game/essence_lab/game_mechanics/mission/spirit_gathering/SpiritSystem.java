@@ -22,6 +22,7 @@ import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.AutoMovementTag;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitationComponent;
@@ -179,9 +180,11 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 
         Position position = engine.createComponent(Position.class);
         position.set(x,y);
+        entity.add(position);
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
         dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
+        entity.add(dimension);
 
         CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
         bounds.setBounds(x,y-dimension.getHeight()/2,Math.min(dimension.getWidth(),dimension.getHeight())/2);
@@ -202,16 +205,18 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 //        particleAnimationComponent.init(texture.getRegion(),1,5);
 //        entity.add(particleAnimationComponent);
 
-        entity.add(position);
-        entity.add(dimension);
+        MovementLimitationComponent movementLimitationComponent1 = engine.createComponent(MovementLimitationComponent.class);
+        entity.add(movementLimitationComponent);
+
+
         entity.add(bounds);
         entity.add(worldWrap);
         entity.add(positionTrackerComponent);
         entity.add(movement);
 
         //for certain movement systems
-        NPCTag npcTag = engine.createComponent(NPCTag.class);
-        entity.add(npcTag);
+        AutoMovementTag autoMovementTag = engine.createComponent(AutoMovementTag.class);
+        entity.add(autoMovementTag);
 
         return entity;
     }

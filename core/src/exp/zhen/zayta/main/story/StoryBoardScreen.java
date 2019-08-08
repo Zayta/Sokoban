@@ -81,7 +81,7 @@ public class StoryBoardScreen extends ScreenBase {
     }
 
     private void back() {
-//        //log.debug("back()");
+//        ////log.debug("back()");
         game.setScreen(new MenuScreen(game));
     }
     private Table getStoryTable(Skin skin){

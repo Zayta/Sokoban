@@ -47,7 +47,7 @@ public class LoadingScreen extends ScreenAdapter {
     // == public methods ==
     @Override
     public void show() {
-//        //log.debug("show");
+//        ////log.debug("show");
         orthographicCamera = new OrthographicCamera();
         viewport = new FitViewport(SizeManager.HUD_WIDTH, SizeManager.HUD_HEIGHT, orthographicCamera);
         renderer = new ShapeRenderer();
@@ -104,14 +104,14 @@ public class LoadingScreen extends ScreenAdapter {
 
     @Override
     public void hide() {
-//        //log.debug("hide");
+//        ////log.debug("hide");
         // NOTE: screens dont dispose automatically
         dispose();
     }
 
     @Override
     public void dispose() {
-//        //log.debug("dispose");
+//        ////log.debug("dispose");
         renderer.dispose();
         renderer = null;
     }

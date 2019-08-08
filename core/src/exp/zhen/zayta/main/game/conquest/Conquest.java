@@ -207,7 +207,7 @@ public class Conquest implements Screen {
 //
 //        for(int i = 0; i<nPos.length;i++){
 //            Tile npos = nPos[i];
-////            //log.debug("nPos ["+i+"] x is "+npos.getX(Align.bottomLeft)+", and scaled is "+npos.getX(Align.bottomLeft)*scaleWidthOfStatsViewportToViewport);
+////            ////log.debug("nPos ["+i+"] x is "+npos.getX(Align.bottomLeft)+", and scaled is "+npos.getX(Align.bottomLeft)*scaleWidthOfStatsViewportToViewport);
 //            String stats = npos.getSoldier().toString();
 //            layout.setText(fonts, stats);
 //            fonts.draw(batch, layout, (npos.getX(Align.left))*scaleWidthOfStatsViewportToViewport,(npos.getY(Align.bottom))*scaleHeightOfStatsViewportToViewport+layout.height);

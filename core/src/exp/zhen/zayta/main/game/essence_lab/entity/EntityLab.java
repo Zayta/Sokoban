@@ -24,6 +24,7 @@ import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.AutoMovementTag;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
@@ -94,6 +95,10 @@ public class EntityLab {
         PushComponent pocketComponent = engine.createComponent(PushComponent.class);
         entity.add(pocketComponent);
 
+
+        AutoMovementTag autoMovementTag = engine.createComponent(AutoMovementTag.class);
+        entity.add(autoMovementTag);
+
         engine.addEntity(entity);
 
         Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());
@@ -131,6 +136,9 @@ public class EntityLab {
         entity.add(mortalTag);
         entity.add(texture);
         entity.add(spriteAnimationComponent);
+
+        AutoMovementTag autoMovementTag = engine.createComponent(AutoMovementTag.class);
+        entity.add(autoMovementTag);
         engine.addEntity(entity);
 
         Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());

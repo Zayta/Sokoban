@@ -61,7 +61,7 @@ public class LockerByColorSystem extends GameControllingSystem {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             lockersKeyListMap.put(key,makeLocker(points[i].x,points[i].y, LockerComponent.class/*,WPRegionNames.EMOTES_BLUE_EEK*/));
         }
-//        //log.debug("lockerKeyListMap: "+lockersKeyListMap);
+//        ////log.debug("lockerKeyListMap: "+lockersKeyListMap);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class LockerByColorSystem extends GameControllingSystem {
             if (lockers != null) {
                 for(Entity locker:lockers) {
                     if (isInside(locker, lockerKey) && isSameColor(locker, lockerKey)) {
-                        //log.debug("IsInside and same color");
+                        ////log.debug("IsInside and same color");
                         scheduleUnlock(locker, lockerKey);
                     }
                 }
@@ -98,7 +98,7 @@ public class LockerByColorSystem extends GameControllingSystem {
     private boolean isSameColor(Entity locker, Entity lockerKey)
     {
         Color lockerColor = Mappers.COLOR.get(locker).getColor();
-        //log.debug("LockerKey is " +lockerKey);
+        ////log.debug("LockerKey is " +lockerKey);
         Color lockerKeyColor = Mappers.COLOR.get(lockerKey).getColor();
         return lockerColor==lockerKeyColor;
     }

@@ -29,7 +29,7 @@ public class FlingController extends GestureDetector.GestureAdapter {
     @Override
     public boolean fling(float velocityX, float velocityY, int button) {
         //velX and velY are in pixels
-        //log.debug("fling occurred gestureinputhandler");
+        ////log.debug("fling occurred gestureinputhandler");
         if(Math.abs(velocityX)>Math.abs(velocityY)){
             if(velocityX>0){
                 updateAllPlayableCharacters(Direction.right);

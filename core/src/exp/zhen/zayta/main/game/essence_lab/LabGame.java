@@ -22,6 +22,7 @@ import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderS
 //import exp.zhen.zayta.main.game.essence_lab.blocks.BlocksTrackerSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.PlayerReaperSystem;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.LanternSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.MoveItemSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.PickUpMovableItem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.RemoveItemSystem;
@@ -127,7 +128,7 @@ public class LabGame implements Screen {
         TiledMap tiledMap = mapMaker.getTiledMap(MapMaker.Map.irondale);
 //        engine.addSystem(new WorldWrapChangeDirectionSystem(tiledMap));
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) tiledMap.getLayers().get(MapMaker.collisionLayer);
-        log.debug("CollisionLayer is "+collisionLayer);
+        //log.debug("CollisionLayer is "+collisionLayer);
         if(collisionLayer!=null){
             engine.addSystem(new MapBlockChangeDirectionSystem(collisionLayer));
             engine.addSystem(new MapBlockPauseSystem(collisionLayer));//sb before movement
@@ -145,10 +146,13 @@ public class LabGame implements Screen {
 //        engine.addSystem(new CircMovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));//sb before movement. defective.
 
         engine.addSystem(new WorldWrapPauseSystem());
-//        log.debug("maxX: "+mapMaker.getMapBoundmaxX()+", maxY: "+mapMaker.getMapBoundmaxY());
+//        //log.debug("maxX: "+mapMaker.getMapBoundmaxX()+", maxY: "+mapMaker.getMapBoundmaxY());
         engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.LAB)));//sb before npcnonstopmovmentsystem
+
         engine.addSystem(new NPCNonstopMovementSystem());
         engine.addSystem(new IntervalChangeDirectionSystem(5));
+
+        engine.addSystem(new LanternSystem(game,engine));
 
         /*after mechs are set, add base movement systems*/
         engine.addSystem(new MovementSystem());
@@ -234,7 +238,7 @@ public class LabGame implements Screen {
         viewport.update(width,height,true);
         hudViewport.setWorldSize(SizeManager.HUD_WIDTH,SizeManager.HUD_HEIGHT);
         hudViewport.update(width,height,true);
-//        log.debug("Resize is called\nWidth = "+width+"\nHeight = "+height+"\nWORLD HEIGHT: "+SizeManager.WAKE_WORLD_HEIGHT);
+//        //log.debug("Resize is called\nWidth = "+width+"\nHeight = "+height+"\nWORLD HEIGHT: "+SizeManager.WAKE_WORLD_HEIGHT);
 
     }
 
