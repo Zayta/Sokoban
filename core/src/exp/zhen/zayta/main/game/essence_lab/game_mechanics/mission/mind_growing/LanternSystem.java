@@ -150,18 +150,20 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
     public void collideEvent(Entity movingEntity, Entity block) {
         Direction blockDirection = Mappers.MOVEMENT.get(block).getDirection();//need this since movement is set to none in the later method (lantern is also part of moving entity)
         log.debug("lanternDirection before is "+blockDirection);
-        blockEntity(movingEntity);
+//        blockEntity(movingEntity);
+
+        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
         VelocityComponent blockMovement = Mappers.MOVEMENT.get(block);
+
+
+
 
         Direction changedD = blockDirection.getOpposite();
         blockMovement.setDirection(changedD);
         entitiesToBeProcessed.remove(block);
-        log.debug("lanternDirection after is "+blockMovement.getDirection());
-    }
 
-    private void blockEntity(Entity movingEntity){
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
         movement.setDirection(Direction.none);
+        log.debug("lanternDirection after is "+blockMovement.getDirection());
     }
 
 

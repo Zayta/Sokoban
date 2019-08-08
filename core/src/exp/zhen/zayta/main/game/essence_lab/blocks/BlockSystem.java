@@ -62,8 +62,8 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         super(MOVING_ENTITIES);
         this.engine = engine;
         this.labAtlas = labAtlas;
-        blocksKeyListMap = new KeyListMap<Integer, Entity>();
-//        blocksKeyListMap = PositionTracker.globalTracker;
+//        blocksKeyListMap = new KeyListMap<Integer, Entity>();
+        blocksKeyListMap = PositionTracker.globalTracker;
         initBlocks();
 
     }
@@ -163,12 +163,18 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
     {
         RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(movingEntity);
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
+        if(blockBounds==null)return false;
         //todo null point exception for Circular bounds. needa combine circ and rect into one bounds
         return Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
     }
 
     public void collideEvent(Entity movingEntity, Entity block) {
-        blockEntity(movingEntity,block);
+        if(movingEntity!=block)
+            Mappers.MOVEMENT.get(movingEntity).setDirection(Direction.none);
+//            blockEntity(movingEntity,block);
+
+
+
 //        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
 //        MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
 //        if(movement.getDirection()==movementLimitation.getBlockedDirection()) {
