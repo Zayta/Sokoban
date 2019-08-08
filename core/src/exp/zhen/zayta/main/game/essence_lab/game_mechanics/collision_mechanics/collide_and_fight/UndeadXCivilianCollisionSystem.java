@@ -37,7 +37,7 @@ public class UndeadXCivilianCollisionSystem extends EntitySystem {
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(UNDEADS);
 
         for(Entity nighter: nighters) {
-            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+            int key = PositionTracker.PositionKeyListMap.nightersKeyListMap.getKeyListMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -49,7 +49,7 @@ public class UndeadXCivilianCollisionSystem extends EntitySystem {
 
     private void checkCollision(Entity nighter, int [] keys){
         for (int key: keys) {
-            Entity civilian = PositionTracker.PositionBiMap.civiliansBiMap.getBiMap().get(key);
+            Entity civilian = PositionTracker.PositionKeyListMap.civiliansKeyListMap.getKeyListMap().get(key);
 
             if (civilian != null) {
                 if (checkCollisionBetween(nighter, civilian)) {

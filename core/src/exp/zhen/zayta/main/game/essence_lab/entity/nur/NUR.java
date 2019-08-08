@@ -19,19 +19,19 @@ import exp.zhen.zayta.main.game.essence_lab.entity.Fighter;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.UndeadTag;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class NUR {
   private static final Logger log = new Logger(NUR.class.getName(),Logger.DEBUG);
     private PooledEngine engine;
     private TextureAtlas labAtlas;
-    private BiMap <Undead, Fighter> nighters;
+    private KeyListMap <Undead, Fighter> nighters;
 
 
     public NUR(PooledEngine engine, TextureAtlas labAtlas){
         this.engine = engine;
         this.labAtlas = labAtlas;
-        nighters = new BiMap<Undead, Fighter>();
+        nighters = new KeyListMap<Undead, Fighter>();
         initNighters();
     }
     

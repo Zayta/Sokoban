@@ -19,7 +19,7 @@ public class Arrangements
 {
 
     private static final Logger log = new Logger(Arrangements.class.getName(),Logger.DEBUG);
-//    //todo this occupiedPositions BiMap only accounts for initial positions. It is not like PositionTracker which has a system that updates. TO make it account for moving positions, do the same as in PositionTracker(Make a system and entities to have a certain component, and put them in teh biMap
+//    //todo this occupiedPositions KeyListMap only accounts for initial positions. It is not like PositionTracker which has a system that updates. TO make it account for moving positions, do the same as in PositionTracker(Make a system and entities to have a certain component, and put them in teh biMap
     private static ArrayList <Integer> availableKeys = new ArrayList<Integer>();
     public static void initAvailableKeys(float mapWidth,float mapHeight){
         int capacity = PositionTracker.generateKey(mapWidth,mapHeight);//the last key

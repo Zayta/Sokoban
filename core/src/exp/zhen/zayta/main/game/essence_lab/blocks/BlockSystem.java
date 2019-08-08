@@ -36,7 +36,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent
 import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 //import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 import exp.zhen.zayta.util.GdxUtils;
 
 
@@ -48,7 +48,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
     private TextureAtlas labAtlas;
 
     private int numBlocks = GdxUtils.RANDOM.nextInt(10);
-    private final BiMap<Integer,Entity> blocksBiMap;
+    private final KeyListMap<Integer,Entity> blocksKeyListMap;
     //families are entities that can collide
     private static Family MOVING_ENTITIES = Family.all(
             Position.class,
@@ -62,7 +62,8 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         super(MOVING_ENTITIES);
         this.engine = engine;
         this.labAtlas = labAtlas;
-        blocksBiMap = new BiMap<Integer, Entity>();
+        blocksKeyListMap = new KeyListMap<Integer, Entity>();
+//        blocksKeyListMap = PositionTracker.globalTracker;
         initBlocks();
 
     }
@@ -72,7 +73,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            blocksBiMap.put(key,makeBlock(points[i].x,points[i].y, BlockComponent.class,WPRegionNames.BACKGROUND));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, BlockComponent.class,WPRegionNames.BACKGROUND));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 
         }
     }
@@ -88,69 +89,72 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
     @Override
     public void processEntity(Entity movingEntity,float deltaTime) {
         //todo need to process entity in order of direction.
-//            VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-//            Direction direction = movement.getDirection();
-////
-////            int[] keys = new int[6];
+            VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
+            Direction direction = movement.getDirection();
+//
+            int[] keys = new int[6];
 
-            int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionBiMap().getKey(movingEntity);
+            int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionKeyListMap().getKey(movingEntity);
             int keyAbove = key + PositionTracker.n;
             int keyBelow = key - PositionTracker.n;
-            int [] keys = new int []{
-              key,key-1,key+1,keyAbove-1,keyAbove,keyAbove+1,keyBelow-1,keyBelow,keyBelow+1
-            };
-//            switch (direction) {
-//                case none:
-//                    Entity block = blocksBiMap.get(key);
-//                    if (block != null)
-//                        checkCollisionBetween(movingEntity, block);
-//                    continue;
-//                case up:
-//                    keys[0] = keyAbove;
-//                    keys[1] = keyAbove + 1;
-//                    keys[2] = keyAbove - 1;
-//                    keys[3] = key - 1;
-//                    keys[4] = key + 1;
-//                    break;
-//                case down:
-//                    keys[0] = keyBelow;
-//                    keys[1] = keyBelow + 1;
-//                    keys[2] = keyBelow - 1;
-//                    keys[3] = key - 1;
-//                    keys[4] = key + 1;
-//                    break;
-//                case left:
-//                    keys[0] = keyAbove - 1;
-//                    keys[1] = key - 1;
-//                    keys[2] = keyBelow - 1;
-//                    keys[3] = keyAbove;
-//                    keys[4] = keyBelow;
-//                    break;
-//                case right:
-//                    keys[0] = keyAbove + 1;
-//                    keys[1] = key + 1;
-//                    keys[2] = keyBelow + 1;
-//                    keys[3] = keyAbove;
-//                    keys[4] = keyBelow;
-//                    break;
-//            }
-//            keys[5] = key;
+//            int [] keys = new int []{
+//              key,key-1,key+1,keyAbove-1,keyAbove,keyAbove+1,keyBelow-1,keyBelow,keyBelow+1
+//            };
+            switch (direction) {
+                case none:
+                    Entity block = blocksKeyListMap.get(key);
+                    if (block != null)
+                        checkCollisionBetween(movingEntity, block);
+                    break;
+                case up:
+                    keys[0] = keyAbove;
+                    keys[1] = keyAbove + 1;
+                    keys[2] = keyAbove - 1;
+                    keys[3] = key - 1;
+                    keys[4] = key + 1;
+                    break;
+                case down:
+                    keys[0] = keyBelow;
+                    keys[1] = keyBelow + 1;
+                    keys[2] = keyBelow - 1;
+                    keys[3] = key - 1;
+                    keys[4] = key + 1;
+                    break;
+                case left:
+                    keys[0] = keyAbove - 1;
+                    keys[1] = key - 1;
+                    keys[2] = keyBelow - 1;
+                    keys[3] = keyAbove;
+                    keys[4] = keyBelow;
+                    break;
+                case right:
+                    keys[0] = keyAbove + 1;
+                    keys[1] = key + 1;
+                    keys[2] = keyBelow + 1;
+                    keys[3] = keyAbove;
+                    keys[4] = keyBelow;
+                    break;
+            }
+            keys[5] = key;
             checkCollision(movingEntity, keys);
 
 
     }
     private void checkCollision(Entity movingEntity, int [] keys){
         for (int key: keys) {
-            Entity block = blocksBiMap.get(key);
+            ArrayList<Entity> blocks = blocksKeyListMap.getList(key);
+            if(blocks!=null) {
+                for (Entity block : blocks) {
+                    MovementLimitationComponent movementLimitationComponent =
+                            Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+                    if (checkCollisionBetween(movingEntity, block)) {
 
-            MovementLimitationComponent movementLimitationComponent =
-                    Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-            if (block != null&&checkCollisionBetween(movingEntity, block)) {
-
-                movementLimitationComponent.setBlock(block,
-                        Mappers.MOVEMENT.get(movingEntity).getDirection()
-                );
-                collideEvent(movingEntity, block);
+                        movementLimitationComponent.setBlock(block,
+                                Mappers.MOVEMENT.get(movingEntity).getDirection()
+                        );
+                        collideEvent(movingEntity, block);
+                    }
+                }
             }
 
         }
@@ -159,7 +163,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
     {
         RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(movingEntity);
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
-
+        //todo null point exception for Circular bounds. needa combine circ and rect into one bounds
         return Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
     }
 
@@ -233,15 +237,15 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
 
         //todo remove later: for DEBUG only
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
-        positionTrackerComponent.setPositionBiMap(blocksBiMap);
+        positionTrackerComponent.setPositionKeyListMap(blocksKeyListMap);
         entity.add(positionTrackerComponent);
 
 
         return entity;
     }
 
-    public BiMap<Integer, Entity> getBlocksBiMap() {
-        return blocksBiMap;
+    public KeyListMap<Integer, Entity> getBlocksKeyListMap() {
+        return blocksKeyListMap;
     }
 
 

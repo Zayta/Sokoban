@@ -10,6 +10,9 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
@@ -23,7 +26,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponen
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class LockerByColorSystem extends GameControllingSystem {
 
@@ -32,7 +35,7 @@ public class LockerByColorSystem extends GameControllingSystem {
     private static final Logger log = new Logger(LockerByColorSystem.class.getName(),Logger.DEBUG);
     private TextureAtlas labAtlas;
 
-    private BiMap<Integer,Entity> lockersBiMap;
+    private KeyListMap<Integer,Entity> lockersKeyListMap;
     //families are entities that can collide
     private final Family LOCKER_KEYS;
 
@@ -46,7 +49,7 @@ public class LockerByColorSystem extends GameControllingSystem {
         ).get();
 
 
-        lockersBiMap = new BiMap<Integer, Entity>();
+        lockersKeyListMap = new KeyListMap<Integer, Entity>();
         initLockers();
     }
 
@@ -56,9 +59,9 @@ public class LockerByColorSystem extends GameControllingSystem {
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            lockersBiMap.put(key,makeLocker(points[i].x,points[i].y, LockerComponent.class/*,WPRegionNames.EMOTES_BLUE_EEK*/));
+            lockersKeyListMap.put(key,makeLocker(points[i].x,points[i].y, LockerComponent.class/*,WPRegionNames.EMOTES_BLUE_EEK*/));
         }
-//        //log.debug("lockerBiMap: "+lockersBiMap);
+//        //log.debug("lockerKeyListMap: "+lockersKeyListMap);
     }
 
     @Override
@@ -66,7 +69,7 @@ public class LockerByColorSystem extends GameControllingSystem {
         ImmutableArray<Entity> lockerKeys = getEngine().getEntitiesFor(LOCKER_KEYS);
 
         for(Entity lockerKey: lockerKeys) {
-            int index = Mappers.POSITION_TRACKER.get(lockerKey).getPositionBiMap().getKey(lockerKey);
+            int index = Mappers.POSITION_TRACKER.get(lockerKey).getPositionKeyListMap().getKey(lockerKey);
             int indexAbove = index+PositionTracker.n;
             int indexBelow = index-PositionTracker.n;
             int [] LOCKER_KEYS = {indexAbove-1,indexAbove,indexAbove+1,
@@ -78,13 +81,16 @@ public class LockerByColorSystem extends GameControllingSystem {
     private void checkPlacements(Entity lockerKey, int [] LOCKER_KEYS){
 
         for (int key: LOCKER_KEYS) {
-            Entity locker = lockersBiMap.get(key);
-
-            if (locker != null) {
-                if (isInside(locker,lockerKey)&&isSameColor(locker,lockerKey)) {
-                    //log.debug("IsInside and same color");
-                    unlock(locker,lockerKey);
+            ArrayList<Entity> lockers = lockersKeyListMap.getList(key);
+            if (lockers != null) {
+                for(Entity locker:lockers) {
+                    if (isInside(locker, lockerKey) && isSameColor(locker, lockerKey)) {
+                        //log.debug("IsInside and same color");
+                        scheduleUnlock(locker, lockerKey);
+                    }
                 }
+                unlockLockers();
+
             }
         }
     }
@@ -105,25 +111,33 @@ public class LockerByColorSystem extends GameControllingSystem {
         return Intersector.overlaps(lockerBounds.getBounds(),lockerKeyBounds.getBounds());
     }
 
-    private void unlock(Entity locker, Entity lockerKey) {
+    private PriorityQueue<Entity> scheduleUnlockedLockers = new PriorityQueue<Entity>();
+    private void scheduleUnlock(Entity locker, Entity lockerKey) {
 
         LockerComponent lockerComponent = Mappers.LOCKER.get(locker);
         lockerComponent.decreaseNumRequiredKeys(1);
         if(lockerComponent.getNumRequiredKeys()<=0){
-            getEngine().removeEntity(locker);
-            lockersBiMap.removeKey(locker);
-
-            if(lockersBiMap.size()==0){
-                completeMission();
-            }
+            scheduleUnlockedLockers.offer(locker);
 
         }
 
     }
+    private void unlockLockers(){
+        while(!scheduleUnlockedLockers.isEmpty()){
+            Entity locker = scheduleUnlockedLockers.poll();
+            getEngine().removeEntity(locker);
+            lockersKeyListMap.removeKey(locker);
+
+            if(lockersKeyListMap.numObjects()==0){
+                completeMission();
+            }
+        }
+    }
+
 
     @Override
     public void reset() {
-        lockersBiMap.clear();
+        lockersKeyListMap.clear();
     }
 
 

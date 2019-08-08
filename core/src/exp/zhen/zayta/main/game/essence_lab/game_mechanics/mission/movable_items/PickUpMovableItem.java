@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.ArrayList;
+
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.MovableTag;
@@ -33,7 +35,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent
 import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.mono_color.MonoColorRenderTag;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 import exp.zhen.zayta.util.GdxUtils;
 
 public class PickUpMovableItem extends EntitySystem  {
@@ -41,7 +43,7 @@ public class PickUpMovableItem extends EntitySystem  {
     private PooledEngine engine; private final Viewport viewport;private TextureAtlas labAtlas;
     private static final Logger log = new Logger(PickUpMovableItem.class.getName(),Logger.DEBUG);
 
-    private BiMap<Integer,Entity> movableBlocksBiMap;
+    private KeyListMap<Integer,Entity> movableBlocksKeyListMap;
     //families are entities that can collide
     private final Family ENTITIES;
 
@@ -55,7 +57,7 @@ public class PickUpMovableItem extends EntitySystem  {
                 RectangularBoundsComponent.class,
                 PushComponent.class
         ).get();
-        movableBlocksBiMap = new BiMap<Integer, Entity>();
+        movableBlocksKeyListMap = new KeyListMap<Integer, Entity>();
         initMovableBlocks();
     }
 
@@ -66,7 +68,7 @@ public class PickUpMovableItem extends EntitySystem  {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             Entity block = makeMovableBlock(points[i].x,points[i].y,
                     MovableTag.class,WPRegionNames.EMOTES_BLUE_COOL);
-            movableBlocksBiMap.put(key, block);
+            movableBlocksKeyListMap.put(key, block);
         }
     }
 
@@ -75,7 +77,7 @@ public class PickUpMovableItem extends EntitySystem  {
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(ENTITIES);
 
         for(Entity entity: nighters) {
-            int key = Mappers.POSITION_TRACKER.get(entity).getPositionBiMap().getKey(entity);
+            int key = Mappers.POSITION_TRACKER.get(entity).getPositionKeyListMap().getKey(entity);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -87,11 +89,14 @@ public class PickUpMovableItem extends EntitySystem  {
 
     private void checkCollision(Entity entity, int [] keys){
         for (int key: keys) {
-            Entity movable_item = movableBlocksBiMap.get(key);
-
-            if (movable_item != null) {
-                if (movable_item!=entity&& checkCollisionBetween(entity, movable_item)) {//first condition is to make sure if entity is a block, the block that can push is not itself
-                    collideEvent(entity, movable_item);
+            ArrayList<Entity> movable_items = movableBlocksKeyListMap.getList(key);
+            if(movable_items!=null) {
+                for(Entity movable_item:movable_items) {
+                    if (movable_item != null) {
+                        if (movable_item != entity && checkCollisionBetween(entity, movable_item)) {//first condition is to make sure if entity is a block, the block that can push is not itself
+                            collideEvent(entity, movable_item);
+                        }
+                    }
                 }
             }
         }
@@ -120,7 +125,7 @@ public class PickUpMovableItem extends EntitySystem  {
     }
 
     public void reset() {
-        movableBlocksBiMap.clear();
+        movableBlocksKeyListMap.clear();
     }
 
     private Entity makeMovableBlock(float x, float y,java.lang.Class componentType, String regionName) {
@@ -151,7 +156,7 @@ public class PickUpMovableItem extends EntitySystem  {
         entity.add(worldWrap);
 
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
-        positionTrackerComponent.setPositionBiMap(movableBlocksBiMap);
+        positionTrackerComponent.setPositionKeyListMap(movableBlocksKeyListMap);
         entity.add(positionTrackerComponent);
 
 

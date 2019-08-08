@@ -34,7 +34,7 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(FAMILY);
 
         for(Entity nighter: nighters) {
-            int key = Mappers.POSITION_TRACKER.get(nighter).getPositionBiMap().getKey(nighter);
+            int key = Mappers.POSITION_TRACKER.get(nighter).getPositionKeyListMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -47,7 +47,7 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
     private void checkCollision(Entity nighter, int [] keys){
         for (int key: keys) {
             //todo change whatever the nighter is colliding with
-            Entity civilian = PositionTracker.PositionBiMap.civiliansBiMap.getBiMap().get(key);
+            Entity civilian = PositionTracker.PositionKeyListMap.civiliansKeyListMap.getKeyListMap().get(key);
 
             if (civilian != null) {
                 if (checkCollisionBetween(nighter, civilian)) {

@@ -9,7 +9,7 @@ import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class PositionTrackerUpdateSystem extends EntitySystem {
 
@@ -36,37 +36,37 @@ public class PositionTrackerUpdateSystem extends EntitySystem {
     public void update(float deltaTime) {
         ImmutableArray<Entity> trackedEntities = getEngine().getEntitiesFor(TRACKED_ENTITIES);
         for(Entity entity:trackedEntities) {
-            BiMap<Integer,Entity> posMap = Mappers.POSITION_TRACKER.get(entity).getPositionBiMap();
+            KeyListMap<Integer,Entity> posMap = Mappers.POSITION_TRACKER.get(entity).getPositionKeyListMap();
             updateEntityInTracker(entity,posMap);
         }
     }
     //    @Override
 //    public void update(float deltaTime) {
 //        ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(NIGHTERS);
-//        updatePositionTracker(nighters,PositionTracker.PositionBiMap.nightersBiMap);
+//        updatePositionTracker(nighters,PositionTracker.PositionKeyListMap.nightersKeyListMap);
 //
 //        ImmutableArray<Entity> wielders = getEngine().getEntitiesFor(WIELDERS);
-//        updatePositionTracker(wielders,PositionTracker.PositionBiMap.wieldersBiMap);
+//        updatePositionTracker(wielders,PositionTracker.PositionKeyListMap.wieldersKeyListMap);
 //
 //        ImmutableArray<Entity> civilians = getEngine().getEntitiesFor(CIVILIANS);
-//        updatePositionTracker(civilians,PositionTracker.PositionBiMap.civiliansBiMap);
+//        updatePositionTracker(civilians,PositionTracker.PositionKeyListMap.civiliansKeyListMap);
 //
 //        ImmutableArray<Entity> monsters = getEngine().getEntitiesFor(MONSTERS);
-//        updatePositionTracker(monsters,PositionTracker.PositionBiMap.monstersBiMap);
+//        updatePositionTracker(monsters,PositionTracker.PositionKeyListMap.monstersKeyListMap);
 //
 //    }
 //
-//    private void updatePositionTracker(ImmutableArray<Entity> entities, PositionTracker.PositionBiMap posMap){
+//    private void updatePositionTracker(ImmutableArray<Entity> entities, PositionTracker.PositionKeyListMap posMap){
 //        for(Entity entity:entities) {
 //            updateEntityInTracker(entity,posMap);
 //        }
 //    }
 
-    private void updateEntityInTracker(Entity entity,BiMap<Integer,Entity> posMap) {
+    private void updateEntityInTracker(Entity entity,KeyListMap<Integer,Entity> posMap) {
         Position position = Mappers.POSITION.get(entity);
 //        DimensionComponent dimension = Mappers.DIMENSION.get(entity);
 
-        PositionTracker.updateBiMap(posMap,entity,
+        PositionTracker.updateKeyListMap(posMap,entity,
                 position.getX(),
                 position.getY());
     }

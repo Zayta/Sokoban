@@ -19,7 +19,7 @@ import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.HealthC
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Poolable {
 
@@ -33,11 +33,11 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
             HealthComponent.class
     ).get();
 
-    private BiMap<Entity,Entity> currentFighters;
+    private KeyListMap<Entity,Entity> currentFighters;
 
 
     public MonsterAttacksNighterSystem(){
-        currentFighters = new BiMap<Entity, Entity>();
+        currentFighters = new KeyListMap<Entity, Entity>();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(NIGHTERS);
 
         for(Entity nighter: nighters) {
-            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+            int key = PositionTracker.PositionKeyListMap.nightersKeyListMap.getKeyListMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -60,11 +60,10 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
 
     private void checkCollision(Entity nighter, int [] keys){
         for (int key: keys) {
-            Entity monster = PositionTracker.PositionBiMap.monstersBiMap.getBiMap().get(key);
+            Entity monster = PositionTracker.PositionKeyListMap.monstersKeyListMap.getKeyListMap().get(key);
 
             if (monster != null) {
                 if (checkCollisionBetween(nighter, monster)) {
-//                    //log.debug("NighterXCivilian collide");
                     if(collisionUnhandled(nighter,monster)) {
                         collideEvent(nighter, monster);
 //                        currentFighters.put(nighter,monster);

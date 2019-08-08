@@ -15,19 +15,19 @@ import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class LandmineExplosionSystem extends EntitySystem {
     private static final Logger log = new Logger(CollisionSystemTemplate.class.getName(),Logger.DEBUG);
     //families are entities that can collide
     private final Family MONSTERS;
     
-    public static BiMap<Integer,Entity> landmineBiMap = new BiMap<Integer, Entity>();
+    public static KeyListMap<Integer,Entity> landmineKeyListMap = new KeyListMap<Integer, Entity>();
 
-    private BiMap<Entity,Entity> currentCollisions;
+    private KeyListMap<Entity,Entity> currentCollisions;
 
     public LandmineExplosionSystem(){
-        currentCollisions = new BiMap<Entity, Entity>();
+        currentCollisions = new KeyListMap<Entity, Entity>();
         MONSTERS = Family.all(
                 MonsterTag.class,
                 PositionTrackerComponent.class,
@@ -41,7 +41,7 @@ public class LandmineExplosionSystem extends EntitySystem {
         ImmutableArray<Entity> monsters = getEngine().getEntitiesFor(MONSTERS);
 
         for(Entity monster: monsters) {
-            int key = PositionTracker.PositionBiMap.monstersBiMap.getBiMap().getKey(monster);
+            int key = PositionTracker.PositionKeyListMap.monstersKeyListMap.getKeyListMap().getKey(monster);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -53,7 +53,7 @@ public class LandmineExplosionSystem extends EntitySystem {
 
     private void checkCollision(Entity monster, int [] keys){
         for (int key: keys) {
-            Entity landmine = landmineBiMap.get(key);
+            Entity landmine = landmineKeyListMap.get(key);
 
             if (landmine != null) {
                 if (checkCollisionBetween(monster, landmine)) {

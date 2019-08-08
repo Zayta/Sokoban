@@ -8,10 +8,10 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class BlocksTrackerSystem extends IteratingSystem {
-    public static BiMap<Integer,Entity> blocksBiMap = new BiMap<Integer, Entity>();
+    public static KeyListMap<Integer,Entity> blocksKeyListMap = new KeyListMap<Integer, Entity>();
 
 
     private static Family family = Family.all(BlockComponent.class,Position.class).get();
@@ -30,7 +30,7 @@ public class BlocksTrackerSystem extends IteratingSystem {
 
     private void updateEntityInTracker(Entity entity) {
         Position position = Mappers.POSITION.get(entity);
-        PositionTracker.updateBiMap(blocksBiMap,entity,
+        PositionTracker.updateKeyListMap(blocksKeyListMap,entity,
                 position.getX(),
                 position.getY());
     }

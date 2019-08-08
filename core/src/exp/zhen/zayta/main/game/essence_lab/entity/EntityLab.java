@@ -64,7 +64,7 @@ public class EntityLab {
             Entity nighter = nur.getNighter(Undead.values()[i]);
             PlayerTag playerTag = engine.createComponent(PlayerTag.class);
             nighter.add(playerTag);
-            addMovementComponents(engine, nighter, points[i].x, points[i].y, PositionTracker.PositionBiMap.nightersBiMap);
+            addMovementComponents(engine, nighter, points[i].x, points[i].y, PositionTracker.PositionKeyListMap.nightersKeyListMap);
             PushComponent pocketComponent = engine.createComponent(PushComponent.class);
             nighter.add(pocketComponent);
             engine.addEntity(nighter);
@@ -90,7 +90,7 @@ public class EntityLab {
     }
     private void addMonster(float x, float y){
         Entity entity = utsubyo.generateMonster(1);
-        addMovementComponents(engine,entity,x,y,PositionTracker.PositionBiMap.monstersBiMap);
+        addMovementComponents(engine,entity,x,y,PositionTracker.PositionKeyListMap.monstersKeyListMap);
         PushComponent pocketComponent = engine.createComponent(PushComponent.class);
         entity.add(pocketComponent);
 
@@ -126,7 +126,7 @@ public class EntityLab {
 
 
         Entity entity = engine.createEntity();
-        addMovementComponents(engine,entity,x,y,PositionTracker.PositionBiMap.civiliansBiMap);
+        addMovementComponents(engine,entity,x,y,PositionTracker.PositionKeyListMap.civiliansKeyListMap);
         entity.add(npcTag);
         entity.add(mortalTag);
         entity.add(texture);
@@ -140,11 +140,11 @@ public class EntityLab {
 
 
 
-    public void addMovementComponents(PooledEngine engine, Entity entity, float x, float y, PositionTracker.PositionBiMap posMap){
+    public void addMovementComponents(PooledEngine engine, Entity entity, float x, float y, PositionTracker.PositionKeyListMap posMap){
         addPositionComponents(engine,entity,x,y);
 
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
-        positionTrackerComponent.setPositionBiMap(posMap);
+        positionTrackerComponent.setPositionKeyListMap(posMap);
         entity.add(positionTrackerComponent);
 
         VelocityComponent movement = engine.createComponent(VelocityComponent.class);

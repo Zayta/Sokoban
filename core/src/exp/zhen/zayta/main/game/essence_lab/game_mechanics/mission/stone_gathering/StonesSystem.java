@@ -22,12 +22,13 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 
 public class StonesSystem extends GameControllingSystem implements CollisionListener {
@@ -36,7 +37,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
     private static final Logger log = new Logger(StonesSystem.class.getName(),Logger.DEBUG);
     private TextureAtlas labAtlas;
 
-    private BiMap<Integer,Entity> stonesBiMap;
+    private KeyListMap<Integer,Entity> stonesKeyListMap;
     //families are entities that can collide
     private final Family NIGHTERS;
 
@@ -50,7 +51,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         ).get();
 
 
-        stonesBiMap = new BiMap<Integer, Entity>();
+        stonesKeyListMap = new KeyListMap<Integer, Entity>();
         initStones();
     }
 
@@ -61,11 +62,11 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             //log.debug("Point "+i+ " is: ("+points[i].x+","+points[i].y+") and key is "+key);
-            stonesBiMap.put(key,makeStone(points[i].x,points[i].y, StoneTag.class,WPRegionNames.STONE));
+            stonesKeyListMap.put(key,makeStone(points[i].x,points[i].y, StoneTag.class,WPRegionNames.STONE));
 //            //log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
-//            +stonesBiMap.get(key));
+//            +stonesKeyListMap.get(key));
         }
-        //log.debug("stoneBiMap: "+stonesBiMap);
+        //log.debug("stoneKeyListMap: "+stonesKeyListMap);
     }
 
     @Override
@@ -77,12 +78,12 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
             Direction direction = Mappers.MOVEMENT.get(nighter).getDirection();
             int [] keys = new int [6];
 
-            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+            int key = PositionTracker.PositionKeyListMap.nightersKeyListMap.getKeyListMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             switch (direction){
                 case none:
-                    Entity stone = stonesBiMap.get(key);
+                    Entity stone = stonesKeyListMap.get(key);
                     if(stone!=null)
                         checkCollisionBetween(nighter,stone);
                     continue;
@@ -119,7 +120,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
             checkCollision(nighter,keys);
 
 
-//            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+//            int key = PositionTracker.PositionKeyListMap.nightersKeyListMap.getKeyListMap().getKey(nighter);
 //            int keyAbove = key+PositionTracker.n;
 //            int keyBelow = key-PositionTracker.n;
 //            int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -130,7 +131,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
     }
     private void checkCollision(Entity nighter, int [] keys){
         for (int key: keys) {
-            Entity stone = stonesBiMap.get(key);
+            Entity stone = stonesKeyListMap.get(key);
 
             if (stone != null) {
                 if (checkCollisionBetween(nighter, stone)) {
@@ -155,8 +156,8 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 //        stone.remove(VelocityComponent.class);
         //todo set stone in position at bottom of screen instead
         getEngine().removeEntity(stone);
-        stonesBiMap.removeKey(stone);
-        if(stonesBiMap.size()==0){
+        stonesKeyListMap.removeKey(stone);
+        if(stonesKeyListMap.numObjects()==0){
             completeMission();
         }
 
@@ -164,7 +165,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 
     @Override
     public void reset() {
-        stonesBiMap.clear();
+        stonesKeyListMap.clear();
     }
 
 
@@ -174,14 +175,20 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
 
 
         PooledEngine engine = getEngine();
-        TextureComponent texture = engine.createComponent(TextureComponent.class);
-        texture.setRegion(labAtlas.findRegion(regionName));
 
         Entity entity = engine.createEntity();
 
         entity.add(engine.createComponent(componentType));//adds identifier
-        entity.add(texture);
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
         engine.addEntity(entity);
+
+//        PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
+//        positionTrackerComponent.setPositionKeyListMap(stonesKeyListMap);
+//        entity.add(positionTrackerComponent);
+
+
+        texture.setRegion(labAtlas.findRegion(regionName));
+        entity.add(texture);
 
 
         Position position = engine.createComponent(Position.class);

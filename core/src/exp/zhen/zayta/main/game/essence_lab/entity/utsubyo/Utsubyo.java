@@ -17,13 +17,13 @@ import exp.zhen.zayta.main.game.essence_lab.entity.Fighter;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.UndeadTag;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class Utsubyo {
 
     private PooledEngine engine;
     private TextureAtlas labAtlas;
-    private BiMap <Monster, Fighter> monsters;
+    private KeyListMap <Monster, Fighter> monsters;
 //    public NUR(PooledEngine engine, TextureRegion textureRegion, int hp, int atk, int def){
 //        this.engine = engine;
 //        initIdentityComponents();
@@ -34,7 +34,7 @@ public class Utsubyo {
     public Utsubyo(PooledEngine engine, TextureAtlas labAtlas){
         this.engine = engine;
         this.labAtlas = labAtlas;
-        monsters = new BiMap<Monster, Fighter>();
+        monsters = new KeyListMap<Monster, Fighter>();
         initMonsters();
     }
 

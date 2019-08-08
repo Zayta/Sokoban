@@ -6,38 +6,45 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class PositionTracker {
     //warning: all objects in project must be same size.
 
 
-    private static final Logger log = new Logger(PositionTracker.class.getName(),Logger.DEBUG);
-    //todo make enum such that each element in enum points to dif biMap
-    public enum PositionBiMap{
-        nightersBiMap(PositionTracker.nightersBiMap),
-        wieldersBiMap(PositionTracker.wieldersBiMap),
-        monstersBiMap(PositionTracker.monstersBiMap),
-        civiliansBiMap(PositionTracker.civiliansBiMap);
+    public static final KeyListMap<Integer,Entity> globalTracker = new KeyListMap<Integer, Entity>();
 
-        private BiMap <Integer, Entity> biMap;
-        PositionBiMap(BiMap<Integer,Entity> biMap){
-            this.biMap = biMap;
+    private static final Logger log = new Logger(PositionTracker.class.getName(),Logger.DEBUG);
+    //todo make enum such that each element in enum points to dif KeyListMap
+    public enum PositionKeyListMap{
+        nightersKeyListMap(PositionTracker.nightersKeyListMap),
+        wieldersKeyListMap(PositionTracker.wieldersKeyListMap),
+        monstersKeyListMap(PositionTracker.monstersKeyListMap),
+        civiliansKeyListMap(PositionTracker.civiliansKeyListMap);
+
+        private KeyListMap <Integer, Entity> KeyListMap;
+        PositionKeyListMap(KeyListMap<Integer,Entity> KeyListMap){
+            this.KeyListMap = KeyListMap;
         }
-        public BiMap<Integer,Entity> getBiMap(){
-            return biMap;
+        public KeyListMap<Integer,Entity> getKeyListMap(){
+            return KeyListMap;
         }
     }
-    private static BiMap<Integer,Entity> nightersBiMap = new BiMap<Integer, Entity>();
-    private static BiMap<Integer,Entity> wieldersBiMap = new BiMap<Integer, Entity>();
-    private static BiMap<Integer,Entity> monstersBiMap = new BiMap<Integer, Entity>();
-    private static BiMap<Integer,Entity> civiliansBiMap = new BiMap<Integer, Entity>();
+    private static KeyListMap<Integer,Entity> nightersKeyListMap = new KeyListMap<Integer, Entity>();
+    private static KeyListMap<Integer,Entity> wieldersKeyListMap = new KeyListMap<Integer, Entity>();
+    private static KeyListMap<Integer,Entity> monstersKeyListMap = new KeyListMap<Integer, Entity>();
+    private static KeyListMap<Integer,Entity> civiliansKeyListMap = new KeyListMap<Integer, Entity>();
 
 
-    public static void updateBiMap(BiMap<Integer,Entity> biMap,Entity entity, float x, float y){
-        biMap.removeKey(entity);
+    public static void updateKeyListMap(KeyListMap<Integer,Entity> biMap,Entity entity, float x, float y){
+
         int key=generateKey(x,y);
+
+        biMap.removeKey(entity);
         biMap.put(key,entity);
+
+        globalTracker.removeKey(entity);
+        globalTracker.put(key,entity);
     }
 
 //    public static int n = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
@@ -59,9 +66,9 @@ public class PositionTracker {
 
 
     public static void reset() {
-        nightersBiMap.clear();
-        wieldersBiMap.clear();
-        monstersBiMap.clear();
-        civiliansBiMap.clear();
+        nightersKeyListMap.clear();
+        wieldersKeyListMap.clear();
+        monstersKeyListMap.clear();
+        civiliansKeyListMap.clear();
     }
 }

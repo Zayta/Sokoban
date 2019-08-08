@@ -24,13 +24,14 @@ import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
+import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class SpiritSystem extends GameControllingSystem implements CollisionListener {
 
@@ -39,7 +40,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
     private static final Logger log = new Logger(exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.spirit_gathering.SpiritSystem.class.getName(),Logger.DEBUG);
     private TextureAtlas labAtlas;
 
-    private BiMap<Integer,Entity> spiritsBiMap;
+    private KeyListMap<Integer,Entity> spiritsKeyListMap;
     //families are entities that can collide
     private final Family NIGHTERS;
 
@@ -53,7 +54,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
         ).get();
 
 
-        spiritsBiMap = new BiMap<Integer, Entity>();
+        spiritsKeyListMap = new KeyListMap<Integer, Entity>();
         initSpirits();
     }
 
@@ -62,7 +63,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<numSpirits; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            spiritsBiMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,WPRegionNames.EMOJI_SPECIAL[0]));
+            spiritsKeyListMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,WPRegionNames.EMOTES_YELLOW_BLUSH));
         }
     }
 
@@ -75,7 +76,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 //            Direction direction = Mappers.MOVEMENT.get(nighter).getDirection();
 //            int [] keys = new int [6];
 //
-            int key = PositionTracker.PositionBiMap.nightersBiMap.getBiMap().getKey(nighter);
+            int key = PositionTracker.PositionKeyListMap.nightersKeyListMap.getKeyListMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {key-1, key, key+1,
@@ -83,7 +84,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
                             keyBelow-1, keyBelow, keyBelow+1};
 //            switch (direction){
 //                case none:
-//                    Entity spirit = spiritsBiMap.get(key);
+//                    Entity spirit = spiritsKeyListMap.get(key);
 //                    if(spirit!=null)
 //                        checkCollisionBetween(nighter,spirit);
 //                    break;
@@ -122,7 +123,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
     }
     private void checkCollision(Entity nighter, int [] keys){
         for (int key: keys) {
-            Entity spirit = spiritsBiMap.get(key);
+            Entity spirit = spiritsKeyListMap.get(key);
 
             if (spirit != null) {
                 if (checkCollisionBetween(nighter, spirit)) {
@@ -147,8 +148,8 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 //        spirit.remove(VelocityComponent.class);
         //todo set spirit in position at bottom of screen instead
         getEngine().removeEntity(spirit);
-        spiritsBiMap.removeKey(spirit);
-        if(spiritsBiMap.size()==0){
+        spiritsKeyListMap.removeKey(spirit);
+        if(spiritsKeyListMap.numObjects()==0){
             completeMission();
         }
 
@@ -156,7 +157,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 
     @Override
     public void reset() {
-        spiritsBiMap.clear();
+        spiritsKeyListMap.clear();
     }
 
 
@@ -187,8 +188,11 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 
         WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
 
+        MovementLimitationComponent movementLimitationComponent = engine.createComponent(MovementLimitationComponent.class);
+        entity.add(movementLimitationComponent);
+
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
-        positionTrackerComponent.setPositionBiMap(spiritsBiMap);
+        positionTrackerComponent.setPositionKeyListMap(spiritsKeyListMap);
 
 
         VelocityComponent movement = engine.createComponent(VelocityComponent.class);

@@ -4,23 +4,23 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
-import exp.zhen.zayta.util.BiMap;
+import exp.zhen.zayta.util.KeyListMap;
 
 public class PositionTrackerComponent implements Component {
 
-    private BiMap<Integer,Entity> positionBiMap;
-//    private PositionTracker.PositionBiMap positionBiMap;
+    private KeyListMap<Integer,Entity> positionKeyListMap;
+//    private PositionTracker.PositionKeyListMap positionKeyListMap;
 
-    public void setPositionBiMap(PositionTracker.PositionBiMap positionBiMap) {
-        this.positionBiMap = positionBiMap.getBiMap();
+    public void setPositionKeyListMap(PositionTracker.PositionKeyListMap positionKeyListMap) {
+        this.positionKeyListMap = positionKeyListMap.getKeyListMap();
     }
 
-    public void setPositionBiMap(BiMap <Integer,Entity> positionBiMap) {
-        this.positionBiMap = positionBiMap;
+    public void setPositionKeyListMap(KeyListMap <Integer,Entity> positionKeyListMap) {
+        this.positionKeyListMap = positionKeyListMap;
     }
 
-    public BiMap<Integer, Entity> getPositionBiMap() {
-        return positionBiMap;
+    public KeyListMap<Integer, Entity> getPositionKeyListMap() {
+        return positionKeyListMap;
     }
 
 

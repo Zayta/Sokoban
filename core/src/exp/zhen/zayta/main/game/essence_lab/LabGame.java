@@ -27,6 +27,7 @@ import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.RemoveItemSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.locker.LockerByColorSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.UpdatePushDirectionSystem;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.spirit_gathering.SpiritSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.npc_ai.NPCNonstopMovementSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.bomb_trigger.LandmineExplosionSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.collide_and_fight.MonsterAttacksNighterSystem;
@@ -37,6 +38,7 @@ import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.blocks.BlockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.UnblockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.MapBlockPauseSystem;
+import exp.zhen.zayta.main.game.essence_lab.movement.NonOverlapBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CircularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.MovementLimitationBoundClipSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.RectangularBoundsSystem;
@@ -161,6 +163,7 @@ public class LabGame implements Screen {
         engine.addSystem(new MoveItemSystem());//sb after movement and bounds system
 
 //        engine.addSystem(new MovementLimitationBoundClipSystem()); //todo Nighter gets sticky wit this system
+//        engine.addSystem(new NonOverlapBoundsSystem());
         engine.addSystem(new UnblockSystem());
 
     }
@@ -200,7 +203,7 @@ public class LabGame implements Screen {
     private void addGameControllingSystems(){
         engine.addSystem(new StonesSystem(game,engine));
         engine.addSystem(new LockerByColorSystem(game,engine));
-//        engine.addSystem(new SpiritSystem(game,engine));
+        engine.addSystem(new SpiritSystem(game,engine));
         engine.addSystem(new PlayerReaperSystem(game,engine));
     }
 

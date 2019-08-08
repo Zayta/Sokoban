@@ -30,9 +30,9 @@ public class PositionComparator implements Comparator<Entity> {
         //todo not sure about ascending vs descending for comparing positions
         switch (direction1){
             case up://descendingorder
-                return (int)(scalar*position2.getY())-(int)(scalar*position1.getY());
-            case down://ascendingorder so lower posY gets taken care of first
                 return (int)(scalar*position1.getY())-(int)(scalar*position2.getY());
+            case down://ascendingorder so lower posY gets taken care of first
+                return (int)(scalar*position2.getY())-(int)(scalar*position1.getY());
             case left:
                 return (int)(scalar*position2.getX())-(int)(scalar*position1.getX());
             case right:

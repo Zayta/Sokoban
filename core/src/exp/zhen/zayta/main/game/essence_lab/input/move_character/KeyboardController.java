@@ -119,7 +119,7 @@ public class KeyboardController extends InputAdapter {
 //            /*put landmine in bimap*/
 //            Position landminePosition = Mappers.POSITION.get(landmine);
 //            int key = PositionTracker.generateKey(landminePosition.getX(),landminePosition.getY());
-//            LandmineExplosionSystem.landmineBiMap.put(key,landmine);
+//            LandmineExplosionSystem.landmineKeyListMap.put(key,landmine);
 //
 //
 //            engine.addEntity(landmine);

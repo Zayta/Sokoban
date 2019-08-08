@@ -151,7 +151,7 @@ public class MoveItemSystem extends IteratingSystem {
 //    private boolean checkForBlocks(Rectangle nextBoundsOfItem, int [] blockKeys){
 //        boolean collidedWithBlocks = false;
 //        for (int key: blockKeys) {
-//            Entity block = blocksBiMap.get(key);
+//            Entity block = blocksKeyListMap.get(key);
 //
 //            collidedWithBlocks = collidedWithBlocks||
 //                    (block!=null&&checkCollisionBetween(nextBoundsOfItem,block));

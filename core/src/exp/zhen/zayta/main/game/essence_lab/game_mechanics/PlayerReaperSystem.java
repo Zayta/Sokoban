@@ -35,7 +35,7 @@ public class PlayerReaperSystem extends GameControllingSystem {
 
                 PositionTrackerComponent positionTracker = Mappers.POSITION_TRACKER.get(playable_character);
                 if(positionTracker!=null){
-                    positionTracker.getPositionBiMap().remove(playable_character);
+                    positionTracker.getPositionKeyListMap().removeKey(playable_character);
                 }
                 getEngine().removeEntity(playable_character);
             }

@@ -28,6 +28,16 @@ public class KeyListMap<K,V>{
         keyList.get(key).remove(removedObj);
         return removedObj;
     }
+    public K removeKey(V value)
+    {
+        K removedKey = objKeys.remove(value);
+        if(removedKey!=null&&keyList.get(removedKey)!=null)
+            keyList.get(removedKey).remove(value);
+        return removedKey;
+    }
+    public K removeKeyAndList(V value){
+        return keyList.removeKey(removeKeyAndList(value));
+    }
 
     public ArrayList<V> getList(K k) {
         return keyList.get(k);
@@ -35,6 +45,7 @@ public class KeyListMap<K,V>{
     public K getKey(V v) {
         return objKeys.get(v);
     }
+
     public V get(K k){
         return objKeys.getKey(k);
     }
