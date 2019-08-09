@@ -23,6 +23,7 @@ import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderS
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.PlayerReaperSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.LanternSystem;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.NaiveLanternSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.MoveItemSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.PickUpMovableItem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.RemoveItemSystem;
@@ -118,7 +119,7 @@ public class LabGame implements Screen {
 
         addInputSystems();
         addEntityMovementSystems();
-        addMovableItemSystems();//should be after movement systems
+//        addMovableItemSystems();//should be after movement systems
         addAnimationSystems();//must be before render
         addRenderSystems();
         addBattleSystems();
@@ -149,10 +150,11 @@ public class LabGame implements Screen {
 //        //log.debug("maxX: "+mapMaker.getMapBoundmaxX()+", maxY: "+mapMaker.getMapBoundmaxY());
         engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.LAB)));//sb before npcnonstopmovmentsystem
 
-        engine.addSystem(new NPCNonstopMovementSystem());
-        engine.addSystem(new IntervalChangeDirectionSystem(5));
 
         engine.addSystem(new LanternSystem(game,engine));
+
+        engine.addSystem(new NPCNonstopMovementSystem());
+        engine.addSystem(new IntervalChangeDirectionSystem(5));
 
         /*after mechs are set, add base movement systems*/
         engine.addSystem(new MovementSystem());
@@ -168,6 +170,9 @@ public class LabGame implements Screen {
 
 //        engine.addSystem(new MovementLimitationBoundClipSystem()); //todo Nighter gets sticky wit this system
 //        engine.addSystem(new NonOverlapBoundsSystem());
+//        engine.addSystem(new LanternSystem(game,engine));
+////        engine.addSystem(new NaiveLanternSystem(game,engine));
+
         engine.addSystem(new UnblockSystem());
 
     }

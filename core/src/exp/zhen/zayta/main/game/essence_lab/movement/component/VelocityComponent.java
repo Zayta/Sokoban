@@ -16,7 +16,8 @@ public class VelocityComponent implements Component, Pool.Poolable {
         direction = Direction.none;
     }
     public void setDirection(Direction direction){
-        prevDirection = this.direction;
+        if(direction!=Direction.none)
+            prevDirection = this.direction;
         this.direction = direction;
     }
 

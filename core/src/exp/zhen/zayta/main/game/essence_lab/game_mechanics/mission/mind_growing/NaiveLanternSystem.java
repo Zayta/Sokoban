@@ -49,125 +49,92 @@ import exp.zhen.zayta.util.KeyListMap;
 import exp.zhen.zayta.util.GdxUtils;
 
 
-public class LanternSystem extends GameControllingSystem implements CollisionListener{
+public class NaiveLanternSystem extends GameControllingSystem implements CollisionListener{
 
     //todo this does not account for how lanterns interact with blocks. It only accounts for how lanterns interact with moving entities
 
     private static final Logger log = new Logger(LanternSystem.class.getName(),Logger.DEBUG);
     private PooledEngine engine;
     private TextureAtlas labAtlas;
+    private KeyListMap<Integer,Entity> lanternsKeyListMap = new KeyListMap<Integer, Entity>();
 
-    private int numBlocks = GdxUtils.RANDOM.nextInt(10);
-    private final KeyListMap<Integer,Entity> lanternsKeyListMap;
+    private int numLanterns = GdxUtils.RANDOM.nextInt(10);
     //families are entities that can collide
-    private Family MOVING_ENTITIES = Family.all(
+    private Family charactersFamily = Family.all(
             Position.class,
             PositionTrackerComponent.class,
             VelocityComponent.class,
             MovementLimitationComponent.class,
             RectangularBoundsComponent.class
+    ).exclude(LanternTag.class).get();
+    private Family lanternsFamily = Family.all(
+            Position.class,
+            PositionTrackerComponent.class,
+            VelocityComponent.class,
+            MovementLimitationComponent.class,
+            RectangularBoundsComponent.class,
+            LanternTag.class
     ).get();
 
-    private ImmutableArray<Entity> entities;
-    private PriorityQueue<Entity> entitiesToBeProcessed;
-    public LanternSystem(RPG game, PooledEngine engine){
+    private ImmutableArray<Entity> characters;
+    private ImmutableArray<Entity> lanterns;
+    public NaiveLanternSystem(RPG game, PooledEngine engine){
         super(game,engine);
         addMission();
         this.engine = engine;
 
         labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
-        lanternsKeyListMap = new KeyListMap<Integer, Entity>();
-        initBlocks();
-        entities = engine.getEntitiesFor(MOVING_ENTITIES);
-        entitiesToBeProcessed = new PriorityQueue<Entity>(entities.size(),new PositionComparator());
+        initLanterns();
+        characters = engine.getEntitiesFor(charactersFamily);
+        lanterns = engine.getEntitiesFor(lanternsFamily);
     }
 
-    private void initBlocks(){
-        Vector2[] points = Arrangements.generateRandomUCoordinates(numBlocks);
+    private void initLanterns(){
+        Vector2[] points = Arrangements.generateRandomUCoordinates(numLanterns);
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            lanternsKeyListMap.put(key,makeBlock(points[i].x,points[i].y, LanternTag.class,WPRegionNames.EMOTES_BLUE_NEUTRAL));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+            lanternsKeyListMap.put(key,makeLantern(points[i].x,points[i].y, LanternTag.class,WPRegionNames.EMOTES_BLUE_NEUTRAL));//todo set new texture to be WPRegionNames.Lanterns[randomInt() in bounds]
 
         }
     }
+
     @Override
     public void update(float deltaTime) {
-//        Collections.sort(entities, new PositionComparator());
-        entitiesToBeProcessed.addAll(Arrays.asList(entities.toArray()));
+        for(Entity character:characters){
+            MovementLimitationComponent movementLimitationComponent =
+                    Mappers.MOVEMENT_LIMITATION.get(character);
+            for(Entity lantern:lanterns)
+            if (checkCollisionBetween(character, lantern)) {
 
-        while(!entitiesToBeProcessed.isEmpty()){
-            processEntity(entitiesToBeProcessed.poll(),deltaTime);
-        }
-
-    }
-
-    private void processEntity(Entity movingEntity,float deltaTime) {
-        //todo need to process entity in order of direction.
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-        int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionKeyListMap().getKey(movingEntity);
-        int keyAbove = key+PositionTracker.n;
-        int keyBelow = key-PositionTracker.n;
-        int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
-                key-1, key, key+1,
-                keyBelow-1, keyBelow, keyBelow+1};
-        checkCollision(movingEntity,keys);
-        checkCollision(movingEntity, keys);
-
-
-    }
-    private void checkCollision(Entity movingEntity, int [] keys){
-        for (int key: keys) {
-            ArrayList<Entity> lanterns = lanternsKeyListMap.getList(key);
-            if(lanterns!=null) {
-                for (Entity block : lanterns) {
-                    MovementLimitationComponent movementLimitationComponent =
-                            Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-                    if (checkCollisionBetween(movingEntity, block)) {
-
-                        movementLimitationComponent.setBlock(block,
-                                Mappers.MOVEMENT.get(movingEntity).getDirection()
-                        );
-                        collideEvent(movingEntity, block);
-                    }
-                }
+                movementLimitationComponent.setBlock(lantern,
+                        Mappers.MOVEMENT.get(character).getDirection()
+                );
+                collideEvent(character, lantern);
             }
-
         }
     }
+
     private boolean checkCollisionBetween(Entity movingEntity, Entity block)
     {
         RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(movingEntity);
-//        log.debug("Lantern playerBounds is "+playerBounds);
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
+        if(blockBounds==null)return false;
         //todo null point exception for Circular bounds. needa combine circ and rect into one bounds
-        //log.debug("Lantern lanternBounds is "+blockBounds);
-        return movingEntity!=block&& Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
-        //first case is to make sure doesnt collide with itself since lantern is also movingentity
+        return Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
     }
 
+    @Override
     public void collideEvent(Entity movingEntity, Entity block) {
-//        blockEntity(movingEntity);
         VelocityComponent blockMovement = Mappers.MOVEMENT.get(block);
-
-        Direction blockDirection = blockMovement.getDirection();//need this since movement is set to none in the later method (lantern is also part of moving entity)
-        log.debug("lanternDirection before is "+blockDirection);
-
-
-//        MovementLimitationComponent entityMovementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-//        entityMovementLimitation.setBlock(block,blockDirection);
-
-        MovementLimitationComponent blockMovementLimitation = Mappers.MOVEMENT_LIMITATION.get(block);
-        blockMovementLimitation.setBlock(movingEntity,blockDirection);
         blockMovement.setDirection(Direction.none);
-        entitiesToBeProcessed.remove(block);
 
-
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-        movement.setDirection(Direction.none);
-//        blockEntity(movingEntity,block);
-        log.debug("lanternDirection after is "+blockMovement.getDirection());
+        blockEntity(movingEntity,block);
     }
+
+
+
+
     private void blockEntity(Entity movingEntity, Entity block){
         Position position = Mappers.POSITION.get(movingEntity);
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
@@ -194,7 +161,7 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
 
 
 
-    private Entity makeBlock(float x, float y,java.lang.Class componentType, String regionName) {
+    private Entity makeLantern(float x, float y,java.lang.Class componentType, String regionName) {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         texture.setRegion(labAtlas.findRegion(regionName));
 
@@ -228,7 +195,6 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
         entity.add(blockComponent);
 
         VelocityComponent velocityComponent = engine.createComponent(VelocityComponent.class);
-        velocityComponent.setDirection(Direction.generateRandomDirection());
         entity.add(velocityComponent);
 
         AutoMovementTag autoMovementTag = engine.createComponent(AutoMovementTag.class);
@@ -240,8 +206,8 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
         positionTrackerComponent.setPositionKeyListMap(lanternsKeyListMap);
         entity.add(positionTrackerComponent);
-        
-        
+
+
         //color
 
         MonoColorRenderTag monoColorRenderTag = engine.createComponent(MonoColorRenderTag.class);
@@ -252,10 +218,6 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
         entity.add(colorComponent);
 
         return entity;
-    }
-
-    public KeyListMap<Integer, Entity> getBlocksKeyListMap() {
-        return lanternsKeyListMap;
     }
 
 

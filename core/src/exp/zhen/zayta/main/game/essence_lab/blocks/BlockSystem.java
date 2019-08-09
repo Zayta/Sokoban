@@ -8,6 +8,7 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
@@ -62,8 +63,8 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         super(MOVING_ENTITIES);
         this.engine = engine;
         this.labAtlas = labAtlas;
-//        blocksKeyListMap = new KeyListMap<Integer, Entity>();
-        blocksKeyListMap = PositionTracker.globalTracker;
+        blocksKeyListMap = new KeyListMap<Integer, Entity>();
+//        blocksKeyListMap = PositionTracker.globalTracker;
         initBlocks();
 
     }
@@ -165,14 +166,19 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
         if(blockBounds==null)return false;
         //todo null point exception for Circular bounds. needa combine circ and rect into one bounds
-        return Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
+        return overlaps(blockBounds.getBounds(),playerBounds.getBounds());
+    }
+
+    public static boolean overlaps (Rectangle r1, Rectangle r2) {
+        float threshold = 0.9f;
+        return r1.x < r2.x + threshold*r2.width && r1.x + threshold*r1.width > r2.x && r1.y < r2.y + threshold*r2.height && r1.y + threshold*r1.height > r2.y;
     }
 
     public void collideEvent(Entity movingEntity, Entity block) {
-        if(movingEntity!=block)
-            Mappers.MOVEMENT.get(movingEntity).setDirection(Direction.none);
-//            blockEntity(movingEntity,block);
-
+        if(movingEntity!=block) {
+//            Mappers.MOVEMENT.get(movingEntity).setDirection(Direction.none);
+            blockEntity(movingEntity, block);
+        }
 
 
 //        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
