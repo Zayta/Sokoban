@@ -163,9 +163,9 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
         entitiesToBeProcessed.remove(block);
 
 
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-        movement.setDirection(Direction.none);
-//        blockEntity(movingEntity,block);
+//        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
+//        movement.setDirection(Direction.none);
+        blockEntity(block,movingEntity);
         log.debug("lanternDirection after is "+blockMovement.getDirection());
     }
     private void blockEntity(Entity movingEntity, Entity block){
