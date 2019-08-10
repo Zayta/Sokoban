@@ -122,6 +122,8 @@ public class LabGame implements Screen {
         addInputSystems();
         addEntityMovementSystems();
 //        addMovableItemSystems();//should be after movement systems
+
+        engine.addSystem(new UnblockSystem());
         addAnimationSystems();//must be before render
         addRenderSystems();
         addBattleSystems();
@@ -153,6 +155,7 @@ public class LabGame implements Screen {
         engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.LAB)));//sb before npcnonstopmovmentsystem
 
 
+
         engine.addSystem(new LanternSystem(game,engine));
 
         engine.addSystem(new NPCNonstopMovementSystem());
@@ -174,8 +177,6 @@ public class LabGame implements Screen {
 //        engine.addSystem(new NonOverlapBoundsSystem());
 //        engine.addSystem(new LanternSystem(game,engine));
 ////        engine.addSystem(new NaiveLanternSystem(game,engine));
-
-        engine.addSystem(new UnblockSystem());
 
     }
 

@@ -16,10 +16,10 @@ public class Position implements Component{
         y+=vy;
     }
 
-    public void set(float centerX, float centerY)
+    public void set(float left, float bottom)
     {
-        this.x = centerX;
-        this.y = centerY;
+        this.x = left;
+        this.y = bottom;
     }
 
     public float getX() {

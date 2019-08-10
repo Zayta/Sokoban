@@ -1,0 +1,13 @@
+label prologue:
+ll "I grew up in a lab, where they did daily experiments on me."
+ll "It was painful"
+ll "One day they finished raising me, and sent me away into \"society\""
+ll "That was the happiest day of my life."
+ll "However..."
+ll "I think they took something from me"
+ll "Because everyday I felt like a blank canvas"
+
+label lorale_daily_life:
+renter "Hey Kid, it's time to your rent!"
+ll "(The same alarm clock)"
+
