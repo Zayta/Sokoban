@@ -40,6 +40,7 @@ import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.blocks.BlockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.UnblockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.MapBlockPauseSystem;
+import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.NonOverlapBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CircularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.MovementLimitationBoundClipSystem;
@@ -108,6 +109,7 @@ public class LabGame implements Screen {
         /*Game Engines*/
         engine = new PooledEngine();
         entityLab = new EntityLab(engine,assetManager);
+
         mapMaker = new MapMaker(assetManager);
 
         addEntities();

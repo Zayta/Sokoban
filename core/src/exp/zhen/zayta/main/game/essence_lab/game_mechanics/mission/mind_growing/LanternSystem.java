@@ -9,6 +9,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
@@ -57,7 +58,7 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
     private PooledEngine engine;
     private TextureAtlas labAtlas;
 
-    private int numBlocks = GdxUtils.RANDOM.nextInt(10);
+    private int numLanterns = GdxUtils.RANDOM.nextInt(10);
     private final KeyListMap<Integer,Entity> lanternsKeyListMap;
     //families are entities that can collide
     private Family MOVING_ENTITIES = Family.all(
@@ -66,7 +67,7 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
             VelocityComponent.class,
             MovementLimitationComponent.class,
             RectangularBoundsComponent.class
-    ).get();
+    ).exclude(LanternTag.class).get();
 
     private ImmutableArray<Entity> entities;
     private PriorityQueue<Entity> entitiesToBeProcessed;
@@ -83,7 +84,7 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
     }
 
     private void initBlocks(){
-        Vector2[] points = Arrangements.generateRandomUCoordinates(numBlocks);
+        Vector2[] points = Arrangements.generateRandomUCoordinates(numLanterns);
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
@@ -104,7 +105,6 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
 
     private void processEntity(Entity movingEntity,float deltaTime) {
         //todo need to process entity in order of direction.
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
         int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionKeyListMap().getKey(movingEntity);
         int keyAbove = key+PositionTracker.n;
         int keyBelow = key-PositionTracker.n;
@@ -142,33 +142,37 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
         //todo null point exception for Circular bounds. needa combine circ and rect into one bounds
         //log.debug("Lantern lanternBounds is "+blockBounds);
-        return movingEntity!=block&& Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
+        return movingEntity!=block&& overlaps(blockBounds.getBounds(),playerBounds.getBounds(),
+                Mappers.MOVEMENT.get(block).getDirection());
         //first case is to make sure doesnt collide with itself since lantern is also movingentity
+    }
+    public static boolean overlaps (Rectangle r1, Rectangle r2,Direction direction) {
+        float threshold = 0.8f;
+        if(direction==Direction.up||direction==Direction.down)
+        {
+            return r1.x < r2.x + threshold*r2.width && r1.x + threshold*r1.width > r2.x && r1.y < r2.y + r2.height && r1.y + r1.height > r2.y;
+        }
+        return r1.x < r2.x + r2.width && r1.x + r1.width > r2.x && r1.y < r2.y + threshold*r2.height && r1.y + threshold*r1.height > r2.y;
+
+
+//        return r1.x < r2.x + threshold*r2.width && r1.x + threshold*r1.width > r2.x && r1.y < r2.y + threshold*r2.height && r1.y + threshold*r1.height > r2.y;
     }
 
     public void collideEvent(Entity movingEntity, Entity block) {
 //        blockEntity(movingEntity);
-        VelocityComponent blockMovement = Mappers.MOVEMENT.get(block);
 
-        Direction blockDirection = blockMovement.getDirection();//need this since movement is set to none in the later method (lantern is also part of moving entity)
-        log.debug("lanternDirection before is "+blockDirection);
-
-
-//        MovementLimitationComponent entityMovementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-//        entityMovementLimitation.setBlock(block,blockDirection);
-
-        MovementLimitationComponent blockMovementLimitation = Mappers.MOVEMENT_LIMITATION.get(block);
-        blockMovementLimitation.setBlock(movingEntity,blockDirection);
-        blockMovement.setDirection(Direction.none);
-        entitiesToBeProcessed.remove(block);
 
 
 //        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
 //        movement.setDirection(Direction.none);
+
         blockEntity(block,movingEntity);
-        log.debug("lanternDirection after is "+blockMovement.getDirection());
+        blockEntity(movingEntity,block);
+//        log.debug("lanternDirection after is "+blockMovement.getDirection());
+        entitiesToBeProcessed.remove(block);
     }
     private void blockEntity(Entity movingEntity, Entity block){
+
         Position position = Mappers.POSITION.get(movingEntity);
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
         VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
@@ -189,7 +193,10 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
             case none:
                 break;
         }
+        Mappers.MOVEMENT_LIMITATION.get(movingEntity).setBlock(block,movement.getDirection()); //sb before movement changes to none
+
         movement.setDirection(Direction.none);
+
     }
 
 

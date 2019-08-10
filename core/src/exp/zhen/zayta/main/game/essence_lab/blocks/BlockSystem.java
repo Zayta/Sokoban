@@ -41,7 +41,7 @@ import exp.zhen.zayta.util.KeyListMap;
 import exp.zhen.zayta.util.GdxUtils;
 
 
-public class BlockSystem extends IteratingSystem implements CollisionListener{
+public abstract class BlockSystem extends IteratingSystem implements CollisionListener{
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(BlockSystem.class.getName(),Logger.DEBUG);
@@ -146,13 +146,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
             ArrayList<Entity> blocks = blocksKeyListMap.getList(key);
             if(blocks!=null) {
                 for (Entity block : blocks) {
-                    MovementLimitationComponent movementLimitationComponent =
-                            Mappers.MOVEMENT_LIMITATION.get(movingEntity);
                     if (checkCollisionBetween(movingEntity, block)) {
-
-                        movementLimitationComponent.setBlock(block,
-                                Mappers.MOVEMENT.get(movingEntity).getDirection()
-                        );
                         collideEvent(movingEntity, block);
                     }
                 }
@@ -215,6 +209,12 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
             case none:
                 break;
         }
+
+        MovementLimitationComponent movementLimitationComponent =
+                Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+        movementLimitationComponent.setBlock(block,
+                movement.getDirection()
+        );
         movement.setDirection(Direction.none);
     }
 
