@@ -9,11 +9,8 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
-
-import org.w3c.dom.css.Rect;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +57,7 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
     private PooledEngine engine;
     private TextureAtlas labAtlas;
 
-    private int numLanterns = GdxUtils.RANDOM.nextInt(10);
+    private int numBlocks = GdxUtils.RANDOM.nextInt(10);
     private final KeyListMap<Integer,Entity> lanternsKeyListMap;
     //families are entities that can collide
     private Family MOVING_ENTITIES = Family.all(
@@ -69,7 +66,7 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
             VelocityComponent.class,
             MovementLimitationComponent.class,
             RectangularBoundsComponent.class
-    ).exclude(LanternTag.class).get();
+    ).get();
 
     private ImmutableArray<Entity> entities;
     private PriorityQueue<Entity> entitiesToBeProcessed;
@@ -86,7 +83,7 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
     }
 
     private void initBlocks(){
-        Vector2[] points = Arrangements.generateRandomUCoordinates(numLanterns);
+        Vector2[] points = Arrangements.generateRandomUCoordinates(numBlocks);
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
@@ -107,12 +104,14 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
 
     private void processEntity(Entity movingEntity,float deltaTime) {
         //todo need to process entity in order of direction.
+        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
         int key = Mappers.POSITION_TRACKER.get(movingEntity).getPositionKeyListMap().getKey(movingEntity);
         int keyAbove = key+PositionTracker.n;
         int keyBelow = key-PositionTracker.n;
         int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
                 key-1, key, key+1,
                 keyBelow-1, keyBelow, keyBelow+1};
+        checkCollision(movingEntity,keys);
         checkCollision(movingEntity, keys);
 
 
@@ -122,42 +121,19 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
             ArrayList<Entity> lanterns = lanternsKeyListMap.getList(key);
             if(lanterns!=null) {
                 for (Entity block : lanterns) {
-                    if (anticipateCollisionBetween(movingEntity, block)) {
+                    MovementLimitationComponent movementLimitationComponent =
+                            Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+                    if (checkCollisionBetween(movingEntity, block)) {
+
+                        movementLimitationComponent.setBlock(block,
+                                Mappers.MOVEMENT.get(movingEntity).getDirection()
+                        );
                         collideEvent(movingEntity, block);
                     }
                 }
             }
 
         }
-    }
-
-    private boolean anticipateCollisionBetween(Entity movingEntity, Entity block)
-    {
-        Rectangle movingEntityNextBounds = Mappers.RECTANGULAR_BOUNDS.get(movingEntity).getBounds();//calculateNextBoundsOf(movingEntity);
-//        log.debug("Lantern playerBounds is "+playerBounds);
-//        Rectangle blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block).getBounds(); //todo might want to do "nextBounsd for block bounds too, depending on how experiment goes.
-        Rectangle blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block).getBounds();
-        Rectangle blockNextBounds = calculateNextBoundsOf(block);
-        return movingEntity!=block&& (Intersector.overlaps(blockNextBounds,movingEntityNextBounds)||(Intersector.overlaps(blockBounds,movingEntityNextBounds)));
-    }
-    private Rectangle calculateNextBoundsOf(Entity entity){
-        Rectangle entityNextBounds = new Rectangle(Mappers.RECTANGULAR_BOUNDS.get(entity).getBounds());
-        VelocityComponent movement = Mappers.MOVEMENT.get(entity);
-        switch (movement.getDirection()){
-            case up:
-                entityNextBounds.setY(entityNextBounds.y+movement.getVelY());
-                break;
-            case down:
-                entityNextBounds.setY(entityNextBounds.y-movement.getVelY());
-                break;
-            case left:
-                entityNextBounds.setY(entityNextBounds.x-movement.getVelX());
-                break;
-            case right:
-                entityNextBounds.setY(entityNextBounds.x+movement.getVelX());
-                break;
-        }
-        return entityNextBounds;
     }
     private boolean checkCollisionBetween(Entity movingEntity, Entity block)
     {
@@ -166,106 +142,55 @@ public class LanternSystem extends GameControllingSystem implements CollisionLis
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
         //todo null point exception for Circular bounds. needa combine circ and rect into one bounds
         //log.debug("Lantern lanternBounds is "+blockBounds);
-        return movingEntity!=block&& (Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds()));
+        return movingEntity!=block&& Intersector.overlaps(blockBounds.getBounds(),playerBounds.getBounds());
         //first case is to make sure doesnt collide with itself since lantern is also movingentity
     }
-    public static boolean overlaps (Rectangle r1, Rectangle r2) {
-        float threshold = 0.8f;
-        return r1.x < r2.x + threshold*r2.width && r1.x + threshold*r1.width > r2.x && r1.y < r2.y + threshold*r2.height && r1.y + threshold*r1.height > r2.y;
-    }
 
-    public void collideEvent(Entity movingEntity, Entity lantern) {
+    public void collideEvent(Entity movingEntity, Entity block) {
 //        blockEntity(movingEntity);
-//        stopEntity(movingEntity,lantern);
-//        stopEntity(lantern,movingEntity);
+        VelocityComponent blockMovement = Mappers.MOVEMENT.get(block);
+
+        Direction blockDirection = blockMovement.getDirection();//need this since movement is set to none in the later method (lantern is also part of moving entity)
+        log.debug("lanternDirection before is "+blockDirection);
+
+
+//        MovementLimitationComponent entityMovementLimitation = Mappers.MOVEMENT_LIMITATION.get(movingEntity);
+//        entityMovementLimitation.setBlock(block,blockDirection);
+
+        MovementLimitationComponent blockMovementLimitation = Mappers.MOVEMENT_LIMITATION.get(block);
+        blockMovementLimitation.setBlock(movingEntity,blockDirection);
+        blockMovement.setDirection(Direction.none);
+        entitiesToBeProcessed.remove(block);
+
 
 //        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
 //        movement.setDirection(Direction.none);
-
-        blockEntity(lantern,movingEntity);
-        blockEntity(movingEntity,lantern);
-
-//        log.debug("lanternDirection after is "+blockMovement.getDirection());
-        entitiesToBeProcessed.remove(lantern);
+        blockEntity(block,movingEntity);
+        log.debug("lanternDirection after is "+blockMovement.getDirection());
     }
-    private void stopEntity(Entity movingEntity, Entity block){
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-        Mappers.MOVEMENT_LIMITATION.get(movingEntity).setBlock(block,movement.getDirection());
-        movement.setDirection(Direction.none);
-    }
-
-
-
     private void blockEntity(Entity movingEntity, Entity block){
-
         Position position = Mappers.POSITION.get(movingEntity);
         RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
         VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
 
-        Rectangle rectangle = predictBounds(movingEntity,blockBounds);
-        if(MapMaker.getMapBounds().contains(rectangle))
-            position.set(rectangle.x,rectangle.y);
-
-        Mappers.MOVEMENT_LIMITATION.get(movingEntity).setBlock(block,movement.getDirection()); //sb before movement changes to none
-
-        movement.setDirection(Direction.none);
-
-    }
-    private Rectangle predictBounds(Entity movingEntity, RectangularBoundsComponent blockBounds){
-        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-        Rectangle predictedBounds = new Rectangle(
-                Mappers.RECTANGULAR_BOUNDS.get(movingEntity).getBounds()
-        );
         switch (movement.getDirection()){
             case up:
-                predictedBounds.setY(blockBounds.getBottom());
+                position.setY(blockBounds.getBottom());
                 break;
             case down://down and left are working ok
-                predictedBounds.setY(blockBounds.getTop());
+                position.setY(blockBounds.getTop());
                 break;
             case left:
-                predictedBounds.setX(blockBounds.getRight());
+                position.setX(blockBounds.getRight());
                 break;
             case right:
-                predictedBounds.setX(blockBounds.getLeft());
+                position.setX(blockBounds.getLeft());
                 break;
             case none:
                 break;
         }
-
-        return predictedBounds;
+        movement.setDirection(Direction.none);
     }
-
-
-
-
-//    private void blockEntity(Entity movingEntity, Entity block){
-//
-//        Position position = Mappers.POSITION.get(movingEntity);
-//        RectangularBoundsComponent blockBounds = Mappers.RECTANGULAR_BOUNDS.get(block);
-//        VelocityComponent movement = Mappers.MOVEMENT.get(movingEntity);
-//
-//        switch (movement.getDirection()){
-//            case up:
-//                position.setY(blockBounds.getBottom());
-//                break;
-//            case down://down and left are working ok
-//                position.setY(blockBounds.getTop());
-//                break;
-//            case left:
-//                position.setX(blockBounds.getRight());
-//                break;
-//            case right:
-//                position.setX(blockBounds.getLeft());
-//                break;
-//            case none:
-//                break;
-//        }
-//        Mappers.MOVEMENT_LIMITATION.get(movingEntity).setBlock(block,movement.getDirection()); //sb before movement changes to none
-//
-//        movement.setDirection(Direction.none);
-//
-//    }
 
 
 

@@ -146,7 +146,13 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
             ArrayList<Entity> blocks = blocksKeyListMap.getList(key);
             if(blocks!=null) {
                 for (Entity block : blocks) {
+                    MovementLimitationComponent movementLimitationComponent =
+                            Mappers.MOVEMENT_LIMITATION.get(movingEntity);
                     if (checkCollisionBetween(movingEntity, block)) {
+
+                        movementLimitationComponent.setBlock(block,
+                                Mappers.MOVEMENT.get(movingEntity).getDirection()
+                        );
                         collideEvent(movingEntity, block);
                     }
                 }
@@ -209,12 +215,6 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
             case none:
                 break;
         }
-
-        MovementLimitationComponent movementLimitationComponent =
-                Mappers.MOVEMENT_LIMITATION.get(movingEntity);
-        movementLimitationComponent.setBlock(block,
-                movement.getDirection()
-        );
         movement.setDirection(Direction.none);
     }
 
