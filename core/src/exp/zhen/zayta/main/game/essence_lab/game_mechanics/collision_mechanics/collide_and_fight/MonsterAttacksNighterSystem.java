@@ -45,7 +45,8 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
         ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(NIGHTERS);
 
         for(Entity nighter: nighters) {
-            int key = PositionTracker.PositionKeyListMap.nightersKeyListMap.getKeyListMap().getKey(nighter);
+//            int key = PositionTracker.PositionKeyListMap.nightersKeyListMap.getKeyListMap().getKey(nighter);
+            int key = Mappers.POSITION_TRACKER.get(nighter).getPositionKeyListMap().getKey(nighter);
             int keyAbove = key+PositionTracker.n;
             int keyBelow = key-PositionTracker.n;
             int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
@@ -93,9 +94,10 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
     }
 
     private void collideEvent(Entity nighter, Entity monster) {
-
-        HealthComponent nighterHp = nighter.getComponent(HealthComponent.class);
-        AttackComponent monsterAtk = monster.getComponent(AttackComponent.class);
+        HealthComponent nighterHp = Mappers.HEALTH.get(nighter);
+        AttackComponent monsterAtk = Mappers.ATK.get(monster);
+//        HealthComponent nighterHp = nighter.getComponent(HealthComponent.class);
+//        AttackComponent monsterAtk = monster.getComponent(AttackComponent.class);
 
         nighterHp.decrement(monsterAtk.getAtk());
 //        ////log.debug("Monster attackedd Nighter");

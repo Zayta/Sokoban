@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.ComponentMapper;
 
 import exp.zhen.zayta.main.game.essence_lab.entity.components.NameTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.PlayerTag;
+import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.AttackComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.HealthComponent;
@@ -47,6 +48,7 @@ public class Mappers {
     public static final ComponentMapper<PositionTrackerComponent> POSITION_TRACKER = ComponentMapper.getFor(PositionTrackerComponent.class);
 
     public static final ComponentMapper<HealthComponent> HEALTH = ComponentMapper.getFor(HealthComponent.class);
+    public static final ComponentMapper<AttackComponent> ATK = ComponentMapper.getFor(AttackComponent.class);
 
     public static final ComponentMapper<NameTag> NAMETAG = ComponentMapper.getFor(NameTag.class);
 

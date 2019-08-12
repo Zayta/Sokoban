@@ -17,13 +17,12 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugMovableBlocksSystem;
-import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
 //import exp.zhen.zayta.main.game.essence_lab.blocks.BlocksTrackerSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.PlayerReaperSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.LanternSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.NaiveLanternSystem;
+import exp.zhen.zayta.main.game.essence_lab.blocks.MovingBlocksSystem;
+import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.LanternSpawnSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.MoveItemSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.PickUpMovableItem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.RemoveItemSystem;
@@ -40,9 +39,7 @@ import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.blocks.BlockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.UnblockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.MapBlockPauseSystem;
-import exp.zhen.zayta.main.game.essence_lab.movement.NonOverlapBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CircularBoundsSystem;
-import exp.zhen.zayta.main.game.essence_lab.movement.system.MovementLimitationBoundClipSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.RectangularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CameraUpdateSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.PositionTrackerUpdateSystem;
@@ -151,7 +148,7 @@ public class LabGame implements Screen {
         engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.LAB)));//sb before npcnonstopmovmentsystem
 
 
-        engine.addSystem(new LanternSystem(game,engine));
+//        engine.addSystem(new MovingBlocksSystem(game,engine));
 
         engine.addSystem(new NPCNonstopMovementSystem());
         engine.addSystem(new IntervalChangeDirectionSystem(5));
@@ -170,7 +167,7 @@ public class LabGame implements Screen {
 
 //        engine.addSystem(new MovementLimitationBoundClipSystem()); //todo Nighter gets sticky wit this system
 //        engine.addSystem(new NonOverlapBoundsSystem());
-//        engine.addSystem(new LanternSystem(game,engine));
+//        engine.addSystem(new MovingBlocksSystem(game,engine));
 ////        engine.addSystem(new NaiveLanternSystem(game,engine));
 
         engine.addSystem(new UnblockSystem());
@@ -211,8 +208,9 @@ public class LabGame implements Screen {
 
     private void addGameControllingSystems(){
         engine.addSystem(new StonesSystem(game,engine));
-        engine.addSystem(new LockerByColorSystem(game,engine));
+//        engine.addSystem(new LockerByColorSystem(game,engine));
         engine.addSystem(new SpiritSystem(game,engine));
+        engine.addSystem(new LanternSpawnSystem(game,engine,5));
         engine.addSystem(new PlayerReaperSystem(game,engine));
     }
 

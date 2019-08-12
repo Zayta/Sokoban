@@ -41,7 +41,7 @@ import exp.zhen.zayta.util.KeyListMap;
 import exp.zhen.zayta.util.GdxUtils;
 
 
-public abstract class BlockSystem extends IteratingSystem implements CollisionListener{
+public class BlockSystem extends IteratingSystem implements CollisionListener{
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private static final Logger log = new Logger(BlockSystem.class.getName(),Logger.DEBUG);
