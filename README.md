@@ -54,4 +54,5 @@ Swipe to move and tap to put down unit.
 *Swipe up and all playable characters move up, down and all down, etc*
 
 [See progress log](https://nurexperiments.home.blog/log/ "NUR Experiment GDX Developer's Log")
+[Other Pages] (Intro.md)
 
