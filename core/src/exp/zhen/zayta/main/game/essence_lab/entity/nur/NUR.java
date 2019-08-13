@@ -52,6 +52,7 @@ public class NUR {
         addIdentityComponents(nighter,fighter.getName());
         addAnimationComponents(nighter,fighter.getTextureRegion());
         addBattleComponents(nighter,fighter.getHp(),fighter.getAtk(),fighter.getDef());
+        addColor(undead,nighter);
 //        addAbilities(nighter,undead.getAttributes(),fighter.getAtk());
         return nighter;
     }
@@ -146,7 +147,7 @@ public class NUR {
                 colorComponent.setColor(Color.SKY);
                 break;
             case Lorale:
-                colorComponent.setColor(Color.GOLD);
+                colorComponent.setColor(Color.ORANGE);
                 break;
             case Letra:
                 colorComponent.setColor(Color.FIREBRICK);
