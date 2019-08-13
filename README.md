@@ -1,12 +1,12 @@
 # Gameplay
 ## Goals
-* Get out of Utsubyo's Prison
+* Get out of Okan's Prison
 * Stay alive
 
-### How to get out of Utsubyo's Prison
+### How to get out of Okan's Prison
 * 
 
-## How to Stay Alive in Utsubyo's Prison
+## How to Stay Alive in Okan's Prison
 * Do not touch other souls (instant death)
 * Maintain your soul's health
     * Avoid the Guardians
