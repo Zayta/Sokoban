@@ -55,5 +55,5 @@ Swipe to move and tap to put down unit.
 
 [See progress log](https://nurexperiments.home.blog/log/ "NUR Experiment GDX Developer's Log")
 
-[Intro](Intro.md)
+[Intro](Intro.html)
 
