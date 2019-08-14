@@ -1,22 +1,22 @@
 # Gameplay
 ## Goals
-* Get out of Okan's Prison
+* Get out of Lokan's Prison
 * Stay alive
 
-### How to get out of Okan's Prison
-* 
+### How to get out of Lokan's Prison
+* Light up Essence
+  * Souls with the same color as the Essence will strengthen it's flame.
 
-## How to Stay Alive in Okan's Prison
+
+## How to Stay Alive in Lokan's Prison
 * Do not touch other souls (instant death)
 * Maintain your soul's health
     * Avoid the Guardians
     * Avoid pits
 
 ### Entities
-* Souls - have essence requirement/capacity, and color (Red, orange, yellow, green, blue, purple, white, black). If essence<=0 or essence>capacity, soul disappears.
-* Essence - has value and color. the "HP" for a soul
-* Guardians - damage souls by removing essence from them.
-  * Colored Monsters - Do extra dmg to souls of its color.
+* Essence- has color and level. Higher lvl means stronger color. 
+* Monster- dims the color of an essence.
 * Blocks: hinder movement
   
 ### Player Controls
