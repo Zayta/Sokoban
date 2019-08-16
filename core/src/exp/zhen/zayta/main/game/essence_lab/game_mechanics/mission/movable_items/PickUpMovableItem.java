@@ -67,7 +67,7 @@ public class PickUpMovableItem extends EntitySystem  {
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             Entity block = makeMovableBlock(points[i].x,points[i].y,
-                    MovableTag.class,WPRegionNames.EMOTES_BLUE_COOL);
+                    MovableTag.class,WPRegionNames.EMOTES_COOL);
             movableBlocksKeyListMap.put(key, block);
         }
     }

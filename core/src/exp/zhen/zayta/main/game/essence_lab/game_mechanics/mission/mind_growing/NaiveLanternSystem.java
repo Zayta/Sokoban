@@ -85,7 +85,7 @@ public class NaiveLanternSystem extends GameControllingSystem implements Collisi
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            lanternsKeyListMap.put(key,makeLantern(points[i].x,points[i].y, MovingBlockTag.class,WPRegionNames.EMOTES_BLUE_NEUTRAL));//todo set new texture to be WPRegionNames.Lanterns[randomInt() in bounds]
+            lanternsKeyListMap.put(key,makeLantern(points[i].x,points[i].y, MovingBlockTag.class,WPRegionNames.EMOTES_NEUTRAL));//todo set new texture to be WPRegionNames.Lanterns[randomInt() in bounds]
 
         }
     }

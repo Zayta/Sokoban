@@ -64,7 +64,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<numSpirits; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            spiritsKeyListMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,WPRegionNames.EMOTES_YELLOW_BLUSH));
+            spiritsKeyListMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,WPRegionNames.EMOTES_BLUSH));
         }
     }
 

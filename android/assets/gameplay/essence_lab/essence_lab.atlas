@@ -86,133 +86,133 @@ size: 64,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-emotes/cubikopp/blue/tile000
+emotes/cubikopp/icon_angry
   rotate: false
   xy: 2, 110
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile001
+emotes/cubikopp/icon_bigsmile
   rotate: false
   xy: 2, 92
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile002
+emotes/cubikopp/icon_blush
   rotate: false
   xy: 20, 110
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile003
+emotes/cubikopp/icon_confused
   rotate: false
   xy: 2, 74
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile004
+emotes/cubikopp/icon_cool
   rotate: false
   xy: 20, 92
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile005
+emotes/cubikopp/icon_cry
   rotate: false
   xy: 38, 110
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile006
+emotes/cubikopp/icon_eek
   rotate: false
   xy: 2, 56
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile007
+emotes/cubikopp/icon_important
   rotate: false
   xy: 20, 74
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile008
+emotes/cubikopp/icon_kiss
   rotate: false
   xy: 38, 92
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile009
+emotes/cubikopp/icon_lol
   rotate: false
   xy: 2, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile010
+emotes/cubikopp/icon_neutral
   rotate: false
   xy: 20, 56
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile011
+emotes/cubikopp/icon_sad
   rotate: false
   xy: 38, 74
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile012
+emotes/cubikopp/icon_sick
   rotate: false
   xy: 2, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile013
+emotes/cubikopp/icon_smile
   rotate: false
   xy: 2, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile014
+emotes/cubikopp/icon_surprised
   rotate: false
   xy: 20, 38
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile015
+emotes/cubikopp/icon_think
   rotate: false
   xy: 38, 56
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile016
+emotes/cubikopp/icon_tongue
   rotate: false
   xy: 20, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile017
+emotes/cubikopp/icon_twisted
   rotate: false
   xy: 20, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-emotes/cubikopp/blue/tile018
+emotes/cubikopp/icon_wink
   rotate: false
   xy: 38, 38
   size: 16, 16
@@ -221,367 +221,6 @@ emotes/cubikopp/blue/tile018
   index: -1
 
 essence_lab4.png
-size: 64,128
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-emotes/cubikopp/red/tile000
-  rotate: false
-  xy: 2, 110
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile001
-  rotate: false
-  xy: 2, 92
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile002
-  rotate: false
-  xy: 20, 110
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile003
-  rotate: false
-  xy: 2, 74
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile004
-  rotate: false
-  xy: 20, 92
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile005
-  rotate: false
-  xy: 38, 110
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile006
-  rotate: false
-  xy: 2, 56
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile007
-  rotate: false
-  xy: 20, 74
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile008
-  rotate: false
-  xy: 38, 92
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile009
-  rotate: false
-  xy: 2, 38
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile010
-  rotate: false
-  xy: 20, 56
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile011
-  rotate: false
-  xy: 38, 74
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile012
-  rotate: false
-  xy: 2, 20
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile013
-  rotate: false
-  xy: 2, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile014
-  rotate: false
-  xy: 20, 38
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile015
-  rotate: false
-  xy: 38, 56
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile016
-  rotate: false
-  xy: 20, 20
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile017
-  rotate: false
-  xy: 20, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/red/tile018
-  rotate: false
-  xy: 38, 38
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-
-essence_lab5.png
-size: 64,128
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-emotes/cubikopp/yellow/icon_angry
-  rotate: false
-  xy: 2, 110
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_bigsmile
-  rotate: false
-  xy: 2, 92
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_blush
-  rotate: false
-  xy: 20, 110
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_confused
-  rotate: false
-  xy: 2, 74
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_cool
-  rotate: false
-  xy: 20, 92
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_cry
-  rotate: false
-  xy: 38, 110
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_eek
-  rotate: false
-  xy: 2, 56
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_important
-  rotate: false
-  xy: 20, 74
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_kiss
-  rotate: false
-  xy: 38, 92
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_lol
-  rotate: false
-  xy: 2, 38
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_neutral
-  rotate: false
-  xy: 20, 56
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_sad
-  rotate: false
-  xy: 38, 74
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_sick
-  rotate: false
-  xy: 2, 20
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_smile
-  rotate: false
-  xy: 2, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_surprised
-  rotate: false
-  xy: 20, 38
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_think
-  rotate: false
-  xy: 38, 56
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_tongue
-  rotate: false
-  xy: 20, 20
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_twisted
-  rotate: false
-  xy: 20, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-emotes/cubikopp/yellow/icon_wink
-  rotate: false
-  xy: 38, 38
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-
-essence_lab6.png
-size: 2048,128
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-emotes/special/1024
-  rotate: false
-  xy: 920, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/128
-  rotate: false
-  xy: 614, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/16
-  rotate: false
-  xy: 308, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/2
-  rotate: false
-  xy: 2, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/2048
-  rotate: false
-  xy: 1022, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/256
-  rotate: false
-  xy: 716, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/32
-  rotate: false
-  xy: 410, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/4
-  rotate: false
-  xy: 104, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/512
-  rotate: false
-  xy: 818, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/64
-  rotate: false
-  xy: 512, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-emotes/special/8
-  rotate: false
-  xy: 206, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-
-essence_lab7.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
@@ -615,7 +254,55 @@ flames/ring_fire
   offset: 0, 0
   index: -1
 
-essence_lab8.png
+essence_lab5.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+flames/firecreature/blob_back
+  rotate: false
+  xy: 275, 92
+  size: 296, 25
+  orig: 296, 25
+  offset: 0, 0
+  index: -1
+flames/firecreature/blob_flare
+  rotate: false
+  xy: 2, 56
+  size: 271, 61
+  orig: 271, 61
+  offset: 0, 0
+  index: -1
+flames/firecreature/blob_flare_ready
+  rotate: false
+  xy: 2, 29
+  size: 247, 25
+  orig: 247, 25
+  offset: 0, 0
+  index: -1
+flames/firecreature/blob_front
+  rotate: false
+  xy: 275, 65
+  size: 296, 25
+  orig: 296, 25
+  offset: 0, 0
+  index: -1
+flames/firecreature/blob_move_left
+  rotate: false
+  xy: 573, 92
+  size: 185, 25
+  orig: 185, 25
+  offset: 0, 0
+  index: -1
+flames/firecreature/blob_move_right
+  rotate: false
+  xy: 2, 2
+  size: 185, 25
+  orig: 185, 25
+  offset: 0, 0
+  index: -1
+
+essence_lab6.png
 size: 256,128
 format: RGBA8888
 filter: Nearest,Nearest
@@ -957,7 +644,7 @@ generated_map_tiles/white
   offset: 0, 0
   index: -1
 
-essence_lab9.png
+essence_lab7.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
@@ -998,7 +685,7 @@ light_effects/light_effects5
   offset: 0, 0
   index: -1
 
-essence_lab10.png
+essence_lab8.png
 size: 256,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -1011,7 +698,7 @@ monsters/zemus
   offset: 0, 0
   index: -1
 
-essence_lab11.png
+essence_lab9.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -1059,7 +746,7 @@ orange_weapon_slash/1/Alternative_3
   offset: 0, 0
   index: 6
 
-essence_lab12.png
+essence_lab10.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -1107,7 +794,7 @@ orange_weapon_slash/2/Alternative_3
   offset: 0, 0
   index: 12
 
-essence_lab13.png
+essence_lab11.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -1155,7 +842,7 @@ orange_weapon_slash/3/Alternative_3
   offset: 0, 0
   index: 18
 
-essence_lab14.png
+essence_lab12.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -1203,7 +890,7 @@ orange_weapon_slash/4/Alternative_3
   offset: 0, 0
   index: 24
 
-essence_lab15.png
+essence_lab13.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest

@@ -81,7 +81,7 @@ public class MovingBlocksSystem extends EntitySystem implements CollisionListene
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, MovingBlockTag.class,WPRegionNames.EMOTES_BLUE_NEUTRAL));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, MovingBlockTag.class,WPRegionNames.EMOTES_NEUTRAL));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 
         }
     }

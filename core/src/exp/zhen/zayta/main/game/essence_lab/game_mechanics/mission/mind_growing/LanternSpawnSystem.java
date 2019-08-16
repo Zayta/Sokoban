@@ -7,6 +7,7 @@ import com.badlogic.ashley.systems.IntervalSystem;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 import exp.zhen.zayta.RPG;
@@ -30,6 +31,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBounds
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
+import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.mono_color.MonoColorRenderTag;
 import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.KeyListMap;
@@ -41,32 +43,41 @@ public class LanternSpawnSystem extends IntervalSystem {
 
     private Vector2 spawnPoint;
     private KeyListMap<Integer,Entity> lanternsKeyListMap;
+    private TextureRegion[] textureRegions;
     public LanternSpawnSystem(RPG game, PooledEngine engine, float interval) {
         super(interval);
         this.engine = engine;
         this.labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
+        textureRegions = new TextureRegion[4];
+        //init textureRegions
+        String [] textureRegionNames = {WPRegionNames.FIRE_BLOB_BACK,WPRegionNames.FIRE_BLOB_FRONT,WPRegionNames.FIRE_BLOB_LEFT,WPRegionNames.FIRE_BLOB_RIGHT};
+        for(int i = 0; i<textureRegionNames.length;i++){
+            textureRegions[i] = labAtlas.findRegion(textureRegionNames[i]);
+        }
+
         lanternsKeyListMap = new KeyListMap<Integer, Entity>();
         spawnPoint = Arrangements.generateRandomUCoordinates(1)[0];
         engine.addSystem(new LanternSystem(game,engine,lanternsKeyListMap));
-
     }
 
     @Override
     protected void updateInterval() {
         //to generate from certain spot, take out randomeness
         int key = PositionTracker.generateKey(spawnPoint.x, spawnPoint.y);
-            lanternsKeyListMap.put(key, makeLantern(spawnPoint.x, spawnPoint.y, MovingBlockTag.class, WPRegionNames.EMOTES_BLUE_BLUSH));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+            lanternsKeyListMap.put(key, makeLantern(spawnPoint.x, spawnPoint.y,
+                    LanternTag.class,
+                    textureRegions));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 //        Vector2[] points = Arrangements.generateRandomUCoordinates(1);
 //        for(Vector2 point:points) {
 //            int key = PositionTracker.generateKey(point.x, point.y);
-//            lanternsKeyListMap.put(key, makeLantern(point.x, point.y, MovingBlockTag.class, WPRegionNames.EMOTES_BLUE_BLUSH));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+//            lanternsKeyListMap.put(key, makeLantern(point.x, point.y, MovingBlockTag.class, WPRegionNames.EMOTES_BLUSH));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 //        }
     }
 
 
-    private Entity makeLantern(float x, float y,java.lang.Class componentType, String regionName) {
+    private Entity makeLantern(float x, float y,java.lang.Class componentType, TextureRegion[] textureRegions) {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
-        texture.setRegion(labAtlas.findRegion(regionName));
+//        texture.setRegion(labAtlas.findRegion(regionName));
 
         Entity entity = engine.createEntity();
 
@@ -116,6 +127,12 @@ public class LanternSpawnSystem extends IntervalSystem {
 
         MonoColorRenderTag monoColorRenderTag = engine.createComponent(MonoColorRenderTag.class);
         entity.add(monoColorRenderTag);
+
+
+        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
+        //this is based on my spreadsheet
+        spriteAnimationComponent.init(textureRegions[0],textureRegions[1],textureRegions[2],textureRegions[3],8,5);
+        entity.add(spriteAnimationComponent);
 
         ColorComponent colorComponent = engine.createComponent(ColorComponent.class);
         colorComponent.setColor(Color.WHITE);
