@@ -1,29 +1,25 @@
 # Gameplay
 ## Goals
-* Get out of Lokan's Prison
-* Stay alive
+* Fuel the indicated lanterns/compartments by turning blobs into flares
 
-### How to get out of Lokan's Prison
-* Light up Essence
-  * Souls with the same color as the Essence will strengthen it's flame.
-
-
-## How to Stay Alive in Lokan's Prison
-* Do not touch other souls (instant death)
-* Maintain your soul's health
-    * Avoid the Guardians
-    * Avoid pits
 
 ### Entities
-* Essence- has color and level. Higher lvl means stronger color. 
-* Monster- dims the color of an essence.
+* Souls- have color and hp.
+* Essence- has color and state. state: blob, flare. 
+  * blob: 
+   if collide with soul of same color: turns into flare
+   if collide with soul of different color: changes color
+  * flare:
+  if collide with soul of same color: turns back to blob
+  if collide with soul of different color: burns the soul (decreases entity hp)
+* Monster- damages soul upon contact
 * Blocks: hinder movement
   
 ### Player Controls
 #### Keyboard
-Use arrow keys to move playable characters and spacebar to put down unit.
+Use arrow keys to move playable characters.
 #### Phone/Tablet
-Swipe to move and tap to put down unit.
+Swipe to move.
 *Swipe up and all playable characters move up, down and all down, etc*
 
 [See progress log](https://nurexperiments.home.blog/log/ "NUR Experiment GDX Developer's Log")
