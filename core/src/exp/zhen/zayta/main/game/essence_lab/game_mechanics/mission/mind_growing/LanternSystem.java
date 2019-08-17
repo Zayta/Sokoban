@@ -134,7 +134,7 @@ public class LanternSystem extends GameControllingSystem implements Pool.Poolabl
         else if(lanternTag.getState()==LanternTag.State.FLARE){
             if(lanternColor.getColor().equals(nighterColor.getColor())){
                 lanternTag.setState(LanternTag.State.DORMANT);
-//                lantern.add(engine.createComponent(VelocityComponent.class));
+                lantern.add(engine.createComponent(VelocityComponent.class));
             }
             else
             {
