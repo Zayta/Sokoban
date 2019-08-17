@@ -18,6 +18,7 @@ import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.blocks.BlockComponent;
 import exp.zhen.zayta.main.game.essence_lab.blocks.MovingBlockTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
+import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
@@ -137,6 +138,10 @@ public class LanternSpawnSystem extends IntervalSystem {
         ColorComponent colorComponent = engine.createComponent(ColorComponent.class);
         colorComponent.setColor(Color.WHITE);
         entity.add(colorComponent);
+
+        //explosive
+        ExplosiveComponent explosiveComponent = engine.createComponent(ExplosiveComponent.class);
+        entity.add(explosiveComponent);
 
         return entity;
     }

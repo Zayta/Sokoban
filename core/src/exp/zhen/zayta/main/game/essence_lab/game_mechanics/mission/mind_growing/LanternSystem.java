@@ -11,42 +11,21 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 
-import java.util.Arrays;
-import java.util.PriorityQueue;
 
 import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
-import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
-import exp.zhen.zayta.main.game.essence_lab.blocks.BlockComponent;
-import exp.zhen.zayta.main.game.essence_lab.blocks.MovingBlockTag;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
-import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.AttackComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
-import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
-import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
-import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
-import exp.zhen.zayta.main.game.essence_lab.movement.PositionComparator;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.AutoMovementTag;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.MovementLimitationComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
-import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
-import exp.zhen.zayta.main.game.essence_lab.render.mono_color.MonoColorRenderTag;
-import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class LanternSystem extends GameControllingSystem implements Pool.Poolable {
@@ -61,10 +40,11 @@ public class LanternSystem extends GameControllingSystem implements Pool.Poolabl
     private final Family NIGHTERS = Family.all(
             ColorComponent.class,
             PositionTrackerComponent.class,
-            RectangularBoundsComponent.class
-    ).one(NPCTag.class,NighterTag.class).get();
+            RectangularBoundsComponent.class,
+            HealthComponent.class
+    ).one(NPCTag.class,NighterTag.class).exclude(LanternTag.class).get();
 
-    private KeyListMap<Entity,Entity> currentFighters;
+    private KeyListMap<Entity,Entity> currentFighters; //list of currently colliding entities, key is nighter, value is list of lanterns it is colliding with
 
 
     LanternSystem(RPG game, PooledEngine engine, KeyListMap<Integer,Entity> lanternsKeyListMap)
@@ -99,8 +79,8 @@ public class LanternSystem extends GameControllingSystem implements Pool.Poolabl
                 if (checkCollisionBetween(nighter, lantern)) {
                     if(collisionUnhandled(nighter,lantern)) {
                         collideEvent(nighter, lantern);
-//                        currentFighters.put(nighter,lantern);
-                        currentFighters.put(lantern,nighter);
+                        currentFighters.put(nighter,lantern);
+//                        currentFighters.put(lantern,nighter);
                         break;
                     }
                 }
@@ -118,19 +98,57 @@ public class LanternSystem extends GameControllingSystem implements Pool.Poolabl
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }
 
+//    private boolean collisionUnhandled(Entity nighter, Entity lantern){
+//        return !(currentFighters.get(nighter) == lantern) && !(currentFighters.get(lantern) == nighter);
+//    }
     private boolean collisionUnhandled(Entity nighter, Entity lantern){
-        return !(currentFighters.get(nighter) == lantern) && !(currentFighters.get(lantern) == nighter);
+        if(currentFighters.getList(nighter)==null)
+            return true;
+        return !(currentFighters.getList(nighter).contains(lantern));
     }
 
     private void collideEvent(Entity nighter, Entity lantern) {
+        //do NOT do "Color.set", make sure it is ColorComponent.setColor
         //sets lantern color to nighter color
-        log.debug("Lantern System Collide Event");
-        Mappers.COLOR.get(lantern).setColor(Mappers.COLOR.get(nighter).getColor());
+        ColorComponent nighterColor = Mappers.COLOR.get(nighter);
+
+        ColorComponent lanternColor = Mappers.COLOR.get(lantern);
+//        Mappers.COLOR.get(lantern).setColor(Mappers.COLOR.get(nighter).getColor());
+        LanternTag lanternTag = Mappers.LANTERN.get(lantern);
+
+        log.debug("Before Lantern System Collide Event\nLantern color is "+lanternColor+"\nNighter color is "+nighterColor+"\nLantern State is "+lanternTag.getState()+"\nlanternColor==nighterColor? "+(lanternColor.equals(nighterColor)));
+        if(lanternTag.getState()==LanternTag.State.DORMANT){
+            if(lanternColor.getColor().equals(nighterColor.getColor())){
+                lanternTag.setState(LanternTag.State.FLARE);
+                log.debug("state should be set to flare n vel component removed");
+                lantern.remove(VelocityComponent.class);
+                //add particle animation
+//                ParticleAnimationComponent particleAnimationComponent = engine.createComponent(ParticleAnimationComponent.class);
+//                particleAnimationComponent.init(WPRegionNames.FIRE_BLOB_PREFLARE,6,1);
+            }
+            else
+            {
+                lanternColor.setColor(nighterColor.getColor());
+            }
+        }
+        else if(lanternTag.getState()==LanternTag.State.FLARE){
+            if(lanternColor.getColor().equals(nighterColor.getColor())){
+                lanternTag.setState(LanternTag.State.DORMANT);
+//                lantern.add(engine.createComponent(VelocityComponent.class));
+            }
+            else
+            {
+                Mappers.HEALTH.get(nighter).decrement(Mappers.EXPLOSIVE.get(lantern).getPower());
+            }
+        }
+        log.debug("After Lantern System Collide Event\nLantern color is "+lanternColor+"\nNighter color is "+nighterColor+"\nLantern State is "+lanternTag.getState());
 
     }
     private void updateCurrentBattles(Entity nighter,Entity lantern){
-        currentFighters.removeKey(nighter);
+//        currentFighters.removeKey(nighter);
         currentFighters.removeKey(lantern);
+//        currentFighters.remove(lantern);
+        log.debug("updateCurrentBattles of Lantern alks");
     }
 
     @Override

@@ -17,7 +17,7 @@ import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.mono_color.MonoColorRenderTag;
 
 public class MonoColorEntityRenderSystem extends EntitySystem {
-//    private final Color default_color;
+    private final Color default_color = Color.WHITE;
     public static final Family FAMILY = Family.all(
             TextureComponent.class,
             Position.class,

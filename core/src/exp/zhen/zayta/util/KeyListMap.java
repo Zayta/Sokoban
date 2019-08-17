@@ -25,6 +25,8 @@ public class KeyListMap<K,V>{
     public V remove(K key)
     {
         V removedObj = objKeys.getKey(key);
+
+        if(removedObj!=null&&keyList.get(key)!=null)
         keyList.get(key).remove(removedObj);
         return removedObj;
     }

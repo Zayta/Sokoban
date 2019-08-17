@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 
 public class ColorComponent implements Component {
 
+
     private Color color = Color.WHITE;
 
     public Color getColor() {
