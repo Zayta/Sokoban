@@ -44,7 +44,7 @@ public class HudRenderSystem extends EntitySystem {
         font.draw(batch,levelString,
                 20,SizeManager.HUD_HEIGHT-layout.height);
 
-        String objectiveString = "Gather the stones"/*+RPG.userData.getStonesInLevel()*/;
+        String objectiveString = "Turn Embers to Flares"/*+RPG.userData.getStonesInLevel()*/;
         layout.setText(font,objectiveString);
         font.draw(batch,objectiveString,
                 SizeManager.HUD_WIDTH - layout.width-20,SizeManager.HUD_HEIGHT-layout.height);

@@ -210,10 +210,10 @@ public class LabGame implements Screen {
     }
 
     private void addGameControllingSystems(){
-        engine.addSystem(new StonesSystem(game,engine));
+//        engine.addSystem(new StonesSystem(game,engine));
 //        engine.addSystem(new LockerByColorSystem(game,engine));
-        engine.addSystem(new SpiritSystem(game,engine));
-        engine.addSystem(new LanternSpawnSystem(game,engine,5));
+//        engine.addSystem(new SpiritSystem(game,engine));
+        engine.addSystem(new LanternSpawnSystem(game,engine,10));
         engine.addSystem(new PlayerReaperSystem(game,engine));
     }
 
@@ -244,8 +244,6 @@ public class LabGame implements Screen {
         viewport.update(width,height,true);
         hudViewport.setWorldSize(SizeManager.HUD_WIDTH,SizeManager.HUD_HEIGHT);
         hudViewport.update(width,height,true);
-//        //log.debug("Resize is called\nWidth = "+width+"\nHeight = "+height+"\nWORLD HEIGHT: "+SizeManager.WAKE_WORLD_HEIGHT);
-
     }
 
     @Override

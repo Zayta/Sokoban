@@ -58,23 +58,32 @@ public class LanternSpawnSystem extends IntervalSystem {
 
         lanternsKeyListMap = new KeyListMap<Integer, Entity>();
         spawnPoint = Arrangements.generateRandomUCoordinates(1)[0];
-        engine.addSystem(new LanternSystem(game,engine,lanternsKeyListMap));
+        engine.addSystem(new LanternSystem(engine,lanternsKeyListMap));
+        engine.addSystem(new LanternCheckFlareSystem(game,engine));
+
+        //spawns three initially
+        for(int i =0; i<3; i++){
+            spawn();
+        }
     }
 
     @Override
     protected void updateInterval() {
+        spawn();
+    }
+
+    private void spawn(){
         //to generate from certain spot, take out randomeness
         int key = PositionTracker.generateKey(spawnPoint.x, spawnPoint.y);
-            lanternsKeyListMap.put(key, makeLantern(spawnPoint.x, spawnPoint.y,
-                    LanternTag.class,
-                    textureRegions));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+        lanternsKeyListMap.put(key, makeLantern(spawnPoint.x, spawnPoint.y,
+                LanternTag.class,
+                textureRegions));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 //        Vector2[] points = Arrangements.generateRandomUCoordinates(1);
 //        for(Vector2 point:points) {
 //            int key = PositionTracker.generateKey(point.x, point.y);
 //            lanternsKeyListMap.put(key, makeLantern(point.x, point.y, MovingBlockTag.class, WPRegionNames.EMOTES_BLUSH));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 //        }
     }
-
 
     private Entity makeLantern(float x, float y,java.lang.Class componentType, TextureRegion[] textureRegions) {
         TextureComponent texture = engine.createComponent(TextureComponent.class);

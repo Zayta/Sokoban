@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -28,97 +29,90 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerCo
 import exp.zhen.zayta.main.game.essence_lab.movement.component.VelocityComponent;
 import exp.zhen.zayta.util.KeyListMap;
 
-public class LanternSystem extends GameControllingSystem implements Pool.Poolable {
-
-    //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
+public class LanternSystem extends IteratingSystem implements Pool.Poolable {
     private static final Logger log = new Logger(LanternSystem.class.getName(),Logger.DEBUG);
     //families are entities that can collide
     private PooledEngine engine;
 
     private final KeyListMap<Integer,Entity> lanternsKeyListMap;
-
-    private final Family NIGHTERS = Family.all(
-            ColorComponent.class,
-            PositionTrackerComponent.class,
-            RectangularBoundsComponent.class,
-            HealthComponent.class
-    ).one(NPCTag.class,NighterTag.class).exclude(LanternTag.class).get();
-
-    private KeyListMap<Entity,Entity> currentFighters; //list of currently colliding entities, key is nighter, value is list of lanterns it is colliding with
+    private KeyListMap<Entity,Entity> currentFighters; //list of currently colliding entities, key is entity, value is list of lanterns it is colliding with
 
 
-    LanternSystem(RPG game, PooledEngine engine, KeyListMap<Integer,Entity> lanternsKeyListMap)
+    LanternSystem(PooledEngine engine, KeyListMap<Integer,Entity> lanternsKeyListMap)
     {
-        super(game,engine);
-        addMission();
+        super(Family.all(
+                ColorComponent.class,
+                PositionTrackerComponent.class,
+                RectangularBoundsComponent.class,
+                HealthComponent.class
+        ).one(NPCTag.class,NighterTag.class).exclude(LanternTag.class).get());
+//        super(game,engine);
+//        addMission();
         this.engine = engine;
         this.lanternsKeyListMap= lanternsKeyListMap;
         currentFighters = new KeyListMap<Entity, Entity>();
     }
 
     @Override
-    public void update(float deltaTime) {
-        ImmutableArray<Entity> nighters = getEngine().getEntitiesFor(NIGHTERS);
+    protected void processEntity(Entity entity, float deltaTime) {
 
-        for(Entity nighter: nighters) {
-            int key = Mappers.POSITION_TRACKER.get(nighter).getPositionKeyListMap().getKey(nighter);
-            int keyAbove = key+PositionTracker.n;
-            int keyBelow = key-PositionTracker.n;
-            int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
-                    key-1, key, key+1,
-                    keyBelow-1, keyBelow, keyBelow+1};
-            checkCollision(nighter,keys);
-        }
+        int key = Mappers.POSITION_TRACKER.get(entity).getPositionKeyListMap().getKey(entity);
+        int keyAbove = key+PositionTracker.n;
+        int keyBelow = key-PositionTracker.n;
+        int [] keys = {keyAbove-1,keyAbove,keyAbove+1,
+                key-1, key, key+1,
+                keyBelow-1, keyBelow, keyBelow+1};
+        checkCollision(entity,keys);
     }
 
-    private void checkCollision(Entity nighter, int [] keys){
+    private void checkCollision(Entity entity, int [] keys){
         for (int key: keys) {
             Entity lantern = lanternsKeyListMap.get(key);
 
             if (lantern != null) {
-                if (checkCollisionBetween(nighter, lantern)) {
-                    if(collisionUnhandled(nighter,lantern)) {
-                        collideEvent(nighter, lantern);
-                        currentFighters.put(nighter,lantern);
-//                        currentFighters.put(lantern,nighter);
+                if (checkCollisionBetween(entity, lantern)) {
+                    if(collisionUnhandled(entity,lantern)) {
+                        collideEvent(entity, lantern);
+                        currentFighters.put(entity,lantern);
+//                        currentFighters.put(lantern,entity);
                         break;
                     }
                 }
                 else{
-                    updateCurrentBattles(nighter,lantern);
+                    updateCurrentBattles(entity,lantern);
                 }
             }
         }
     }
-    private boolean checkCollisionBetween(Entity nighter, Entity lantern)
+    private boolean checkCollisionBetween(Entity entity, Entity lantern)
     {
-        RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(nighter);
+        RectangularBoundsComponent playerBounds = Mappers.RECTANGULAR_BOUNDS.get(entity);
         RectangularBoundsComponent obstacleBounds = Mappers.RECTANGULAR_BOUNDS.get(lantern);
 
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }
 
-//    private boolean collisionUnhandled(Entity nighter, Entity lantern){
-//        return !(currentFighters.get(nighter) == lantern) && !(currentFighters.get(lantern) == nighter);
+//    private boolean collisionUnhandled(Entity entity, Entity lantern){
+//        return !(currentFighters.get(entity) == lantern) && !(currentFighters.get(lantern) == entity);
 //    }
-    private boolean collisionUnhandled(Entity nighter, Entity lantern){
-        if(currentFighters.getList(nighter)==null)
+    private boolean collisionUnhandled(Entity entity, Entity lantern){
+        if(currentFighters.getList(entity)==null)
             return true;
-        return !(currentFighters.getList(nighter).contains(lantern));
+        return !(currentFighters.getList(entity).contains(lantern));
     }
 
-    private void collideEvent(Entity nighter, Entity lantern) {
+    private void collideEvent(Entity entity, Entity lantern) {
         //do NOT do "Color.set", make sure it is ColorComponent.setColor
-        //sets lantern color to nighter color
-        ColorComponent nighterColor = Mappers.COLOR.get(nighter);
+        //sets lantern color to entity color
+        ColorComponent entityColor = Mappers.COLOR.get(entity);
 
         ColorComponent lanternColor = Mappers.COLOR.get(lantern);
-//        Mappers.COLOR.get(lantern).setColor(Mappers.COLOR.get(nighter).getColor());
+//        Mappers.COLOR.get(lantern).setColor(Mappers.COLOR.get(entity).getColor());
         LanternTag lanternTag = Mappers.LANTERN.get(lantern);
 
-        log.debug("Before Lantern System Collide Event\nLantern color is "+lanternColor+"\nNighter color is "+nighterColor+"\nLantern State is "+lanternTag.getState()+"\nlanternColor==nighterColor? "+(lanternColor.equals(nighterColor)));
+        log.debug("Before Lantern System Collide Event\nLantern color is "+lanternColor+"\nNighter color is "+entityColor+"\nLantern State is "+lanternTag.getState()+"\nlanternColor==entityColor? "+(lanternColor.equals(entityColor)));
         if(lanternTag.getState()==LanternTag.State.DORMANT){
-            if(lanternColor.getColor().equals(nighterColor.getColor())){
+            if(lanternColor.getColor().equals(entityColor.getColor())){
                 lanternTag.setState(LanternTag.State.FLARE);
                 log.debug("state should be set to flare n vel component removed");
                 lantern.remove(VelocityComponent.class);
@@ -128,24 +122,24 @@ public class LanternSystem extends GameControllingSystem implements Pool.Poolabl
             }
             else
             {
-                lanternColor.setColor(nighterColor.getColor());
+                lanternColor.setColor(entityColor.getColor());
             }
         }
         else if(lanternTag.getState()==LanternTag.State.FLARE){
-            if(lanternColor.getColor().equals(nighterColor.getColor())){
+            if(lanternColor.getColor().equals(entityColor.getColor())){
                 lanternTag.setState(LanternTag.State.DORMANT);
                 lantern.add(engine.createComponent(VelocityComponent.class));
             }
             else
             {
-                Mappers.HEALTH.get(nighter).decrement(Mappers.EXPLOSIVE.get(lantern).getPower());
+                Mappers.HEALTH.get(entity).decrement(Mappers.EXPLOSIVE.get(lantern).getPower());
             }
         }
-        log.debug("After Lantern System Collide Event\nLantern color is "+lanternColor+"\nNighter color is "+nighterColor+"\nLantern State is "+lanternTag.getState());
+        log.debug("After Lantern System Collide Event\nLantern color is "+lanternColor+"\nNighter color is "+entityColor+"\nLantern State is "+lanternTag.getState());
 
     }
-    private void updateCurrentBattles(Entity nighter,Entity lantern){
-//        currentFighters.removeKey(nighter);
+    private void updateCurrentBattles(Entity entity,Entity lantern){
+//        currentFighters.removeKey(entity);
         currentFighters.removeKey(lantern);
 //        currentFighters.remove(lantern);
         log.debug("updateCurrentBattles of Lantern alks");
