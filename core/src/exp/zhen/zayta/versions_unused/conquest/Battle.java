@@ -1,11 +1,11 @@
-package exp.zhen.zayta.main.game.conquest;
+package exp.zhen.zayta.versions_unused.conquest;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.conquest.soldiers.Soldier;
-import exp.zhen.zayta.main.game.conquest.tiles.Tile;
+import exp.zhen.zayta.versions_unused.conquest.soldiers.Soldier;
+import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;
 
 /*Handles game logic and input*/
 public class Battle extends ClickListener {

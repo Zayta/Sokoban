@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.conquest;
+package exp.zhen.zayta.versions_unused.conquest;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -10,9 +10,9 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.characters.Undead;
-import exp.zhen.zayta.main.game.conquest.soldiers.nur.NUR;
-import exp.zhen.zayta.main.game.conquest.soldiers.utsubyo.Utsubyo;
-import exp.zhen.zayta.main.game.conquest.tiles.Tile;
+import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
+import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
+import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;
 
 public class Territory extends Stage {
 

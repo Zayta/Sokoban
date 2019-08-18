@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.conquest;
+package exp.zhen.zayta.versions_unused.conquest;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -20,9 +20,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.conquest.soldiers.nur.NUR;
-import exp.zhen.zayta.main.game.conquest.soldiers.utsubyo.Utsubyo;
-import exp.zhen.zayta.main.game.conquest.tiles.Tile;
+import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
+import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
+import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;
 import exp.zhen.zayta.main.game.debug.DebugCameraController;
 import exp.zhen.zayta.main.menu.MenuScreen;
 import exp.zhen.zayta.util.GdxUtils;

@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.spirit_gathering;
+package exp.zhen.zayta.versions_unused.spirit_gathering;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -14,7 +14,6 @@ import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
@@ -38,7 +37,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 
     //todo later add in wielder x mortal in this same class and rename class to undead x mortal collision system
     private int numSpirits = 5;
-    private static final Logger log = new Logger(exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.spirit_gathering.SpiritSystem.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(exp.zhen.zayta.versions_unused.spirit_gathering.SpiritSystem.class.getName(),Logger.DEBUG);
     private TextureAtlas labAtlas;
 
     private KeyListMap<Integer,Entity> spiritsKeyListMap;

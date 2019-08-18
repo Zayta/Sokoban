@@ -1,11 +1,11 @@
-package exp.zhen.zayta.main.game.conquest.soldiers.utsubyo;
+package exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
 
 import exp.zhen.zayta.main.game.characters.Undead;
-import exp.zhen.zayta.main.game.conquest.assets.CQRegionNames;
+import exp.zhen.zayta.versions_unused.conquest.assets.CQRegionNames;
 
 public class Utsubyo {
 

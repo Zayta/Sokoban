@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.conquest.soldiers.nur;
+package exp.zhen.zayta.versions_unused.conquest.soldiers.nur;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 

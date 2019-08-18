@@ -3,6 +3,7 @@ package exp.zhen.zayta.main.game.essence_lab.movement.system;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.MapProperties;
@@ -23,10 +24,10 @@ public class CameraUpdateSystem extends EntitySystem {
             PlayerTag.class,Position.class
     ).get();
     private ImmutableArray<Entity> playableCharacters;
-    public CameraUpdateSystem(Camera camera, TiledMap tiledMap){
+    public CameraUpdateSystem(PooledEngine engine,Camera camera, TiledMap tiledMap){
         this.camera = camera;
         this.tiledMap = tiledMap;
-        this.playableCharacters = getEngine().getEntitiesFor(PLAYABLE_CHARACTERS);
+        this.playableCharacters = engine.getEntitiesFor(PLAYABLE_CHARACTERS);
     }
 
     @Override

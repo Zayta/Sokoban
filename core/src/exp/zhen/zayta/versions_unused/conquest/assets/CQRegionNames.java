@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.conquest.assets;
+package exp.zhen.zayta.versions_unused.conquest.assets;
 
 public class CQRegionNames {
 

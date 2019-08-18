@@ -14,7 +14,7 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.UiRegionNames;
 import exp.zhen.zayta.main.ScreenBase;
-import exp.zhen.zayta.main.game.conquest.Conquest;
+import exp.zhen.zayta.versions_unused.conquest.Conquest;
 import exp.zhen.zayta.main.game.essence_lab.LabGame;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.menu.MenuScreen;

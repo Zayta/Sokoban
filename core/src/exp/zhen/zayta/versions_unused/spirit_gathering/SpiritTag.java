@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.spirit_gathering;
+package exp.zhen.zayta.versions_unused.spirit_gathering;
 
 import com.badlogic.ashley.core.Component;
 

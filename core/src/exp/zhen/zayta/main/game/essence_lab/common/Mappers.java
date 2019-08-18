@@ -8,7 +8,7 @@ import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.AttackC
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.HealthComponent;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.MissionComponent;
+import exp.zhen.zayta.versions_unused.MissionComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.LanternTag;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.locker.LockerComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.components.MovableTag;

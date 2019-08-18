@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.conquest.component;
+package exp.zhen.zayta.versions_unused.conquest.component;
 
 import com.badlogic.ashley.core.Component;
 

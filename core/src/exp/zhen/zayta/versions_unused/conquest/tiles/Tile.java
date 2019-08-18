@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.conquest.tiles;
+package exp.zhen.zayta.versions_unused.conquest.tiles;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Scaling;
 
 import java.awt.Font;
 
-import exp.zhen.zayta.main.game.conquest.soldiers.Soldier;
+import exp.zhen.zayta.versions_unused.conquest.soldiers.Soldier;
 
 public class Tile extends Stack {
 

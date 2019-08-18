@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission;
+package exp.zhen.zayta.versions_unused;
 
 import com.badlogic.ashley.core.Component;
 

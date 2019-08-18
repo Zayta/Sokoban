@@ -1,9 +1,9 @@
-package exp.zhen.zayta.main.game.conquest.soldiers.utsubyo;
+package exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import exp.zhen.zayta.main.game.conquest.soldiers.Soldier;
+import exp.zhen.zayta.versions_unused.conquest.soldiers.Soldier;
 
 public class SoldierClickListener extends ClickListener {
     private Soldier soldier;

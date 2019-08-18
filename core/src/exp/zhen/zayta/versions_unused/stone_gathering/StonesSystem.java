@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.stone_gathering;
+package exp.zhen.zayta.versions_unused.stone_gathering;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -22,7 +22,6 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
