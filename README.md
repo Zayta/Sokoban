@@ -1,7 +1,9 @@
 # Gameplay
-## Goals
-* Get out of Lokan's Prison
-* Stay alive
+## Goal
+* Turn all embers to flares
+*Variations*
+* *Turn certain number into certain color flares* *
+* *Turn into embers at certain spots or a certain number of certain colors at certain spots* *
 
 ### How to get out of Lokan's Prison
 * Light up Essence
