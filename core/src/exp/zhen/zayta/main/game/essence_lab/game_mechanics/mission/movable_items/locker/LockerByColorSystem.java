@@ -13,9 +13,8 @@ import com.badlogic.gdx.utils.Logger;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
@@ -26,6 +25,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.DimensionComponen
 import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponent;
+
 import exp.zhen.zayta.util.KeyListMap;
 
 public class LockerByColorSystem extends GameControllingSystem {
@@ -39,10 +39,10 @@ public class LockerByColorSystem extends GameControllingSystem {
     //families are entities that can collide
     private final Family LOCKER_KEYS;
 
-    public LockerByColorSystem(RPG game, PooledEngine engine){
-        super(game,engine);
+    public LockerByColorSystem(Experiment experiment, PooledEngine engine, TextureAtlas labAtlas){
+        super(experiment,engine);
         addMission();
-        labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
+        this.labAtlas = labAtlas;
         LOCKER_KEYS = Family.all(
                 LockerKeyTag.class,
                 RectangularBoundsComponent.class

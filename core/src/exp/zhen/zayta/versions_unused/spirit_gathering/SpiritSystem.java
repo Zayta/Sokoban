@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
@@ -44,10 +45,10 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
     //families are entities that can collide
     private final Family NIGHTERS;
 
-    public SpiritSystem(RPG game, PooledEngine engine){
-        super(game,engine);
+    public SpiritSystem(Experiment experiment, PooledEngine engine, TextureAtlas labAtlas){
+        super(experiment,engine);
         addMission();
-        labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
+        labAtlas = labAtlas;
         NIGHTERS = Family.all(
                 NighterTag.class,
                 RectangularBoundsComponent.class

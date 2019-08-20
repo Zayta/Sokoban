@@ -14,7 +14,7 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.UiRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
-import exp.zhen.zayta.main.menu.MenuScreen;
+import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.main.ScreenBase;
 
 
@@ -42,7 +42,7 @@ public class ShopScreen extends ScreenBase {
         Label title = new Label("Essence", uiSkin);
 
         // total points label
-        int amountEssence = RPG.userData.getEssence();
+        int amountEssence = game.getUserData().getEssence();
         Label essenceLabel = new Label(String.valueOf(amountEssence), uiSkin);
 
         // back button
@@ -75,6 +75,6 @@ public class ShopScreen extends ScreenBase {
 
     private void back() {
 //        ////log.debug("back()");
-        game.setScreen(new MenuScreen(game));
+        game.setScreen(new Research(game));
     }
 }

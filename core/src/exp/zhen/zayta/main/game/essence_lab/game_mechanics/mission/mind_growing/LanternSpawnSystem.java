@@ -1,22 +1,17 @@
 package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing;
 
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IntervalSystem;
-import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPAssetDescriptors;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.blocks.BlockComponent;
-import exp.zhen.zayta.main.game.essence_lab.blocks.MovingBlockTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
@@ -34,7 +29,7 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponen
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.mono_color.MonoColorRenderTag;
-import exp.zhen.zayta.util.GdxUtils;
+import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class LanternSpawnSystem extends IntervalSystem {
@@ -45,10 +40,10 @@ public class LanternSpawnSystem extends IntervalSystem {
     private Vector2 spawnPoint;
     private KeyListMap<Integer,Entity> lanternsKeyListMap;
     private TextureRegion[] textureRegions;
-    public LanternSpawnSystem(RPG game, PooledEngine engine, float interval) {
+    public LanternSpawnSystem(Experiment experiment, PooledEngine engine, TextureAtlas labAtlas, float interval) {
         super(interval);
         this.engine = engine;
-        this.labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
+        this.labAtlas = labAtlas;
         textureRegions = new TextureRegion[4];
         //init textureRegions
         String [] textureRegionNames = {WPRegionNames.FIRE_BLOB_BACK,WPRegionNames.FIRE_BLOB_FRONT,WPRegionNames.FIRE_BLOB_LEFT,WPRegionNames.FIRE_BLOB_RIGHT};
@@ -59,7 +54,7 @@ public class LanternSpawnSystem extends IntervalSystem {
         lanternsKeyListMap = new KeyListMap<Integer, Entity>();
         spawnPoint = Arrangements.generateRandomUCoordinates(1)[0];
         engine.addSystem(new LanternSystem(engine,lanternsKeyListMap));
-        engine.addSystem(new LanternCheckFlareSystem(game,engine));
+        engine.addSystem(new LanternCheckFlareSystem(experiment,engine));
 
         //spawns three initially
         for(int i =0; i<3; i++){

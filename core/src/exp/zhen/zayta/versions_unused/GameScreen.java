@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game;
+package exp.zhen.zayta.versions_unused;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,12 +14,12 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.UiRegionNames;
 import exp.zhen.zayta.main.ScreenBase;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
+import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.versions_unused.conquest.Conquest;
-import exp.zhen.zayta.main.game.essence_lab.LabGame;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
-import exp.zhen.zayta.main.menu.MenuScreen;
 
-
+@Deprecated
 public class GameScreen extends ScreenBase {
 
     private static final Logger log = new Logger(GameScreen.class.getName(), Logger.DEBUG);
@@ -101,12 +101,12 @@ public class GameScreen extends ScreenBase {
 
     private void back() {
 //        ////log.debug("back()");
-        game.setScreen(new MenuScreen(game));
+        game.setScreen(new Research(game));
     }
 
 
     private void playWakeMode() {
-        game.setScreen(new LabGame(game));
+//        game.setScreen(new Experiment(game));
     }
 
     private void playConquest() {

@@ -14,19 +14,36 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
-import exp.zhen.zayta.main.game.GameScreen;
 import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.shop.ShopScreen;
 import exp.zhen.zayta.main.story.StoryBoardScreen;
 
 
-public class MenuScreen extends ScreenBase {
+public class Research extends ScreenBase {
 
-    private static final Logger log = new Logger(MenuScreen.class.getName(), Logger.DEBUG);
+    private static final Logger log = new Logger(Research.class.getName(), Logger.DEBUG);
 
-    public MenuScreen(RPG game) {
+    private Experiment experiment;
+
+    public Research(RPG game) {
         super(game);
+        experiment = new Experiment(this,game.getAssetManager(), game.getBatch());
     }
+
+    public void advance(){
+
+        log.debug("research is advancing");
+        game.getUserData().unlockScene();
+        game.setScreen(this);
+
+    }
+
+    public void stop(){
+        log.debug("stop is occurring");
+        experiment = new Experiment(this,game.getAssetManager(), game.getBatch());
+    }
+
 
     @Override
     protected Actor createUi() {
@@ -116,7 +133,7 @@ public class MenuScreen extends ScreenBase {
     }
 
     private void play() {
-        game.setScreen(new GameScreen(game));
+        game.setScreen(experiment);
     }
 
     private void shop() {

@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.UIAssetDescriptors;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
@@ -40,10 +41,10 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
     //families are entities that can collide
     private final Family NIGHTERS;
 
-    public StonesSystem(RPG game, PooledEngine engine){
-        super(game,engine);
+    public StonesSystem(Experiment experiment, PooledEngine engine, TextureAtlas labAtlas){
+        super(experiment,engine);
         addMission();
-        labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
+        this.labAtlas = labAtlas;
         NIGHTERS = Family.all(
                 NighterTag.class,
                 RectangularBoundsComponent.class

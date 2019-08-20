@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -13,7 +15,6 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
@@ -27,14 +28,13 @@ import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.RemoveItemSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.UpdatePushDirectionSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.npc_ai.NPCNonstopMovementSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.bomb_trigger.LandmineExplosionSystem;
 import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.collide_and_fight.MonsterAttacksNighterSystem;
 import exp.zhen.zayta.main.game.essence_lab.entity.EntityLab;
 import exp.zhen.zayta.main.game.essence_lab.input.InputSystem;
 import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.blocks.BlockSystem;
-import exp.zhen.zayta.main.game.essence_lab.blocks.UnblockSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.MapBlockPauseSystem;
+import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CircularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.RectangularBoundsSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.CameraUpdateSystem;
@@ -43,7 +43,6 @@ import exp.zhen.zayta.main.game.essence_lab.blocks.block_npc.MapBlockChangeDirec
 import exp.zhen.zayta.main.game.essence_lab.blocks.block_npc.IntervalChangeDirectionSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.HudRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.system.MovementSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.LockerRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.MonoColorEntityRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.MultiColorEntityRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.WorldWrapPauseSystem;
@@ -54,42 +53,48 @@ import exp.zhen.zayta.main.game.essence_lab.render.StatsRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.TiledMapRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.particle.ParticleAnimationSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationSystem;
+import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.util.GdxUtils;
 
-public class LabGame implements Screen {
-    /*LabGame mode is when you gather the stones without running into civilians*/
+public class Experiment implements Screen {
+    /*Experiment mode is when you gather the stones without running into civilians*/
     /*Conquest mode flip tile to control movement, end when defeat all monsters*/
     /*Defense mode is when you defend someone's soul from monsters.*/
-    private static final Logger log = new Logger(LabGame.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(Experiment.class.getName(),Logger.DEBUG);
     private static final boolean DEBUG = true;
 
-    private final RPG game;
+//    private final RPG game;
     private final AssetManager assetManager; private Skin skin;
 
     private EntityLab entityLab;
 //    public static Manufacturer manufacturer;
 
-    private MapMaker mapMaker; private boolean enableTiledMap = true;//private TiledMap tiledMap;
+    private MapMaker mapMaker; private boolean enableTiledMap = false;//private TiledMap tiledMap;
 
     private OrthographicCamera orthographicCamera;
     private Viewport viewport;
     private Viewport hudViewport;
 
-    private ShapeRenderer shapeRenderer;
+    private ShapeRenderer shapeRenderer; private SpriteBatch batch;
 
     private PooledEngine engine;
+    private Research research;
 
-    public LabGame(RPG game) {
-        this.game = game;
-        assetManager = game.getAssetManager();
+    private int currentLvl=0;
 
-        SizeManager.config(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+    public void setCurrentLvl(int currentLvl) {
+        this.currentLvl = currentLvl;
     }
 
-    @Override
-    public void show() {
+    public Experiment(Research research, AssetManager assetManager, SpriteBatch batch, ShapeRenderer shapeRenderer) {
+//        this.game = game;
+        this.research = research;
+        this.assetManager = assetManager;
+        SizeManager.config(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        this.batch = batch;
+
         /*Camera*/
-        shapeRenderer = new ShapeRenderer();
+        this.shapeRenderer = shapeRenderer;
         orthographicCamera = new OrthographicCamera();
         viewport = new FitViewport(SizeManager.WAKE_WORLD_WIDTH,SizeManager.WAKE_WORLD_HEIGHT,orthographicCamera);
 
@@ -103,8 +108,17 @@ public class LabGame implements Screen {
         entityLab = new EntityLab(engine,assetManager);
         mapMaker = new MapMaker(assetManager);
 
-        addEntities();
-        addSystems();
+
+    }
+
+    @Override
+    public void show() {
+
+        switch (currentLvl){
+            default:
+                addEntities(2,1);
+                addSystems();
+        }
     }
     private void addSystems(){
         if(enableTiledMap)
@@ -115,8 +129,8 @@ public class LabGame implements Screen {
 //        addMovableItemSystems();//should be after movement systems
         addAnimationSystems();//must be before render
         addRenderSystems();
-        addBattleSystems();
-        addGameControllingSystems();
+        addGameSystems();
+        
         if(DEBUG) {
             addDebugSystems();
         }
@@ -156,6 +170,7 @@ public class LabGame implements Screen {
         engine.addSystem(new MovementSystem());
         engine.addSystem(new RectangularBoundsSystem());
         engine.addSystem(new CircularBoundsSystem());
+//        addMovableItemSystems();
 
     }
     private void addMovableItemSystems(){
@@ -163,13 +178,7 @@ public class LabGame implements Screen {
         engine.addSystem(new PickUpMovableItem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));
         engine.addSystem(new UpdatePushDirectionSystem());
         engine.addSystem(new MoveItemSystem());//sb after movement and bounds system
-
-//        engine.addSystem(new MovementLimitationBoundClipSystem()); //todo Nighter gets sticky wit this system
-//        engine.addSystem(new NonOverlapBoundsSystem());
-//        engine.addSystem(new MovingBlocksSystem(game,engine));
-////        engine.addSystem(new NaiveLanternSystem(game,engine));
-
-        engine.addSystem(new UnblockSystem());
+//        engine.addSystem(new UnblockSystem());
 
     }
 
@@ -182,27 +191,35 @@ public class LabGame implements Screen {
     private void addRenderSystems(){
 //        engine.addSystem(new LockerRenderSystem(viewport,shapeRenderer));//must be first cuz its background
 //        engine.addSystem(new GeneratedMapRenderSystem(mapMaker.generateMap(),viewport,game.getBatch()));
-        engine.addSystem(new MultiColorEntityRenderSystem(viewport,game.getBatch()));
-        engine.addSystem(new HudRenderSystem(hudViewport,game.getBatch(),assetManager.get(UIAssetDescriptors.FONT)));
+        engine.addSystem(new MultiColorEntityRenderSystem(viewport,batch));
+        engine.addSystem(new HudRenderSystem(hudViewport,batch,assetManager.get(UIAssetDescriptors.FONT)));
 //        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
 
         engine.addSystem(new MonoColorEntityRenderSystem(viewport));//sb last cuz it changes batch color.
     }
-
-    private void addBattleSystems(){
+    
+    private void addGameSystems(){
+        //todo make this depend on level: lantern interval depend on lvl, number of monsters dependent on lvl
         engine.addSystem(new MonsterAttacksNighterSystem());
-//        engine.addSystem(new LandmineExplosionSystem());
         engine.addSystem(new NPCReaperSystem(engine));
+        engine.addSystem(new LanternSpawnSystem(this,engine,assetManager.get(UIAssetDescriptors.LAB),10));
+        engine.addSystem(new PlayerReaperSystem(this,engine));
     }
 
-    private void addGameControllingSystems(){
-//        engine.addSystem(new StonesSystem(game,engine));
-//        engine.addSystem(new LockerByColorSystem(game,engine));
-//        engine.addSystem(new SpiritSystem(game,engine));
-        engine.addSystem(new LanternSpawnSystem(game,engine,10));
-        engine.addSystem(new PlayerReaperSystem(game,engine));
-    }
+//    private void addBattleSystems(){
+//        engine.addSystem(new MonsterAttacksNighterSystem());
+////        engine.addSystem(new LandmineExplosionSystem());
+//        engine.addSystem(new NPCReaperSystem(engine));
+//    }
+//
+//    private void addGameControllingSystems(){
+////        engine.addSystem(new StonesSystem(game,engine));
+////        engine.addSystem(new LockerByColorSystem(game,engine));
+////        engine.addSystem(new SpiritSystem(game,engine));
+//        engine.addSystem(new LanternSpawnSystem(game,engine,10));
+//        engine.addSystem(new PlayerReaperSystem(game,engine));
+//    }
 
 
     private void addInputSystems(){
@@ -217,14 +234,51 @@ public class LabGame implements Screen {
 //            engine.addSystem(new DebugBlocksSystem(viewport,game.getBatch()));
 //            engine.addSystem(new DebugColorSystem(viewport,game.getBatch()));
 //            engine.addSystem(new DebugMovableBlocksSystem(viewport,game.getBatch()));
-        engine.addSystem(new DebugPositionTrackerSystem(viewport,game.getBatch()));
+        engine.addSystem(new DebugPositionTrackerSystem(viewport,batch));
     }
 
 
 
-    private void addEntities() {
-        entityLab.addEntities();
+    private void addEntities(int numNighters, int numMonsters) {
+        entityLab.addEntities(numNighters,numMonsters);
     }
+
+
+
+
+
+
+
+
+    /****For screen transition*****/
+
+
+    public void progress(){
+        log.debug("progress happening at experiment");
+        reset();
+        research.advance();
+
+    }
+    public void fail(){
+        reset();
+        research.stop();
+    }
+    private void reset(){
+        PositionTracker.reset();
+        log.debug("reset happening");
+        engine.removeAllEntities();
+        log.debug("reset done");
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     @Override
@@ -262,6 +316,6 @@ public class LabGame implements Screen {
     @Override
     public void dispose() {
 //        tiledMap.dispose();orthogonalTiledMapRenderer.dispose();
-        shapeRenderer.dispose();
+//        shapeRenderer.dispose();//disposing shapeRenderer here causes error
     }
 }

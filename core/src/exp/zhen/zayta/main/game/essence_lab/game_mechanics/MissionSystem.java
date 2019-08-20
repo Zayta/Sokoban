@@ -3,7 +3,8 @@ package exp.zhen.zayta.main.game.essence_lab.game_mechanics;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 
-import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
+
 
 @Deprecated
 public class MissionSystem extends GameControllingSystem{
@@ -11,25 +12,25 @@ public class MissionSystem extends GameControllingSystem{
     private Entity quest; private int numMissions = 0;
 
 
-    public MissionSystem(RPG game, PooledEngine engine) {
-        super(game, engine);
+    public MissionSystem(Experiment experiment, PooledEngine engine) {
+        super(experiment, engine);
         quest = engine.createEntity();
 
         engine.addEntity(quest);
 
         addMission();
     }
-    public void addMission(){
-        switch (RPG.userData.getNumScenesUnlocked()){
-            case 0:
-                break;
-            default:
-//                StonesMission stonesMission = getEngine().createComponent(StonesMission.class);
-//                quest.add(stonesMission);
-                numMissions++;
-                break;
-        }
-    }
+//    public void addMission(){
+//        switch (RPG.userData.getNumScenesUnlocked()){
+//            case 0:
+//                break;
+//            default:
+////                StonesMission stonesMission = getEngine().createComponent(StonesMission.class);
+////                quest.add(stonesMission);
+//                numMissions++;
+//                break;
+//        }
+//    }
 
 //    @Override
 //    public void update(float deltaTime) {

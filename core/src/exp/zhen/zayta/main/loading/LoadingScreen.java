@@ -13,7 +13,7 @@ import exp.zhen.zayta.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPAssetDescriptors;
-import exp.zhen.zayta.main.menu.MenuScreen;
+import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.util.GdxUtils;
 
 
@@ -93,7 +93,7 @@ public class LoadingScreen extends ScreenAdapter {
         renderer.end();
 
         if(changeScreen) {
-            game.setScreen(new MenuScreen(game));
+            game.setScreen(new Research(game));
         }
     }
 

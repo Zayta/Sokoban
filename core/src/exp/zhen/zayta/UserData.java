@@ -3,13 +3,14 @@ package exp.zhen.zayta;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
 
 
 public class UserData { /*monitors how much hp a player has left in the game
  and stores levels unlocked and total points earned.*/
-
+private static final Logger log = new Logger(UserData.class.getName(),Logger.DEBUG);
 
 //todo later make new fonts skin and change this accordingly
     private final String numScenesUnlocked = "numScenesUnlocked";
@@ -34,6 +35,8 @@ public class UserData { /*monitors how much hp a player has left in the game
         preferences.flush();
     }
     public void unlockScene(){
+
+        log.debug("scene is unlocking");
         setNumScenesUnlocked(preferences.getInteger(numScenesUnlocked)+1);
     }
 
@@ -43,47 +46,11 @@ public class UserData { /*monitors how much hp a player has left in the game
 
     public void setNumScenesUnlocked(int numScenesUnlocked) {
         preferences.putInteger(this.numScenesUnlocked,numScenesUnlocked);
-        preferences.flush();
 
+        preferences.flush();
+        log.debug("preferences are flushed");
     }
 
-    //
-//    public String getEssence() {
-//        return String.valueOf(essence);
-//    }
-//
-//    public String getNumScenesUnlocked() {
-//        return String.valueOf(numScenesUnlocked);
-//    }
-
-//
-//    public void updateHighScore(int score) {
-//        if(score < highscore) {
-//            return;
-//        }
-//
-//        highscore = score;
-//        preferences.putInteger(HIGH_SCORE_KEY, highscore);
-//        preferences.flush();
-//    }
-//
-//    public String getHighScoreString() {
-//        return String.valueOf(highscore);
-//    }
-//
-//    public DifficultyLevel getDifficultyLevel() {
-//        return difficultyLevel;
-//    }
-//
-//    public void updateDifficulty(DifficultyLevel newDifficultyLevel) {
-//        if(difficultyLevel == newDifficultyLevel) {
-//            return;
-//        }
-//
-//        difficultyLevel = newDifficultyLevel;
-//        preferences.putString(DIFFICULTY_KEY, difficultyLevel.name());
-//        preferences.flush();
-//    }
 
 
 }

@@ -50,10 +50,10 @@ public class EntityLab {
         nur = new NUR(engine,labAtlas); utsubyo = new Utsubyo(engine,labAtlas);
     }
 
-    public void addEntities() {
+    public void addEntities(int numNighters,int numMonsters) {
 //        initCivilization();
-        initMonsters();
-        addNighters(2);
+        addNighters(numNighters);
+        addMonsters(numMonsters);
     }
 
     /**For player**/
@@ -76,10 +76,9 @@ public class EntityLab {
 
 
     /**For monsters**/
-    private void initMonsters(){
+    private void addMonsters(int numMonsters){
         //todo also in future make civilians change direction randomly
         /*add Monsters*/
-        int numMonsters = 1;
         float minX = 0; float maxX = SizeManager.WAKE_WORLD_WIDTH-SizeManager.maxObjWidth;
         float minY = 0; float maxY = SizeManager.WAKE_WORLD_HEIGHT-SizeManager.maxObjHeight;
         for(int i = 0; i<numMonsters; i++) {
@@ -105,50 +104,10 @@ public class EntityLab {
     }
 
 
-    /**For society**/
-    private void initCivilization(){
-        //todo also in future make civilians change direction randomly
-        /*add Civilization*/
-        int numCivilians = 5;
-        float minX = 0; float maxX = SizeManager.WAKE_WORLD_WIDTH-SizeManager.maxObjWidth;
-        float minY = 0; float maxY = SizeManager.WAKE_WORLD_HEIGHT-SizeManager.maxObjHeight;
-        for(int i = 0; i<numCivilians; i++) {
-            float civX = MathUtils.random(minX,maxX);
-            float civY = MathUtils.random(minY,maxY);
-            addCivilian(civX, civY);
-        }
-
-    }
-    private void addCivilian(float x, float y){
-        NPCTag npcTag = engine.createComponent(NPCTag.class);
-
-        MortalTag mortalTag = engine.createComponent(MortalTag.class);
-
-        TextureComponent texture = engine.createComponent(TextureComponent.class);
-
-        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
-        spriteAnimationComponent.init(labAtlas.findRegion(WPRegionNames.CIVILIAN));
-
-
-        Entity entity = engine.createEntity();
-        addMovementComponents(engine,entity,x,y,PositionTracker.PositionKeyListMap.civiliansKeyListMap);
-        entity.add(npcTag);
-        entity.add(mortalTag);
-        entity.add(texture);
-        entity.add(spriteAnimationComponent);
-
-        AutoMovementTag autoMovementTag = engine.createComponent(AutoMovementTag.class);
-        entity.add(autoMovementTag);
-        engine.addEntity(entity);
-
-        Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());
-    }
 
 
 
-
-
-    public void addMovementComponents(PooledEngine engine, Entity entity, float x, float y, PositionTracker.PositionKeyListMap posMap){
+    private void addMovementComponents(PooledEngine engine, Entity entity, float x, float y, PositionTracker.PositionKeyListMap posMap){
         addPositionComponents(engine,entity,x,y);
 
         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
@@ -173,7 +132,7 @@ public class EntityLab {
         addPositionComponents(engine,entity,x,y);
     }
 
-    public static void addPositionComponents(PooledEngine engine, Entity entity, float x, float y){
+     static void addPositionComponents(PooledEngine engine, Entity entity, float x, float y){
         Position position = engine.createComponent(Position.class);
         position.set(x,y);
 
@@ -192,6 +151,51 @@ public class EntityLab {
         entity.add(bounds);
         entity.add(worldWrap);
     }
+
+
+
+
+
+
+
+//    /**For society**/
+//    private void initCivilization(){
+//        //todo also in future make civilians change direction randomly
+//        /*add Civilization*/
+//        int numCivilians = 5;
+//        float minX = 0; float maxX = SizeManager.WAKE_WORLD_WIDTH-SizeManager.maxObjWidth;
+//        float minY = 0; float maxY = SizeManager.WAKE_WORLD_HEIGHT-SizeManager.maxObjHeight;
+//        for(int i = 0; i<numCivilians; i++) {
+//            float civX = MathUtils.random(minX,maxX);
+//            float civY = MathUtils.random(minY,maxY);
+//            addCivilian(civX, civY);
+//        }
+//
+//    }
+//    private void addCivilian(float x, float y){
+//        NPCTag npcTag = engine.createComponent(NPCTag.class);
+//
+//        MortalTag mortalTag = engine.createComponent(MortalTag.class);
+//
+//        TextureComponent texture = engine.createComponent(TextureComponent.class);
+//
+//        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
+//        spriteAnimationComponent.init(labAtlas.findRegion(WPRegionNames.CIVILIAN));
+//
+//
+//        Entity entity = engine.createEntity();
+//        addMovementComponents(engine,entity,x,y,PositionTracker.PositionKeyListMap.civiliansKeyListMap);
+//        entity.add(npcTag);
+//        entity.add(mortalTag);
+//        entity.add(texture);
+//        entity.add(spriteAnimationComponent);
+//
+//        AutoMovementTag autoMovementTag = engine.createComponent(AutoMovementTag.class);
+//        entity.add(autoMovementTag);
+//        engine.addEntity(entity);
+//
+//        Mappers.MOVEMENT.get(entity).setDirection(Direction.generateRandomDirection());
+//    }
 
 
 }

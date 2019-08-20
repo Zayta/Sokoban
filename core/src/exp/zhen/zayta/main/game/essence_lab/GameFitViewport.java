@@ -9,7 +9,7 @@ import exp.zhen.zayta.main.game.config.SizeManager;
 
 public class GameFitViewport extends FitViewport {
 
-    private static final Logger log = new Logger(LabGame.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(Experiment.class.getName(),Logger.DEBUG);
 
     public GameFitViewport(float worldWidth, float worldHeight, Camera camera) {
         super(worldWidth, worldHeight, camera);

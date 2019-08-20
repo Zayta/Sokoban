@@ -5,17 +5,17 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 
-import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.menu.MenuScreen;
+import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 
+@Deprecated
 public abstract class GameControllingSystem extends EntitySystem implements Pool.Poolable {
-    private RPG game; private PooledEngine engine;
+    private Experiment experiment; private PooledEngine engine;
     private static int numMissions=0;//needs to be static so that any gameControlling system can update it without having it as their own private numMissions
 
     private static final Logger log = new Logger(GameControllingSystem.class.getName(),Logger.DEBUG);
-    public GameControllingSystem(RPG game, PooledEngine engine) {
-        this.game = game;
+    public GameControllingSystem(Experiment experiment, PooledEngine engine) {
+        this.experiment = experiment;
         this.engine = engine;
         ////log.debug("numMissionsLeft:"+numMissions);
     }
@@ -45,7 +45,7 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
 
     private void setNextLevel(){
         numMissions = 0;
-        RPG.userData.unlockScene();
+//        game.getUserData().unlockScene();
         goToMenu();
     }
 
@@ -54,9 +54,9 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
         goToMenu();
     }
     private void goToMenu(){
-        PositionTracker.reset();
-//        RPG.userData.Player.clear();
-        getEngine().removeAllEntities();
-        game.setScreen(new MenuScreen(game));
+//        PositionTracker.reset();
+////        RPG.userData.Player.clear();
+//        getEngine().removeAllEntities();
+        experiment.progress();
     }
 }

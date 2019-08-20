@@ -22,7 +22,6 @@ import exp.zhen.zayta.main.game.essence_lab.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.essence_lab.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.essence_lab.entity.components.properties.HealthComponent;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
