@@ -9,11 +9,10 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPAssetDescriptors;
-import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.util.GdxUtils;
 
 
@@ -93,7 +92,7 @@ public class LoadingScreen extends ScreenAdapter {
         renderer.end();
 
         if(changeScreen) {
-            game.setScreen(new Research(game));
+            game.goToMain();
         }
     }
 

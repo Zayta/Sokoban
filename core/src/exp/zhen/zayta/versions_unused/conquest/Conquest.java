@@ -17,10 +17,9 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;
@@ -131,7 +130,7 @@ public class Conquest implements Screen {
         nPos[0].addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new Research(game));
+                game.goToMain();
             }
         });
     }
@@ -145,7 +144,7 @@ public class Conquest implements Screen {
 //        menuButton.addListener(new ChangeListener() {
 //            @Override
 //            public void changed(ChangeEvent event, Actor actor) {
-//                game.setScreen(new Research(game));
+//                game.goToMain();
 //            }
 //        });
 //        territory.addActor(menuButton);
@@ -191,7 +190,7 @@ public class Conquest implements Screen {
         renderDebug();
 
         if(isGameOver()) {
-            game.setScreen(new Research(game));
+            game.goToMain();
         }
     }
 

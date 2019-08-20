@@ -11,12 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.UiRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
-import exp.zhen.zayta.main.menu.Research;
 
 
 public class StoryBoardScreen extends ScreenBase {
@@ -82,7 +81,7 @@ public class StoryBoardScreen extends ScreenBase {
 
     private void back() {
 //        ////log.debug("back()");
-        game.setScreen(new Research(game));
+        game.goToMain();
     }
     private Table getStoryTable(Skin skin){
         Table episodeTable = new Table(skin);

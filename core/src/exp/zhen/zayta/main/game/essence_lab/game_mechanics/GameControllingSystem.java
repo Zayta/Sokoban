@@ -46,7 +46,7 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
     private void setNextLevel(){
         numMissions = 0;
 //        game.getUserData().unlockScene();
-        goToMenu();
+//        goToMenu();
     }
 
     public void setGameOver(){

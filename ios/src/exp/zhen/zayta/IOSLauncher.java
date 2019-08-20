@@ -5,7 +5,7 @@ import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.RPG;
 
 public class IOSLauncher extends IOSApplication.Delegate {
     @Override

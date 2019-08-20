@@ -1,11 +1,8 @@
-package exp.zhen.zayta;
+package exp.zhen.zayta.main;
 
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.Logger;
-
-import java.util.ArrayList;
 
 
 public class UserData { /*monitors how much hp a player has left in the game

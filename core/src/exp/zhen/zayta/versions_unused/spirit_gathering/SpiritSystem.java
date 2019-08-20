@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;

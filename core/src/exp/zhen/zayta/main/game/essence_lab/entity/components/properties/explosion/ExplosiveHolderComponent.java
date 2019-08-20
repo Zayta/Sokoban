@@ -2,10 +2,11 @@ package exp.zhen.zayta.main.game.essence_lab.entity.components.properties.explos
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.utils.Pool;
 
 import java.util.ArrayList;
 
-public class ExplosiveHolderComponent implements Component {
+public class ExplosiveHolderComponent implements Component,Pool.Poolable {
     private ArrayList<Entity> landmines = new ArrayList<Entity>();
     private int charge;
 
@@ -21,4 +22,9 @@ public class ExplosiveHolderComponent implements Component {
         return landmines;
     }
 
+
+    @Override
+    public void reset() {
+        charge = 0;
+    }
 }

@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import exp.zhen.zayta.RPG;
+
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.util.GdxUtils;
 

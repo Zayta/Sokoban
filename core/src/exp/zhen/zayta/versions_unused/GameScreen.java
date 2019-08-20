@@ -10,12 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
-import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.UiRegionNames;
 import exp.zhen.zayta.main.ScreenBase;
-import exp.zhen.zayta.main.game.essence_lab.Experiment;
-import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.versions_unused.conquest.Conquest;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 
@@ -101,7 +99,7 @@ public class GameScreen extends ScreenBase {
 
     private void back() {
 //        ////log.debug("back()");
-        game.setScreen(new Research(game));
+        game.goToMain();
     }
 
 

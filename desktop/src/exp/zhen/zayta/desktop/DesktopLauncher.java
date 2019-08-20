@@ -2,7 +2,7 @@ package exp.zhen.zayta.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import exp.zhen.zayta.RPG;
+import exp.zhen.zayta.main.RPG;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

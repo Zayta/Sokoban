@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -15,6 +14,7 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
@@ -53,7 +53,6 @@ import exp.zhen.zayta.main.game.essence_lab.render.StatsRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.TiledMapRenderSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.particle.ParticleAnimationSystem;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationSystem;
-import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.util.GdxUtils;
 
 public class Experiment implements Screen {
@@ -78,23 +77,19 @@ public class Experiment implements Screen {
     private ShapeRenderer shapeRenderer; private SpriteBatch batch;
 
     private PooledEngine engine;
-    private Research research;
+    private RPG game;
 
     private int currentLvl=0;
 
-    public void setCurrentLvl(int currentLvl) {
-        this.currentLvl = currentLvl;
-    }
-
-    public Experiment(Research research, AssetManager assetManager, SpriteBatch batch, ShapeRenderer shapeRenderer) {
+    public Experiment(RPG game) {
 //        this.game = game;
-        this.research = research;
-        this.assetManager = assetManager;
-        SizeManager.config(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        this.batch = batch;
+        this.game = game;
+        this.assetManager = game.getAssetManager();
+        this.batch = game.getBatch();
+        this.shapeRenderer = game.getShapeRenderer();
 
+        SizeManager.config(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         /*Camera*/
-        this.shapeRenderer = shapeRenderer;
         orthographicCamera = new OrthographicCamera();
         viewport = new FitViewport(SizeManager.WAKE_WORLD_WIDTH,SizeManager.WAKE_WORLD_HEIGHT,orthographicCamera);
 
@@ -113,7 +108,7 @@ public class Experiment implements Screen {
 
     @Override
     public void show() {
-
+        log.debug("Experiment is showing");
         switch (currentLvl){
             default:
                 addEntities(2,1);
@@ -254,20 +249,19 @@ public class Experiment implements Screen {
 
 
     public void progress(){
-        log.debug("progress happening at experiment");
         reset();
-        research.advance();
-
+        game.unlockScene();
     }
     public void fail(){
         reset();
-        research.stop();
+        game.stop();
     }
     private void reset(){
         PositionTracker.reset();
-        log.debug("reset happening");
         engine.removeAllEntities();
-        log.debug("reset done");
+    }
+    public void setCurrentLvl(int currentLvl) {
+        this.currentLvl = currentLvl;
     }
 
 

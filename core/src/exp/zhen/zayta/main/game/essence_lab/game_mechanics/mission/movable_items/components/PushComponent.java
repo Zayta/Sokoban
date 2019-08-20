@@ -2,12 +2,13 @@ package exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_item
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.utils.Pool;
 
 import java.util.ArrayList;
 
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 
-public class PushComponent implements Component {
+public class PushComponent implements Component,Pool.Poolable {
     private Direction direction = Direction.none;
 
     public Direction getDirection() {
@@ -32,4 +33,9 @@ public class PushComponent implements Component {
         carriedItems.remove(entity);
     }
 
+    @Override
+    public void reset() {
+        carriedItems.clear();
+        direction = Direction.none;
+    }
 }

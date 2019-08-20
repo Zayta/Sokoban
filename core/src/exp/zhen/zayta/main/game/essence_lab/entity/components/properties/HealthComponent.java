@@ -1,8 +1,9 @@
 package exp.zhen.zayta.main.game.essence_lab.entity.components.properties;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.utils.Pool;
 
-public class HealthComponent implements Component {
+public class HealthComponent implements Component,Pool.Poolable {
     private float hp,full_hp;
 
     public void init(float hp){
@@ -10,6 +11,7 @@ public class HealthComponent implements Component {
 
         this.full_hp=hp;
     }
+
 
     public float getHp() {
         return hp;
@@ -29,5 +31,10 @@ public class HealthComponent implements Component {
 
     public void setFull_hp(float full_hp) {
         this.full_hp = full_hp;
+    }
+
+    @Override
+    public void reset() {
+        hp = full_hp;
     }
 }

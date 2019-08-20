@@ -1,12 +1,15 @@
 package exp.zhen.zayta.versions_unused;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.utils.Pool;
 
 @Deprecated
-public abstract class MissionComponent implements Component {
+public abstract class MissionComponent implements Component, Pool.Poolable {
 
     private boolean complete;
-
+    public void reset(){
+        complete = false;
+    }
     public boolean isComplete() {
         return complete;
     }

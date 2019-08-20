@@ -2,11 +2,12 @@ package exp.zhen.zayta.main.game.essence_lab.movement.component;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.utils.Pool;
 
 import exp.zhen.zayta.main.game.essence_lab.movement.Direction;
 
 
-public class MovementLimitationComponent implements Component {
+public class MovementLimitationComponent implements Component,Pool.Poolable {
 
     private int ghostificationLvl = 0;
     private Direction blockedDirection = Direction.none;
@@ -39,6 +40,7 @@ public class MovementLimitationComponent implements Component {
                 break;
         }
     }
+    @Override
     public void reset(){
         this.block = null;
         this.blockedDirection = Direction.none;

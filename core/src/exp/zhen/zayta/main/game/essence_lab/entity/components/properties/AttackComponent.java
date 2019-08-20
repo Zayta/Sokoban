@@ -1,8 +1,9 @@
 package exp.zhen.zayta.main.game.essence_lab.entity.components.properties;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.utils.Pool;
 
-public class AttackComponent implements Component {
+public class AttackComponent implements Component, Pool.Poolable {
     private float atk,full_atk;
 
     public void init(float atk){
@@ -25,5 +26,10 @@ public class AttackComponent implements Component {
 
     public void setFull_atk(float full_atk) {
         this.full_atk = full_atk;
+    }
+
+    @Override
+    public void reset() {
+        atk = full_atk;
     }
 }

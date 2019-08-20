@@ -29,7 +29,6 @@ import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapComponen
 import exp.zhen.zayta.main.game.essence_lab.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.essence_lab.render.mono_color.MonoColorRenderTag;
-import exp.zhen.zayta.main.menu.Research;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class LanternSpawnSystem extends IntervalSystem {
@@ -71,7 +70,6 @@ public class LanternSpawnSystem extends IntervalSystem {
         //to generate from certain spot, take out randomeness
         int key = PositionTracker.generateKey(spawnPoint.x, spawnPoint.y);
         lanternsKeyListMap.put(key, makeLantern(spawnPoint.x, spawnPoint.y,
-                LanternTag.class,
                 textureRegions));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
 //        Vector2[] points = Arrangements.generateRandomUCoordinates(1);
 //        for(Vector2 point:points) {
@@ -80,13 +78,15 @@ public class LanternSpawnSystem extends IntervalSystem {
 //        }
     }
 
-    private Entity makeLantern(float x, float y,java.lang.Class componentType, TextureRegion[] textureRegions) {
+    private Entity makeLantern(float x, float y, TextureRegion[] textureRegions) {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
 //        texture.setRegion(labAtlas.findRegion(regionName));
 
         Entity entity = engine.createEntity();
+        LanternTag lanternTag = engine.createComponent(LanternTag.class);
+        lanternTag.setState(LanternTag.State.DORMANT);
 
-        entity.add(engine.createComponent(componentType));//adds identifier
+        entity.add(lanternTag);//adds identifier
         entity.add(texture);
         engine.addEntity(entity);
 
