@@ -130,7 +130,7 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
 
     }
     private void updateCurrentBattles(Entity entity,Entity lantern){
-//        currentFighters.removeKey(entity);
+        currentFighters.removeKey(entity);
         currentFighters.removeKey(lantern);
 //        currentFighters.remove(lantern);
         log.debug("updateCurrentBattles of Lantern alks");

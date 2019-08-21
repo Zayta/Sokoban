@@ -66,6 +66,7 @@ public static final AssetDescriptor<BitmapFont> NEUTRALIZER_FONT =
 
 
 
+    public static final AssetDescriptor<BitmapFont> HEADING_FONT = PIXTHULHU_FONT;
     public static final AssetDescriptor<BitmapFont> FONT = NEON_FONT;
     public static final AssetDescriptor<Skin> UI_SKIN = NEON_SKIN;
 

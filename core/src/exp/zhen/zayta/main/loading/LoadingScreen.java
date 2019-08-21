@@ -59,6 +59,7 @@ public class LoadingScreen extends ScreenAdapter {
 
     }
     private void loadAssets(){
+        assetManager.load(UIAssetDescriptors.HEADING_FONT);
         assetManager.load(UIAssetDescriptors.FONT);
         assetManager.load(UIAssetDescriptors.LAB);
         assetManager.load(UIAssetDescriptors.CONQUEST);

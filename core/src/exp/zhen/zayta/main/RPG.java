@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -78,8 +79,8 @@ public class RPG extends Game {
             TextureRegion backgroundRegion = menuAtlas.findRegion("fullscanner");
             table.setBackground(new TextureRegionDrawable(backgroundRegion));
 
-            Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),assetManager.get(UIAssetDescriptors.UI_SKIN));
-            label.setFontScale(3);
+            Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(UIAssetDescriptors.HEADING_FONT),Color.WHITE));
+            label.setFontScale(2);
 
             table.add(label).top().left();
             table.row();
