@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
@@ -78,8 +79,9 @@ public class RPG extends Game {
             table.setBackground(new TextureRegionDrawable(backgroundRegion));
 
             Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),assetManager.get(UIAssetDescriptors.UI_SKIN));
+            label.setFontScale(3);
 
-            table.add(label);
+            table.add(label).top().left();
             table.row();
             table.add(scene(menuAtlas));
             table.row();
@@ -186,6 +188,7 @@ public class RPG extends Game {
 
     public void stop(){
         log.debug("stop is occurring");
+        goToMain();
     }
 
 

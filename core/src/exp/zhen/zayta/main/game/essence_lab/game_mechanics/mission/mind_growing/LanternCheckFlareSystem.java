@@ -25,13 +25,13 @@ public class LanternCheckFlareSystem extends EntitySystem {
     public void update(float deltaTime) {
         boolean win = true;
         ImmutableArray<Entity> lanterns = engine.getEntitiesFor(family);
-        log.debug("lanterns size is "+lanterns.size());
+//        log.debug("lanterns size is "+lanterns.size());
         for(Entity lantern:lanterns){
             win = win && Mappers.LANTERN.get(lantern).getState()==LanternTag.State.FLARE;
-            log.debug("lantern is "+lantern+" and has state "+Mappers.LANTERN.get(lantern).getState());
+//            log.debug("lantern is "+lantern+" and has state "+Mappers.LANTERN.get(lantern).getState());
         }
         if(win){
-            log.debug("experiment won");
+//            log.debug("experiment won");
             completeMission();
         }
     }

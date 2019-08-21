@@ -250,6 +250,7 @@ public class Experiment implements Screen {
 
     public void progress(){
         reset();
+        log.debug("experiment is progressing");
         game.unlockScene();
     }
     public void fail(){
