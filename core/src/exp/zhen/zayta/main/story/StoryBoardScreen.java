@@ -22,8 +22,10 @@ public class StoryBoardScreen extends ScreenBase {
     //lists all episodes w no data on them picks one to play
     private static final Logger log = new Logger(StoryBoardScreen.class.getName(),Logger.DEBUG);
 
+    private StoryScreen storyScreen;
     public StoryBoardScreen(RPG game) {
         super(game);
+        storyScreen = new StoryScreen(game);
     }
 
     //todo make array of n story-pics, and draw UserData.numScenesUnlocked of the n pics
@@ -101,7 +103,8 @@ public class StoryBoardScreen extends ScreenBase {
         return episodeTable;
     }
     private void playStory(){
-        game.setScreen(new StoryScreen());
+        storyScreen.loadEpisode(game.getUserData().getNumScenesUnlocked());
+        game.setScreen(storyScreen);
     }
 
 }
