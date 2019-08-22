@@ -19,40 +19,40 @@ import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
-//import exp.zhen.zayta.main.game.essence_lab.blocks.BlocksTrackerSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.NPCReaperSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.PlayerReaperSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.mind_growing.LanternSpawnSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.MoveItemSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.PickUpMovableItem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.RemoveItemSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.mission.movable_items.UpdatePushDirectionSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.npc_ai.NPCNonstopMovementSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.collide_and_fight.MonsterAttacksNighterSystem;
-import exp.zhen.zayta.main.game.essence_lab.entity.EntityLab;
-import exp.zhen.zayta.main.game.essence_lab.input.InputSystem;
-import exp.zhen.zayta.main.game.essence_lab.map.MapMaker;
-import exp.zhen.zayta.main.game.essence_lab.blocks.BlockSystem;
-import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.MapBlockPauseSystem;
-import exp.zhen.zayta.main.game.essence_lab.movement.PositionTracker;
-import exp.zhen.zayta.main.game.essence_lab.movement.system.CircularBoundsSystem;
-import exp.zhen.zayta.main.game.essence_lab.movement.system.RectangularBoundsSystem;
-import exp.zhen.zayta.main.game.essence_lab.movement.system.CameraUpdateSystem;
-import exp.zhen.zayta.main.game.essence_lab.movement.system.PositionTrackerUpdateSystem;
-import exp.zhen.zayta.main.game.essence_lab.blocks.block_npc.MapBlockChangeDirectionSystem;
-import exp.zhen.zayta.main.game.essence_lab.blocks.block_npc.IntervalChangeDirectionSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.HudRenderSystem;
-import exp.zhen.zayta.main.game.essence_lab.movement.system.MovementSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.MonoColorEntityRenderSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.MultiColorEntityRenderSystem;
-import exp.zhen.zayta.main.game.essence_lab.blocks.block_player.WorldWrapPauseSystem;
+//import exp.zhen.zayta.main.game.essence_lab.engine.blocks.BlocksTrackerSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.entity.EntityLab;
+import exp.zhen.zayta.versions_unused.game_mechanics.NPCReaperSystem;
+import exp.zhen.zayta.versions_unused.game_mechanics.PlayerReaperSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.lanterns.LanternSpawnSystem;
+import exp.zhen.zayta.main.game.movable_items.MoveItemSystem;
+import exp.zhen.zayta.main.game.movable_items.PickUpMovableItem;
+import exp.zhen.zayta.main.game.movable_items.RemoveItemSystem;
+import exp.zhen.zayta.main.game.movable_items.UpdatePushDirectionSystem;
+import exp.zhen.zayta.versions_unused.game_mechanics.npc_ai.NPCNonstopMovementSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.monsters.MonsterAttacksNighterSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.input.InputSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.map.MapMaker;
+import exp.zhen.zayta.main.game.essence_lab.engine.blocks.BlockSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.blocks.block_player.MapBlockPauseSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.PositionTracker;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.system.CircularBoundsSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.system.RectangularBoundsSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.system.CameraUpdateSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.system.PositionTrackerUpdateSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.blocks.block_npc.MapBlockChangeDirectionSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.blocks.block_npc.IntervalChangeDirectionSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.render.HudRenderSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.system.MovementSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.render.MonoColorEntityRenderSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.render.MultiColorEntityRenderSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.blocks.block_player.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugCircularBoundsRenderSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.GridRenderSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.StatsRenderSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.TiledMapRenderSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.animation.particle.ParticleAnimationSystem;
-import exp.zhen.zayta.main.game.essence_lab.render.animation.sprite.SpriteAnimationSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.render.StatsRenderSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.render.TiledMapRenderSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.render.animation.particle.ParticleAnimationSystem;
+import exp.zhen.zayta.main.game.essence_lab.engine.render.animation.sprite.SpriteAnimationSystem;
 import exp.zhen.zayta.util.GdxUtils;
 
 public class Experiment implements Screen {
@@ -100,7 +100,7 @@ public class Experiment implements Screen {
 
         /*Game Engines*/
         engine = new PooledEngine();
-        entityLab = new EntityLab(engine,assetManager);
+        entityLab = new EntityLab(game.getNur(),engine,assetManager);
         mapMaker = new MapMaker(assetManager);
 
 
@@ -235,7 +235,7 @@ public class Experiment implements Screen {
 
 
     private void addEntities(int numNighters, int numMonsters) {
-        entityLab.addEntities(numNighters,numMonsters);
+        entityLab.addEntities(numNighters, numMonsters);
     }
 
 

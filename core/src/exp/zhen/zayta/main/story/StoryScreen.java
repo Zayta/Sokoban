@@ -12,16 +12,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Hashtable;
 
 import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.UIAssetDescriptors;
 import exp.zhen.zayta.main.UiRegionNames;
+import exp.zhen.zayta.main.game.characters.Undead;
+import exp.zhen.zayta.main.game.characters.nur.NUR;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPAssetDescriptors;
 import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 
@@ -34,20 +38,26 @@ public class StoryScreen extends ScreenBase {
     private static final Logger log = new Logger(StoryScreen.class.getName(),Logger.DEBUG);
     //plays a single episode, but stores all episode data
 //    private FileHandle storyFile = Gdx.files.internal("story/records.txt");
-    private TextureAtlas pictures;
-    private String [] episodes = new String [30];
+
+    private String [] episodes = new String [10];
+    private Drawable [] scenes = new Drawable[10];
+
     private int currentLine = 0;
     private ArrayList<String> speaker = new ArrayList<String>();
     private ArrayList<String> dialogue = new ArrayList<String>();
+    private Table table; private Drawable currentScene;
 
-
-    TextureAtlas textureAtlas;
+    private NUR nur;
 
     public StoryScreen(RPG game) {
         super(game);
-        textureAtlas = assetManager.get(UIAssetDescriptors.LAB);
         loadFile(Gdx.files.internal("story/records.txt"));
+        loadScenes(assetManager.get(UIAssetDescriptors.LAB));
+        table = new Table();
+        nur = game.getNur();
+        loadEpisode(1);
     }
+
     private void loadFile(FileHandle storyFile){
         String fullStory = storyFile.readString();
 //        episodes = fullStory.replaceAll("label","]").split("]");
@@ -59,9 +69,21 @@ public class StoryScreen extends ScreenBase {
         }
 
     }
+
+    private void loadScenes(TextureAtlas textureAtlas){
+        for(int ep = 0; ep<scenes.length;ep++){
+            if(ep<3)
+                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(WPRegionNames.BACKGROUND));
+            else
+                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(WPRegionNames.BACKGROUND));
+        }
+    }
+
+
     public void loadEpisode(int current_episode){
 
         log.debug("episodes are "+ Arrays.toString(episodes));
+        speaker.clear();
         dialogue.clear();
         if(current_episode>=episodes.length){ //account for array out of bounds
             current_episode = episodes.length-1;
@@ -90,21 +112,22 @@ public class StoryScreen extends ScreenBase {
             log.debug("Error: speaker cannot be matched with dialogue");
         }
 
+        currentScene = scenes[current_episode];
     }
 
 
     @Override
     protected Actor createUi() {
-        Table table = new Table();
         Skin skin = assetManager.get(UIAssetDescriptors.UI_SKIN);
 
+        //reset table
+        table.clearChildren();
+        currentLine = 0;
         //background picture
-        TextureRegion backgroundRegion = assetManager.get(UIAssetDescriptors.LAB).findRegion(WPRegionNames.BACKGROUND);
-        table.setBackground(new TextureRegionDrawable(backgroundRegion));
+//        TextureRegion backgroundRegion = assetManager.get(UIAssetDescriptors.LAB).findRegion(WPRegionNames.BACKGROUND);
+        table.setBackground(currentScene);
 
-
-
-        loadEpisode(1);//current Episode cannot be 0
+//        loadEpisode(1,new TextureRegionDrawable(backgroundRegion));//current Episode cannot be 0
         //speaker
 //        final Label s = new Label(speaker.get(currentLine),skin);
 //        table.add(s);
@@ -130,6 +153,7 @@ public class StoryScreen extends ScreenBase {
 
         return table;
     }
+
     private void goToNextLine(Image s, Label d){
         currentLine++;
         if(currentLine<speaker.size()&&currentLine<dialogue.size()) {
@@ -142,11 +166,12 @@ public class StoryScreen extends ScreenBase {
     }
     private void updateSpeaker(Image image){
         if(speaker.get(currentLine).equals("ll")){
-            image.setDrawable(new TextureRegionDrawable(new TextureRegion(textureAtlas.findRegion(WPRegionNames.LORALE))));
+            image.setDrawable(nur.nighters.get(Undead.Lorale).getAvatar());
         }
-
         else{
-            image.setDrawable(new TextureRegionDrawable(textureAtlas.findRegion(WPRegionNames.CIVILIAN)));
+            log.debug("Image is "+image);
+            log.debug("Nighter is "+nur.nighters.get(Undead.Anonymous));
+            image.setDrawable(nur.nighters.get(Undead.Anonymous).getAvatar());
         }
     }
 

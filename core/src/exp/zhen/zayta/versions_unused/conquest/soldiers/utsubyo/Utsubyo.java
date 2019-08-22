@@ -22,7 +22,7 @@ public class Utsubyo {
     private void initMonsters()
     {
 //        nighters.put(Undead.Lorale,
-//                new Fighter(conquestAtlas.findRegion("portraits/Lorale"),100,10,10));
+//                new Stats(conquestAtlas.findRegion("portraits/Lorale"),100,10,10));
 
     }
 

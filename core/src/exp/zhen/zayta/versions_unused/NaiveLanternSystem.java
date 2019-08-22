@@ -4,9 +4,9 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 
 import exp.zhen.zayta.main.game.essence_lab.Experiment;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.GameControllingSystem;
-import exp.zhen.zayta.main.game.essence_lab.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
-//import exp.zhen.zayta.main.game.essence_lab.movement.component.WorldWrapTag;
+import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
+import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
+//import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapTag;
 
 
 public class NaiveLanternSystem extends GameControllingSystem implements CollisionListener{

@@ -8,7 +8,8 @@ public enum Undead {
     Taria,
     Cumin,
     Kira,
-    Foofi;
+    Foofi,
+    Anonymous;
 
 //    private ArrayList<CharacterClass> characterClass;
 //    Undead(CharacterClass[] characterClass){

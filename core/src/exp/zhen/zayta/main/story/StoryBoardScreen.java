@@ -23,9 +23,9 @@ public class StoryBoardScreen extends ScreenBase {
     private static final Logger log = new Logger(StoryBoardScreen.class.getName(),Logger.DEBUG);
 
     private StoryScreen storyScreen;
-    public StoryBoardScreen(RPG game) {
+    public StoryBoardScreen(RPG game,StoryScreen storyScreen) {
         super(game);
-        storyScreen = new StoryScreen(game);
+        this.storyScreen = storyScreen;
     }
 
     //todo make array of n story-pics, and draw UserData.numScenesUnlocked of the n pics

@@ -14,9 +14,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.Position;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.main.game.essence_lab.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.Position;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.RectangularBoundsComponent;
 
 public class DebugPositionTrackerSystem extends IteratingSystem {
     private static final Logger log = new Logger(DebugPositionTrackerSystem.class.getName(),Logger.DEBUG);
