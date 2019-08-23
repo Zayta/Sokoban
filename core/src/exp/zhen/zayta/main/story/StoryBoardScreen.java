@@ -89,20 +89,26 @@ public class StoryBoardScreen extends ScreenBase {
         episodeTable.defaults().pad(10);
         episodeTable.setBackground(RegionNames.PANEL);
 
-        TextButton prologueButton = new TextButton("Prologue", skin);
-        prologueButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                playStory();
-            }
-        });
+        for(int i = 0; i<=game.getUserData().getNumScenesUnlocked();i++) {
+            TextButton episodeButton = new TextButton("Episode "+i, skin);
+            final int episode = i;
+            episodeButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    playStory(episode);
+                }
+            });
 
-        episodeTable.add(prologueButton);
+            episodeTable.add(episodeButton);
+            episodeTable.row();
+
+        }
+
 
         return episodeTable;
     }
-    private void playStory(){
-        storyScreen.loadEpisode(game.getUserData().getNumScenesUnlocked());
+    private void playStory(int episode){
+        storyScreen.loadEpisode(episode);
         game.setScreen(storyScreen);
     }
 

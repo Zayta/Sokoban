@@ -26,12 +26,14 @@ class MainScreen extends ScreenBase {
 
     private final Logger log = new Logger(exp.zhen.zayta.main.MainScreen.class.getName(), Logger.DEBUG);
 
+    private Table table;
     private StoryScreen storyScreen;
     private Experiment experiment; private UserData userData;
 
     MainScreen(RPG game) {
         super(game);
         this.userData = game.getUserData();
+        table = new Table();
     }
 
     void createScreens()
@@ -43,12 +45,10 @@ class MainScreen extends ScreenBase {
 
     @Override
     protected Actor createUi() {
-        Table table = new Table();
+        table.clearChildren();
+        TextureAtlas textureAtlas = assetManager.get(AssetDescriptors.LAB);
 
-        TextureAtlas menuAtlas = assetManager.get(AssetDescriptors.LAB);
-
-//            TextureRegion backgroundRegion = menuAtlas.findRegion("fullscanner");
-//            table.setBackground(new TextureRegionDrawable(backgroundRegion));
+        setBackground(textureAtlas);
 
         Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(AssetDescriptors.HEADING_FONT),Color.WHITE));
         label.setFontScale(2);
@@ -56,7 +56,7 @@ class MainScreen extends ScreenBase {
         table.add(label).top().left();
         table.row();
 
-        table.add(scene(menuAtlas));
+        table.add(scene(textureAtlas));
         table.row();
         table.pad(20);
         table.add(buttonTable());
@@ -66,9 +66,26 @@ class MainScreen extends ScreenBase {
 
         return table;
     }
+    
+    private void setBackground(TextureAtlas textureAtlas){
+        int time = userData.getNumScenesUnlocked()%3;
+        TextureRegion sky;
+        if (time == 0) {
+            sky = textureAtlas.findRegion(RegionNames.SKY_NIGHT);
+        }
+        else if(time ==1){
+            sky = textureAtlas.findRegion(RegionNames.SKY_SUNRISE);
+        }
+        else{
+            sky = textureAtlas.findRegion(RegionNames.SKY_DAY);
+        }
 
-    private ImageButton scene(TextureAtlas menuAtlas){
-        TextureRegion scene = menuAtlas.findRegion(RegionNames.FULL_SCANNER);
+
+        table.setBackground(new TextureRegionDrawable(sky));
+    }
+
+    private ImageButton scene(TextureAtlas textureAtlas){
+        TextureRegion scene = textureAtlas.findRegion(RegionNames.FULL_SCANNER);
         TextureRegionDrawable textureRegionDrawable = new TextureRegionDrawable(scene);
         ImageButton imageButton = new ImageButton(textureRegionDrawable){};
         imageButton.addListener(new ChangeListener() {
