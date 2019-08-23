@@ -1,10 +1,8 @@
 package exp.zhen.zayta.main.story;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -18,16 +16,13 @@ import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
 
 import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.ScreenBase;
-import exp.zhen.zayta.main.UIAssetDescriptors;
-import exp.zhen.zayta.main.UiRegionNames;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPAssetDescriptors;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 
 
 public class StoryScreen extends ScreenBase {
@@ -52,7 +47,7 @@ public class StoryScreen extends ScreenBase {
     public StoryScreen(RPG game) {
         super(game);
         loadFile(Gdx.files.internal("story/records.txt"));
-        loadScenes(assetManager.get(UIAssetDescriptors.LAB));
+        loadScenes(assetManager.get(AssetDescriptors.LAB));
         table = new Table();
         nur = game.getNur();
         loadEpisode(1);
@@ -73,9 +68,9 @@ public class StoryScreen extends ScreenBase {
     private void loadScenes(TextureAtlas textureAtlas){
         for(int ep = 0; ep<scenes.length;ep++){
             if(ep<3)
-                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(WPRegionNames.BACKGROUND));
+                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(RegionNames.SQUARE_FLOOR));
             else
-                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(WPRegionNames.BACKGROUND));
+                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(RegionNames.SQUARE_FLOOR));
         }
     }
 
@@ -98,7 +93,7 @@ public class StoryScreen extends ScreenBase {
             String[] strings = l.split(":");
             log.debug("story full strings are " + Arrays.toString(strings));
             //speaker or dialogue
-            if(strings.length%2==0){//make sure there is a speaker and a dialogue
+//            if(strings.length%2==0){//make sure there is a speaker and a dialogue
                 for (int i = 0; i < strings.length; i++) {//the first index is for chapter title
                     if (i % 2 == 0) {
                         speaker.add(strings[i]);
@@ -106,7 +101,7 @@ public class StoryScreen extends ScreenBase {
                         dialogue.add(strings[i]);
                     }
                 }
-            }
+//            }
         }
         if(speaker.size()!=dialogue.size()){
             log.debug("Error: speaker cannot be matched with dialogue");
@@ -118,13 +113,13 @@ public class StoryScreen extends ScreenBase {
 
     @Override
     protected Actor createUi() {
-        Skin skin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+        Skin skin = assetManager.get(AssetDescriptors.UI_SKIN);
 
         //reset table
         table.clearChildren();
         currentLine = 0;
         //background picture
-//        TextureRegion backgroundRegion = assetManager.get(UIAssetDescriptors.LAB).findRegion(WPRegionNames.BACKGROUND);
+//        TextureRegion backgroundRegion = assetManager.get(AssetDescriptors.LAB).findRegion(RegionNames.SQUARE_FLOOR);
         table.setBackground(currentScene);
 
 //        loadEpisode(1,new TextureRegionDrawable(backgroundRegion));//current Episode cannot be 0

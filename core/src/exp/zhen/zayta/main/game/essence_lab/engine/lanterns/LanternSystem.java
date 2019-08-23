@@ -109,7 +109,7 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
                 lantern.remove(VelocityComponent.class);
                 //add particle animation
 //                ParticleAnimationComponent particleAnimationComponent = engine.createComponent(ParticleAnimationComponent.class);
-//                particleAnimationComponent.init(WPRegionNames.FIRE_BLOB_PREFLARE,6,1);
+//                particleAnimationComponent.init(RegionNames.FIRE_BLOB_PREFLARE,6,1);
             }
             else
             {

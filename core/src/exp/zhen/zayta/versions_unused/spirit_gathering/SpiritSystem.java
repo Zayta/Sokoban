@@ -9,9 +9,9 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.Experiment;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.id_tags.NighterTag;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
@@ -62,7 +62,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<numSpirits; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            spiritsKeyListMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,WPRegionNames.EMOTES_BLUSH));
+            spiritsKeyListMap.put(key,makeSpirit(points[i].x,points[i].y, SpiritTag.class,RegionNames.EMOTES_BLUSH));
         }
     }
 

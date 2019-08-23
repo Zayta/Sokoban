@@ -20,17 +20,23 @@ public class AssetPacker {
 //        settings.debug = DRAW_DEBUG_OUTLINE;
 //        settings.scale = new  float[]{0.5f};
 //        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/gameplay/conquest",
-//                ASSETS_PATH + "/gameplay/conquest",
+//                RAW_ASSETS_PATH + "/game/conquest",
+//                ASSETS_PATH + "/game/conquest",
 //                "conquest"
 //        );
 
-//        //for essence_lab
         TexturePacker.process(settings,
-                RAW_ASSETS_PATH + "/gameplay/essence_lab",
-                ASSETS_PATH + "/gameplay/essence_lab",
-                "essence_lab"
+                RAW_ASSETS_PATH+"/game/experiment",
+                ASSETS_PATH + "/game/experiment",
+                "experiment"
         );
+
+//        //for experiment
+//        TexturePacker.process(settings,
+//                RAW_ASSETS_PATH + "/game/experiment",
+//                ASSETS_PATH + "/game/experiment",
+//                "experiment"
+//        );
 
         //for ui
 //        TexturePacker.process(settings,
@@ -41,8 +47,8 @@ public class AssetPacker {
 
 //        //misc
 //        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/gameplay/essence_lab/generated_map_tiles",
-//                ASSETS_PATH + "/gameplay/essence_lab/generated_map_tiles",
+//                RAW_ASSETS_PATH + "/game/experiment/generated_map_tiles",
+//                ASSETS_PATH + "/game/experiment/generated_map_tiles",
 //                "generated_map_tiles"
 //        );
 

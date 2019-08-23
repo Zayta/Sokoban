@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.assets.AssetDescriptors;
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.main.shop.ShopScreen;
@@ -43,12 +45,12 @@ class MainScreen extends ScreenBase {
     protected Actor createUi() {
         Table table = new Table();
 
-        TextureAtlas menuAtlas = assetManager.get(UIAssetDescriptors.MENU_CLIP);
+        TextureAtlas menuAtlas = assetManager.get(AssetDescriptors.LAB);
 
 //            TextureRegion backgroundRegion = menuAtlas.findRegion("fullscanner");
 //            table.setBackground(new TextureRegionDrawable(backgroundRegion));
 
-        Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(UIAssetDescriptors.HEADING_FONT),Color.WHITE));
+        Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(AssetDescriptors.HEADING_FONT),Color.WHITE));
         label.setFontScale(2);
 
         table.add(label).top().left();
@@ -66,7 +68,7 @@ class MainScreen extends ScreenBase {
     }
 
     private ImageButton scene(TextureAtlas menuAtlas){
-        TextureRegion scene = menuAtlas.findRegion("fullscanner");
+        TextureRegion scene = menuAtlas.findRegion(RegionNames.FULL_SCANNER);
         TextureRegionDrawable textureRegionDrawable = new TextureRegionDrawable(scene);
         ImageButton imageButton = new ImageButton(textureRegionDrawable){};
         imageButton.addListener(new ChangeListener() {
@@ -81,7 +83,7 @@ class MainScreen extends ScreenBase {
 
 
     private Table buttonTable(){
-        Skin uiskin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+        Skin uiskin = assetManager.get(AssetDescriptors.UI_SKIN);
         // play button
         TextButton playButton = new TextButton("PLAY", uiskin);
         playButton.addListener(new ChangeListener() {

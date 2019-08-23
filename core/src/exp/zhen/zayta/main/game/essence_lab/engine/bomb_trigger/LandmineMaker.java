@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.EntityLab;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.labels.PlayerTag;
@@ -43,7 +43,7 @@ public class LandmineMaker extends ClickListener {
     @Override
     public void clicked(InputEvent event, float x, float y) {
         plantLandMine(engine,
-                labAtlas.findRegion(WPRegionNames.PRESET_RING_FIRE));
+                labAtlas.findRegion(RegionNames.PRESET_RING_FIRE));
     }
 
 
@@ -103,7 +103,7 @@ public class LandmineMaker extends ClickListener {
 //
 //
 //            TextureComponent landMineImg = engine.createComponent(TextureComponent.class);
-//            landMineImg.setRegion(labAtlas.findRegion(WPRegionNames.PRESET_RING_FIRE));
+//            landMineImg.setRegion(labAtlas.findRegion(RegionNames.PRESET_RING_FIRE));
 //            landmine.add(landMineImg);
 //
 //

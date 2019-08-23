@@ -3,19 +3,16 @@ package exp.zhen.zayta.main.game.essence_lab.engine.map;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.Hashtable;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPAssetDescriptors;
+import exp.zhen.zayta.main.assets.TiledMapAssetDescriptors;
 import exp.zhen.zayta.main.game.essence_lab.engine.map.util.Arrangements;
 import exp.zhen.zayta.main.game.essence_lab.engine.map.tiled_map.map_generator.TiledMapGenerator;
 import exp.zhen.zayta.main.game.essence_lab.engine.map.tiled_map.map_generator.MapType;
-import exp.zhen.zayta.util.GdxUtils;
 
 public class MapMaker {
 
@@ -40,7 +37,7 @@ public class MapMaker {
     //todo make list of tiled maps in the future
     public MapMaker (AssetManager assetManager){
         this.assetManager = assetManager;
-        tiledMapGenerator = new TiledMapGenerator((int)mapBounds.width,(int)mapBounds.height,assetManager.get(WPAssetDescriptors.MAP_GENERATOR),assetManager.get(WPAssetDescriptors.MAP_TILE_STORAGE));
+        tiledMapGenerator = new TiledMapGenerator((int)mapBounds.width,(int)mapBounds.height,assetManager.get(TiledMapAssetDescriptors.MAP_GENERATOR),assetManager.get(TiledMapAssetDescriptors.MAP_TILE_STORAGE));
         tiledMaps = new Hashtable<Map, TiledMap>();
         initTiledMaps();
         initMapBounds(0,0,SizeManager.WAKE_WORLD_WIDTH - SizeManager.maxObjWidth,SizeManager.WAKE_WORLD_HEIGHT - SizeManager.maxObjHeight);
@@ -58,8 +55,8 @@ public class MapMaker {
         return tiledMap;
     }
     private void initTiledMaps(){
-        tiledMaps.put(Map.memLab,assetManager.get(WPAssetDescriptors.MAP_MEMLAB2));
-        tiledMaps.put(Map.irondale,assetManager.get(WPAssetDescriptors.MAP_IRONDALE));
+        tiledMaps.put(Map.memLab,assetManager.get(TiledMapAssetDescriptors.MAP_MEMLAB2));
+        tiledMaps.put(Map.irondale,assetManager.get(TiledMapAssetDescriptors.MAP_IRONDALE));
     }
 
     public TiledMap generateTiledMap(){

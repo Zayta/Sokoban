@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
 
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.movable_items.components.MovableTag;
 import exp.zhen.zayta.main.game.movable_items.components.NonAutoMotionComponent;
@@ -67,7 +67,7 @@ public class PickUpMovableItem extends EntitySystem  {
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             Entity block = makeMovableBlock(points[i].x,points[i].y,
-                    MovableTag.class,WPRegionNames.EMOTES_COOL);
+                    MovableTag.class,RegionNames.EMOTES_COOL);
             movableBlocksKeyListMap.put(key, block);
         }
     }

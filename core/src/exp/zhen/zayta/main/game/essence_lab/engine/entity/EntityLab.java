@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.UIAssetDescriptors;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
@@ -53,7 +53,7 @@ public class EntityLab {
     public EntityLab(NUR nur, PooledEngine engine, AssetManager assetManager)
     {
         this.engine = engine;
-        labAtlas = assetManager.get(UIAssetDescriptors.LAB);
+        labAtlas = assetManager.get(AssetDescriptors.LAB);
         this.nur = nur; utsubyo = new Utsubyo(engine,labAtlas);
     }
 
@@ -268,7 +268,7 @@ public class EntityLab {
 //        TextureComponent texture = engine.createComponent(TextureComponent.class);
 //
 //        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
-//        spriteAnimationComponent.init(labAtlas.findRegion(WPRegionNames.CIVILIAN));
+//        spriteAnimationComponent.init(labAtlas.findRegion(RegionNames.CIVILIAN));
 //
 //
 //        Entity entity = engine.createEntity();

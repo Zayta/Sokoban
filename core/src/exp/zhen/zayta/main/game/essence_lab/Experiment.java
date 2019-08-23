@@ -15,11 +15,11 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
-//import exp.zhen.zayta.main.game.essence_lab.engine.blocks.BlocksTrackerSystem;
+//import exp.zhen.zayta.main.game.experiment.engine.blocks.BlocksTrackerSystem;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.EntityLab;
 import exp.zhen.zayta.versions_unused.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.PlayerReaperSystem;
@@ -96,7 +96,7 @@ public class Experiment implements Screen {
         hudViewport = new FitViewport(SizeManager.HUD_WIDTH,SizeManager.HUD_HEIGHT);
 
         /*Text*/
-        skin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+        skin = assetManager.get(AssetDescriptors.UI_SKIN);
 
         /*Game Engines*/
         engine = new PooledEngine();
@@ -149,11 +149,11 @@ public class Experiment implements Screen {
     private void addEntityMovementSystems(){
         engine.addSystem(new PositionTrackerUpdateSystem());//should be first
 //        engine.addSystem(new BlocksTrackerSystem());
-//        engine.addSystem(new CircMovableObjSystem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));//sb before movement. defective.
+//        engine.addSystem(new CircMovableObjSystem(engine,viewport,assetManager.get(AssetDescriptors.LAB)));//sb before movement. defective.
 
         engine.addSystem(new WorldWrapPauseSystem());
 //        //log.debug("maxX: "+mapMaker.getMapBoundmaxX()+", maxY: "+mapMaker.getMapBoundmaxY());
-        engine.addSystem(new BlockSystem(engine,assetManager.get(UIAssetDescriptors.LAB)));//sb before npcnonstopmovmentsystem
+        engine.addSystem(new BlockSystem(engine,assetManager.get(AssetDescriptors.LAB)));//sb before npcnonstopmovmentsystem
 
 
 //        engine.addSystem(new MovingBlocksSystem(game,engine));
@@ -170,7 +170,7 @@ public class Experiment implements Screen {
     }
     private void addMovableItemSystems(){
         engine.addSystem(new RemoveItemSystem());//sb before pickup and move
-        engine.addSystem(new PickUpMovableItem(engine,viewport,assetManager.get(UIAssetDescriptors.LAB)));
+        engine.addSystem(new PickUpMovableItem(engine,viewport,assetManager.get(AssetDescriptors.LAB)));
         engine.addSystem(new UpdatePushDirectionSystem());
         engine.addSystem(new MoveItemSystem());//sb after movement and bounds system
 //        engine.addSystem(new UnblockSystem());
@@ -187,7 +187,7 @@ public class Experiment implements Screen {
 //        engine.addSystem(new LockerRenderSystem(viewport,shapeRenderer));//must be first cuz its background
 //        engine.addSystem(new GeneratedMapRenderSystem(mapMaker.generateMap(),viewport,game.getBatch()));
         engine.addSystem(new MultiColorEntityRenderSystem(viewport,batch));
-        engine.addSystem(new HudRenderSystem(hudViewport,batch,assetManager.get(UIAssetDescriptors.FONT)));
+        engine.addSystem(new HudRenderSystem(hudViewport,batch,assetManager.get(AssetDescriptors.FONT)));
 //        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));
 
@@ -198,7 +198,7 @@ public class Experiment implements Screen {
         //todo make this depend on level: lantern interval depend on lvl, number of monsters dependent on lvl
         engine.addSystem(new MonsterAttacksNighterSystem());
         engine.addSystem(new NPCReaperSystem(engine));
-        engine.addSystem(new LanternSpawnSystem(this,engine,assetManager.get(UIAssetDescriptors.LAB),10));
+        engine.addSystem(new LanternSpawnSystem(this,engine,assetManager.get(AssetDescriptors.LAB),10));
         engine.addSystem(new PlayerReaperSystem(this,engine));
     }
 
@@ -218,7 +218,7 @@ public class Experiment implements Screen {
 
 
     private void addInputSystems(){
-        engine.addSystem(new InputSystem(engine,hudViewport,skin,assetManager.get(UIAssetDescriptors.LAB)));
+        engine.addSystem(new InputSystem(engine,hudViewport,skin,assetManager.get(AssetDescriptors.LAB)));
     }
 
     private void addDebugSystems(){

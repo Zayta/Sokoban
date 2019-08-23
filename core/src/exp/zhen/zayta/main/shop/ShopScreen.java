@@ -11,11 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.UIAssetDescriptors;
-import exp.zhen.zayta.main.UiRegionNames;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.RPG;
+import exp.zhen.zayta.main.assets.RegionNames;
 
 
 public class ShopScreen extends ScreenBase {
@@ -30,10 +29,10 @@ public class ShopScreen extends ScreenBase {
     protected Actor createUi() {
         Table table = new Table();
 
-        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.LAB);
-        Skin uiSkin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+        TextureAtlas wakePlayAtlas = assetManager.get(AssetDescriptors.LAB);
+        Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
         
-        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WPRegionNames.BACKGROUND);
+        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(RegionNames.SQUARE_FLOOR);
 
         // background
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
@@ -57,7 +56,7 @@ public class ShopScreen extends ScreenBase {
         // setup tables
         Table contentTable = new Table(uiSkin);
         contentTable.defaults().pad(20);
-        contentTable.setBackground(UiRegionNames.WINDOW);
+        contentTable.setBackground(RegionNames.PANEL);
 
         contentTable.add(title).row();
         contentTable.add(essenceLabel).row();

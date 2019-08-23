@@ -11,11 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
-import exp.zhen.zayta.main.UiRegionNames;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.versions_unused.conquest.Conquest;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 
 @Deprecated
 public class GameScreen extends ScreenBase {
@@ -30,10 +29,10 @@ public class GameScreen extends ScreenBase {
     protected Actor createUi() {
         Table table = new Table();
 
-        TextureAtlas wakePlayAtlas = assetManager.get(UIAssetDescriptors.LAB);
-        Skin uiSkin = assetManager.get(UIAssetDescriptors.UI_SKIN);
+        TextureAtlas wakePlayAtlas = assetManager.get(AssetDescriptors.LAB);
+        Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
 
-        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(WPRegionNames.BACKGROUND);
+        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(RegionNames.SQUARE_FLOOR);
 
         // background
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
@@ -83,7 +82,7 @@ public class GameScreen extends ScreenBase {
         // setup tables
         Table modeSelectionTable = new Table(uiSkin);
         modeSelectionTable.defaults().pad(20);
-        modeSelectionTable.setBackground(UiRegionNames.WINDOW);
+        modeSelectionTable.setBackground(RegionNames.PANEL);
 
         modeSelectionTable.add(wakeButton);
         modeSelectionTable.row();

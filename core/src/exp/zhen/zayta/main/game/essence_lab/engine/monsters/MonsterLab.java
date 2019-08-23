@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.NameTag;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.labels.NPCTag;
@@ -113,10 +113,10 @@ public class MonsterLab extends EntitySystem {
 
     /*Monster specific*/
     private Entity generateMonster(int lvl){
-        int index = lvl%WPRegionNames.MONSTERS.length;
+        int index = lvl%RegionNames.MONSTERS.length;
         Entity monster = engine.createEntity();
         addIdentityComponents(monster);
-        addAnimationComponents(monster,labAtlas.findRegion(WPRegionNames.MONSTERS[index]));
+        addAnimationComponents(monster,labAtlas.findRegion(RegionNames.MONSTERS[index]));
         addBattleComponents(monster,lvl*100+10,lvl*10,lvl*10);
         return monster;
     }

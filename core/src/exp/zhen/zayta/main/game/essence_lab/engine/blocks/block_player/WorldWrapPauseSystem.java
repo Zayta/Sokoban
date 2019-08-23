@@ -11,7 +11,7 @@ import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.MovementLi
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapComponent;
-//import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapTag;
+//import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapTag;
 
 public class WorldWrapPauseSystem extends IteratingSystem {
 

@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
 import exp.zhen.zayta.main.game.essence_lab.engine.map.MapMaker;
 import exp.zhen.zayta.main.game.essence_lab.engine.map.util.Arrangements;
@@ -30,7 +30,7 @@ import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.DimensionC
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapComponent;
-//import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapTag;
+//import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.essence_lab.engine.render.animation.TextureComponent;
 import exp.zhen.zayta.util.KeyListMap;
 import exp.zhen.zayta.util.GdxUtils;
@@ -69,7 +69,7 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, BlockComponent.class,WPRegionNames.BACKGROUND));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, BlockComponent.class,RegionNames.SQUARE_FLOOR));//todo set new texture to be RegionNames.Blocks[randomInt() in bounds]
 
         }
     }

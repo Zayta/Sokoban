@@ -16,8 +16,8 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 import exp.zhen.zayta.main.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
 import exp.zhen.zayta.main.game.essence_lab.engine.map.MapMaker;
@@ -35,7 +35,7 @@ import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.DimensionC
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.Position;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapComponent;
-//import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapTag;
+//import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapTag;
 import exp.zhen.zayta.main.game.essence_lab.engine.render.animation.TextureComponent;
 import exp.zhen.zayta.main.game.essence_lab.engine.render.mono_color.MonoColorRenderTag;
 import exp.zhen.zayta.util.KeyListMap;
@@ -68,7 +68,7 @@ public class MovingBlocksSystem extends EntitySystem implements CollisionListene
 //        addMission();
         this.engine = engine;
 
-        labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
+        labAtlas = game.getAssetManager().get(AssetDescriptors.LAB);
         blocksKeyListMap = new KeyListMap<Integer, Entity>();
         initBlocks();
         entities = engine.getEntitiesFor(MOVING_ENTITIES);
@@ -80,7 +80,7 @@ public class MovingBlocksSystem extends EntitySystem implements CollisionListene
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, MovingBlockTag.class,WPRegionNames.EMOTES_NEUTRAL));//todo set new texture to be WPRegionNames.Blocks[randomInt() in bounds]
+            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, MovingBlockTag.class,RegionNames.EMOTES_NEUTRAL));//todo set new texture to be RegionNames.Blocks[randomInt() in bounds]
 
         }
     }

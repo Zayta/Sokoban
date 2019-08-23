@@ -3,8 +3,8 @@ package exp.zhen.zayta.main.game.characters.nur;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.characters.Undead;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.Stats;
 import exp.zhen.zayta.util.KeyListMap;
 
@@ -22,15 +22,15 @@ public class NUR {
     
     private void initNighters(){
         nighters.put(Undead.Tenyu, new Stats("Tenyu",
-                labAtlas.findRegion(WPRegionNames.TENYU),
+                labAtlas.findRegion(RegionNames.TENYU),
                 100,10,10));
         nighters.put(Undead.Lorale, new Stats("Lorale",
-                labAtlas.findRegion(WPRegionNames.LORALE),
+                labAtlas.findRegion(RegionNames.LORALE),
                 100,10,10));
 
 
         nighters.put(Undead.Anonymous, new Stats("???",
-                labAtlas.findRegion(WPRegionNames.CIVILIAN),
+                labAtlas.findRegion(RegionNames.CIVILIAN),
                 0,0,0));
 
     }

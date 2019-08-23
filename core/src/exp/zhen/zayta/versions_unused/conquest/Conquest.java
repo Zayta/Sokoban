@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.RPG;
-import exp.zhen.zayta.main.UIAssetDescriptors;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
@@ -76,7 +76,7 @@ public class Conquest implements Screen {
         assetManager = game.getAssetManager();
         batch = game.getBatch();
 
-        nur = new NUR(assetManager.get(UIAssetDescriptors.CONQUEST));
+        nur = new NUR(assetManager.get(AssetDescriptors.CONQUEST));
         utsubyo = new Utsubyo(nur.getConquestAtlas());
     }
 

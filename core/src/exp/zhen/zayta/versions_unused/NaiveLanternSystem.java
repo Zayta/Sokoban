@@ -6,7 +6,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import exp.zhen.zayta.main.game.essence_lab.Experiment;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
-//import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapTag;
+//import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapTag;
 
 
 public class NaiveLanternSystem extends GameControllingSystem implements CollisionListener{
@@ -46,7 +46,7 @@ public class NaiveLanternSystem extends GameControllingSystem implements Collisi
 //        addMission();
 //        this.engine = engine;
 //
-//        labAtlas = game.getAssetManager().get(UIAssetDescriptors.LAB);
+//        labAtlas = game.getAssetManager().get(AssetDescriptors.LAB);
 //        initLanterns();
 //        characters = engine.getEntitiesFor(charactersFamily);
 //        lanterns = engine.getEntitiesFor(lanternsFamily);
@@ -57,7 +57,7 @@ public class NaiveLanternSystem extends GameControllingSystem implements Collisi
 //        for(int i =0; i<points.length; i++)
 //        {
 //            int key = PositionTracker.generateKey(points[i].x,points[i].y);
-//            lanternsKeyListMap.put(key,makeLantern(points[i].x,points[i].y, MovingBlockTag.class,WPRegionNames.EMOTES_NEUTRAL));//todo set new texture to be WPRegionNames.Lanterns[randomInt() in bounds]
+//            lanternsKeyListMap.put(key,makeLantern(points[i].x,points[i].y, MovingBlockTag.class,RegionNames.EMOTES_NEUTRAL));//todo set new texture to be RegionNames.Lanterns[randomInt() in bounds]
 //
 //        }
 //    }

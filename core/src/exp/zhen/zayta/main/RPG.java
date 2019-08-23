@@ -8,10 +8,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.utsubyo.Utsubyo;
-import exp.zhen.zayta.main.game.LoadingScreen;
 
 public class RPG extends Game {
 
@@ -40,13 +40,15 @@ public class RPG extends Game {
 //        login();
         userData = new UserData();
         mainScreen = new MainScreen(this);//need to create a main for loading screen to go to
-        setScreen(new LoadingScreen(this));//goes to main
 
-        //dependent on assets loaded by loading screen todo put these in loading screen.
-
-        nur = new NUR(assetManager.get(UIAssetDescriptors.LAB));//must be before create screens cuz experiment uses it.
+        LoadingScreen loadingScreen = new LoadingScreen(this);
+        setScreen(loadingScreen);//goes to main
+        createWithAssets();
+    }
+    //dependent on assets loaded by loading screen todo put these in loading screen.
+    void createWithAssets(){
+        nur = new NUR(assetManager.get(AssetDescriptors.LAB));//must be before create screens cuz experiment uses it.
         mainScreen.createScreens();
-
 
     }
 

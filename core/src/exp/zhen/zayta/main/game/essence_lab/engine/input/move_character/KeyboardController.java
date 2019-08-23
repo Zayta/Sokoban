@@ -9,9 +9,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.essence_lab.engine.bomb_trigger.LandmineMaker;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.Direction;
 import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
 import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
@@ -54,7 +52,7 @@ public class KeyboardController extends InputAdapter {
         }
 //        if(keycode==Input.Keys.SPACE)
 //        {
-//            LandmineMaker.plantLandMine(engine,labAtlas.findRegion(WPRegionNames.PRESET_RING_FIRE));
+//            LandmineMaker.plantLandMine(engine,labAtlas.findRegion(RegionNames.PRESET_RING_FIRE));
 //
 //        }
         return true;
@@ -101,7 +99,7 @@ public class KeyboardController extends InputAdapter {
 //
 //
 //            TextureComponent landMineImg = engine.createComponent(TextureComponent.class);
-//            landMineImg.setRegion(labAtlas.findRegion(WPRegionNames.PRESET_RING_FIRE));
+//            landMineImg.setRegion(labAtlas.findRegion(RegionNames.PRESET_RING_FIRE));
 //            landmine.add(landMineImg);
 //
 //

@@ -9,8 +9,8 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.essence_lab.Experiment;
-import exp.zhen.zayta.main.game.essence_lab.assets.WPRegionNames;
 import exp.zhen.zayta.main.game.essence_lab.engine.entity.id_tags.NighterTag;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
@@ -60,7 +60,7 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
             ////log.debug("Point "+i+ " is: ("+points[i].x+","+points[i].y+") and key is "+key);
-            stonesKeyListMap.put(key,makeStone(points[i].x,points[i].y, StoneTag.class,WPRegionNames.STONE));
+            stonesKeyListMap.put(key,makeStone(points[i].x,points[i].y, StoneTag.class,RegionNames.STONE));
 //            ////log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
 //            +stonesKeyListMap.get(key));
         }

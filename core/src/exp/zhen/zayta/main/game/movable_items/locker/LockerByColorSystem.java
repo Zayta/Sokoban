@@ -59,7 +59,7 @@ public class LockerByColorSystem extends GameControllingSystem {
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            lockersKeyListMap.put(key,makeLocker(points[i].x,points[i].y, LockerComponent.class/*,WPRegionNames.EMOTES_BLUE_EEK*/));
+            lockersKeyListMap.put(key,makeLocker(points[i].x,points[i].y, LockerComponent.class/*,RegionNames.EMOTES_BLUE_EEK*/));
         }
 //        ////log.debug("lockerKeyListMap: "+lockersKeyListMap);
     }
