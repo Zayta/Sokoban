@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 
+import java.util.Iterator;
+
 import exp.zhen.zayta.main.game.experiment.common.Mappers;
 import exp.zhen.zayta.main.game.experiment.engine.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.AttackComponent;
@@ -29,7 +31,7 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
             HealthComponent.class
     ).get();
 
-    private KeyListMap<Entity,Entity> currentFighters; //key is monster, value is nighter
+    private KeyListMap<Entity,Entity> currentFighters; //key is nighter, value is monster
 
 
     public MonsterAttacksNighterSystem(){
@@ -49,7 +51,7 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
                     key-1, key, key+1,
                     keyBelow-1, keyBelow, keyBelow+1};
             checkCollision(nighter,keys);
-//            updateCurrentBattles(nighter);
+            updateCurrentBattles(nighter);
         }
         ////log.debug("NumNighters are "+nighters.size());
         ////log.debug("\nCurrentFighters are: "+ currentFighters);
@@ -64,12 +66,9 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
                     if(collisionUnhandled(nighter,monster)) {
                         collideEvent(nighter, monster);
 //                        currentFighters.put(nighter,monster);
-                        currentFighters.put(monster,nighter);
+                        currentFighters.put(nighter,monster);
                         break;
                     }
-                }
-                else{
-                    updateCurrentBattles(nighter,monster);
                 }
             }
         }
@@ -84,10 +83,15 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
 
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }
-
     private boolean collisionUnhandled(Entity nighter, Entity monster){
-        return !(currentFighters.get(nighter) == monster) && !(currentFighters.get(monster) == nighter);
+        if(currentFighters.getList(nighter)==null)
+            return true;
+        return !(currentFighters.getList(nighter).contains(monster));
     }
+
+//    private boolean collisionUnhandled(Entity nighter, Entity monster){
+//        return !(currentFighters.get(nighter) == monster) && !(currentFighters.get(monster) == nighter);
+//    }
 
     private void collideEvent(Entity nighter, Entity monster) {
         HealthComponent nighterHp = Mappers.HEALTH.get(nighter);
@@ -114,16 +118,37 @@ public class MonsterAttacksNighterSystem extends EntitySystem implements Pool.Po
 //        }
 
     }
-    private void updateCurrentBattles(Entity nighter,Entity monster){
-//        if(currentFighters.containsKey(nighter)) {
-//            if (!checkCollisionBetween(nighter, currentFighters.get(nighter))) {
-//                currentFighters.removeKey(nighter);
+
+    private void updateCurrentBattles(Entity entity){
+        if(currentFighters.getList(entity)!=null){
+            for(Iterator<Entity> itr = currentFighters.getList(entity).iterator(); itr.hasNext();)
+            {
+                Entity monster = itr.next();
+                if(!checkCollisionBetween(entity, monster)){
+                    // listOfPhones.remove(phone);  // wrong again
+                    itr.remove(); // right call
+                }
+            }
+//            for(Entity lantern:currentFighters.getList(entity)) {
+//                if(!checkCollisionBetween(entity, lantern))
+//                    currentFighters.remove(entity,lantern);
 //            }
-//        }
-        currentFighters.remove(monster,nighter);
-//        currentFighters.removeKey(nighter);
-//        currentFighters.removeKey(monster);
+        }
+
+//        currentFighters.removeKey(lantern);
+//        currentFighters.remove(lantern);
+//        log.debug("updateCurrentBattles of Lantern alks");
     }
+//    private void updateCurrentBattles(Entity nighter,Entity monster){
+////        if(currentFighters.containsKey(nighter)) {
+////            if (!checkCollisionBetween(nighter, currentFighters.get(nighter))) {
+////                currentFighters.removeKey(nighter);
+////            }
+////        }
+//        currentFighters.remove(monster,nighter);
+////        currentFighters.removeKey(nighter);
+////        currentFighters.removeKey(monster);
+//    }
 
     @Override
     public void reset() {

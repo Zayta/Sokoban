@@ -136,7 +136,8 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
     }
     private void updateCurrentBattles(Entity entity){
         if(currentFighters.getList(entity)!=null){
-            for(Iterator<Entity> itr = currentFighters.getList(entity).iterator(); itr.hasNext();){
+            for(Iterator<Entity> itr = currentFighters.getList(entity).iterator(); itr.hasNext();)
+            {
                 Entity lantern = itr.next();
                 if(!checkCollisionBetween(entity, lantern)){
                     // listOfPhones.remove(phone);  // wrong again
