@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.characters.Undead;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.Stats;
+import exp.zhen.zayta.main.game.experiment.engine.entity.Stats;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class NUR {

@@ -5,11 +5,11 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.Direction;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.AutoMovementTag;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.MovementLimitationComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.AutoMovementTag;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.MovementLimitationComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
 
 public class NPCNonstopMovementSystem extends IteratingSystem {
 private static final Logger log = new Logger(NPCNonstopMovementSystem.class.getName(),Logger.DEBUG);

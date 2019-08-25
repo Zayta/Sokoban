@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
 
 public class DebugRectangularBoundsRenderSystem extends IteratingSystem {
 

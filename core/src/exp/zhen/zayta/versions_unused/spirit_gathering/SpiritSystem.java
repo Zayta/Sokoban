@@ -11,25 +11,25 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.essence_lab.Experiment;
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.id_tags.NighterTag;
+import exp.zhen.zayta.main.game.experiment.Experiment;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.entity.id_tags.NighterTag;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
-import exp.zhen.zayta.main.game.essence_lab.engine.map.MapMaker;
-import exp.zhen.zayta.main.game.essence_lab.engine.map.util.Arrangements;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.Direction;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.PositionTracker;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.AutoMovementTag;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.DimensionComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.MovementLimitationComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.Position;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.RectangularBoundsComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.render.animation.TextureComponent;
+import exp.zhen.zayta.main.game.experiment.engine.map.MapMaker;
+import exp.zhen.zayta.main.game.experiment.engine.map.util.Arrangements;
+import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
+import exp.zhen.zayta.main.game.experiment.engine.movement.PositionTracker;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.AutoMovementTag;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.DimensionComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.MovementLimitationComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.Position;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapComponent;
+import exp.zhen.zayta.main.game.experiment.engine.render.animation.TextureComponent;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class SpiritSystem extends GameControllingSystem implements CollisionListener {
@@ -147,7 +147,7 @@ public class SpiritSystem extends GameControllingSystem implements CollisionList
 //        spirit.remove(VelocityComponent.class);
         //todo set spirit in position at bottom of screen instead
         getEngine().removeEntity(spirit);
-        spiritsKeyListMap.removeKey(spirit);
+        spiritsKeyListMap.remove(spirit);
         if(spiritsKeyListMap.numObjects()==0){
             completeMission();
         }

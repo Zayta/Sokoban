@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Pool;
 
 import java.util.ArrayList;
 
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.Direction;
+import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
 
 public class PushComponent implements Component,Pool.Poolable {
     private Direction direction = Direction.none;

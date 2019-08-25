@@ -56,7 +56,6 @@ public class LoadingScreen extends ScreenAdapter {
         loadMap();
 
         assetManager.finishLoading();
-
     }
 
 //    NUR getNur(){

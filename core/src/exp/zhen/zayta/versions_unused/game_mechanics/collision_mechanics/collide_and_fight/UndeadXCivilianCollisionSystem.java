@@ -7,12 +7,12 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.PositionTracker;
+import exp.zhen.zayta.main.game.experiment.engine.movement.PositionTracker;
 //import exp.zhen.zayta.versions_unused.conquest.battle.HealthComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.labels.UndeadTag;
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.RectangularBoundsComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.UndeadTag;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
 
 
 public class UndeadXCivilianCollisionSystem extends EntitySystem {

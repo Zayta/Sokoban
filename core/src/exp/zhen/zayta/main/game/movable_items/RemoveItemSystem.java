@@ -6,12 +6,12 @@ import com.badlogic.ashley.systems.IteratingSystem;
 
 import java.util.ArrayList;
 
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
 import exp.zhen.zayta.main.game.movable_items.components.MovableTag;
 import exp.zhen.zayta.main.game.movable_items.components.PushComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.Direction;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
 
 public class RemoveItemSystem extends IteratingSystem {
 

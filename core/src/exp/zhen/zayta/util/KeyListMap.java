@@ -1,9 +1,13 @@
 package exp.zhen.zayta.util;
 
+import com.badlogic.gdx.utils.Logger;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 
 public class KeyListMap<K,V>{
+    private static final Logger log = new Logger(KeyListMap.class.getName(),Logger.DEBUG);
     /*
     * K = Key = PositionTracker position key. Each key K is associated with a list, which contains object V
     * List = list of V
@@ -22,21 +26,46 @@ public class KeyListMap<K,V>{
 
         objKeys.put(v,k);
     }
-    public V remove(K key)
-    {
-        V removedObj = objKeys.getKey(key);
+//    public V remove(K key)
+//    {
+//        V removedObj = objKeys.getKey(key);
+//
+//        if(removedObj!=null&&keyList.get(key)!=null)
+//        keyList.get(key).remove(removedObj);
+//        return removedObj;
+//    }
+//
+//    //
+//    public K removeKey(V value)
+//    {
+//        //what if there are several keys that map to the same value?
+//        K removedKey = objKeys.remove(value);
+//        if(removedKey!=null&&keyList.get(removedKey)!=null)
+//            keyList.get(removedKey).remove(value);
+//        return removedKey;
+//    }
+    public boolean remove(K key, V value){
+        if(objKeys.containsKey(value)&&objKeys.get(value)==key){//if the value is there and it is hashed to the indicated key
+            objKeys.removeKey(value);
 
-        if(removedObj!=null&&keyList.get(key)!=null)
-        keyList.get(key).remove(removedObj);
-        return removedObj;
+            keyList.get(key).remove(value);
+
+            return true;
+        }
+
+        return false;
     }
-    public K removeKey(V value)
+    public K remove(V value)
     {
-        K removedKey = objKeys.remove(value);
-        if(removedKey!=null&&keyList.get(removedKey)!=null)
-            keyList.get(removedKey).remove(value);
-        return removedKey;
+        K key = objKeys.remove(value);
+        if(key.getClass().equals(value.getClass())){
+            log.debug("KeyListMap classes the same. Are you sure you want to use this method?");
+        }
+        if(keyList.get(key)!=null)
+            keyList.get(key).remove(value);
+        return key;
     }
+
     public K removeKeyAndList(V value){
         return keyList.removeKey(removeKeyAndList(value));
     }
@@ -75,5 +104,18 @@ public class KeyListMap<K,V>{
         keyList.clear();
         objKeys.clear();
     }
-    
+
+    @Override
+    public String toString() {
+        String ret = "";
+
+        ret+=super.toString();
+        for(K key: keySet()){
+            ret+="\nKey: "+key+" has"+keyList.get(key).size() +
+                    "values: "+Arrays.toString(keyList.get(key).toArray());
+
+        }
+
+        return ret;
+    }
 }

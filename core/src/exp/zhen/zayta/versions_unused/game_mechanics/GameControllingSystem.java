@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 
-import exp.zhen.zayta.main.game.essence_lab.Experiment;
+import exp.zhen.zayta.main.game.experiment.Experiment;
 
 @Deprecated
 public abstract class GameControllingSystem extends EntitySystem implements Pool.Poolable {

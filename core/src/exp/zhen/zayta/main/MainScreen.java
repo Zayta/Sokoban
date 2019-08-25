@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.essence_lab.Experiment;
+import exp.zhen.zayta.main.game.experiment.Experiment;
 import exp.zhen.zayta.main.shop.ShopScreen;
 import exp.zhen.zayta.main.story.StoryBoardScreen;
 import exp.zhen.zayta.main.story.StoryScreen;

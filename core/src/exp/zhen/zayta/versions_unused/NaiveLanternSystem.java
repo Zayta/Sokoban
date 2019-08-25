@@ -3,7 +3,7 @@ package exp.zhen.zayta.versions_unused;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 
-import exp.zhen.zayta.main.game.essence_lab.Experiment;
+import exp.zhen.zayta.main.game.experiment.Experiment;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
 //import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapTag;

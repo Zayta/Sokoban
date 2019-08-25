@@ -6,11 +6,11 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.essence_lab.Experiment;
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.labels.PlayerTag;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.properties.HealthComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.game.experiment.Experiment;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.PlayerTag;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.HealthComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
 
 public class PlayerReaperSystem extends IteratingSystem {
     private static final Logger log = new Logger(PlayerReaperSystem.class.getName(),Logger.DEBUG);
@@ -45,7 +45,7 @@ public class PlayerReaperSystem extends IteratingSystem {
 
             PositionTrackerComponent positionTracker = Mappers.POSITION_TRACKER.get(entity);
             if(positionTracker!=null){
-                positionTracker.getPositionKeyListMap().removeKey(entity);
+                positionTracker.getPositionKeyListMap().remove(entity);
             }
             engine.removeEntity(entity);
         }

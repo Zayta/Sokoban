@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.utsubyo.Utsubyo;
+import exp.zhen.zayta.main.game.experiment.engine.entity.utsubyo.Utsubyo;
 
 public class RPG extends Game {
 
@@ -48,6 +48,8 @@ public class RPG extends Game {
     //dependent on assets loaded by loading screen todo put these in loading screen.
     void createWithAssets(){
         nur = new NUR(assetManager.get(AssetDescriptors.LAB));//must be before create screens cuz experiment uses it.
+        if(AssetDescriptors.UI_SKIN==AssetDescriptors.NEON_SKIN)
+            assetManager.get(AssetDescriptors.UI_SKIN).getFont("font").getData().setScale(2,2);
         mainScreen.createScreens();
 
     }

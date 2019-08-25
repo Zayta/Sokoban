@@ -5,9 +5,9 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
 import exp.zhen.zayta.main.game.movable_items.components.MovableTag;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
 
 //updates pocket direction to be the same as movment direction, if entity has movement direction.
 public class UpdatePushDirectionSystem extends IteratingSystem {

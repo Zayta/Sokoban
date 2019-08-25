@@ -6,10 +6,10 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.labels.NPCTag;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.properties.HealthComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.NPCTag;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.HealthComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
 
 public class NPCReaperSystem extends EntitySystem {
     private final static Family NPC = Family.all(
@@ -30,7 +30,7 @@ public class NPCReaperSystem extends EntitySystem {
             HealthComponent healthComponent = (Mappers.HEALTH.get(npc));
             if(healthComponent.getHp()<=0){
                 PositionTrackerComponent positionTrackerComponent = Mappers.POSITION_TRACKER.get(npc);
-                positionTrackerComponent.getPositionKeyListMap().removeKey(npc);
+                positionTrackerComponent.getPositionKeyListMap().remove(npc);
                 getEngine().removeEntity(npc);
 
             }

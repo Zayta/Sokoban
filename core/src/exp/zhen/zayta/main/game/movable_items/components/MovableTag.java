@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Pool;
 
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.Direction;
+import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
 
 public class MovableTag implements Component,Pool.Poolable {
     private boolean beingPushed = false;

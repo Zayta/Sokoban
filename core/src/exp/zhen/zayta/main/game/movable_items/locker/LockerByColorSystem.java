@@ -14,17 +14,17 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.essence_lab.Experiment;
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
-import exp.zhen.zayta.main.game.essence_lab.engine.entity.components.properties.ColorComponent;
+import exp.zhen.zayta.main.game.experiment.Experiment;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
-import exp.zhen.zayta.main.game.essence_lab.engine.map.MapMaker;
-import exp.zhen.zayta.main.game.essence_lab.engine.map.util.Arrangements;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.PositionTracker;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.DimensionComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.Position;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.RectangularBoundsComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.WorldWrapComponent;
+import exp.zhen.zayta.main.game.experiment.engine.map.MapMaker;
+import exp.zhen.zayta.main.game.experiment.engine.map.util.Arrangements;
+import exp.zhen.zayta.main.game.experiment.engine.movement.PositionTracker;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.DimensionComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.Position;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapComponent;
 
 import exp.zhen.zayta.util.KeyListMap;
 
@@ -126,7 +126,7 @@ public class LockerByColorSystem extends GameControllingSystem {
         while(!scheduleUnlockedLockers.isEmpty()){
             Entity locker = scheduleUnlockedLockers.poll();
             getEngine().removeEntity(locker);
-            lockersKeyListMap.removeKey(locker);
+            lockersKeyListMap.remove(locker);
 
             if(lockersKeyListMap.numObjects()==0){
                 completeMission();

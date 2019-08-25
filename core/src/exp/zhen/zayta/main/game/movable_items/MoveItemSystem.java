@@ -10,15 +10,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import exp.zhen.zayta.main.game.essence_lab.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.common.Mappers;
 import exp.zhen.zayta.main.game.movable_items.components.PushComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.Direction;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.PositionComparator;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.MovementLimitationComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.Position;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.PositionTrackerComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.RectangularBoundsComponent;
-import exp.zhen.zayta.main.game.essence_lab.engine.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
+import exp.zhen.zayta.main.game.experiment.engine.movement.PositionComparator;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.MovementLimitationComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.Position;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
 
 public class MoveItemSystem extends IteratingSystem {
 

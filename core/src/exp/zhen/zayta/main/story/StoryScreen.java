@@ -12,10 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.swing.plaf.synth.Region;
 
 import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.ScreenBase;
@@ -23,6 +26,7 @@ import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
+import exp.zhen.zayta.main.game.config.SizeManager;
 
 
 public class StoryScreen extends ScreenBase {
@@ -126,13 +130,29 @@ public class StoryScreen extends ScreenBase {
         //speaker
 //        final Label s = new Label(speaker.get(currentLine),skin);
 //        table.add(s);
+
+        table.add(dialogueTable(skin));
+        table.center();
+        table.setFillParent(true);
+        table.pack();
+
+        return table;
+    }
+
+    private Table dialogueTable(Skin skin){
+        Table table = new Table(skin);
+        table.setBackground(RegionNames.PANEL);
         final Image s = new Image();
-        table.add(s);
+        float scalar = 100;
+        table.add(s).width(SizeManager.maxObjWidth*scalar).height(SizeManager.maxObjHeight*scalar);
         table.row();
         //dialogue
         final Label d = new Label(dialogue.get(currentLine),skin);
-        table.add(d);
-//        table.row();
+        d.setWrap(true);
+        d.setWidth(10f);
+        d.setAlignment(Align.center);
+        table.add(d).width(0.8f*SizeManager.WIDTH);
+        table.row();
 
         TextButton nextLineButton = new TextButton("->",skin);
         nextLineButton.addListener(new ChangeListener() {
@@ -142,10 +162,6 @@ public class StoryScreen extends ScreenBase {
             }
         });
         table.add(nextLineButton);
-        table.center();
-        table.setFillParent(true);
-        table.pack();
-
         return table;
     }
 
