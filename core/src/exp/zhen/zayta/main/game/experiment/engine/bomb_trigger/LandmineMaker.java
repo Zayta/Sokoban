@@ -75,12 +75,12 @@ public class LandmineMaker extends ClickListener {
             landMinePower.setPower(landMinerStrength.getCharge());
             landmine.add(landMinePower);
 
-            EntityLab.addRoundPositionComponents(engine,landmine,position.getX(),position.getY());
+            EntityLab.addRoundPositionComponents(engine,landmine,position.getX(),position.getY(),LandmineExplosionSystem.landmineKeyListMap);
 
             /*put landmine in bimap*/
-            Position landminePosition = Mappers.POSITION.get(landmine);
-            int key = PositionTracker.generateKey(landminePosition.getX(),landminePosition.getY());
-            LandmineExplosionSystem.landmineKeyListMap.put(key,landmine);
+//            Position landminePosition = Mappers.POSITION.get(landmine);
+//            int key = PositionTracker.generateKey(landminePosition.getX(),landminePosition.getY());
+//            LandmineExplosionSystem.landmineKeyListMap.put(key,landmine);
 
 
             engine.addEntity(landmine);

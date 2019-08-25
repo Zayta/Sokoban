@@ -12,7 +12,7 @@ public class LanternTag implements Component {
         return state;
     }
 
-    void setState(State state) {
+    public void setState(State state) {
         this.state = state;
     }
 }

@@ -15,6 +15,7 @@ import exp.zhen.zayta.main.game.characters.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
 import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.blocks.BlockComponent;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.NameTag;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.UndeadTag;
@@ -22,9 +23,12 @@ import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.A
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.DefenseComponent;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.HealthComponent;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.experiment.engine.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
 import exp.zhen.zayta.main.game.experiment.engine.entity.utsubyo.Utsubyo;
+import exp.zhen.zayta.main.game.experiment.engine.lanterns.LanternTag;
+import exp.zhen.zayta.main.game.experiment.engine.render.mono_color.MonoColorRenderTag;
 import exp.zhen.zayta.main.game.movable_items.components.PushComponent;
 import exp.zhen.zayta.main.game.experiment.engine.map.MapMaker;
 import exp.zhen.zayta.main.game.experiment.engine.map.util.Arrangements;
@@ -41,6 +45,7 @@ import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityCom
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.experiment.engine.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.experiment.engine.render.animation.TextureComponent;
+import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class EntityLab {
@@ -195,12 +200,63 @@ public class EntityLab {
 
 
 
-    private void addMovementComponents(PooledEngine engine, Entity entity, float x, float y, KeyListMap<Integer, Entity> posMap){
-        addPositionComponents(engine,entity,x,y);
 
-        PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
-        positionTrackerComponent.setPositionKeyListMap(posMap);
-        entity.add(positionTrackerComponent);
+    /*For Lanterns*/
+
+    public Entity makeLantern(float x, float y, TextureRegion[] textureRegions, KeyListMap<Integer,Entity> posMap) {
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+//        texture.setRegion(labAtlas.findRegion(regionName));
+
+        Entity entity = engine.createEntity();
+        LanternTag lanternTag = engine.createComponent(LanternTag.class);
+        lanternTag.setState(LanternTag.State.DORMANT);
+
+        entity.add(lanternTag);//adds identifier
+        entity.add(texture);
+        engine.addEntity(entity);
+
+        addMovementComponents(engine,entity,x,y,posMap);
+
+
+
+        BlockComponent blockComponent = engine.createComponent(BlockComponent.class);
+        entity.add(blockComponent);
+
+
+        AutoMovementTag autoMovementTag = engine.createComponent(AutoMovementTag.class);
+        entity.add(autoMovementTag);
+
+
+
+
+        //color
+
+        MonoColorRenderTag monoColorRenderTag = engine.createComponent(MonoColorRenderTag.class);
+        entity.add(monoColorRenderTag);
+
+
+        SpriteAnimationComponent spriteAnimationComponent = engine.createComponent(SpriteAnimationComponent.class);
+        //this is based on my spreadsheet
+        spriteAnimationComponent.init(textureRegions[0],textureRegions[1],textureRegions[2],textureRegions[3],8,5);
+        entity.add(spriteAnimationComponent);
+
+        ColorComponent colorComponent = engine.createComponent(ColorComponent.class);
+        colorComponent.setColor(Color.WHITE);
+        entity.add(colorComponent);
+
+        //explosive
+        ExplosiveComponent explosiveComponent = engine.createComponent(ExplosiveComponent.class);
+        entity.add(explosiveComponent);
+
+        return entity;
+    }
+
+
+
+
+
+    private void addMovementComponents(PooledEngine engine, Entity entity, float x, float y, KeyListMap<Integer, Entity> posMap){
+        addPositionComponents(engine,entity,x,y,posMap);
 
         VelocityComponent movement = engine.createComponent(VelocityComponent.class);
         movement.setSpeed(SpeedManager.DEFAULT_SPEED,SpeedManager.DEFAULT_SPEED);
@@ -208,19 +264,23 @@ public class EntityLab {
 
         MovementLimitationComponent movementLimitationComponent = engine.createComponent(MovementLimitationComponent.class);
         entity.add(movementLimitationComponent);
+
+        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
+        entity.add(worldWrap);
+
         //todo for ghostification remove movementLimitationComponent and block component
 //        BlockComponent blockComponent = engine.createComponent(BlockComponent.class);
 //        entity.add(blockComponent);//adding block component to entity causes lag cuz of the setPosition taht is used with the blocks.
     }
 
-    public static void addRoundPositionComponents(PooledEngine engine,Entity entity,float x, float y){
+    public static void addRoundPositionComponents(PooledEngine engine,Entity entity,float x, float y, KeyListMap<Integer,Entity> posMap){
 
         CircularBoundsComponent bounds = engine.createComponent(CircularBoundsComponent.class);
         entity.add(bounds);
-        addPositionComponents(engine,entity,x,y);
+        addPositionComponents(engine,entity,x,y,posMap);
     }
 
-     private static void addPositionComponents(PooledEngine engine, Entity entity, float x, float y){
+     private static void addPositionComponents(PooledEngine engine, Entity entity, float x, float y, KeyListMap<Integer, Entity> posMap){
         Position position = engine.createComponent(Position.class);
         position.set(x,y);
 
@@ -228,16 +288,15 @@ public class EntityLab {
         dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
 
         RectangularBoundsComponent bounds = engine.createComponent(RectangularBoundsComponent.class);
-//        bounds.setBounds(x-dimension.getWidth()/2,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
-//        bounds.setBounds(x,y-dimension.getHeight()/2,SizeManager.maxBoundsRadius);
-//        bounds.setBounds(x-dimension.getWidth()/2,y-dimension.getHeight()/2,dimension.getWidth(),dimension.getHeight());
         bounds.setBounds(x,y-dimension.getHeight()/2,dimension.getWidth(),dimension.getHeight());
-        WorldWrapComponent worldWrap = engine.createComponent(WorldWrapComponent.class); worldWrap.setBoundsOfMovement(MapMaker.getMapBounds());
+
+         PositionTrackerComponent positionTrackerComponent = engine.createComponent(PositionTrackerComponent.class);
+         positionTrackerComponent.setPositionKeyListMap(posMap);
+         entity.add(positionTrackerComponent);
 
         entity.add(position);
         entity.add(dimension);
         entity.add(bounds);
-        entity.add(worldWrap);
     }
 
 

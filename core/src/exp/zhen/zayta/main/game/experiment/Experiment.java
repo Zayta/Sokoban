@@ -198,7 +198,7 @@ public class Experiment implements Screen {
         //todo make this depend on level: lantern interval depend on lvl, number of monsters dependent on lvl
         engine.addSystem(new MonsterAttacksNighterSystem());
         engine.addSystem(new NPCReaperSystem(engine));
-        engine.addSystem(new LanternSpawnSystem(this,engine,assetManager.get(AssetDescriptors.LAB),10));
+        engine.addSystem(new LanternSpawnSystem(this,entityLab,engine,assetManager.get(AssetDescriptors.LAB),10));
         engine.addSystem(new PlayerReaperSystem(this,engine));
     }
 
