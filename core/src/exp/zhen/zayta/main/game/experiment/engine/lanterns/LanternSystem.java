@@ -56,10 +56,7 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
                 keyBelow-1, keyBelow, keyBelow+1};
         checkCollision(entity,keys);
         log.debug("currentF "+currentFighters.getList(entity));
-        if(currentFighters.getList(entity)!=null)
-            for(Entity lantern:currentFighters.getList(entity)) {
-                updateCurrentBattles(entity, lantern);
-            }
+        updateCurrentBattles(entity);
     }
 
     private void checkCollision(Entity entity, int [] keys){
@@ -135,9 +132,12 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
 //        debugKeys(lanternsKeyListMap);
 
     }
-    private void updateCurrentBattles(Entity entity,Entity lantern){
-        if(!checkCollisionBetween(entity, lantern))
-            currentFighters.remove(entity,lantern);
+    private void updateCurrentBattles(Entity entity){
+        if(currentFighters.getList(entity)!=null)
+            for(Entity lantern:currentFighters.getList(entity)) {
+                if(!checkCollisionBetween(entity, lantern))
+                    currentFighters.remove(entity,lantern);
+            }
 //        currentFighters.removeKey(lantern);
 //        currentFighters.remove(lantern);
 //        log.debug("updateCurrentBattles of Lantern alks");
