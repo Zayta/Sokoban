@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 
 
+import java.util.Iterator;
+
 import exp.zhen.zayta.main.game.experiment.common.Mappers;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.ColorComponent;
@@ -133,11 +135,20 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
 
     }
     private void updateCurrentBattles(Entity entity){
-        if(currentFighters.getList(entity)!=null)
-            for(Entity lantern:currentFighters.getList(entity)) {
-                if(!checkCollisionBetween(entity, lantern))
-                    currentFighters.remove(entity,lantern);
+        if(currentFighters.getList(entity)!=null){
+            for(Iterator<Entity> itr = currentFighters.getList(entity).iterator(); itr.hasNext();){
+                Entity lantern = itr.next();
+                if(!checkCollisionBetween(entity, lantern)){
+                    // listOfPhones.remove(phone);  // wrong again
+                    itr.remove(); // right call
+                }
             }
+//            for(Entity lantern:currentFighters.getList(entity)) {
+//                if(!checkCollisionBetween(entity, lantern))
+//                    currentFighters.remove(entity,lantern);
+//            }
+        }
+
 //        currentFighters.removeKey(lantern);
 //        currentFighters.remove(lantern);
 //        log.debug("updateCurrentBattles of Lantern alks");
