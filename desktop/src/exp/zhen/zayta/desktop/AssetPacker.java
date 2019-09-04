@@ -26,7 +26,7 @@ public class AssetPacker {
 //        );
 
         TexturePacker.process(settings,
-                RAW_ASSETS_PATH+"/game/experiment",
+                RAW_ASSETS_PATH+"/game/experiment_raw_assets",
                 ASSETS_PATH + "/game/experiment",
                 "experiment"
         );

@@ -20,11 +20,10 @@ import exp.zhen.zayta.main.game.experiment.engine.movement.PositionTracker;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
-import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.KeyListMap;
 
-public class LanternSystem extends IteratingSystem implements Pool.Poolable {
-    private static final Logger log = new Logger(LanternSystem.class.getName(),Logger.DEBUG);
+public class LanternColorSwitchFlareSystem extends IteratingSystem implements Pool.Poolable {
+    private static final Logger log = new Logger(LanternFlareSystem.class.getName(),Logger.DEBUG);
     //families are entities that can collide
     private PooledEngine engine;
 
@@ -32,7 +31,7 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
     private KeyListMap<Entity,Entity> currentFighters; //list of currently colliding entities, key is entity, value is list of lanterns it is colliding with. Key: Nighter, Value: lantern
 
 
-    LanternSystem(PooledEngine engine, KeyListMap<Integer,Entity> lanternsKeyListMap)
+    LanternColorSwitchFlareSystem(PooledEngine engine, KeyListMap<Integer,Entity> lanternsKeyListMap)
     {
         super(Family.all(
                 ColorComponent.class,
@@ -87,7 +86,7 @@ public class LanternSystem extends IteratingSystem implements Pool.Poolable {
         return Intersector.overlaps(playerBounds.getBounds(),obstacleBounds.getBounds());
     }
 
-//    private boolean collisionUnhandled(Entity entity, Entity lantern){
+    //    private boolean collisionUnhandled(Entity entity, Entity lantern){
 //        return !(currentFighters.get(entity) == lantern) && !(currentFighters.get(lantern) == entity);
 //    }
     private boolean collisionUnhandled(Entity entity, Entity lantern){
