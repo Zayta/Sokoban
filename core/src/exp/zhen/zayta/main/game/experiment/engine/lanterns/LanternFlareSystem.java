@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.utils.Pool;
 
 import java.util.Iterator;
 
+import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.game.experiment.common.Mappers;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.NPCTag;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.ColorComponent;
@@ -20,6 +22,7 @@ import exp.zhen.zayta.main.game.experiment.engine.movement.PositionTracker;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
+import exp.zhen.zayta.main.game.experiment.engine.render.animation.particle.ParticleAnimationComponent;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class LanternFlareSystem extends IteratingSystem implements Pool.Poolable {
@@ -29,9 +32,9 @@ public class LanternFlareSystem extends IteratingSystem implements Pool.Poolable
 
     private final KeyListMap<Integer,Entity> lanternsKeyListMap;
     private KeyListMap<Entity,Entity> currentFighters; //list of currently colliding entities, key is entity, value is list of lanterns it is colliding with. Key: Nighter, Value: lantern
+    private TextureAtlas textureAtlas;
 
-
-    LanternFlareSystem(PooledEngine engine, KeyListMap<Integer,Entity> lanternsKeyListMap)
+    LanternFlareSystem(PooledEngine engine, TextureAtlas textureAtlas, KeyListMap<Integer, Entity> lanternsKeyListMap)
     {
         super(Family.all(
                 ColorComponent.class,
@@ -42,6 +45,7 @@ public class LanternFlareSystem extends IteratingSystem implements Pool.Poolable
 //        super(game,engine);
 //        addMission();
         this.engine = engine;
+        this.textureAtlas = textureAtlas;
         this.lanternsKeyListMap= lanternsKeyListMap;
         currentFighters = new KeyListMap<Entity, Entity>();
     }
@@ -111,8 +115,10 @@ public class LanternFlareSystem extends IteratingSystem implements Pool.Poolable
 //                log.debug("state should be set to flare n vel component removed");
                 lantern.remove(VelocityComponent.class);
                 //add particle animation
-//                ParticleAnimationComponent particleAnimationComponent = engine.createComponent(ParticleAnimationComponent.class);
-//                particleAnimationComponent.init(RegionNames.FIRE_BLOB_PREFLARE,6,1);
+                ParticleAnimationComponent particleAnimationComponent = engine.createComponent(ParticleAnimationComponent.class);
+                particleAnimationComponent.init(textureAtlas.findRegion(RegionNames.FIRE_BLOB_PREFLARE),6,1);
+            particleAnimationComponent.init(textureAtlas.findRegion(RegionNames.FIRE_BLOB_FLARE),5,1);
+                lantern.add(particleAnimationComponent);
 //            }
 //            else
 //            {
@@ -124,6 +130,7 @@ public class LanternFlareSystem extends IteratingSystem implements Pool.Poolable
                 //untag
                 lanternTag.setState(LanternTag.State.DORMANT);
                 lantern.add(engine.createComponent(VelocityComponent.class));
+                lantern.remove(ParticleAnimationComponent.class);
             }
             else
             {

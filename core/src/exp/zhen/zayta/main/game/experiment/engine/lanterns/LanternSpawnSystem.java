@@ -31,7 +31,7 @@ public class LanternSpawnSystem extends IntervalSystem {
 
         lanternsKeyListMap = new KeyListMap<Integer, Entity>();
         spawnPoint = Arrangements.generateRandomUCoordinates(1)[0];
-        engine.addSystem(new LanternFlareSystem(engine,lanternsKeyListMap));
+        engine.addSystem(new LanternFlareSystem(engine,labAtlas,lanternsKeyListMap));
         engine.addSystem(new LanternCheckFlareSystem(experiment,engine));
 
         //spawns three initially

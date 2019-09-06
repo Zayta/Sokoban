@@ -60,16 +60,16 @@ public class BlockSystem extends IteratingSystem implements CollisionListener{
         this.labAtlas = labAtlas;
         blocksKeyListMap = new KeyListMap<Integer, Entity>();
 //        blocksKeyListMap = PositionTracker.globalTracker;
-        initBlocks();
+        initBlocks(RegionNames.BLOCKS_HOUSES);
 
     }
 
-    private void initBlocks(){
+    private void initBlocks(String [] regionNames){
         Vector2[] points = Arrangements.generateRandomUCoordinates(numBlocks);
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, BlockComponent.class,RegionNames.SQUARE_FLOOR));//todo set new texture to be RegionNames.Blocks[randomInt() in bounds]
+            blocksKeyListMap.put(key,makeBlock(points[i].x,points[i].y, BlockComponent.class,regionNames[GdxUtils.RANDOM.nextInt(regionNames.length)]));//todo set new texture to be RegionNames.Blocks[randomInt() in bounds]
 
         }
     }

@@ -82,7 +82,10 @@ public class RegionNames {
 
 
 
-    public static final String [] BLOCKS = {};
+    public static final String [] BLOCKS_HOUSES = {"houses/house1x1","houses/house2x1","houses/house3x1"};
+
+    public static final String [] BLOCKS_FRIDGE = {"lab/fridge1","lab/fridge2","lab/fridge3"};
+
     public static final String STONE = "stones_blackpplstone";
 
 

@@ -20,7 +20,7 @@ import exp.zhen.zayta.main.assets.RegionNames;
 public class StoryBoardScreen extends ScreenBase {
     //lists all episodes w no data on them picks one to play
     private static final Logger log = new Logger(StoryBoardScreen.class.getName(),Logger.DEBUG);
-
+    private final int numPerRow = 3;
     private StoryScreen storyScreen;
     public StoryBoardScreen(RPG game,StoryScreen storyScreen) {
         super(game);
@@ -90,7 +90,7 @@ public class StoryBoardScreen extends ScreenBase {
         episodeTable.setBackground(RegionNames.PANEL);
 
         for(int i = 0; i<=game.getUserData().getNumScenesUnlocked();i++) {
-            TextButton episodeButton = new TextButton("Episode "+i, skin);
+            TextButton episodeButton = new TextButton("Memory "+i, skin);
             final int episode = i;
             episodeButton.addListener(new ChangeListener() {
                 @Override
@@ -99,8 +99,9 @@ public class StoryBoardScreen extends ScreenBase {
                 }
             });
 
-            episodeTable.add(episodeButton);
-            episodeTable.row();
+            episodeTable.add(episodeButton).padRight(10);
+            if(i%numPerRow==numPerRow-1)
+                episodeTable.row();
 
         }
 

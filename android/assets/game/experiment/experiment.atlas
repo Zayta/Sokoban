@@ -1,18 +1,5 @@
 
 experiment.png
-size: 256,256
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-stones_blackpplstone
-  rotate: false
-  xy: 2, 2
-  size: 140, 131
-  orig: 140, 131
-  offset: 0, 0
-  index: -1
-
-experiment2.png
 size: 2048,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -74,7 +61,7 @@ characters/xif
   offset: 0, 0
   index: -1
 
-experiment3.png
+experiment2.png
 size: 64,128
 format: RGBA8888
 filter: Nearest,Nearest
@@ -213,7 +200,424 @@ emotes/cubikopp/icon_wink
   offset: 0, 0
   index: -1
 
+experiment3.png
+size: 64,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+emotes/cubikopp/blue/tile000
+  rotate: false
+  xy: 2, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile001
+  rotate: false
+  xy: 2, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile002
+  rotate: false
+  xy: 20, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile003
+  rotate: false
+  xy: 2, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile004
+  rotate: false
+  xy: 20, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile005
+  rotate: false
+  xy: 38, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile006
+  rotate: false
+  xy: 2, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile007
+  rotate: false
+  xy: 20, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile008
+  rotate: false
+  xy: 38, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile009
+  rotate: false
+  xy: 2, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile010
+  rotate: false
+  xy: 20, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile011
+  rotate: false
+  xy: 38, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile012
+  rotate: false
+  xy: 2, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile013
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile014
+  rotate: false
+  xy: 20, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile015
+  rotate: false
+  xy: 38, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile016
+  rotate: false
+  xy: 20, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile017
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/blue/tile018
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+
 experiment4.png
+size: 64,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+emotes/cubikopp/red/tile000
+  rotate: false
+  xy: 2, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile001
+  rotate: false
+  xy: 2, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile002
+  rotate: false
+  xy: 20, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile003
+  rotate: false
+  xy: 2, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile004
+  rotate: false
+  xy: 20, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile005
+  rotate: false
+  xy: 38, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile006
+  rotate: false
+  xy: 2, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile007
+  rotate: false
+  xy: 20, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile008
+  rotate: false
+  xy: 38, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile009
+  rotate: false
+  xy: 2, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile010
+  rotate: false
+  xy: 20, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile011
+  rotate: false
+  xy: 38, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile012
+  rotate: false
+  xy: 2, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile013
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile014
+  rotate: false
+  xy: 20, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile015
+  rotate: false
+  xy: 38, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile016
+  rotate: false
+  xy: 20, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile017
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/red/tile018
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+
+experiment5.png
+size: 64,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+emotes/cubikopp/yellow/icon_angry
+  rotate: false
+  xy: 2, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_bigsmile
+  rotate: false
+  xy: 2, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_blush
+  rotate: false
+  xy: 20, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_confused
+  rotate: false
+  xy: 2, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_cool
+  rotate: false
+  xy: 20, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_cry
+  rotate: false
+  xy: 38, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_eek
+  rotate: false
+  xy: 2, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_important
+  rotate: false
+  xy: 20, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_kiss
+  rotate: false
+  xy: 38, 92
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_lol
+  rotate: false
+  xy: 2, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_neutral
+  rotate: false
+  xy: 20, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_sad
+  rotate: false
+  xy: 38, 74
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_sick
+  rotate: false
+  xy: 2, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_smile
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_surprised
+  rotate: false
+  xy: 20, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_think
+  rotate: false
+  xy: 38, 56
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_tongue
+  rotate: false
+  xy: 20, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_twisted
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+emotes/cubikopp/yellow/icon_wink
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+
+experiment6.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
@@ -247,7 +651,7 @@ flames/ring_fire
   offset: 0, 0
   index: -1
 
-experiment5.png
+experiment7.png
 size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
@@ -295,7 +699,7 @@ flames/firecreature/blob_move_right
   offset: 0, 0
   index: -1
 
-experiment6.png
+experiment8.png
 size: 256,128
 format: RGBA8888
 filter: Nearest,Nearest
@@ -637,7 +1041,61 @@ generated_map_tiles/white
   offset: 0, 0
   index: -1
 
-experiment7.png
+experiment9.png
+size: 256,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+houses/house1x1
+  rotate: false
+  xy: 2, 2
+  size: 63, 53
+  orig: 63, 53
+  offset: 0, 0
+  index: -1
+houses/house2x1
+  rotate: false
+  xy: 2, 57
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+houses/house3x1
+  rotate: false
+  xy: 67, 68
+  size: 63, 52
+  orig: 63, 52
+  offset: 0, 0
+  index: -1
+
+experiment10.png
+size: 128,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+lab/fridge1
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lab/fridge2
+  rotate: false
+  xy: 36, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lab/fridge3
+  rotate: false
+  xy: 70, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+
+experiment11.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
@@ -678,7 +1136,7 @@ light_effects/light_effects5
   offset: 0, 0
   index: -1
 
-experiment8.png
+experiment12.png
 size: 256,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -691,7 +1149,7 @@ monsters/zemus
   offset: 0, 0
   index: -1
 
-experiment9.png
+experiment13.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -739,7 +1197,7 @@ orange_weapon_slash/1/Alternative_3
   offset: 0, 0
   index: 6
 
-experiment10.png
+experiment14.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -787,7 +1245,7 @@ orange_weapon_slash/2/Alternative_3
   offset: 0, 0
   index: 12
 
-experiment11.png
+experiment15.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -835,7 +1293,7 @@ orange_weapon_slash/3/Alternative_3
   offset: 0, 0
   index: 18
 
-experiment12.png
+experiment16.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -883,7 +1341,7 @@ orange_weapon_slash/4/Alternative_3
   offset: 0, 0
   index: 24
 
-experiment13.png
+experiment17.png
 size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
@@ -931,7 +1389,68 @@ orange_weapon_slash/5/Alternative_3
   offset: 0, 0
   index: 30
 
-experiment14.png
+experiment18.png
+size: 256,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+outdoor/barrel
+  rotate: false
+  xy: 2, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+outdoor/flower_baskey
+  rotate: false
+  xy: 144, 169
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+outdoor/flower_patch
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+outdoor/stew_barrel
+  rotate: false
+  xy: 36, 36
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+outdoor/stones_blackpplstone
+  rotate: false
+  xy: 2, 70
+  size: 140, 131
+  orig: 140, 131
+  offset: 0, 0
+  index: -1
+
+experiment19.png
+size: 128,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+outdoor/rocks/rock1
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+outdoor/rocks/rock2
+  rotate: false
+  xy: 36, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+
+experiment20.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
@@ -972,7 +1491,7 @@ scene_backgrounds/square_pattern
   offset: 0, 0
   index: -1
 
-experiment15.png
+experiment21.png
 size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
