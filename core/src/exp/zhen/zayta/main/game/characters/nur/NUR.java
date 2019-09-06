@@ -27,6 +27,9 @@ public class NUR {
         nighters.put(Undead.Lorale, new Stats("Lorale",
                 labAtlas.findRegion(RegionNames.LORALE),
                 100,10,10));
+        nighters.put(Undead.Letra, new Stats("Letra",
+                labAtlas.findRegion(RegionNames.LETRA),
+                100,10,10));
 
 
         nighters.put(Undead.Anonymous, new Stats("???",

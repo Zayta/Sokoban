@@ -70,6 +70,7 @@ public class StoryScreen extends ScreenBase {
     }
 
     private void loadScenes(TextureAtlas textureAtlas){
+        //todo set background for story here
         for(int ep = 0; ep<scenes.length;ep++){
             if(ep<3)
                 scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(RegionNames.SQUARE_FLOOR));
@@ -178,6 +179,9 @@ public class StoryScreen extends ScreenBase {
     private void updateSpeaker(Image image){
         if(speaker.get(currentLine).equals("ll")){
             image.setDrawable(nur.nighters.get(Undead.Lorale).getAvatar());
+        }
+        else if(speaker.get(currentLine).equals("lt")){
+            image.setDrawable(nur.nighters.get(Undead.Letra).getAvatar());
         }
         else{
             log.debug("Image is "+image);
