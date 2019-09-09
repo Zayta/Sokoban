@@ -18,13 +18,11 @@ import com.badlogic.gdx.utils.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.plaf.synth.Region;
-
 import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.game.characters.Undead;
+import exp.zhen.zayta.main.game.characters.nur.Undead;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
 import exp.zhen.zayta.main.game.config.SizeManager;
 

@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.assets.AssetDescriptors;
-import exp.zhen.zayta.main.game.characters.Undead;
+import exp.zhen.zayta.main.game.characters.nur.Undead;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.config.SpeedManager;
 import exp.zhen.zayta.main.game.experiment.common.Mappers;
@@ -26,7 +26,7 @@ import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.H
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.explosion.ExplosiveComponent;
 import exp.zhen.zayta.main.game.experiment.engine.entity.id_tags.NighterTag;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
-import exp.zhen.zayta.main.game.experiment.engine.entity.utsubyo.Utsubyo;
+import exp.zhen.zayta.main.game.characters.utsubyo.Utsubyo;
 import exp.zhen.zayta.main.game.experiment.engine.lanterns.LanternTag;
 import exp.zhen.zayta.main.game.experiment.engine.render.mono_color.MonoColorRenderTag;
 import exp.zhen.zayta.main.game.movable_items.components.PushComponent;
@@ -45,7 +45,6 @@ import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityCom
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapComponent;
 import exp.zhen.zayta.main.game.experiment.engine.render.animation.sprite.SpriteAnimationComponent;
 import exp.zhen.zayta.main.game.experiment.engine.render.animation.TextureComponent;
-import exp.zhen.zayta.util.BiMap;
 import exp.zhen.zayta.util.KeyListMap;
 
 public class EntityLab {

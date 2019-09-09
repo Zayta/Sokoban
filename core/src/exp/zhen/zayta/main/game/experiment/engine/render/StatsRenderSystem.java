@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.game.experiment.common.Mappers;
+import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.ColorComponent;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.HealthComponent;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.DimensionComponent;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.Position;
@@ -68,7 +69,12 @@ public class StatsRenderSystem extends IteratingSystem {
 
 
 //        renderer.set(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(Color.ORANGE);
+        ColorComponent colorComponent = Mappers.COLOR.get(entity);
+        if(colorComponent!=null){
+            renderer.setColor(colorComponent.getColor());
+        }
+        else
+            renderer.setColor(Color.WHITE);
         renderer.rect(position.getX(),position.getY()-height,(healthComponent.getHp()/ healthComponent.getFull_hp())*dimension.getWidth(),height);
 
 

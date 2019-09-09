@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.characters;
+package exp.zhen.zayta.main.game.characters.nur;
 
 public enum Undead {
     Lorale,

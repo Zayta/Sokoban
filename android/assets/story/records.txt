@@ -4,6 +4,7 @@ it: We are a research organization striving to build a guaranteed afterlife.
 it: You are here because you have died a secret death.
 it: If you pass our experiments, however, you will be given life extension.
 
+
 label lorale1:
 ll: I grew up in a lab, where they did daily experiments on me.
 ll: It was painful.
@@ -13,6 +14,18 @@ ll: However...
 ll: I think they took something from me.
 ll: Because everyday I felt like a blank canvas.
 
+label lorale2:
+llm: Aren't you tired of acting?
+ll: I... (I'm exhausted/I'm not)
+llm: You fake human being.
+
+label lorale3:
+doctor1: The patient has a missing body part that doesn't seem to be caused by the accident
+doctor2: Yes I see it. The hole is big.
+doctor1: Hold on.
+doctor1: He's opening his eyes!
+ll: Where...
+doctor2: But how? He should be dead!
 
 label letra1:
 lt: Up until I was 13, I had the perfect life.
@@ -30,3 +43,21 @@ lt: I wanted to go to school again.
 lt: I wanted to talk to my friends again.
 lt: I wanted to eat buffets with my family again.
 lt: I wanted to live
+
+label tenyu1:
+tyu: I feel lonely
+
+label exp1:
+tyu: I can't keep it up. They will find out.
+ll: If you lie enough, the lies will become the truth someday.
+tyu: I wish I can keep up a facade like you.
+
+label exp2:
+ll: I'm glad that someone knows the real me though.
+ll: I don't have to pretend in front of you and Letra.
+
+
+label exp3:
+ta: Lorale... You're really kind. But sometimes it seems like you are forcing your responses. It's like you are hiding behind a mask.
+ll: That's interesting. Why do you say that?
+ta: I don't know. I can sense it. Nevermind, it's probably me being weird. It might be my illness giving me illusions again.

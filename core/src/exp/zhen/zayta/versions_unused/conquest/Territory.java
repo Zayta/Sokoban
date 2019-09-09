@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import exp.zhen.zayta.main.game.characters.Undead;
+import exp.zhen.zayta.main.game.characters.nur.Undead;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;

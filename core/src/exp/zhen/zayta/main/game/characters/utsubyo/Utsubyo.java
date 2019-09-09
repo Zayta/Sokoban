@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.game.experiment.engine.entity.utsubyo;
+package exp.zhen.zayta.main.game.characters.utsubyo;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.game.characters.Monster;
 import exp.zhen.zayta.main.game.experiment.engine.entity.Stats;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.NameTag;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.NPCTag;

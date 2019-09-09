@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.game.config.SizeManager;
 import exp.zhen.zayta.main.game.characters.nur.NUR;
-import exp.zhen.zayta.main.game.experiment.engine.entity.utsubyo.Utsubyo;
+import exp.zhen.zayta.main.game.characters.utsubyo.Utsubyo;
 
 public class RPG extends Game {
 
