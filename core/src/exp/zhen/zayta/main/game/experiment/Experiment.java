@@ -21,6 +21,7 @@ import exp.zhen.zayta.main.game.debug.debug_system.DebugPositionTrackerSystem;
 import exp.zhen.zayta.main.game.debug.debug_system.DebugRectangularBoundsRenderSystem;
 //import exp.zhen.zayta.main.game.experiment.engine.blocks.BlocksTrackerSystem;
 import exp.zhen.zayta.main.game.experiment.engine.entity.EntityLab;
+import exp.zhen.zayta.main.game.experiment.engine.movement.system.MovementLimitationDetectResetSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.NPCReaperSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.PlayerReaperSystem;
 import exp.zhen.zayta.main.game.experiment.engine.lanterns.LanternSpawnSystem;
@@ -161,6 +162,7 @@ public class Experiment implements Screen {
         engine.addSystem(new NPCNonstopMovementSystem());
         engine.addSystem(new IntervalChangeDirectionSystem(5));
 
+//        engine.addSystem(new MovementLimitationDetectResetSystem());
         /*after mechs are set, add base movement systems*/
         engine.addSystem(new MovementSystem());
         engine.addSystem(new RectangularBoundsSystem());

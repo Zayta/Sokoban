@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Logger;
 import exp.zhen.zayta.main.game.experiment.common.Mappers;
 import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.PlayerTag;
 import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
+import exp.zhen.zayta.main.game.experiment.engine.movement.component.MovementLimitationComponent;
 import exp.zhen.zayta.main.game.experiment.engine.movement.component.VelocityComponent;
 
 public class JoyStickMovementListener extends ChangeListener {
@@ -55,19 +56,24 @@ public class JoyStickMovementListener extends ChangeListener {
     }
 
     /*changes all playable character's directoins*/
+    /*changes all playable character's directoins*/
     private void updateAllPlayableCharacters(Direction direction){
 
         entities = engine.getEntitiesFor(PLAYABLE_CHARACTERS);
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             VelocityComponent movement = Mappers.MOVEMENT.get(entity);
+            MovementLimitationComponent movementLimitationComponent = Mappers.MOVEMENT_LIMITATION.get(entity);
+
+            if(movement.getDirection()==direction||movementLimitationComponent.getBlockedDirection()==direction)
+                continue;
             movement.setDirection(direction);
 //            MovementLimitationComponent movementLimitation = Mappers.MOVEMENT_LIMITATION.get(entity);
-//            if(movementLimitation!=null)
-//                if(direction!=movementLimitation.getBlockedDirection()||direction==Direction.none)
-//                    movement.setDirection(direction);
-//                else
-//                    movement.setDirection(Direction.none);
+//          if(movementLimitation!=null)
+//            if(direction!=movementLimitation.getBlockedDirection()||direction==Direction.none)
+//                movement.setDirection(direction);
+//            else
+//                movement.setDirection(Direction.none);
 
         }
     }
