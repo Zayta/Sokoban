@@ -3,7 +3,7 @@ package exp.zhen.zayta.versions_unused;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 
-import exp.zhen.zayta.main.game.experiment.Experiment;
+import exp.zhen.zayta.main.arcade_style_game.experiment.Experiment;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
 //import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapTag;
@@ -41,7 +41,7 @@ public class NaiveLanternSystem extends GameControllingSystem implements Collisi
 //
 //    private ImmutableArray<Entity> characters;
 //    private ImmutableArray<Entity> lanterns;
-//    public NaiveLanternSystem(RPG game, PooledEngine engine){
+//    public NaiveLanternSystem(Game game, PooledEngine engine){
 //        super(game,engine);
 //        addMission();
 //        this.engine = engine;

@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.RPG;
+import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.assets.RegionNames;
@@ -22,7 +22,7 @@ public class StoryBoardScreen extends ScreenBase {
     private static final Logger log = new Logger(StoryBoardScreen.class.getName(),Logger.DEBUG);
     private final int numPerRow = 3;
     private StoryScreen storyScreen;
-    public StoryBoardScreen(RPG game,StoryScreen storyScreen) {
+    public StoryBoardScreen(Game game, StoryScreen storyScreen) {
         super(game);
         this.storyScreen = storyScreen;
     }
@@ -81,7 +81,7 @@ public class StoryBoardScreen extends ScreenBase {
     }
 
     private void back() {
-//        ////log.debug("back()");
+//        //////log.debug("back()");
         game.goToMain();
     }
     private Table getStoryTable(Skin skin){

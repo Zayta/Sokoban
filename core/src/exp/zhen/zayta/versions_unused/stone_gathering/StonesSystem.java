@@ -10,22 +10,22 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.game.experiment.Experiment;
-import exp.zhen.zayta.main.game.experiment.engine.entity.id_tags.NighterTag;
+import exp.zhen.zayta.main.arcade_style_game.experiment.Experiment;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.entity.id_tags.NighterTag;
 import exp.zhen.zayta.versions_unused.game_mechanics.GameControllingSystem;
 import exp.zhen.zayta.versions_unused.game_mechanics.collision_mechanics.template_for_collision_system.CollisionListener;
-import exp.zhen.zayta.main.game.experiment.engine.map.MapMaker;
-import exp.zhen.zayta.main.game.experiment.engine.movement.Direction;
-import exp.zhen.zayta.main.game.experiment.common.Mappers;
-import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.experiment.engine.movement.PositionTracker;
-import exp.zhen.zayta.main.game.experiment.engine.map.util.Arrangements;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.RectangularBoundsComponent;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.DimensionComponent;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.Position;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.WorldWrapComponent;
-import exp.zhen.zayta.main.game.experiment.engine.render.animation.TextureComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.map.MapMaker;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.Direction;
+import exp.zhen.zayta.main.arcade_style_game.experiment.common.Mappers;
+import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.PositionTracker;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.map.util.Arrangements;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.RectangularBoundsComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.DimensionComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.Position;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.WorldWrapComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.render.animation.TextureComponent;
 import exp.zhen.zayta.util.KeyListMap;
 
 
@@ -59,12 +59,12 @@ public class StonesSystem extends GameControllingSystem implements CollisionList
         for(int i =0; i<points.length; i++)
         {
             int key = PositionTracker.generateKey(points[i].x,points[i].y);
-            ////log.debug("Point "+i+ " is: ("+points[i].x+","+points[i].y+") and key is "+key);
+            //////log.debug("Point "+i+ " is: ("+points[i].x+","+points[i].y+") and key is "+key);
             stonesKeyListMap.put(key,makeStone(points[i].x,points[i].y, StoneTag.class,RegionNames.STONE));
-//            ////log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
+//            //////log.debug("iteration "+i+", pointsx: "+points[i].x+", points y: "+points[i].y+"\n"
 //            +stonesKeyListMap.get(key));
         }
-        ////log.debug("stoneKeyListMap: "+stonesKeyListMap);
+        //////log.debug("stoneKeyListMap: "+stonesKeyListMap);
     }
 
     @Override

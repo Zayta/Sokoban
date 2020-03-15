@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.Pool;
 
-import exp.zhen.zayta.main.game.experiment.Experiment;
+import exp.zhen.zayta.main.arcade_style_game.experiment.Experiment;
 
 @Deprecated
 public abstract class GameControllingSystem extends EntitySystem implements Pool.Poolable {
@@ -16,7 +16,7 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
     public GameControllingSystem(Experiment experiment, PooledEngine engine) {
         this.experiment = experiment;
         this.engine = engine;
-        ////log.debug("numMissionsLeft:"+numMissions);
+        //////log.debug("numMissionsLeft:"+numMissions);
     }
 
     @Override
@@ -54,7 +54,7 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
     }
     private void goToMenu(){
 //        PositionTracker.reset();
-////        RPG.userData.Player.clear();
+////        Game.userData.Player.clear();
 //        getEngine().removeAllEntities();
         experiment.progress();
     }

@@ -11,9 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 
+import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.ScreenBase;
-import exp.zhen.zayta.main.RPG;
 import exp.zhen.zayta.main.assets.RegionNames;
 
 
@@ -21,7 +21,7 @@ public class ShopScreen extends ScreenBase {
 
     private static final Logger log = new Logger(ShopScreen.class.getName(), Logger.DEBUG);
 
-    public ShopScreen(RPG game) {
+    public ShopScreen(Game game) {
         super(game);
     }
 
@@ -73,7 +73,7 @@ public class ShopScreen extends ScreenBase {
     }
 
     private void back() {
-//        ////log.debug("back()");
+//        //////log.debug("back()");
         game.goToMain();
     }
 }

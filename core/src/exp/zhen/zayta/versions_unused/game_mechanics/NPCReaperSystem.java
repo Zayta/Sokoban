@@ -6,10 +6,10 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 
-import exp.zhen.zayta.main.game.experiment.common.Mappers;
-import exp.zhen.zayta.main.game.experiment.engine.entity.components.labels.NPCTag;
-import exp.zhen.zayta.main.game.experiment.engine.entity.components.properties.HealthComponent;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.common.Mappers;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.entity.components.labels.NPCTag;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.entity.components.properties.HealthComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.PositionTrackerComponent;
 
 public class NPCReaperSystem extends EntitySystem {
     private final static Family NPC = Family.all(

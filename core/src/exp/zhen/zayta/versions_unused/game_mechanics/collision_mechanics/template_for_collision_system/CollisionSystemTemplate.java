@@ -8,11 +8,11 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.RPG;
-import exp.zhen.zayta.main.game.experiment.common.Mappers;
-import exp.zhen.zayta.main.game.experiment.engine.movement.PositionTracker;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.game.experiment.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.main.Game;
+import exp.zhen.zayta.main.arcade_style_game.experiment.common.Mappers;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.PositionTracker;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.PositionTrackerComponent;
 
 public abstract class CollisionSystemTemplate extends EntitySystem {
     private static final Logger log = new Logger(CollisionSystemTemplate.class.getName(),Logger.DEBUG);
@@ -21,7 +21,7 @@ public abstract class CollisionSystemTemplate extends EntitySystem {
 
 
 
-    public CollisionSystemTemplate(RPG game, PooledEngine engine){
+    public CollisionSystemTemplate(Game game, PooledEngine engine){
 //        super(game,engine);
         FAMILY = Family.all(
                 PositionTrackerComponent.class,

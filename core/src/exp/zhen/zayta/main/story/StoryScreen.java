@@ -18,13 +18,14 @@ import com.badlogic.gdx.utils.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import exp.zhen.zayta.main.RPG;
+import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
+import exp.zhen.zayta.main.assets.Files;
 import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.game.characters.nur.Undead;
-import exp.zhen.zayta.main.game.characters.nur.NUR;
-import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.arcade_style_game.characters.nur.Undead;
+import exp.zhen.zayta.main.arcade_style_game.characters.nur.NUR;
+import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
 
 
 public class StoryScreen extends ScreenBase {
@@ -46,9 +47,9 @@ public class StoryScreen extends ScreenBase {
 
     private NUR nur;
 
-    public StoryScreen(RPG game) {
+    public StoryScreen(Game game) {
         super(game);
-        loadFile(Gdx.files.internal("story/records.txt"));
+        loadFile(Files.story);
         loadScenes(assetManager.get(AssetDescriptors.LAB));
         table = new Table();
         nur = game.getNur();
@@ -62,7 +63,7 @@ public class StoryScreen extends ScreenBase {
 
 
         for(int i = 0; i<episodes.length;i++){
-            log.debug("Episode "+i+":\n"+episodes[i]+"\n\n\n");
+            //log.debug("Episode "+i+":\n"+episodes[i]+"\n\n\n");
         }
 
     }
@@ -80,7 +81,7 @@ public class StoryScreen extends ScreenBase {
 
     public void loadEpisode(int current_episode){
 
-        log.debug("episodes are "+ Arrays.toString(episodes));
+        //log.debug("episodes are "+ Arrays.toString(episodes));
         speaker.clear();
         dialogue.clear();
         if(current_episode>=episodes.length){ //account for array out of bounds
@@ -88,13 +89,13 @@ public class StoryScreen extends ScreenBase {
         }
         String [] lines = episodes[current_episode].split("\n");
 
-        log.debug("story lines are "+ Arrays.toString(lines));
+        //log.debug("story lines are "+ Arrays.toString(lines));
         for(String l: lines) {
-            log.debug("Line: " + l);
+            //log.debug("Line: " + l);
 
 
             String[] strings = l.split(":");
-            log.debug("story full strings are " + Arrays.toString(strings));
+            //log.debug("story full strings are " + Arrays.toString(strings));
             //speaker or dialogue
 //            if(strings.length%2==0){//make sure there is a speaker and a dialogue
                 for (int i = 0; i < strings.length; i++) {//the first index is for chapter title
@@ -107,7 +108,7 @@ public class StoryScreen extends ScreenBase {
 //            }
         }
         if(speaker.size()!=dialogue.size()){
-            log.debug("Error: speaker cannot be matched with dialogue");
+            //log.debug("Error: speaker cannot be matched with dialogue");
         }
 
         currentScene = scenes[current_episode];
@@ -182,8 +183,8 @@ public class StoryScreen extends ScreenBase {
             image.setDrawable(nur.nighters.get(Undead.Letra).getAvatar());
         }
         else{
-            log.debug("Image is "+image);
-            log.debug("Nighter is "+nur.nighters.get(Undead.Anonymous));
+            //log.debug("Image is "+image);
+            //log.debug("Nighter is "+nur.nighters.get(Undead.Anonymous));
             image.setDrawable(nur.nighters.get(Undead.Anonymous).getAvatar());
         }
     }

@@ -50,7 +50,7 @@ public class Tile extends Stack {
         //Second add wrapped overlay object
 //        Table overlay = new Table();
 //        overlay.add(soldier.getStats()).expand().fillX().bottom().left();
-//        ////log.debug("tile width"+getWidth());
+//        //////log.debug("tile width"+getWidth());
             soldier.getStats().setAlignment(Align.bottomLeft, Align.center);
             add(soldier.getStats());
         }

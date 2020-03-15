@@ -1,19 +1,13 @@
 package exp.zhen.zayta.versions_unused.conquest.soldiers;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 
-import java.util.List;
-
-import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.versions_unused.conquest.Territory;
+import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
 
 public abstract class Soldier {
     private final String name;

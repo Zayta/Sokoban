@@ -18,7 +18,7 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
 
 
     UserData() {
-        preferences = Gdx.app.getPreferences(RPG.class.getSimpleName());
+        preferences = Gdx.app.getPreferences(Game.class.getSimpleName());
         setNumScenesUnlocked(0);
 
     }
@@ -33,7 +33,7 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
     }
     public void unlockScene(){
 
-        log.debug("scene is unlocking");
+        //log.debug("scene is unlocking");
         setNumScenesUnlocked(preferences.getInteger(numScenesUnlocked)+1);
     }
 
@@ -45,7 +45,7 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
         preferences.putInteger(this.numScenesUnlocked,numScenesUnlocked);
 
         preferences.flush();
-        log.debug("preferences are flushed");
+        //log.debug("preferences are flushed");
     }
 
 

@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.assets.AssetDescriptors;
-import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
 import exp.zhen.zayta.main.assets.TiledMapAssetDescriptors;
 import exp.zhen.zayta.util.GdxUtils;
 
@@ -33,12 +33,12 @@ public class LoadingScreen extends ScreenAdapter {
     private float waitTime = 0.75f;
     private boolean changeScreen;
 
-    private final RPG game;
+    private final Game game;
     private final AssetManager assetManager;
 
 
     // == constructors ==
-    public LoadingScreen(RPG game) {
+    public LoadingScreen(Game game) {
         this.game = game;
         assetManager = game.getAssetManager();
     }
@@ -46,14 +46,14 @@ public class LoadingScreen extends ScreenAdapter {
     // == public methods ==
     @Override
     public void show() {
-//        ////log.debug("show");
+//        //////log.debug("show");
         orthographicCamera = new OrthographicCamera();
         viewport = new FitViewport(SizeManager.HUD_WIDTH, SizeManager.HUD_HEIGHT, orthographicCamera);
         renderer = new ShapeRenderer();
 
 
         loadAssets();
-        loadMap();
+//        loadTiledMap();
 
         assetManager.finishLoading();
     }
@@ -67,15 +67,17 @@ public class LoadingScreen extends ScreenAdapter {
         assetManager.load(AssetDescriptors.HEADING_FONT);
         assetManager.load(AssetDescriptors.FONT);
         assetManager.load(AssetDescriptors.LAB);
+
+        assetManager.load(AssetDescriptors.SOKOBAN);
 //        assetManager.load(AssetDescriptors.CONQUEST);
 //        assetManager.load(AssetDescriptors.MENU_CLIP);
         assetManager.load(AssetDescriptors.UI_SKIN);
 
 
-        assetManager.load(TiledMapAssetDescriptors.MAP_GENERATOR);
+//        assetManager.load(TiledMapAssetDescriptors.MAP_GENERATOR);
 
     }
-    private void loadMap(){
+    private void loadTiledMap(){
         //todo in future when use TiledMap, load here
         assetManager.setLoader(TiledMap.class,new TmxMapLoader());
         assetManager.load(TiledMapAssetDescriptors.MAP_MEMLAB2);
@@ -109,14 +111,14 @@ public class LoadingScreen extends ScreenAdapter {
 
     @Override
     public void hide() {
-//        ////log.debug("hide");
+//        //////log.debug("hide");
         // NOTE: screens dont dispose automatically
         dispose();
     }
 
     @Override
     public void dispose() {
-//        ////log.debug("dispose");
+//        //////log.debug("dispose");
         renderer.dispose();
         renderer = null;
     }

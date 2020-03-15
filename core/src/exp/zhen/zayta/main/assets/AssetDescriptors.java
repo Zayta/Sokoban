@@ -9,12 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 
 public class AssetDescriptors {
+    public static final AssetDescriptor<TextureAtlas> SOKOBAN =
+            new AssetDescriptor<TextureAtlas>("puzzles/sokoban.atlas", TextureAtlas.class);
+
 
     public static final AssetDescriptor<TextureAtlas> LAB =
             new AssetDescriptor<TextureAtlas>("game/experiment/experiment.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> CONQUEST =
             new AssetDescriptor<TextureAtlas>("game/conquest/conquest.atlas", TextureAtlas.class);
+
 
 //    public static final AssetDescriptor<TextureAtlas> MENU_CLIP =
 //            new AssetDescriptor<TextureAtlas>("menu/clips.atlas", TextureAtlas.class);

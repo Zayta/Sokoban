@@ -59,7 +59,7 @@ public class KeyListMap<K,V>{
     {
         K key = objKeys.remove(value);
         if(key.getClass().equals(value.getClass())){
-            log.debug("KeyListMap classes the same. Are you sure you want to use this method?");
+            //log.debug("KeyListMap classes the same. Are you sure you want to use this method?");
         }
         if(keyList.get(key)!=null)
             keyList.get(key).remove(value);

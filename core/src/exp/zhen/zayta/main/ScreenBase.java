@@ -8,20 +8,20 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
 import exp.zhen.zayta.util.GdxUtils;
 
 
 public abstract class ScreenBase extends ScreenAdapter {
 
-    protected final RPG game;
+    protected final Game game;
     protected final AssetManager assetManager;
 
     private Viewport viewport;
     private Stage stage;
 
 
-    public ScreenBase(RPG game) {
+    public ScreenBase(Game game) {
         this.game = game;
         assetManager = game.getAssetManager();
     }

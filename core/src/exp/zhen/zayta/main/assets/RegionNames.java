@@ -4,6 +4,37 @@ public class RegionNames {
 
     public static final String PANEL = "window";
 
+    //Sokoban
+    public static final String CRATE_BLUE_BLOCK = "crate_blue/block";
+    public static final String CRATE_BLUE_FLAT = "crate_blue/flat";
+    public static final String CRATE_BLUE_HOLE = "crate_blue/hole";
+    public static final String CRATE_BLUE_NORMAL = "crate_blue/normal";
+    public static final String CRATE_BLUE_SOLVED = "crate_blue/solved";
+
+    public static final String BRICK_RED_CRATE = "crate_brick/red_stone_brick_crate";
+    public static final String BRICK_STONE_CRATE = "crate_brick/crate_stone_brick";
+    public static final String BRICK_BROWN_CRATE = "crate_brick/crate_brown_brick";
+
+    public static final String FLOOR_DIRT = "floor/floor_dirt";
+    public static final String FLOOR_DIRT_OVERLAY = "floor/floor_dirt_overlay";
+    public static final String FLOOR_GRASS = "floor/floor_grass";
+    public static final String FLOOR_GRASS_OVERLAY = "floor/floor_grass_overlay";
+    public static final String FLOOR_STONE = "floor/floor_stone";
+    public static final String FLOOR_STONE_OVERLAY = "floor/floor_stone_overlay";
+
+    public static final String[] OVERLAY = {"overlay/one","overlay/two","overlay/three","overlay/four"};
+
+
+
+
+
+
+
+
+
+
+
+
     //maps
     public static final String MAPS_MEMLAB1 = "game/experiment/maps/memLab/memLab1.tmx";
     public static final String MAPS_MEMLAB2 = "game/experiment/maps/memLab/memLab2.tmx";

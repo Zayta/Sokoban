@@ -17,13 +17,13 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import exp.zhen.zayta.main.RPG;
+import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
-import exp.zhen.zayta.main.game.config.SizeManager;
+import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;
-import exp.zhen.zayta.main.game.debug.DebugCameraController;
+import exp.zhen.zayta.main.arcade_style_game.debug.DebugCameraController;
 import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.ViewportUtils;
 
@@ -35,7 +35,7 @@ public class Conquest implements Screen {
     private static final float PADDING = 20.0f;
 
     // == attributes ==
-    private final RPG game;
+    private final Game game;
     private final AssetManager assetManager;
     
     //viewports and cameras
@@ -71,7 +71,7 @@ public class Conquest implements Screen {
 //    private ShapeRenderer shapeRenderer;
     Pool<MoveToAction> pool;
     //    private PooledEngine engine;
-    public Conquest(RPG game) {
+    public Conquest(Game game) {
         this.game = game;
         assetManager = game.getAssetManager();
         batch = game.getBatch();
@@ -206,7 +206,7 @@ public class Conquest implements Screen {
 //
 //        for(int i = 0; i<nPos.length;i++){
 //            Tile npos = nPos[i];
-////            ////log.debug("nPos ["+i+"] x is "+npos.getX(Align.bottomLeft)+", and scaled is "+npos.getX(Align.bottomLeft)*scaleWidthOfStatsViewportToViewport);
+////            //////log.debug("nPos ["+i+"] x is "+npos.getX(Align.bottomLeft)+", and scaled is "+npos.getX(Align.bottomLeft)*scaleWidthOfStatsViewportToViewport);
 //            String stats = npos.getSoldier().toString();
 //            layout.setText(fonts, stats);
 //            fonts.draw(batch, layout, (npos.getX(Align.left))*scaleWidthOfStatsViewportToViewport,(npos.getY(Align.bottom))*scaleHeightOfStatsViewportToViewport+layout.height);

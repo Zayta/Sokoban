@@ -16,8 +16,9 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.game.config.SizeManager;
-import exp.zhen.zayta.main.game.experiment.Experiment;
+//import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
+//import exp.zhen.zayta.main.arcade_style_game.puzzle.Puzzle;
+import exp.zhen.zayta.main.sokoban.Puzzle;
 import exp.zhen.zayta.main.shop.ShopScreen;
 import exp.zhen.zayta.main.story.StoryBoardScreen;
 import exp.zhen.zayta.main.story.StoryScreen;
@@ -28,9 +29,10 @@ class MainScreen extends ScreenBase {
 
     private Table table;
     private StoryScreen storyScreen;
-    private Experiment experiment; private UserData userData;
+    private Puzzle puzzle;
+    private UserData userData;
 
-    MainScreen(RPG game) {
+    MainScreen(Game game) {
         super(game);
         this.userData = game.getUserData();
         table = new Table();
@@ -39,7 +41,7 @@ class MainScreen extends ScreenBase {
     void createScreens()
     {
         storyScreen = new StoryScreen(game);
-        experiment = new Experiment(game);
+        puzzle = new Puzzle(game);
     }
 
 
@@ -50,7 +52,7 @@ class MainScreen extends ScreenBase {
 
         setBackground(textureAtlas);
 
-        Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(AssetDescriptors.HEADING_FONT),Color.WHITE));
+        Label label = new Label("Puzzle "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(AssetDescriptors.HEADING_FONT),Color.WHITE));
         label.setFontScale(2);
 
         table.add(label).top().left();
@@ -151,8 +153,8 @@ class MainScreen extends ScreenBase {
     }
 
     private void play(int chosenLvl) {
-        experiment.setCurrentLvl(chosenLvl);
-        game.setScreen(experiment);
+//        puzzle.setCurrentLvl(chosenLvl);
+        game.setScreen(puzzle);
     }
 
     private void shop() {
