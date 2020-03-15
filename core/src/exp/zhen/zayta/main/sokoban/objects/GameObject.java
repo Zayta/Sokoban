@@ -37,7 +37,7 @@ public class GameObject
     }
 
     public void render(SpriteBatch batch, float scale) {
-//        System.out.println("Texture is "+texture);
+
         if(texture!=null)
         batch.draw(texture, position.x * scale, position.y * scale,
                    texture.getRegionWidth() * scale, texture.getRegionHeight() * scale);

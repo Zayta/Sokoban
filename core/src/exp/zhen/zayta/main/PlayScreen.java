@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.assets.AssetDescriptors;
@@ -28,7 +29,7 @@ public class PlayScreen implements Screen {
         //render
         this.batch = game.getBatch();
         this.camera = new OrthographicCamera(SizeManager.VIRTUAL_WIDTH, SizeManager.VIRTUAL_HEIGHT);
-        this.viewport = new ExtendViewport(SizeManager.VIRTUAL_WIDTH, SizeManager.VIRTUAL_HEIGHT, camera);
+        this.viewport = new FitViewport(SizeManager.VIRTUAL_WIDTH, SizeManager.VIRTUAL_HEIGHT, camera);
         this.renderer = new PuzzleRenderer(viewport,camera);
     }
 
@@ -51,6 +52,7 @@ public class PlayScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
+
         Gdx.input.setCatchBackKey(true);
 //        Gdx.input.setInputProcessor(this);
         viewport.update(width, height);

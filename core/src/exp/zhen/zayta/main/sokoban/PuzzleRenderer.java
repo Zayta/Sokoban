@@ -58,7 +58,7 @@ public class PuzzleRenderer {
                     playerPosition.y * SCALE, 0);
             camera.position.interpolate(newCameraPosition, 0.45f, Interpolation.exp10In);
         } else {
-            camera.position.set(puzzle.getWidth() * 0.5f, 1 - puzzle.getHeight() * 0.5f, 0);
+            camera.position.set(puzzle.getWidth() * 0.5f, puzzle.getHeight() * 0.5f, 0);
         }
     }
 }

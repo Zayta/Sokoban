@@ -13,5 +13,5 @@ public class SizeManager {
     public static final int VIRTUAL_WIDTH = 14;
     public static final int VIRTUAL_HEIGHT = 9;
 
-    public static final float SCALE = 1f/(TILE_SIZE);
+    public static final float SCALE = 1f*2f/(TILE_SIZE);
 }
