@@ -1,5 +1,53 @@
 
 sokoban.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+characters/anoni
+  rotate: false
+  xy: 2, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/letra
+  rotate: false
+  xy: 132, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/lorale
+  rotate: false
+  xy: 262, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/taria
+  rotate: false
+  xy: 392, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/tenyu
+  rotate: false
+  xy: 522, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/xif
+  rotate: false
+  xy: 652, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+
+sokoban2.png
 size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
@@ -40,7 +88,7 @@ crate_blue/solved
   offset: 0, 0
   index: -1
 
-sokoban2.png
+sokoban3.png
 size: 256,128
 format: RGBA8888
 filter: Nearest,Nearest
@@ -67,7 +115,7 @@ crate_brick/red_stone_brick_crate
   offset: 0, 0
   index: -1
 
-sokoban3.png
+sokoban4.png
 size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
@@ -115,7 +163,7 @@ floor/overlay_stone
   offset: 0, 0
   index: -1
 
-sokoban4.png
+sokoban5.png
 size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest

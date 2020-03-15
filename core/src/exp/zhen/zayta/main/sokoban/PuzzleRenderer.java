@@ -7,9 +7,11 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.SizeManager;
+import exp.zhen.zayta.util.GdxUtils;
 
 import static exp.zhen.zayta.main.SizeManager.SCALE;
 import static exp.zhen.zayta.main.SizeManager.VIRTUAL_HEIGHT;
@@ -22,18 +24,16 @@ public class PuzzleRenderer {
     private final Viewport viewport;
     private boolean cameraShouldMove;
 
-    public PuzzleRenderer() {
-        camera = new OrthographicCamera(VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
-        viewport = new ExtendViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, camera);
+    public PuzzleRenderer(Viewport viewport, OrthographicCamera camera) {
+        this.camera = camera;
+//        viewport = new ExtendViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, camera);
+        this.viewport = viewport;
     }
 
-    public void resize(int width, int height) {
-        viewport.update(width, height);
-        viewport.apply();
-        camera.update();
-    }
 
     public void render(Puzzle puzzle, SpriteBatch batch) {
+        GdxUtils.clearScreen();
+
         if (puzzle.getWidth() > VIRTUAL_HEIGHT || puzzle.getHeight() > VIRTUAL_HEIGHT) {
             cameraShouldMove = true;
         } else {
@@ -45,7 +45,7 @@ public class PuzzleRenderer {
         updateCamera(puzzle);
 
         batch.enableBlending();
-        batch.setProjectionMatrix(camera.combined);
+        batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
         puzzle.render(batch, SCALE);
         batch.end();

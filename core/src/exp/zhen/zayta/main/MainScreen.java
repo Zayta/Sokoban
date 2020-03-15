@@ -29,7 +29,7 @@ class MainScreen extends ScreenBase {
 
     private Table table;
     private StoryScreen storyScreen;
-    private Puzzle puzzle;
+    private PlayScreen playScreen;
     private UserData userData;
 
     MainScreen(Game game) {
@@ -41,7 +41,7 @@ class MainScreen extends ScreenBase {
     void createScreens()
     {
         storyScreen = new StoryScreen(game);
-        puzzle = new Puzzle(game);
+        playScreen = new PlayScreen(game);
     }
 
 
@@ -93,7 +93,7 @@ class MainScreen extends ScreenBase {
         imageButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                play(userData.getNumScenesUnlocked());
+                play();
             }
         });
         imageButton.top();
@@ -108,7 +108,7 @@ class MainScreen extends ScreenBase {
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                play(userData.getNumScenesUnlocked());
+                play();
             }
         });
 
@@ -152,9 +152,9 @@ class MainScreen extends ScreenBase {
         return buttonTable;
     }
 
-    private void play(int chosenLvl) {
+    private void play() {
 //        puzzle.setCurrentLvl(chosenLvl);
-        game.setScreen(puzzle);
+        game.setScreen(playScreen);
     }
 
     private void shop() {

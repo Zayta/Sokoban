@@ -17,19 +17,16 @@ import exp.zhen.zayta.main.sokoban.objects.GameObject;
 import exp.zhen.zayta.main.sokoban.objects.gameobjects.Crate;
 import exp.zhen.zayta.main.sokoban.objects.gameobjects.NullObject;
 import exp.zhen.zayta.main.sokoban.objects.gameobjects.Place;
+import exp.zhen.zayta.main.sokoban.objects.gameobjects.Sokoban;
 
 public class Puzzle implements Disposable{
 
     private Map map;
-    private TextureAtlas sokobanAtlas; private SpriteBatch batch;
     //this is how to access textureatlas regions
 //    TextureAtlas sokobanAtlas = assetManager.get(AssetDescriptors.LAB);
 //    TextureRegion backgroundRegion = sokobanAtlas.findRegion(RegionNames.SQUARE_FLOOR);
 
-    public Puzzle(TextureAtlas sokobanAtlas, SpriteBatch batch){
-//        this.game = game;
-        this.sokobanAtlas = sokobanAtlas;
-        this.batch = batch;
+    public Puzzle(TextureAtlas sokobanAtlas){
         this.map = new Map(sokobanAtlas);
     }
 
@@ -41,9 +38,9 @@ public class Puzzle implements Disposable{
         return map.getMapHeight();
     }
 
-//    public Sokoban getPlayer() {
-//        return (Sokoban)map.getLayer(MapLayer.SOKOBAN).getObjects().get(0);
-//    }
+    public Sokoban getPlayer() {
+        return (Sokoban)map.getLayer(MapLayer.SOKOBAN).getObjects().get(0);
+    }
 
     public void update(float delta) {
         for (MapLayer layer : map.getMapLayers()) {
@@ -69,7 +66,7 @@ public class Puzzle implements Disposable{
     }
 
     public void loadLevel(final int level) {
-        System.out.println("Loading level: " + level.toString());
+        System.out.println("Loading level: " + level);
 
         disposeGameObjects();
         map.create(level);

@@ -39,6 +39,7 @@ public class Map {
     private final Array<MapLayer> mapLayers;
 
     private TextureAtlas sokobanAtlas;
+    private TextureRegion spriteRegion;
     public Map(TextureAtlas sokobanAtlas){
         this.sokobanAtlas = sokobanAtlas;
         levels = new Levels();
@@ -48,6 +49,8 @@ public class Map {
         for(int i = 0; i<LAYERS; i++){
             this.mapLayers.add(new MapLayer());
         }
+        spriteRegion = sokobanAtlas.findRegion(RegionNames.LORALE);
+        System.out.println("SpriteRegion is "+spriteRegion);
 
     }
 
@@ -97,10 +100,10 @@ public class Map {
                     }), x, y));
 
         }
-//        else if (layer == MapLayer.SOKOBAN && id == SOKOBAN_ID) {
-//            addToLayer(MapLayer.SOKOBAN, new Sokoban(x, y));
-//
-//        }
+        else if (layer == MapLayer.SOKOBAN && id == SOKOBAN_ID) {
+            addToLayer(MapLayer.SOKOBAN, new Sokoban(spriteRegion,x, y));
+
+        }
         else if (layer == MapLayer.CRATE && id == CRATE_ON_PLACE_ID) {
             addToLayer(MapLayer.PLACE, new Place(sokobanAtlas.findRegion(RegionNames.OVERLAY[3]), x, y));
             addToLayer(MapLayer.CRATE, new Crate(
@@ -111,7 +114,7 @@ public class Map {
                     , x, y));
         } else if (layer == MapLayer.SOKOBAN && id == SOKOBAN_ON_PLACE_ID) {
             addToLayer(MapLayer.PLACE, new Place(sokobanAtlas.findRegion(RegionNames.OVERLAY[3]), x, y));
-            addToLayer(MapLayer.SOKOBAN, new Sokoban(x, y));
+            addToLayer(MapLayer.SOKOBAN, new Sokoban(spriteRegion,x, y));
         }
     }
 

@@ -6,11 +6,12 @@ public class SizeManager {
     //todo might need to adjust tile size
     public static final int TILE_SIZE = 64;
 
-    public static final float SCALE = 1f/TILE_SIZE;
 
     public static final float MOVING_SPEED = 0.2f;
 
     //for puzzle
     public static final int VIRTUAL_WIDTH = 14;
     public static final int VIRTUAL_HEIGHT = 9;
+
+    public static final float SCALE = 1f/(TILE_SIZE);
 }

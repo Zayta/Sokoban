@@ -26,7 +26,7 @@ public class AssetPacker {
 //        );
 
         TexturePacker.process(settings,
-                RAW_ASSETS_PATH+"/sokoban_tiles",
+                RAW_ASSETS_PATH+"/sokoban",
                 ASSETS_PATH + "/puzzles",
                 "sokoban"
         );

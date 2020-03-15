@@ -59,6 +59,7 @@ public class RegionNames {
     public static final String TENYU ="characters/tenyu";
 
     public static final String TARIA ="characters/taria";
+    public static final String XIF ="characters/xif";
 
 
     public static final String CIVILIAN = "characters/anoni";

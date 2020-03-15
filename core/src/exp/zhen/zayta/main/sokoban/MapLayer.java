@@ -45,7 +45,7 @@ public class MapLayer {
 
     public void renderObjects(SpriteBatch batch, float scale) {
         for (GameObject object : objects) {
-            object.render(batch, 1);
+            object.render(batch, scale);
         }
     }
 }
