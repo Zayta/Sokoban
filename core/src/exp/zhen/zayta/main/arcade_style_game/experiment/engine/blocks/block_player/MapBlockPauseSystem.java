@@ -132,29 +132,29 @@ public class MapBlockPauseSystem extends EntitySystem {
 
 
 //    private boolean collidesRight(float x, float y) {
-//        for(float step = 0; step <= SizeManager.maxObjHeight; step += increment)
-//            if(isCellBlocked(x + SizeManager.maxObjWidth, y + step))
+//        for(float step = 0; step <= GameConfig.maxObjHeight; step += increment)
+//            if(isCellBlocked(x + GameConfig.maxObjWidth, y + step))
 //                return true;
 //        return false;
 //    }
 //
 //    private boolean collidesLeft(float x, float y) {
-//        for(float step = 0; step <= SizeManager.maxObjHeight; step += increment)
+//        for(float step = 0; step <= GameConfig.maxObjHeight; step += increment)
 //            if(isCellBlocked(x, y + step))
 //                return true;
 //        return false;
 //    }
 //
 //    private boolean collidesTop(float x, float y) {
-//        for(float step = 0; step <= SizeManager.maxObjWidth; step += increment)
-//            if(isCellBlocked(x + step, y + SizeManager.maxObjHeight))
+//        for(float step = 0; step <= GameConfig.maxObjWidth; step += increment)
+//            if(isCellBlocked(x + step, y + GameConfig.maxObjHeight))
 //                return true;
 //        return false;
 //
 //    }
 //
 //    private boolean collidesBottom(float x, float y) {
-//        for(float step = 0; step <= SizeManager.maxObjWidth; step += increment)
+//        for(float step = 0; step <= GameConfig.maxObjWidth; step += increment)
 //            if(isCellBlocked(x + step, y))
 //                return true;
 //        return false;

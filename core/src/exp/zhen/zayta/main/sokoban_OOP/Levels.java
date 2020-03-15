@@ -1,10 +1,7 @@
-package exp.zhen.zayta.main.sokoban;
+package exp.zhen.zayta.main.sokoban_OOP;
 
 
 import com.badlogic.gdx.files.FileHandle;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import exp.zhen.zayta.main.assets.Files;
 

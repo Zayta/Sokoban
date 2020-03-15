@@ -14,7 +14,7 @@ import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.componen
 import exp.zhen.zayta.main.arcade_style_game.experiment.engine.render.animation.TextureComponent;
 import exp.zhen.zayta.main.arcade_style_game.experiment.engine.render.mono_color.MonoColorRenderTag;
 
-public class MultiColorEntityRenderSystem extends EntitySystem {
+public class EntityRenderSystem extends EntitySystem {
     public static final Family FAMILY = Family.all(
             TextureComponent.class,
             Position.class,
@@ -26,7 +26,7 @@ public class MultiColorEntityRenderSystem extends EntitySystem {
 
     private Array<Entity> renderQueue = new Array<Entity>();
 
-    public MultiColorEntityRenderSystem(Viewport viewport, SpriteBatch batch){
+    public EntityRenderSystem(Viewport viewport, SpriteBatch batch){
         this.viewport=viewport;
         this.batch = batch;
     }

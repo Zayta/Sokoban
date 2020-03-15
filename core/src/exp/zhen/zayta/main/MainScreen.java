@@ -16,10 +16,10 @@ import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
-//import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
+//import exp.zhen.zayta.main.arcade_style_game.config.GameConfig;
 //import exp.zhen.zayta.main.arcade_style_game.puzzle.Puzzle;
-import exp.zhen.zayta.main.sokoban.Puzzle;
 import exp.zhen.zayta.main.shop.ShopScreen;
+import exp.zhen.zayta.main.sokoban.PlayScreen;
 import exp.zhen.zayta.main.story.StoryBoardScreen;
 import exp.zhen.zayta.main.story.StoryScreen;
 
@@ -142,10 +142,10 @@ class MainScreen extends ScreenBase {
         // setup table
         Table buttonTable = new Table(uiskin);
         int numButtons = 4;
-        buttonTable.add(playButton).width(SizeManager.WIDTH/numButtons);
-        buttonTable.add(shopButton).width(SizeManager.WIDTH/numButtons);
-        buttonTable.add(storyButton).width(SizeManager.WIDTH/numButtons);
-        buttonTable.add(quitButton).width(SizeManager.WIDTH/numButtons);
+        buttonTable.add(playButton).width(GameConfig.WIDTH/numButtons);
+        buttonTable.add(shopButton).width(GameConfig.WIDTH/numButtons);
+        buttonTable.add(storyButton).width(GameConfig.WIDTH/numButtons);
+        buttonTable.add(quitButton).width(GameConfig.WIDTH/numButtons);
 
 
         buttonTable.bottom();

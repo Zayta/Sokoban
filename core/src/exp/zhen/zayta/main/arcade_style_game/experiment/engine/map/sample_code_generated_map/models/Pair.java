@@ -75,7 +75,7 @@ public class Pair {
 		tile = new Tile(this);
 	}
 
-//	public void draw(GameController game, SpriteBatch batch) {
+//	public void draw(PlayController game, SpriteBatch batch) {
 //		tile.draw(game, batch,this);
 //	}
 

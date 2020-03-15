@@ -21,7 +21,7 @@ public class SizeManager {
     public static float maxBoundsRadius, maxObjWidth, maxObjHeight;
     public static final float GAME_TO_CONTROL_RATIO =Gdx.app.getType()==Application.ApplicationType.Android || Gdx.app.getType()==Application.ApplicationType.iOS? 0.8f:1f;
     public static int CONTROLLER_DIAMETER;
-//    public static int numObjPerRow = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
+//    public static int numObjPerRow = (int)(GameConfig.WAKE_WORLD_WIDTH/GameConfig.maxObjWidth);
 
 
 
@@ -40,7 +40,7 @@ public class SizeManager {
         else
             configPortrait();
 
-//        numObjPerRow = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
+//        numObjPerRow = (int)(GameConfig.WAKE_WORLD_WIDTH/GameConfig.maxObjWidth);
 //         must be after configs
         PositionTracker.n = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
     }

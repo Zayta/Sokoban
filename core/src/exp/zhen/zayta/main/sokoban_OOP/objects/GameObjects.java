@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.sokoban.objects;
+package exp.zhen.zayta.main.sokoban_OOP.objects;
 
 public enum GameObjects {
     FLOOR,

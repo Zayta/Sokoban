@@ -1,13 +1,13 @@
-package exp.zhen.zayta.main.sokoban.objects.gameobjects;
+package exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
-import exp.zhen.zayta.main.SizeManager;
-import exp.zhen.zayta.main.sokoban.Move;
-import exp.zhen.zayta.main.sokoban.objects.GameObject;
-import exp.zhen.zayta.main.sokoban.objects.GameObjects;
+import exp.zhen.zayta.main.GameConfig;
+import exp.zhen.zayta.main.sokoban_OOP.Move;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObject;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObjects;
 
 public class Crate extends GameObject {
 
@@ -36,7 +36,7 @@ public class Crate extends GameObject {
 
     @Override
     public void update(float delta) {
-        position.lerp(targetPosition, delta / SizeManager.MOVING_SPEED);
+        position.lerp(targetPosition, delta / GameConfig.MOVING_SPEED);
     }
 
     public void bindPlace(Place place) {

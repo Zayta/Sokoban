@@ -67,7 +67,7 @@ public class InputSystem extends EntitySystem {
 //    private Table inputTable(Skin skin, TextureAtlas labAtlas){
 //        Table table = new Table(skin);
 //        table.align(Align.bottomLeft);
-//        table.setBounds(0, 0, viewport.getWorldWidth(), SizeManager.CONTROLLER_DIAMETER);
+//        table.setBounds(0, 0, viewport.getWorldWidth(), GameConfig.CONTROLLER_DIAMETER);
 //        //movement
 //        table.add(joyStickMovementController(skin));
 //        /**Bomb planting**/
@@ -87,7 +87,7 @@ public class InputSystem extends EntitySystem {
         float knobToBackgroundRatio =0.5f;
 
         JoyStickMovementController joyStickMovementController = new JoyStickMovementController(20, skin);
-//        joyStickMovementController.setBounds(0, 0, SizeManager.CONTROLLER_DIAMETER, SizeManager.CONTROLLER_DIAMETER);
+//        joyStickMovementController.setBounds(0, 0, GameConfig.CONTROLLER_DIAMETER, GameConfig.CONTROLLER_DIAMETER);
         Touchpad.TouchpadStyle touchpadStyle = joyStickMovementController.getStyle();
         touchpadStyle.background.setRightWidth(backgroundDiameter);
         touchpadStyle.background.setTopHeight(backgroundDiameter);

@@ -87,7 +87,7 @@ public class Conquest implements Screen {
         viewport = new FitViewport(SizeManager.CQ_WORLD_WIDTH, SizeManager.CQ_WORLD_HEIGHT, camera);
 
 //        statsCamera = new OrthographicCamera();
-//        statsViewport = new FitViewport(SizeManager.HUD_WIDTH, SizeManager.HUD_HEIGHT, statsCamera);
+//        statsViewport = new FitViewport(GameConfig.HUD_WIDTH, GameConfig.HUD_HEIGHT, statsCamera);
 //
 //        scaleWidthOfStatsViewportToViewport = statsViewport.getWorldWidth()/viewport.getWorldWidth();
 //        scaleHeightOfStatsViewportToViewport = statsViewport.getWorldHeight()/viewport.getWorldHeight();
@@ -138,8 +138,8 @@ public class Conquest implements Screen {
 //    private void makeMenuButton(){
 //        TextButton menuButton = new TextButton("MENU", new Skin());
 //        menuButton.getSkin().getFont(AssetPaths.UI_FONT).setUseIntegerPositions(false);
-//        menuButton.setScaleX(SizeManager.CQ_WORLD_WIDTH/SizeManager.WIDTH);
-//        menuButton.setScaleY(SizeManager.CQ_WORLD_HEIGHT/SizeManager.HEIGHT);
+//        menuButton.setScaleX(GameConfig.CQ_WORLD_WIDTH/GameConfig.WIDTH);
+//        menuButton.setScaleY(GameConfig.CQ_WORLD_HEIGHT/GameConfig.HEIGHT);
 //        menuButton.setOrigin(Align.center);
 //        menuButton.addListener(new ChangeListener() {
 //            @Override

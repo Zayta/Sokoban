@@ -309,8 +309,8 @@ public class EntityLab {
 //        //todo also in future make civilians change direction randomly
 //        /*add Civilization*/
 //        int numCivilians = 5;
-//        float minX = 0; float maxX = SizeManager.WAKE_WORLD_WIDTH-SizeManager.maxObjWidth;
-//        float minY = 0; float maxY = SizeManager.WAKE_WORLD_HEIGHT-SizeManager.maxObjHeight;
+//        float minX = 0; float maxX = GameConfig.WAKE_WORLD_WIDTH-GameConfig.maxObjWidth;
+//        float minY = 0; float maxY = GameConfig.WAKE_WORLD_HEIGHT-GameConfig.maxObjHeight;
 //        for(int i = 0; i<numCivilians; i++) {
 //            float civX = MathUtils.random(minX,maxX);
 //            float civY = MathUtils.random(minY,maxY);

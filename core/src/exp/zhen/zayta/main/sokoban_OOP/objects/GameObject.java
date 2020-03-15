@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.sokoban.objects;
+package exp.zhen.zayta.main.sokoban_OOP.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

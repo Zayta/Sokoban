@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.sokoban;
+package exp.zhen.zayta.main.sokoban_OOP;
 
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.List;
 
-import exp.zhen.zayta.main.sokoban.objects.GameObject;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObject;
 
 public class MapLayer {
 

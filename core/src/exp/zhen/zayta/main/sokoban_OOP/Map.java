@@ -1,22 +1,20 @@
-package exp.zhen.zayta.main.sokoban;
+package exp.zhen.zayta.main.sokoban_OOP;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Arrays;
 
-import exp.zhen.zayta.main.SizeManager;
 import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.sokoban.objects.GameObject;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Crate;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Floor;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Place;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Sokoban;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Wall;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObject;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Crate;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Floor;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Place;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Sokoban;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Wall;
 
-import static exp.zhen.zayta.main.SizeManager.TILE_SIZE;
+import static exp.zhen.zayta.main.GameConfig.TILE_SIZE;
 
 public class Map {
 

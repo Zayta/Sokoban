@@ -66,7 +66,7 @@ public class ViewportUtils {
         renderer.setColor(oldColor);
     }
 
-    public static void debugPixelPerUnit(Viewport viewport) {
+    public static void debugPixelsPerUnit(Viewport viewport) {
         if (viewport == null) {
             throw new IllegalArgumentException("viewport param is required.");
         }

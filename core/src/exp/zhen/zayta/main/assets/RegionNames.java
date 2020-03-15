@@ -24,7 +24,7 @@ public class RegionNames {
 
     public static final String[] OVERLAY = {"overlay/one","overlay/two","overlay/three","overlay/four"};
 
-
+    public static final String SNOW = "background/snow";
 
 
 

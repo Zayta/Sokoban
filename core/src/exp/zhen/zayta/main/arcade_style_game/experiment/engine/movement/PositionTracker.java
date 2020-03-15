@@ -47,7 +47,7 @@ public class PositionTracker {
         globalTracker.put(key,entity);
     }
 
-//    public static int n = (int)(SizeManager.WAKE_WORLD_WIDTH/SizeManager.maxObjWidth);
+//    public static int n = (int)(GameConfig.WAKE_WORLD_WIDTH/GameConfig.maxObjWidth);
 
     public static int n = (int)((MapMaker.getMapBounds().getWidth())/SizeManager.maxObjWidth);
 

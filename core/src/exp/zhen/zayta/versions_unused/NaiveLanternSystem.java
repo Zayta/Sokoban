@@ -143,7 +143,7 @@ public class NaiveLanternSystem extends GameControllingSystem implements Collisi
 //        entity.add(position);
 //
 //        DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
-//        dimension.set(SizeManager.maxObjWidth,SizeManager.maxObjHeight);
+//        dimension.set(GameConfig.maxObjWidth,GameConfig.maxObjHeight);
 //        entity.add(dimension);
 //
 //        RectangularBoundsComponent bounds = engine.createComponent(RectangularBoundsComponent.class);

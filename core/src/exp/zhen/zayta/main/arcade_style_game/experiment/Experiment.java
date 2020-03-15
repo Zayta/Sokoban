@@ -44,7 +44,7 @@ import exp.zhen.zayta.main.arcade_style_game.experiment.engine.blocks.block_npc.
 import exp.zhen.zayta.main.arcade_style_game.experiment.engine.render.HudRenderSystem;
 import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.system.MovementSystem;
 import exp.zhen.zayta.main.arcade_style_game.experiment.engine.render.MonoColorEntityRenderSystem;
-import exp.zhen.zayta.main.arcade_style_game.experiment.engine.render.MultiColorEntityRenderSystem;
+import exp.zhen.zayta.main.arcade_style_game.experiment.engine.render.EntityRenderSystem;
 import exp.zhen.zayta.main.arcade_style_game.experiment.engine.blocks.block_player.WorldWrapPauseSystem;
 import exp.zhen.zayta.main.arcade_style_game.debug.debug_system.DebugCameraSystem;
 import exp.zhen.zayta.main.arcade_style_game.debug.debug_system.DebugCircularBoundsRenderSystem;
@@ -187,7 +187,7 @@ public class Experiment implements Screen {
     private void addRenderSystems(){
 //        engine.addSystem(new LockerRenderSystem(viewport,shapeRenderer));//must be first cuz its background
 //        engine.addSystem(new GeneratedMapRenderSystem(mapMaker.generateMap(),viewport,game.getBatch()));
-        engine.addSystem(new MultiColorEntityRenderSystem(viewport,batch));
+        engine.addSystem(new EntityRenderSystem(viewport,batch));
         engine.addSystem(new HudRenderSystem(hudViewport,batch,assetManager.get(AssetDescriptors.FONT)));
 //        engine.addSystem(new NameTagRenderSystem(viewport,game.getBatch()));
         engine.addSystem(new StatsRenderSystem(viewport,shapeRenderer));

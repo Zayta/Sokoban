@@ -14,7 +14,7 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
     private final String essence = "essence";
     private Preferences preferences;
 
-//    public ArrayList<Entity> Player = new;
+//    public ArrayList<Entity> Character = new;
 
 
     UserData() {

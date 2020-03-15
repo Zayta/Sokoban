@@ -51,13 +51,13 @@ public class GameFitViewport extends FitViewport {
 //
 //    @Override
 //    public void update(int screenWidth, int screenHeight, boolean centerCamera) {
-//        super.update(screenWidth,(int)(screenHeight*SizeManager.GAME_TO_CONTROL_RATIO),true);
-////        Vector2 scaled = getScaling().apply(getWorldWidth(), getWorldHeight(), screenWidth, screenHeight*SizeManager.GAME_TO_CONTROL_RATIO);
+//        super.update(screenWidth,(int)(screenHeight*GameConfig.GAME_TO_CONTROL_RATIO),true);
+////        Vector2 scaled = getScaling().apply(getWorldWidth(), getWorldHeight(), screenWidth, screenHeight*GameConfig.GAME_TO_CONTROL_RATIO);
 ////        int viewportWidth = Math.round(scaled.x);
 ////        int viewportHeight = Math.round(scaled.y);
 ////
 ////        // Center.
-////        setScreenBounds((screenWidth - viewportWidth) / 2, ((int)(screenHeight*SizeManager.GAME_TO_CONTROL_RATIO) - viewportHeight) / 2+SizeManager.CONTROLLER_DIAMETER,
+////        setScreenBounds((screenWidth - viewportWidth) / 2, ((int)(screenHeight*GameConfig.GAME_TO_CONTROL_RATIO) - viewportHeight) / 2+GameConfig.CONTROLLER_DIAMETER,
 ////                viewportWidth, viewportHeight);
 ////
 ////        apply(centerCamera);

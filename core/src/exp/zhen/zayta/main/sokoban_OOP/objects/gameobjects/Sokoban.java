@@ -1,13 +1,13 @@
-package exp.zhen.zayta.main.sokoban.objects.gameobjects;
+package exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import exp.zhen.zayta.main.SizeManager;
-import exp.zhen.zayta.main.sokoban.Move;
-import exp.zhen.zayta.main.sokoban.objects.GameObject;
-import exp.zhen.zayta.main.sokoban.objects.GameObjects;
+import exp.zhen.zayta.main.GameConfig;
+import exp.zhen.zayta.main.sokoban_OOP.Move;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObject;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObjects;
 
 public class Sokoban extends GameObject {
     //animation class
@@ -87,7 +87,7 @@ public class Sokoban extends GameObject {
 
     private void updateMovement(float delta) {
         if (currentState != State.IDLE) {
-            float progress = delta / SizeManager.MOVING_SPEED;
+            float progress = delta / GameConfig.MOVING_SPEED;
             position.lerp(targetPosition, progress);
 
             if (position.dst(targetPosition) < 1.0f) {

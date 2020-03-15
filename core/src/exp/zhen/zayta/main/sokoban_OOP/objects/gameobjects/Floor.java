@@ -1,10 +1,10 @@
-package exp.zhen.zayta.main.sokoban.objects.gameobjects;
+package exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import exp.zhen.zayta.main.sokoban.objects.GameObject;
-import exp.zhen.zayta.main.sokoban.objects.GameObjects;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObject;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObjects;
 
 public class Floor extends GameObject {
 

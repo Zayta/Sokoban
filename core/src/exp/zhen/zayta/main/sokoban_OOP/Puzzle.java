@@ -1,23 +1,16 @@
-package exp.zhen.zayta.main.sokoban;
+package exp.zhen.zayta.main.sokoban_OOP;
 
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Disposable;
 
-import exp.zhen.zayta.main.Game;
-import exp.zhen.zayta.main.SizeManager;
-import exp.zhen.zayta.main.assets.AssetDescriptors;
-import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.sokoban.objects.GameObject;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Crate;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.NullObject;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Place;
-import exp.zhen.zayta.main.sokoban.objects.gameobjects.Sokoban;
+import exp.zhen.zayta.main.sokoban_OOP.objects.GameObject;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Crate;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.NullObject;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Place;
+import exp.zhen.zayta.main.sokoban_OOP.objects.gameobjects.Sokoban;
 
 public class Puzzle implements Disposable{
 

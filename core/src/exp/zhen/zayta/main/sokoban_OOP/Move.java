@@ -1,16 +1,16 @@
-package exp.zhen.zayta.main.sokoban;
+package exp.zhen.zayta.main.sokoban_OOP;
 
 import com.badlogic.gdx.math.Vector2;
 
-import exp.zhen.zayta.main.SizeManager;
+import exp.zhen.zayta.main.GameConfig;
 
 public enum Move {
 
     NONE(0, 0),
-    UP(0, SizeManager.TILE_SIZE),
-    DOWN(0, -SizeManager.TILE_SIZE),
-    LEFT(-SizeManager.TILE_SIZE, 0),
-    RIGHT(SizeManager.TILE_SIZE, 0);
+    UP(0, GameConfig.TILE_SIZE),
+    DOWN(0, -GameConfig.TILE_SIZE),
+    LEFT(-GameConfig.TILE_SIZE, 0),
+    RIGHT(GameConfig.TILE_SIZE, 0);
 
     private final Vector2 vector = new Vector2();
 

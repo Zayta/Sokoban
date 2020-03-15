@@ -77,7 +77,7 @@ public class UndeadXCivilianCollisionSystem extends EntitySystem {
 //        if(nighterBattleComponent.getHP()<=0)
 //        {
 //            getEngine().removeEntity(nighter);
-//            if(UserData.Player==nighter) {
+//            if(UserData.Character==nighter) {
 //                setGameOver();
 //            }
 //        }
