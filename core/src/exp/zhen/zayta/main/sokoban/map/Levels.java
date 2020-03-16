@@ -60,14 +60,6 @@ public class Levels {
         levelsString = levelsString. replaceAll("[0-9]","");
         levels = levelsString.split(";");
 
-
-        for(int i = 0; i<levels.length;i++){
-            //System.out.println("Start: \nLevel "+i+" is "+levels[i]+"\nEnd\n\n");
-        }
-
-        //System.out.println("Final levels are "+ Arrays.toString(levels));
-
-//        //System.out.println("\n\nFirst Level is: \n"+Arrays.toString(getLevel(0)));
     }
     
 }

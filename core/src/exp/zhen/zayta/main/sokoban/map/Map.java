@@ -1,15 +1,11 @@
 package exp.zhen.zayta.main.sokoban.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Pool;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.sokoban.entity.EntityBase;
+import exp.zhen.zayta.main.sokoban.entity.Crate;
 import exp.zhen.zayta.main.sokoban.entity.Wall;
 
 import static exp.zhen.zayta.main.GameConfig.TILE_SIZE;
@@ -19,18 +15,16 @@ public class Map {
 
 
     private Levels levels;
-    private ArrayList<EntityBase> entities;
+    private int curLvl =0;
+    //entities
     private ArrayList<Character> characters;
     private ArrayList<Wall> walls;
+    private ArrayList<Crate> crates;
+    private ArrayList<Crate> goals;
+    //textures
+    private EntityBuilder entityBuilder;
 
-    // bullet pool.
-    private final Pool<EntityBase> bulletPool = new Pool<EntityBase>() {
 
-        @Override
-        protected EntityBase newObject() {
-            return null;
-        }
-    };
 
     //this is specific to the map being parsed
     private final char FLOOR_ID     = ' ';
@@ -41,20 +35,23 @@ public class Map {
     private final char CRATE_ON_GOAL_ID = '*';
     private final char SOKOBAN_ON_GOAL_ID = '+';
 
-    private int mapWidth, mapHeight;
-
-    private TextureAtlas sokobanAtlas;
-    private TextureRegion spriteRegion;
+    private int mapWidth,mapHeight;
+    
     public Map(TextureAtlas sokobanAtlas){
-        this.sokobanAtlas = sokobanAtlas;
         this.levels = new Levels();
 
-        spriteRegion = sokobanAtlas.findRegion(RegionNames.LORALE);
-        System.out.println("SpriteRegion is "+spriteRegion);
-
+        entityBuilder = new EntityBuilder(sokobanAtlas);
     }
 
     public void init(int lvl){
+        //clean previous lvl data
+        characters.clear();
+        walls.clear();
+        crates.clear();
+        goals.clear();
+
+        //set new lvl data
+        curLvl = lvl;
         Levels.Level level = levels.getLevel(lvl);
         mapWidth = level.getWidth();
         mapHeight = level.getHeight();
@@ -84,10 +81,12 @@ public class Map {
             case FLOOR_ID:
                 break;
             case WALL_ID:
+                walls.add(entityBuilder.buildWall(x,y,curLvl));
                 break;
             case GOAL_ID:
                 break;
             case CRATE_ID:
+                crates.add(entityBuilder.buildCrate(x,y,curLvl));
                 break;
             case SOKOBAN_ID:
                 break;
@@ -98,4 +97,25 @@ public class Map {
         }
     }
 
+    public ArrayList<Character> getCharacters() {
+        return characters;
+    }
+
+
+    public ArrayList<Wall> getWalls() {
+        return walls;
+    }
+
+
+    public ArrayList<Crate> getCrates() {
+        return crates;
+    }
+
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
+    }
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.UserData;
+import exp.zhen.zayta.main.assets.AssetDescriptors;
 //import exp.zhen.zayta.main.sokoban_OOP.Puzzle;
 
 public class PlayScreen extends ScreenAdapter {
@@ -17,7 +18,7 @@ public class PlayScreen extends ScreenAdapter {
 
     private PlayController controller;
 
-
+//    private int curLvl =0;
     private final AssetManager assetManager; private Skin skin;
 
 
@@ -27,12 +28,14 @@ public class PlayScreen extends ScreenAdapter {
         this.assetManager = game.getAssetManager();
         this.userData = game.getUserData();
 
+        this.renderer = new PlayRenderer(game.getBatch(), assetManager, controller);
+        this.controller = new PlayController(assetManager.get(AssetDescriptors.SOKOBAN));
+
     }
 
     @Override
     public void show() {
-        this.renderer = new PlayRenderer(game.getBatch(), assetManager, controller);
-        this.controller = new PlayController();
+        controller.initLvl();
     }
     @Override
     public void render(float delta) {
@@ -47,7 +50,7 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void hide() {
-        dispose();
+//        dispose();
     }
 
     @Override
@@ -57,13 +60,16 @@ public class PlayScreen extends ScreenAdapter {
 
 
     /****For screen transition*****/
-
-
     public void progress(){
         game.unlockScene();
     }
     public void fail(){
         game.stop();
+    }
+
+    /*For level management*/
+    public void setLevel(int lvl){
+        controller.setLvl(lvl);
     }
 
 }

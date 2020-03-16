@@ -2,10 +2,9 @@ package exp.zhen.zayta.main.sokoban.entity;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Wall extends EntityBase {
-
+public class Goal extends EntityBase {
     private TextureRegion textureRegion;
-    public Wall(TextureRegion textureRegion,float x, float y) {
+    public Goal(TextureRegion textureRegion,float x, float y) {
         super(x, y);
         this.textureRegion = textureRegion;
     }
@@ -13,8 +12,5 @@ public class Wall extends EntityBase {
     @Override
     public TextureRegion getTextureRegion() {
         return textureRegion;
-    }
-    public void setTextureRegion(TextureRegion textureRegion){
-        this.textureRegion = textureRegion;
     }
 }
