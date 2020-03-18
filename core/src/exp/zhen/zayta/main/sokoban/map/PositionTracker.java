@@ -24,6 +24,7 @@ public class PositionTracker {
 
     public PositionTracker(int mapWidth){
         globalTracker = new BiMap<Integer, EntityBase>();
+        goalTracker = new BiMap<Integer, Goal>();
         this.mapWidth = mapWidth;
     }
     public void init(int mapWidth){
@@ -40,7 +41,10 @@ public class PositionTracker {
         return ((int)x)*n+(int)y;
     }
 
-
+    public void updateGlobalTracker(ArrayList<EntityBase> entities){
+        for(EntityBase entity:entities)
+            updateGlobalTracker(entity, entity.getX(),entity.getY());
+    }
     public void updateGlobalTracker(EntityBase entity, float x, float y) {
 
         int key=generateKey(x,y);

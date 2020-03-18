@@ -36,6 +36,7 @@ public class PlayController implements Updateable {
 
     @Override
     public void update(float delta){
+        positionTracker.updateGlobalTracker(map.getEntities());
 //        positionTracker.updateCharacterTracker();
 //        positionTracker.updateCrateTracker();
 //        positionTracker.updateWallTracker();

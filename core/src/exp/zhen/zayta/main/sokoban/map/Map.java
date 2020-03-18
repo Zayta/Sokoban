@@ -5,15 +5,20 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import exp.zhen.zayta.main.sokoban.entity.CharacterName;
 import exp.zhen.zayta.main.sokoban.entity.Crate;
+import exp.zhen.zayta.main.sokoban.entity.EntityBase;
 import exp.zhen.zayta.main.sokoban.entity.Goal;
 import exp.zhen.zayta.main.sokoban.entity.Wall;
+import exp.zhen.zayta.main.sokoban.entity.Character;
 
 import static exp.zhen.zayta.main.GameConfig.TILE_SIZE;
 
 
 public class Map {
 
+    //temporarily only Tenyu is available
+    private CharacterName characterName = CharacterName.TENYU;
 
     private Levels levels;
     private int curLvl =0;
@@ -22,6 +27,7 @@ public class Map {
     private ArrayList<Wall> walls;
     private ArrayList<Crate> crates;
     private ArrayList<Goal> goals;
+    private ArrayList<EntityBase> entities;
     //textures
     private EntityBuilder entityBuilder;
 
@@ -40,7 +46,11 @@ public class Map {
     
     public Map(TextureAtlas sokobanAtlas){
         this.levels = new Levels();
-
+        characters = new ArrayList<Character>();
+        crates = new ArrayList<Crate>();
+        goals = new ArrayList<Goal>();
+        walls = new ArrayList<Wall>();
+        entities = new ArrayList<EntityBase>();
         entityBuilder = new EntityBuilder(sokobanAtlas);
     }
 
@@ -75,6 +85,10 @@ public class Map {
                 addEntity(id,x,y);
             }
         }
+        entities.addAll(characters);
+        entities.addAll(crates);
+        entities.addAll(walls);
+        entities.addAll(goals);
 
     }
     private void addEntity(char id, float x, float y){
@@ -85,17 +99,26 @@ public class Map {
                 walls.add(entityBuilder.buildWall(x,y,curLvl));
                 break;
             case GOAL_ID:
+                goals.add(entityBuilder.buildGoal(x,y));
                 break;
             case CRATE_ID:
                 crates.add(entityBuilder.buildCrate(x,y,curLvl));
                 break;
             case SOKOBAN_ID:
+                characters.add(entityBuilder.getCharacter(characterName,x,y));
                 break;
             case CRATE_ON_GOAL_ID:
+                goals.add(entityBuilder.buildGoal(x,y));
+                crates.add(entityBuilder.buildCrate(x,y,curLvl));
                 break;
             case SOKOBAN_ON_GOAL_ID:
+                goals.add(entityBuilder.buildGoal(x,y));
+                characters.add(entityBuilder.getCharacter(characterName,x,y));
                 break;
         }
+    }
+    public ArrayList<EntityBase> getEntities(){
+        return entities;
     }
 
     public ArrayList<Character> getCharacters() {
