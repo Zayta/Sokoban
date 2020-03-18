@@ -1,6 +1,6 @@
 package exp.zhen.zayta.main.sokoban.entity;
 
-public enum EntityTypes {
+public enum EntityType {
         FLOOR,
         WALL,
         GOAL,

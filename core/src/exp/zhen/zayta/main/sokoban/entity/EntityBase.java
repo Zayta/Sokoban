@@ -3,7 +3,6 @@ package exp.zhen.zayta.main.sokoban.entity;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Pool;
 
 /*
 * Contains position and bounds of an entity
@@ -24,9 +23,10 @@ public abstract class EntityBase{
         this.x = x; this.y = y;
         bounds = new Rectangle(x, y, width, height);
     }
+
     // == abstract methods ==
     public abstract TextureRegion getTextureRegion();
-
+    public abstract boolean is(EntityType entityType);
     // == public methods ==
     public void setPosition(float x, float y) {
         this.x = x;

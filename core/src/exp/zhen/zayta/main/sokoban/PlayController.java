@@ -6,6 +6,9 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
+import java.util.ArrayList;
+
+import exp.zhen.zayta.main.sokoban.entity.EntityBase;
 import exp.zhen.zayta.main.sokoban.map.Map;
 import exp.zhen.zayta.main.sokoban.map.PositionTracker;
 
@@ -19,12 +22,13 @@ public class PlayController implements Updateable {
 
     public PlayController(TextureAtlas sokobanAtlas){
         map = new Map(sokobanAtlas);
-        positionTracker = new PositionTracker();
+        positionTracker = new PositionTracker(map.getMapWidth());
         Gdx.input.setInputProcessor(new KeyboardController());
     }
     public void initLvl(){
         map.init(curLvl);//need to init map before getting map width
         positionTracker.init(map.getMapWidth());
+        positionTracker.updateGoalTracker(map.getGoals());
     }
     public void setLvl(int lvl){
         curLvl = lvl;
@@ -32,7 +36,9 @@ public class PlayController implements Updateable {
 
     @Override
     public void update(float delta){
-        positionTracker.update(delta);
+//        positionTracker.updateCharacterTracker();
+//        positionTracker.updateCrateTracker();
+//        positionTracker.updateWallTracker();
     }
 
     private class KeyboardController extends InputAdapter{

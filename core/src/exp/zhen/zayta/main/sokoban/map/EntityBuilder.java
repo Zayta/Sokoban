@@ -6,13 +6,22 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.Hashtable;
 
 import exp.zhen.zayta.main.assets.RegionNames;
+import exp.zhen.zayta.main.sokoban.entity.Character;
+import exp.zhen.zayta.main.sokoban.entity.CharacterName;
 import exp.zhen.zayta.main.sokoban.entity.Crate;
 import exp.zhen.zayta.main.sokoban.entity.Wall;
+import exp.zhen.zayta.util.BiMap;
 
 public class EntityBuilder {
     private TextureAtlas sokobanAtlas;
     public EntityBuilder(TextureAtlas sokobanAtlas){
         this.sokobanAtlas = sokobanAtlas;
+    }
+    public BiMap<CharacterName,Character> characters;
+    public Character getCharacter(CharacterName characterName, float x, float y){
+        Character character = characters.get(characterName);
+        character.setPosition(x,y);
+        return character;
     }
 
     public Wall buildWall(float x, float y,int lvl){

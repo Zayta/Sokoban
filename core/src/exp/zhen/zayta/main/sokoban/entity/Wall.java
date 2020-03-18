@@ -14,7 +14,14 @@ public class Wall extends EntityBase {
     public TextureRegion getTextureRegion() {
         return textureRegion;
     }
+
+    @Override
+    public boolean is(EntityType entityType) {
+        return entityType==EntityType.WALL;
+    }
+
     public void setTextureRegion(TextureRegion textureRegion){
         this.textureRegion = textureRegion;
     }
+
 }

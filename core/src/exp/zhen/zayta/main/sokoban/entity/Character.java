@@ -23,4 +23,9 @@ public class Character extends EntityBase implements Updateable {
     public TextureRegion getTextureRegion() {
         return textureRegion;
     }
+
+    @Override
+    public boolean is(EntityType entityType) {
+        return entityType==EntityType.CHARACTER;
+    }
 }

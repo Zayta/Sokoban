@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import exp.zhen.zayta.main.sokoban.entity.Crate;
+import exp.zhen.zayta.main.sokoban.entity.Goal;
 import exp.zhen.zayta.main.sokoban.entity.Wall;
 
 import static exp.zhen.zayta.main.GameConfig.TILE_SIZE;
@@ -20,7 +21,7 @@ public class Map {
     private ArrayList<Character> characters;
     private ArrayList<Wall> walls;
     private ArrayList<Crate> crates;
-    private ArrayList<Crate> goals;
+    private ArrayList<Goal> goals;
     //textures
     private EntityBuilder entityBuilder;
 
@@ -110,6 +111,9 @@ public class Map {
     public ArrayList<Crate> getCrates() {
         return crates;
     }
+    public ArrayList<Goal> getGoals() {
+        return goals;
+    }
 
     public int getMapWidth() {
         return mapWidth;
@@ -118,4 +122,5 @@ public class Map {
     public int getMapHeight() {
         return mapHeight;
     }
+
 }

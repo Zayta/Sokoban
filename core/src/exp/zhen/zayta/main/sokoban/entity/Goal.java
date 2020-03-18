@@ -13,4 +13,9 @@ public class Goal extends EntityBase {
     public TextureRegion getTextureRegion() {
         return textureRegion;
     }
+
+    @Override
+    public boolean is(EntityType entityType) {
+        return entityType==EntityType.GOAL;
+    }
 }

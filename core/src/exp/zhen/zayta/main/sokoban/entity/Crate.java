@@ -32,6 +32,10 @@ public class Crate extends EntityBase {
         return region;
     }
 
+    @Override
+    public boolean is(EntityType entityType) {
+        return entityType==EntityType.CRATE;
+    }
 
 
 }
