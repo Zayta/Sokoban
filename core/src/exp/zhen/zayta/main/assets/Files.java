@@ -5,7 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 
 
 public class Files {
-    public static FileHandle story = Gdx.files.internal("story/records.txt");
+    public static FileHandle story = Gdx.files.internal("story/taria/story.txt");
     private static String puzzlePath = "puzzles/";
     public static FileHandle [] puzzles = new FileHandle[]
             {Gdx.files.internal(puzzlePath+"simply_sokoban_lvls.txt"),

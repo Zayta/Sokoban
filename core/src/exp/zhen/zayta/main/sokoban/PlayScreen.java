@@ -7,16 +7,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.UserData;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
+import exp.zhen.zayta.main.sokoban.map.Map;
 //import exp.zhen.zayta.main.sokoban_OOP.Puzzle;
 
 public class PlayScreen extends ScreenAdapter {
     private Game game;
     private UserData userData;
-    private PlayRenderer renderer;
 
     // == attributes ==
 
     private PlayController controller;
+    private PlayRenderer renderer;
+    private Map map;
 
 //    private int curLvl =0;
     private final AssetManager assetManager; private Skin skin;
@@ -28,14 +30,16 @@ public class PlayScreen extends ScreenAdapter {
         this.assetManager = game.getAssetManager();
         this.userData = game.getUserData();
 
+        this.map = new Map(assetManager.get(AssetDescriptors.SOKOBAN));
         this.renderer = new PlayRenderer(game.getBatch(), assetManager, controller);
-        this.controller = new PlayController(assetManager.get(AssetDescriptors.SOKOBAN));
+        this.controller = new PlayController(map);
 
     }
 
     @Override
     public void show() {
-        controller.initLvl();
+        controller.initLvl(map);
+
     }
     @Override
     public void render(float delta) {

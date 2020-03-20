@@ -1,0 +1,43 @@
+it: "Welcome to Nighters Underground Realm (NUR)"
+it: "We are special ghosts."
+it: "In our night mode, we carry NUR missions to protect humans."
+it: "In our day mode, we live like normal humans"
+it: "And forget everything that went on in our sleep."
+it: "Humans must never see nor remember us."
+it: "If there are such humans, we have to eliminate them."
+
+
+
+label mem1(in Taria's bedroom):
+tr_t: Mom scheduled another doctor's appointment for me.
+tr: Mom, who are those girls at the doorway?
+mom: Taria... You, I, and Dr.Kim are the only ones here.
+dr: Mam, after some analysis on our previous encounters, I think your daughter might be schitzophrenic.
+mom: No way...
+tr: No! I'm not.
+tr: Actually I was just kidding this entire time, I can't see any girls.
+mom: Taria, if you have a condition, you should get it treated.
+tr: No, I don't. I just wanted attention, because I get really bored in my room.
+tr: My brothers don't talk to me, and so I am lonely.
+tr: I wanted friends so badly that I imagined them.
+mom: Oh, honey... I'm glad that's cleared up.
+mom: Sorry for making you come all the way here Dr. Kim.
+dr: No problem, Mam. I would be happy to help you whenever you need.
+dr: Ten-year-olds these days do anything for entertainment.
+mom: Taria. You shouldn't lie like that for months. You had me so worried.
+tr: Mom, when I grow up, I want to go travel with friends.
+mom: Maybe in the future.
+tr_t: After almost being diagnosed with schitzophrenia,
+I decided to keep the fact that I see ghosts a secret.
+
+
+label mem2(first day middle school):
+tr_t: The first day of junior high school was my most important day of school.
+ta: Grab a partner, introduce yourselves, and start this activity.
+tr: *To the girl sitting next to her* Do you want to be my partner?
+cd: Sure.
+tr_t: That was how I met my first friend, Cassidy.
+
+label mem3(travel):
+
+

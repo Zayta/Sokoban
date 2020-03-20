@@ -12,10 +12,13 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.ArrayList;
+
 import exp.zhen.zayta.main.GameConfig;
 import exp.zhen.zayta.main.arcade_style_game.debug.DebugCameraController;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
+import exp.zhen.zayta.main.sokoban.entity.EntityBase;
 import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.ViewportUtils;
 
@@ -38,6 +41,7 @@ public class PlayRenderer {
     private final GlyphLayout layout = new GlyphLayout();
 
     private TextureRegion backgroundRegion;
+    private ArrayList<EntityBase> entities;
 
     private DebugCameraController debugCameraController;
 
@@ -62,9 +66,13 @@ public class PlayRenderer {
         TextureAtlas gamePlayAtlas = assetManager.get(AssetDescriptors.SOKOBAN);
 
         backgroundRegion = gamePlayAtlas.findRegion(RegionNames.SNOW);
+        entities = new ArrayList<EntityBase>();
 
         debugCameraController = new DebugCameraController();
         debugCameraController.setStartPosition(GameConfig.VIRTUAL_CENTER_X, GameConfig.VIRTUAL_CENTER_Y);
+    }
+    public void setEntities(){
+
     }
 
 
@@ -93,6 +101,8 @@ public class PlayRenderer {
         batch.draw(backgroundRegion,
                 0, 0,
                 GameConfig.VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+
+
 
         //draw all game entities here, accessed via controller
 //        // coin

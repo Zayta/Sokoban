@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.ArrayList;
 
+
 import exp.zhen.zayta.main.sokoban.entity.EntityBase;
 import exp.zhen.zayta.main.sokoban.map.Map;
 import exp.zhen.zayta.main.sokoban.map.PositionTracker;
@@ -20,12 +21,12 @@ public class PlayController implements Updateable {
     private PositionTracker positionTracker;
 
 
-    public PlayController(TextureAtlas sokobanAtlas){
-        map = new Map(sokobanAtlas);
+    public PlayController(Map map){
+        this.map = map;
         positionTracker = new PositionTracker(map.getMapWidth());
         Gdx.input.setInputProcessor(new KeyboardController());
     }
-    public void initLvl(){
+    public void initLvl(Map map){
         map.init(curLvl);//need to init map before getting map width
         positionTracker.init(map.getMapWidth());
         positionTracker.updateGoalTracker(map.getGoals());
