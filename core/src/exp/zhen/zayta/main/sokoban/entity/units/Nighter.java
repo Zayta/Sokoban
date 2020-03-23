@@ -61,6 +61,11 @@ public class Nighter extends MoveableEntity implements Updateable {
         return entityType==EntityType.CHARACTER;
     }
 
+    @Override
+    public EntityType getEntityType() {
+        return EntityType.CHARACTER;
+    }
+
     private void makeAnimation(TextureRegion srcPng){
         TextureRegion [][] tmp = srcPng.split(srcPng.getRegionWidth()/FRAME_COLS,srcPng.getRegionHeight()/FRAME_ROWS);
 
@@ -94,5 +99,6 @@ public class Nighter extends MoveableEntity implements Updateable {
                 return downAnimation.getKeyFrame(0);
         }
     }
+
 
 }

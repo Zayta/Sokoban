@@ -61,7 +61,7 @@ public class BiMap<K,V> {
 
     public String toString()
     {
-        String ret = "Size: "+map.size()+"\n";
+        String ret = "BiMap Size: "+map.size()+"\n";
         for (K name: map.keySet()){
 
             String key =name.toString();

@@ -5,6 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
 
+import exp.zhen.zayta.main.sokoban.entity.EntityBase;
+import exp.zhen.zayta.main.sokoban.entity.EntityType;
+import exp.zhen.zayta.main.sokoban.entity.units.Crate;
 import exp.zhen.zayta.main.sokoban.entity.units.Nighter;
 import exp.zhen.zayta.main.sokoban.map.Map;
 import exp.zhen.zayta.main.sokoban.map.PositionTracker;
@@ -13,10 +16,14 @@ import exp.zhen.zayta.main.sokoban.movement.Direction;
 public class PlayController implements Updateable {
 
     //in-game
-    private int curLvl=0;
     private Map map;
     private PositionTracker positionTracker;
     private KeyboardController keyboardController;
+
+    //for current lvl
+    private int curLvl=0;
+    private int placedCrates=0;
+//    private boolean isComplete = false;
 
 
     public PlayController(Map map){
@@ -29,7 +36,10 @@ public class PlayController implements Updateable {
         Gdx.input.setInputProcessor(keyboardController);
         map.init(curLvl);//need to init map before getting map width
         positionTracker.init(map.getMapWidth());
-        positionTracker.updateGoalTracker(map.getGoals());
+        placedCrates=0;
+//        isComplete = false;
+//        positionTracker.updateGoalTracker(map.getGoals());
+//        positionTracker.updateWallTracker();
     }
     public void setLvl(int lvl){
         curLvl = lvl;
@@ -40,16 +50,18 @@ public class PlayController implements Updateable {
         positionTracker.updateGlobalTracker(map.getEntities());
 //        positionTracker.updateCharacterTracker();
 //        positionTracker.updateCrateTracker();
-//        positionTracker.updateWallTracker();
         for(Nighter n: map.getNighters())
             n.update(delta);
+        for(Crate c: map.getCrates())
+            c.update(delta);
+
+
     }
 
     private class KeyboardController extends InputAdapter{
 
         @Override
         public boolean keyDown(int keycode) {
-            System.out.println("Key is pressed");
             if(keycode== Input.Keys.LEFT){
                 moveNighters(Direction.left);
             }
@@ -70,15 +82,72 @@ public class PlayController implements Updateable {
             //player stops moving
             return true;
         }
-        private void moveNighters(Direction direction){
-            for(Nighter nighter: map.getNighters()){
-                System.out.println("Nighter px b4: "+nighter.getX()+", "+nighter.getY());
+
+    }
+    private void moveNighters(Direction direction){
+        for(Nighter nighter: map.getNighters()){
+
+            //check for collision
+            EntityBase entityToBeCollidedWith = collision(nighter, direction);
+            if(entityToBeCollidedWith==null){//if there's no collision, move Nighters
                 nighter.move(direction);
+                return;
+            }
 
-                System.out.println("Nighter px aft: "+nighter.getX()+", "+nighter.getY());
+            switch (entityToBeCollidedWith.getEntityType()){
+                case WALL:
+                    break;
+                case GOAL:
+                    nighter.move(direction);
+                    break;
+                case CRATE:
+                    handleCrateCollision((Crate)entityToBeCollidedWith, nighter, direction);
 
+                    break;
+                case CHARACTER:
+                    break;
             }
         }
+    }
+
+    //returns the Entity that the moveableEntity will collide with, if it moves in the specified direction
+    private EntityBase collision(EntityBase moveableEntity, Direction direction){
+        float x = moveableEntity.getX()+direction.directionX,
+                y = moveableEntity.getY()+direction.directionY;
+        EntityBase entityBase = positionTracker.getEntityAtPos(x,y);
+        return entityBase;
+    }
+
+    private void handleCrateCollision(Crate crate, Nighter nighter, Direction direction){
+
+        EntityBase crateCollider = collision(crate,direction);
+        if(crateCollider==null) //if crate no collide, move crate, then move nighter
+        {
+            moveCrate(crate, direction, Crate.State.NORMAL);
+            nighter.move(direction);
+        }
+        else if(crateCollider.is(EntityType.GOAL)){
+            moveCrate(crate,direction, Crate.State.IN_GOAL);
+            nighter.move(direction);
+            placedCrates++;
+//            if(placedCrates==map.getNumGoals()){
+//                //finish
+//                isComplete = true;
+//            }
+        }
+    }
+    private void moveCrate(Crate crate, Direction direction, Crate.State newState){
+        //if crate was in goal but is now moved out of goal
+        if(crate.getState()== Crate.State.IN_GOAL){//must be before crate setting newstate
+            placedCrates--;
+        }
+        crate.move(direction);
+        crate.setState(newState);
+    }
+
+    public boolean isComplete(){
+        System.out.println("Placed crates: "+placedCrates+", numGoals: "+map.getNumGoals());
+        return placedCrates>=map.getNumGoals();
     }
 
 

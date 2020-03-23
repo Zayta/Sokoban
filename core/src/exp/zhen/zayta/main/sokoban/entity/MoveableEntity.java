@@ -15,18 +15,21 @@ public abstract class MoveableEntity extends EntityBase implements Movement {
     }
     public MoveableEntity(float x, float y){
         super(x,y);
-        targetPosition = new Vector2();
+        targetPosition = new Vector2(x,y);
         direction = Direction.none;
     }
     @Override
     public void setPosition(float x,float y){
         super.setPosition(x,y);
     }
+    public void setPosition(Vector2 newPos){
+        super.setPosition(newPos.x,newPos.y);
+    }
     @Override
     public void move(Direction direction) {
         this.direction = direction;
         targetPosition.add(direction.vector);
-        targetPosition.set((int)targetPosition.x,(int)targetPosition.y);
+        targetPosition.set(Math.round(targetPosition.x),Math.round(targetPosition.y));
     }
 
     @Override

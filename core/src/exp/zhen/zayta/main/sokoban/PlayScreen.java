@@ -45,6 +45,8 @@ public class PlayScreen extends ScreenAdapter {
     public void render(float delta) {
         controller.update(delta);
         renderer.render(delta);
+        if(controller.isComplete())
+            progress();
     }
 
     @Override

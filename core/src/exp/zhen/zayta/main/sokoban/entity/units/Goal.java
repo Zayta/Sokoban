@@ -21,4 +21,9 @@ public class Goal extends EntityBase {
     public boolean is(EntityType entityType) {
         return entityType==EntityType.GOAL;
     }
+
+    @Override
+    public EntityType getEntityType() {
+        return EntityType.GOAL;
+    }
 }

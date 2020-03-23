@@ -62,6 +62,7 @@ public class Map {
         walls.clear();
         crates.clear();
         goals.clear();
+        entities.clear();
 
         //set new lvl data
         curLvl = lvl;
@@ -76,6 +77,7 @@ public class Map {
         System.out.println("Map width is "+mapWidth);
         System.out.println("Map height is "+mapHeight);
         createEntities(mapData);
+        System.out.println("num Map goals = "+getNumGoals());
     }
 
     private void createEntities(char [] mapData){
@@ -119,6 +121,10 @@ public class Map {
                 nighters.add(entityBuilder.getCharacter(characterName,x,y));
                 break;
         }
+    }
+
+    public int getNumGoals(){
+        return goals.size();
     }
     public ArrayList<EntityBase> getEntities(){
         return entities;

@@ -4,11 +4,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.Hashtable;
 
+import exp.zhen.zayta.main.GameConfig;
+import exp.zhen.zayta.main.sokoban.Updateable;
 import exp.zhen.zayta.main.sokoban.entity.EntityBase;
 import exp.zhen.zayta.main.sokoban.entity.EntityType;
 import exp.zhen.zayta.main.sokoban.entity.MoveableEntity;
 
-public class Crate extends MoveableEntity {
+public class Crate extends MoveableEntity implements Updateable {
 
     public enum State{
         NORMAL,IN_GOAL,IMMOVABLE,IN_HOLE,
@@ -22,6 +24,19 @@ public class Crate extends MoveableEntity {
         this.textureRegions = textureRegions;
     }
 
+    public void setState(State state){
+        this.state = state;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    @Override
+    public void update(float delta) {
+        position.lerp(getTargetPosition(), delta * GameConfig.MOVING_SPEED);//alpha must be the same or greater than nighter speed...
+    }
+
     @Override
     public TextureRegion getTextureRegion() {
         TextureRegion region = textureRegions.get(state);
@@ -33,6 +48,11 @@ public class Crate extends MoveableEntity {
     @Override
     public boolean is(EntityType entityType) {
         return entityType==EntityType.CRATE;
+    }
+
+    @Override
+    public EntityType getEntityType() {
+        return EntityType.CRATE;
     }
 
 

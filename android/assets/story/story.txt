@@ -1,12 +1,13 @@
 intro:
 lt: Taria is dying. We need to save her.
-tyu: Can we find another way? Cybertization isn't safe and none of us performed it before.
+tyu: Can we find another way?
+tyu: Cybertization isn't safe and none of us performed it before.
 lt: We have to try no matter what. We are ghosts so we can't ask humans for help.
 lt: And we can't ask other ghosts because they want her dead.
 tyu: I guess we are on our own...
-tyu: We should study how Taria gave memories to Theta and use the same strategies.
-lt: But that robot has fake memories. We need to transfer Taria's real memories...
-lt: Actually it's a good idea. Let's practice installing a memory into Theta before we operate on Taria.
+tyu: We should study how Taria gave memories to Theta and get an idea of how it works.
+tyu: The only difference is that the robot has fake memories, and we need to transfer Taria's real memories...
+lt: Ok, let's try it.
 tyu: For the first round, do you want me to virtualize, and you monitor?
 lt: Sure.
 

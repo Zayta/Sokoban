@@ -30,6 +30,8 @@ public abstract class EntityBase{
     // == abstract methods ==
     public abstract TextureRegion getTextureRegion();
     public abstract boolean is(EntityType entityType);
+    public abstract EntityType getEntityType();
+
     // == public methods ==
     public void setPosition(float x, float y) {
         position.set(x,y);
@@ -40,6 +42,10 @@ public abstract class EntityBase{
         this.width = width;
         this.height = height;
         updateBounds();
+    }
+
+    public Vector2 getPosition() {
+        return position;
     }
 
     public float getX() {

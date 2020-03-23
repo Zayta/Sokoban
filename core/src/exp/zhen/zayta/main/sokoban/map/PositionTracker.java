@@ -1,5 +1,7 @@
 package exp.zhen.zayta.main.sokoban.map;
 
+import com.badlogic.gdx.math.Vector2;
+
 import java.util.ArrayList;
 
 import exp.zhen.zayta.main.GameConfig;
@@ -33,7 +35,7 @@ public class PositionTracker {
     private int generateKey(float x, float y)
     {
         int n = mapWidth/ GameConfig.ENTITY_SIZE;
-        return ((int)x)*n+(int)y;
+        return Math.round(x)*n+Math.round(y);
     }
 
     public void updateGlobalTracker(ArrayList<EntityBase> entities){
@@ -42,15 +44,22 @@ public class PositionTracker {
     }
     public void updateGlobalTracker(EntityBase entity, float x, float y) {
 
+        globalTracker.removeKey(entity);
         int key=generateKey(x,y);
 
-        globalTracker.remove(key);
         globalTracker.put(key,entity);
     }
 
 
-    private EntityBase getEntityAtPos(float x, float y){
+    public EntityBase getEntityAtPos(float x, float y){
         return globalTracker.get(generateKey(x,y));
+    }
+    public int getKeyForEntity(EntityBase entityBase){
+        return globalTracker.getKey(entityBase);
+    }
+
+    public EntityBase getEntityAtPos(Vector2 pos){
+        return globalTracker.get(generateKey(pos.x,pos.y));
     }
 
     private void clear(){
@@ -64,7 +73,7 @@ public class PositionTracker {
 //    }
 //    private void updateCharacterPosition(Nighter character, float x, float y) {
 //        int key=generateKey(x,y);
-//        nighterTracker.remove(key);
+//        nighterTracker.removeKey(entity);
 //        nighterTracker.put(key,character);
 //        updateGlobalTracker(character,x,y);
 //    }
@@ -76,7 +85,7 @@ public class PositionTracker {
 //    }
 //    private void updateCratePosition(Crate crate, float x, float y) {
 //        int key=generateKey(x,y);
-//        crateTracker.remove(key);
+//        crateTracker.removeKey(entity);
 //        crateTracker.put(key,crate);
 //        updateGlobalTracker(crate,x,y);
 //    }
@@ -87,16 +96,21 @@ public class PositionTracker {
     }
     private void updateGoalPosition(Goal goal, float x, float y) {
         int key=generateKey(x,y);
-        goalTracker.remove(key);
+        goalTracker.removeKey(goal);
         goalTracker.put(key,goal);
         updateGlobalTracker(goal,x,y);
     }
 //    private void updateWallPosition(Wall wall, float x, float y) {
 //        int key=generateKey(x,y);
-//        wallTracker.remove(key);
+//        wallTracker.removeKey(entity);
 //        wallTracker.put(key,wall);
 //        updateGlobalTracker(wall,x,y);
 //    }
+
+    @Override
+    public String toString(){
+        return globalTracker.toString();
+    }
     
 
 }
