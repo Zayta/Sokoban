@@ -1,23 +1,21 @@
-package exp.zhen.zayta.main.sokoban.entity;
+package exp.zhen.zayta.main.sokoban.entity.units;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 
-public class Crate extends EntityBase {
+import exp.zhen.zayta.main.sokoban.entity.EntityBase;
+import exp.zhen.zayta.main.sokoban.entity.EntityType;
+import exp.zhen.zayta.main.sokoban.entity.MoveableEntity;
+
+public class Crate extends MoveableEntity {
 
     public enum State{
         NORMAL,IN_GOAL,IMMOVABLE,IN_HOLE,
     }
     private State state;
     private Hashtable<State,TextureRegion> textureRegions;
-    public Crate(Hashtable<State,TextureRegion> textureRegions, float x, float y) {
-        super(x, y);
-        state = State.NORMAL;
-        this.textureRegions = textureRegions;
-    }
+
     public Crate(Hashtable<State,TextureRegion> textureRegions, State state, float x, float y) {
         super(x, y);
         this.state = state;

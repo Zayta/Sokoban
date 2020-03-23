@@ -3,20 +3,15 @@ package exp.zhen.zayta.main.sokoban.map;
 import java.util.ArrayList;
 
 import exp.zhen.zayta.main.GameConfig;
-import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
-import exp.zhen.zayta.main.sokoban.Updateable;
-import exp.zhen.zayta.main.sokoban.entity.Character;
-import exp.zhen.zayta.main.sokoban.entity.Crate;
 import exp.zhen.zayta.main.sokoban.entity.EntityBase;
-import exp.zhen.zayta.main.sokoban.entity.Goal;
-import exp.zhen.zayta.main.sokoban.entity.Wall;
+import exp.zhen.zayta.main.sokoban.entity.units.Goal;
 import exp.zhen.zayta.util.BiMap;
 
 public class PositionTracker {
     private int mapWidth;
     private BiMap<Integer, EntityBase> globalTracker;
 
-//    private BiMap<Integer,Character> nighterTracker;
+//    private BiMap<Integer,Nighter> nighterTracker;
 //    private BiMap<Integer, Crate> crateTracker;
 //    private BiMap<Integer, Wall> wallTracker;
     private BiMap<Integer, Goal> goalTracker;
@@ -63,11 +58,11 @@ public class PositionTracker {
     }
 
 //    //updates all character positions
-//    public void updateCharacterTracker(ArrayList<Character> characters){
-//        for(Character character: characters)
+//    public void updateCharacterTracker(ArrayList<Nighter> characters){
+//        for(Nighter character: characters)
 //            updateCharacterPosition(character,character.getX(),character.getY());
 //    }
-//    private void updateCharacterPosition(Character character, float x, float y) {
+//    private void updateCharacterPosition(Nighter character, float x, float y) {
 //        int key=generateKey(x,y);
 //        nighterTracker.remove(key);
 //        nighterTracker.put(key,character);

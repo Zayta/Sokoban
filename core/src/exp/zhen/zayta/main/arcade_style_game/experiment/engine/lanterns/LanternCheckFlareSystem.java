@@ -37,7 +37,7 @@ public class LanternCheckFlareSystem extends EntitySystem {
     }
     private void completeMission(){
 //        PositionTracker.reset();
-////        Game.userData.Character.clear();
+////        Game.userData.Nighter.clear();
 //        getEngine().removeAllEntities();
         experiment.progress();
     }

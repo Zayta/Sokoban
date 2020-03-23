@@ -1,6 +1,9 @@
-package exp.zhen.zayta.main.sokoban.entity;
+package exp.zhen.zayta.main.sokoban.entity.units;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import exp.zhen.zayta.main.sokoban.entity.EntityBase;
+import exp.zhen.zayta.main.sokoban.entity.EntityType;
 
 public class Goal extends EntityBase {
     private TextureRegion textureRegion;

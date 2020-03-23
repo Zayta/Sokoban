@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import exp.zhen.zayta.main.sokoban.entity.CharacterName;
-import exp.zhen.zayta.main.sokoban.entity.Crate;
+import exp.zhen.zayta.main.sokoban.entity.units.Crate;
 import exp.zhen.zayta.main.sokoban.entity.EntityBase;
-import exp.zhen.zayta.main.sokoban.entity.Goal;
-import exp.zhen.zayta.main.sokoban.entity.Wall;
-import exp.zhen.zayta.main.sokoban.entity.Character;
+import exp.zhen.zayta.main.sokoban.entity.EntityBuilder;
+import exp.zhen.zayta.main.sokoban.entity.units.Goal;
+import exp.zhen.zayta.main.sokoban.entity.units.Wall;
+import exp.zhen.zayta.main.sokoban.entity.units.Nighter;
 
-import static exp.zhen.zayta.main.GameConfig.TILE_SIZE;
+import static exp.zhen.zayta.main.GameConfig.VIRTUAL_HEIGHT;
+import static exp.zhen.zayta.main.GameConfig.VIRTUAL_WIDTH;
 
 
 public class Map {
@@ -23,7 +25,7 @@ public class Map {
     private Levels levels;
     private int curLvl =0;
     //entities
-    private ArrayList<Character> characters;
+    private ArrayList<Nighter> nighters;
     private ArrayList<Wall> walls;
     private ArrayList<Crate> crates;
     private ArrayList<Goal> goals;
@@ -46,7 +48,7 @@ public class Map {
     
     public Map(TextureAtlas sokobanAtlas){
         this.levels = new Levels();
-        characters = new ArrayList<Character>();
+        nighters = new ArrayList<Nighter>();
         crates = new ArrayList<Crate>();
         goals = new ArrayList<Goal>();
         walls = new ArrayList<Wall>();
@@ -56,7 +58,7 @@ public class Map {
 
     public void init(int lvl){
         //clean previous lvl data
-        characters.clear();
+        nighters.clear();
         walls.clear();
         crates.clear();
         goals.clear();
@@ -80,15 +82,15 @@ public class Map {
         for(int i = 0; i < mapWidth; i++){
             for(int j = 0; j<mapHeight; j++){
                 char id = mapData[i+j*mapWidth];
-                float x = i * TILE_SIZE;
-                float y = j * TILE_SIZE;
+                float x = i+(VIRTUAL_WIDTH-mapWidth)/2;
+                float y = j+(VIRTUAL_HEIGHT-mapHeight+1)/2;
                 addEntity(id,x,y);
             }
         }
-        entities.addAll(characters);
+        entities.addAll(goals);//goals should be added first cuz render bottom
+        entities.addAll(nighters);
         entities.addAll(crates);
         entities.addAll(walls);
-        entities.addAll(goals);
 
     }
     private void addEntity(char id, float x, float y){
@@ -102,18 +104,19 @@ public class Map {
                 goals.add(entityBuilder.buildGoal(x,y));
                 break;
             case CRATE_ID:
-                crates.add(entityBuilder.buildCrate(x,y,curLvl));
+                crates.add(entityBuilder.buildCrate(x,y, Crate.State.NORMAL,curLvl));
                 break;
             case SOKOBAN_ID:
-                characters.add(entityBuilder.getCharacter(characterName,x,y));
+                nighters.add(entityBuilder.getCharacter(characterName,x,y));
+                System.out.println("At map, nighter x y were "+x+", "+y);
                 break;
             case CRATE_ON_GOAL_ID:
                 goals.add(entityBuilder.buildGoal(x,y));
-                crates.add(entityBuilder.buildCrate(x,y,curLvl));
+                crates.add(entityBuilder.buildCrate(x,y, Crate.State.IN_GOAL,curLvl));
                 break;
             case SOKOBAN_ON_GOAL_ID:
                 goals.add(entityBuilder.buildGoal(x,y));
-                characters.add(entityBuilder.getCharacter(characterName,x,y));
+                nighters.add(entityBuilder.getCharacter(characterName,x,y));
                 break;
         }
     }
@@ -121,8 +124,8 @@ public class Map {
         return entities;
     }
 
-    public ArrayList<Character> getCharacters() {
-        return characters;
+    public ArrayList<Nighter> getNighters() {
+        return nighters;
     }
 
 

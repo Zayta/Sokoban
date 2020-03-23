@@ -15,13 +15,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.ArrayList;
 
 import exp.zhen.zayta.main.GameConfig;
-import exp.zhen.zayta.main.arcade_style_game.debug.DebugCameraController;
+import exp.zhen.zayta.main.debug.DebugCameraController;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.sokoban.entity.EntityBase;
+import exp.zhen.zayta.main.sokoban.map.Map;
 import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.ViewportUtils;
 
+import static exp.zhen.zayta.main.GameConfig.ENTITY_SIZE;
 import static exp.zhen.zayta.main.GameConfig.VIRTUAL_HEIGHT;
 
 public class PlayRenderer {
@@ -30,7 +32,8 @@ public class PlayRenderer {
     // == attributes ==
     private final SpriteBatch batch;
     private final AssetManager assetManager;
-    private final PlayController controller;
+//    private final PlayController controller;
+    private Map map;
 
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -47,10 +50,11 @@ public class PlayRenderer {
 
     private boolean cameraShouldMove;
 
-    public PlayRenderer(SpriteBatch batch, AssetManager assetManager, PlayController controller) {
+    public PlayRenderer(SpriteBatch batch, AssetManager assetManager, Map map) {
         this.batch = batch;
         this.assetManager = assetManager;
-        this.controller = controller;
+//        this.controller = controller;
+        this.map = map;
         init();
     }
 
@@ -102,7 +106,11 @@ public class PlayRenderer {
                 0, 0,
                 GameConfig.VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
 
-
+        ArrayList<EntityBase> entityBases = map.getEntities();
+        for(EntityBase entityBase: entityBases)
+        {
+            batch.draw(entityBase.getTextureRegion(),entityBase.getX(),entityBase.getY(), ENTITY_SIZE,ENTITY_SIZE);
+        }
 
         //draw all game entities here, accessed via controller
 //        // coin

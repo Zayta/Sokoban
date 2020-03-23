@@ -31,7 +31,7 @@ public class PlayScreen extends ScreenAdapter {
         this.userData = game.getUserData();
 
         this.map = new Map(assetManager.get(AssetDescriptors.SOKOBAN));
-        this.renderer = new PlayRenderer(game.getBatch(), assetManager, controller);
+        this.renderer = new PlayRenderer(game.getBatch(), assetManager, map);
         this.controller = new PlayController(map);
 
     }

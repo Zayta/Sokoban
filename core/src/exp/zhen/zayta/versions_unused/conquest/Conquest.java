@@ -23,7 +23,7 @@ import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;
-import exp.zhen.zayta.main.arcade_style_game.debug.DebugCameraController;
+import exp.zhen.zayta.main.debug.DebugCameraController;
 import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.ViewportUtils;
 

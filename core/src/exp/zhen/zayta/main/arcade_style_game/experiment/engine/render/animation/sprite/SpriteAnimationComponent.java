@@ -11,7 +11,6 @@ public class SpriteAnimationComponent implements Component {
     private int FRAME_COLS = 4, FRAME_ROWS = 4;
     private Animation<TextureRegion> currentAnimation; private float currentTime=0;
     private Animation<TextureRegion> [] animations = new Animation[FRAME_ROWS];
-
     private Animation <TextureRegion> leftAnimation,rightAnimation,upAnimation,downAnimation;
 
     public void init(TextureRegion upFrames,TextureRegion downFrames,TextureRegion leftFrames,TextureRegion rightFrames, int colsPerVerticalFrame, int colsPerHorrizontalFrame){

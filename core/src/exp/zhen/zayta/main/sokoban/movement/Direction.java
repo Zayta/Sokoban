@@ -1,4 +1,6 @@
-package exp.zhen.zayta.main.sokoban;
+package exp.zhen.zayta.main.sokoban.movement;
+
+import com.badlogic.gdx.math.Vector2;
 
 import static exp.zhen.zayta.util.GdxUtils.RANDOM;
 
@@ -9,17 +11,14 @@ public enum Direction {
     left(-1,0),
     right(1,0);
 
+    public final Vector2 vector;
     public float directionX,directionY;
     Direction(float directionX, float directionY)
     {
         this.directionX = directionX;
         this.directionY=directionY;
+        this.vector = new Vector2(directionX,directionY);
     }
-//    public final Vector2 vector2;
-//    Direction(Vector2 vector2)
-//    {
-//        this.vector2 = vector2;
-//    }
 
 //    /*Returns direction based on given vector*/
 //    public static Direction get(Vector2 vector2)

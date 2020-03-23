@@ -54,7 +54,7 @@ public abstract class GameControllingSystem extends EntitySystem implements Pool
     }
     private void goToMenu(){
 //        PositionTracker.reset();
-////        Game.userData.Character.clear();
+////        Game.userData.Nighter.clear();
 //        getEngine().removeAllEntities();
         experiment.progress();
     }

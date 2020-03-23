@@ -3,6 +3,7 @@ package exp.zhen.zayta.main.sokoban.entity;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 /*
 * Contains position and bounds of an entity
@@ -10,17 +11,19 @@ import com.badlogic.gdx.math.Rectangle;
 public abstract class EntityBase{
 
     // == attributes ==
-    protected float x;
-    protected float y;
-
+    protected Vector2 position;
     protected float width = 1;
     protected float height = 1;
 
     protected Rectangle bounds;
 
     // == constructors ==
-    public EntityBase(float x, float y) {
-        this.x = x; this.y = y;
+    public EntityBase(){//nighters use this
+        position = new Vector2();
+        bounds = new Rectangle(0,0,width,height);
+    }
+    public EntityBase(float x, float y) {//game obj use this
+        position = new Vector2(x,y);
         bounds = new Rectangle(x, y, width, height);
     }
 
@@ -29,8 +32,7 @@ public abstract class EntityBase{
     public abstract boolean is(EntityType entityType);
     // == public methods ==
     public void setPosition(float x, float y) {
-        this.x = x;
-        this.y = y;
+        position.set(x,y);
         updateBounds();
     }
 
@@ -41,20 +43,20 @@ public abstract class EntityBase{
     }
 
     public float getX() {
-        return x;
+        return position.x;
     }
 
     public float getY() {
-        return y;
+        return position.y;
     }
 
     public void setX(float x) {
-        this.x = x;
+        position.set(x,position.y);
         updateBounds();
     }
 
     public void setY(float y) {
-        this.y = y;
+        position.set(position.x,y);
         updateBounds();
     }
 
@@ -71,7 +73,6 @@ public abstract class EntityBase{
     }
 
     public void updateBounds() {
-        bounds.setPosition(x, y);
-        bounds.setSize(width, height);
+        bounds.setPosition(position);
     }
 }

@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.arcade_style_game.debug;
+package exp.zhen.zayta.main.debug;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
