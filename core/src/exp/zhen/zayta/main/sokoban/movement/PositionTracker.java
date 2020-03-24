@@ -1,4 +1,4 @@
-package exp.zhen.zayta.main.sokoban.map;
+package exp.zhen.zayta.main.sokoban.movement;
 
 import com.badlogic.gdx.math.Vector2;
 

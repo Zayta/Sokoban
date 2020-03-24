@@ -78,10 +78,10 @@ public enum Direction {
 
     }
 
-    public Direction getOpposite()
+    public static Direction getOpposite(Direction direction)
     {
         Direction ret = none;
-        switch (this)
+        switch (direction)
         {
             case up:
                 ret = down;

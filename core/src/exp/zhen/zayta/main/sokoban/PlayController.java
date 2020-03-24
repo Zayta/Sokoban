@@ -1,16 +1,21 @@
 package exp.zhen.zayta.main.sokoban;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Pool;
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import exp.zhen.zayta.main.sokoban.entity.EntityBase;
 import exp.zhen.zayta.main.sokoban.entity.EntityType;
 import exp.zhen.zayta.main.sokoban.entity.units.Crate;
 import exp.zhen.zayta.main.sokoban.entity.units.Nighter;
+import exp.zhen.zayta.main.sokoban.input.KeyboardController;
 import exp.zhen.zayta.main.sokoban.map.Map;
-import exp.zhen.zayta.main.sokoban.map.PositionTracker;
+import exp.zhen.zayta.main.sokoban.movement.PositionTracker;
 import exp.zhen.zayta.main.sokoban.movement.Direction;
 
 public class PlayController implements Updateable {
@@ -19,21 +24,25 @@ public class PlayController implements Updateable {
     private Map map;
     private PositionTracker positionTracker;
     private KeyboardController keyboardController;
+    private MovesPool movesPool;
 
     //for current lvl
     private int curLvl=0;
     private int placedCrates=0;
+    private Array<Move> moveHistory;
 //    private boolean isComplete = false;
 
 
     public PlayController(Map map){
         this.map = map;
-        this.keyboardController = new KeyboardController();
         positionTracker = new PositionTracker(map.getMapWidth());
-
+        moveHistory = new Array<Move>();
+        this.keyboardController = new KeyboardController(this);
+        movesPool = new MovesPool();
     }
     public void initLvl(Map map){
         Gdx.input.setInputProcessor(keyboardController);
+        moveHistory.clear();
         map.init(curLvl);//need to init map before getting map width
         positionTracker.init(map.getMapWidth());
         placedCrates=0;
@@ -58,98 +67,165 @@ public class PlayController implements Updateable {
 
     }
 
-    private class KeyboardController extends InputAdapter{
 
-        @Override
-        public boolean keyDown(int keycode) {
-            if(keycode== Input.Keys.LEFT){
-                moveNighters(Direction.left);
+    public void moveNighters(Direction direction){
+        Move move = movesPool.obtain();//creates the move
+        move.setDirection(direction);
+        for(Nighter nighter: map.getNighters()){
+            //check for collision
+            EntityBase collidedEntity = getCollidedEntity(nighter, direction);
+            //check if nighter can move
+            if(canPush(collidedEntity,direction)){
+                move.addNighter(nighter);
             }
-            if(keycode==Input.Keys.RIGHT){
-                moveNighters(Direction.right);
+            //check if crate can move
+            if(collidedEntity instanceof Crate){//if collided entity is crate
+                if(canCrateMove(getCollidedEntity(collidedEntity,direction))) {//if that crate can move
+                    move.addCrate((Crate) collidedEntity);
+                    System.out.println("Adding crate to move");
+                }
             }
-            if(keycode==Input.Keys.UP){
-                moveNighters(Direction.up);
-            }
-            if(keycode==Input.Keys.DOWN){
-                moveNighters(Direction.down);
-            }
-            return true;
         }
-
-        @Override
-        public boolean keyUp(int keycode) {
-            //player stops moving
-            return true;
+        if(move.apply()) {//performs the move
+            moveHistory.add(move);//add move to history
         }
 
     }
-    private void moveNighters(Direction direction){
-        for(Nighter nighter: map.getNighters()){
 
-            //check for collision
-            EntityBase entityToBeCollidedWith = collision(nighter, direction);
-            if(entityToBeCollidedWith==null){//if there's no collision, move Nighters
-                nighter.move(direction);
-                return;
-            }
-
-            switch (entityToBeCollidedWith.getEntityType()){
-                case WALL:
-                    break;
-                case GOAL:
-                    nighter.move(direction);
-                    break;
-                case CRATE:
-                    handleCrateCollision((Crate)entityToBeCollidedWith, nighter, direction);
-
-                    break;
-                case CHARACTER:
-                    break;
-            }
+    /*Collision detection*/
+    private boolean canPush(EntityBase entity, Direction direction){
+        if(entity==null)
+            return true;
+        if(entity.is(EntityType.CRATE)){
+            return canCrateMove(getCollidedEntity(entity,direction));
         }
+        return entity.is(EntityType.GOAL);
+    }
+    private boolean canCrateMove(EntityBase collidedEntity){
+        return collidedEntity==null||collidedEntity.is(EntityType.GOAL);
     }
 
     //returns the Entity that the moveableEntity will collide with, if it moves in the specified direction
-    private EntityBase collision(EntityBase moveableEntity, Direction direction){
+    private EntityBase getCollidedEntity(EntityBase moveableEntity, Direction direction){
         float x = moveableEntity.getX()+direction.directionX,
                 y = moveableEntity.getY()+direction.directionY;
         EntityBase entityBase = positionTracker.getEntityAtPos(x,y);
         return entityBase;
     }
 
-    private void handleCrateCollision(Crate crate, Nighter nighter, Direction direction){
 
-        EntityBase crateCollider = collision(crate,direction);
-        if(crateCollider==null) //if crate no collide, move crate, then move nighter
-        {
-            moveCrate(crate, direction, Crate.State.NORMAL);
-            nighter.move(direction);
-        }
-        else if(crateCollider.is(EntityType.GOAL)){
-            moveCrate(crate,direction, Crate.State.IN_GOAL);
-            nighter.move(direction);
-            placedCrates++;
-//            if(placedCrates==map.getNumGoals()){
-//                //finish
-//                isComplete = true;
-//            }
+    /*Moves*/
+    private class MovesPool extends Pool<Move>{
+
+        @Override
+        protected Move newObject() {
+            return new Move();
         }
     }
-    private void moveCrate(Crate crate, Direction direction, Crate.State newState){
-        //if crate was in goal but is now moved out of goal
-        if(crate.getState()== Crate.State.IN_GOAL){//must be before crate setting newstate
-            placedCrates--;
+    private class Move implements Pool.Poolable {
+        private ArrayList<Nighter> nighters;
+        private ArrayList<Crate> crates;
+        private Direction direction;
+        Move(){
+            this.direction = direction.none;
+            nighters = new ArrayList<Nighter>();
+            crates = new ArrayList<Crate>();
         }
-        crate.move(direction);
-        crate.setState(newState);
+        void opposite(Move move){
+            this.direction = Direction.getOpposite(move.direction);
+            this.nighters = move.nighters;
+            this.crates = move.crates;
+        }
+        //moves all entities in the direction. returns true if move changed entity positions
+        public boolean apply(){
+            for(Crate c: crates) {
+                moveCrate(c,direction);
+            }
+            for(Nighter n: nighters) {
+                moveNighter(n,direction);
+            }
+            return direction!=Direction.none&&(!nighters.isEmpty()||!crates.isEmpty());
+        }
+
+        private void moveCrate(Crate crate, Direction direction){
+
+            EntityBase crateCollider = getCollidedEntity(crate,direction);
+            System.out.println("Crate collider is "+crateCollider);
+            //if crate was in goal but is now moved out of goal
+            if(crate.getState()== Crate.State.IN_GOAL){//must be before crate setting newstate
+                placedCrates--;
+            }
+            if(crateCollider==null||crateCollider.is(EntityType.CHARACTER)) //if crate no collide, move crate, then move nighter
+            {
+                crate.move(direction);
+                crate.setState(Crate.State.NORMAL);
+
+            }
+            else if(crateCollider.is(EntityType.GOAL)){
+                crate.move(direction);
+                crate.setState(Crate.State.IN_GOAL);
+
+                placedCrates++;
+            }
+        }
+
+        private void moveNighter(Nighter nighter, Direction direction){
+            nighter.move(direction);
+        }
+
+
+        public void setDirection(Direction direction){
+            this.direction = direction;
+        }
+
+        public void addNighter(Nighter nighter){
+            nighters.add(nighter);
+        }
+        public void addCrate(Crate crate){
+            crates.add(crate);
+        }
+        @Override
+        public void reset() {
+            direction = Direction.none;
+            crates.clear();
+            nighters.clear();
+        }
+        @Override
+        public String toString(){
+            return "Move: ("+direction+", Nighters: "+ Arrays.toString(nighters.toArray())+", Crates: "+Arrays.toString(crates.toArray());
+        }
     }
 
+
+
+    public void undoMove(){
+        if(moveHistory.isEmpty()) {
+            System.out.println("No move history");
+            return;
+        }
+        Move undoMove = moveHistory.pop();
+
+        System.out.println("Undoing move: "+undoMove);
+        Move move = movesPool.obtain();
+        move.opposite(undoMove);
+        System.out.println("Doing Move "+move);
+        move.apply();
+        movesPool.free(undoMove);
+
+
+    }
+    
+
+    /*game info*/
     public boolean isComplete(){
-        System.out.println("Placed crates: "+placedCrates+", numGoals: "+map.getNumGoals());
-        return placedCrates>=map.getNumGoals();
+        boolean complete = placedCrates>=map.getNumGoals();
+
+        return complete;
     }
 
+    public void hide(){
+        movesPool.freeAll(moveHistory);
+    }
 
 
 }

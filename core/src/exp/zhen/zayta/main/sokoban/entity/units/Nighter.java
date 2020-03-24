@@ -100,5 +100,4 @@ public class Nighter extends MoveableEntity implements Updateable {
         }
     }
 
-
 }
