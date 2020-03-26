@@ -27,7 +27,6 @@ import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.ViewportUtils;
 
 import static exp.zhen.zayta.main.GameConfig.ENTITY_SIZE;
-import static exp.zhen.zayta.main.GameConfig.HUD_PADDING;
 import static exp.zhen.zayta.main.GameConfig.VIRTUAL_HEIGHT;
 
 public class PlayRenderer {
@@ -115,8 +114,8 @@ public class PlayRenderer {
 
     }
     private void renderHud(){
-        hud.applyViewport();
-        batch.setProjectionMatrix(hud.getStage().getCamera().combined);
+        hud.getViewport().apply();
+        batch.setProjectionMatrix(hud.getCamera().combined);
         hud.draw(); //draw the Hud
 
     }
@@ -134,7 +133,7 @@ public class PlayRenderer {
 
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-        hud.getStage().getViewport().update(width, height, true);
+        hud.resize(width,height);
         ViewportUtils.debugPixelsPerUnit(viewport);
         ViewportUtils.debugPixelsPerUnit(hud.getViewport());
     }

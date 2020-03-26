@@ -39,7 +39,7 @@ public class PlayScreen extends ScreenAdapter {
         this.controller = new PlayController(map);
         this.hud = new Hud(controller,game.getBatch(),assetManager);
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(hud.getStage());
+        inputMultiplexer.addProcessor(hud);
         inputMultiplexer.addProcessor(new KeyboardController(controller));
         Gdx.input.setInputProcessor(inputMultiplexer);
         this.renderer = new PlayRenderer(game.getBatch(), assetManager, map,hud);
@@ -55,9 +55,10 @@ public class PlayScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         controller.update(delta);
+
+        hud.act(delta); //act the Hud
         renderer.render(delta);
 
-        hud.getStage().act(delta); //act the Hud
         if(controller.isComplete())
             progress();
     }

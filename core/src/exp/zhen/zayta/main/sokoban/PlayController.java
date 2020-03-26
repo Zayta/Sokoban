@@ -81,7 +81,7 @@ public class PlayController implements Updateable {
             if(collidedEntity instanceof Crate){//if collided entity is crate
                 if(canCrateMove(getCollidedEntity(collidedEntity,direction))) {//if that crate can move
                     move.addCrate((Crate) collidedEntity);
-                    System.out.println("Adding crate to move");
+//                    System.out.println("Adding crate to move");
                 }
             }
         }
@@ -149,7 +149,7 @@ public class PlayController implements Updateable {
         private void moveCrate(Crate crate, Direction direction){
 
             EntityBase crateCollider = getCollidedEntity(crate,direction);
-            System.out.println("Crate collider is "+crateCollider);
+//            System.out.println("Crate collider is "+crateCollider);
             //if crate was in goal but is now moved out of goal
             if(crate.getState()== Crate.State.IN_GOAL){//must be before crate setting newstate
                 placedCrates--;
@@ -203,10 +203,8 @@ public class PlayController implements Updateable {
         }
         Move undoMove = moveHistory.pop();
 
-        System.out.println("Undoing move: "+undoMove);
         Move move = movesPool.obtain();
         move.opposite(undoMove);
-        System.out.println("Doing Move "+move);
         move.apply();
         movesPool.free(undoMove);
 

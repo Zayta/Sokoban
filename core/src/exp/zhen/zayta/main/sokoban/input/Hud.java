@@ -19,25 +19,25 @@ import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.sokoban.PlayController;
 
-public class Hud {
+public class Hud extends Stage{
 
-    private Stage stage;
-    private Viewport hudViewport;
     private BitmapFont font;
     private Skin skin;
     private PlayController playController;
+    private Table table;
     public Hud(final PlayController playController, SpriteBatch spriteBatch, AssetManager assetManager) {
+        super(new FitViewport(GameConfig.HUD_WIDTH,GameConfig.HUD_HEIGHT), spriteBatch);
         this.playController = playController;
-        this.hudViewport = new FitViewport(GameConfig.HUD_WIDTH, GameConfig.HUD_HEIGHT);
-        this.stage = new Stage(hudViewport, spriteBatch); //create stage with the stageViewport and the SpriteBatch given in Constructor
 
         this.font = assetManager.get(AssetDescriptors.FONT);
         font.setColor(Color.BLACK);
 
         this.skin = assetManager.get(AssetDescriptors.UI_SKIN);
 
-        Table table = new Table(skin);
-table.setBackground(RegionNames.PANEL);
+        table = new Table(skin);
+        table.setFillParent(true);
+        table.setDebug(true);
+//        table.setBackground(RegionNames.PANEL);
         //add the Buttons etc.
         // play button
         TextButton undoButton = new TextButton("Undo", skin);
@@ -47,22 +47,14 @@ table.setBackground(RegionNames.PANEL);
                 playController.undoMove();
             }
         });
-        table.add(undoButton);
-        stage.addActor(table);
+        table.add(undoButton).expand().top().right();
+
+        this.addActor(table);
     }
 
-    public Stage getStage() { return stage; }
+    public void resize(int width, int height) {
+        getViewport().update(width, height);
+        table.invalidateHierarchy();
+    }
 
-    public void dispose(){
-        stage.dispose();
-    }
-    public void applyViewport(){
-        stage.getViewport().apply();
-    }
-    public void draw(){
-        stage.draw();
-    }
-    public Viewport getViewport(){
-        return hudViewport;
-    }
 }

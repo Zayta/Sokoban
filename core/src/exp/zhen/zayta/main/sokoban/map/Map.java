@@ -110,7 +110,7 @@ public class Map {
                 break;
             case SOKOBAN_ID:
                 nighters.add(entityBuilder.getCharacter(characterName,x,y));
-                System.out.println("At map, nighter x y were "+x+", "+y);
+//                System.out.println("At map, nighter x y were "+x+", "+y);
                 break;
             case CRATE_ON_GOAL_ID:
                 goals.add(entityBuilder.buildGoal(x,y));
