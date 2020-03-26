@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Logger;
 
-import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
+import exp.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
 
 public abstract class Soldier {
     private final String name;

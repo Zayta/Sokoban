@@ -8,9 +8,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.assets.AssetDescriptors;
-import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
-import exp.zhen.zayta.main.arcade_style_game.characters.nur.NUR;
-import exp.zhen.zayta.main.arcade_style_game.characters.utsubyo.Utsubyo;
+import exp.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
+import exp.zhen.zayta.versions_unused.arcade_style_game.characters.nur.NUR;
+import exp.zhen.zayta.versions_unused.arcade_style_game.characters.utsubyo.Utsubyo;
 
 public class Game extends com.badlogic.gdx.Game {
 

@@ -1,6 +1,5 @@
 package exp.zhen.zayta.main.story;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -16,16 +15,15 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Logger;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.ScreenBase;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.Files;
 import exp.zhen.zayta.main.assets.RegionNames;
-import exp.zhen.zayta.main.arcade_style_game.characters.nur.Undead;
-import exp.zhen.zayta.main.arcade_style_game.characters.nur.NUR;
-import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
+import exp.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead;
+import exp.zhen.zayta.versions_unused.arcade_style_game.characters.nur.NUR;
+import exp.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
 
 
 public class StoryScreen extends ScreenBase {

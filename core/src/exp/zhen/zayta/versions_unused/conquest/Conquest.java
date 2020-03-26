@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import exp.zhen.zayta.main.Game;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
-import exp.zhen.zayta.main.arcade_style_game.config.SizeManager;
+import exp.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.nur.NUR;
 import exp.zhen.zayta.versions_unused.conquest.soldiers.utsubyo.Utsubyo;
 import exp.zhen.zayta.versions_unused.conquest.tiles.Tile;

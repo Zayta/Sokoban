@@ -8,6 +8,8 @@ public class GameConfig {
 
     public static final float MOVING_SPEED = 10f;
 
+    //for hud
+    public static final float HUD_PADDING = 20.0f;
 
     //for puzzle
     public static final int VIRTUAL_WIDTH = 14;

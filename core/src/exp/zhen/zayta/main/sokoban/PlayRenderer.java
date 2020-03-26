@@ -2,6 +2,7 @@ package exp.zhen.zayta.main.sokoban;
 
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -19,42 +21,46 @@ import exp.zhen.zayta.main.debug.DebugCameraController;
 import exp.zhen.zayta.main.assets.AssetDescriptors;
 import exp.zhen.zayta.main.assets.RegionNames;
 import exp.zhen.zayta.main.sokoban.entity.EntityBase;
+import exp.zhen.zayta.main.sokoban.input.Hud;
 import exp.zhen.zayta.main.sokoban.map.Map;
 import exp.zhen.zayta.util.GdxUtils;
 import exp.zhen.zayta.util.ViewportUtils;
 
 import static exp.zhen.zayta.main.GameConfig.ENTITY_SIZE;
+import static exp.zhen.zayta.main.GameConfig.HUD_PADDING;
 import static exp.zhen.zayta.main.GameConfig.VIRTUAL_HEIGHT;
 
 public class PlayRenderer {
 
 
     // == attributes ==
-    private final SpriteBatch batch;
     private final AssetManager assetManager;
-//    private final PlayController controller;
-    private Map map;
-
+    //camera/viewport
     private OrthographicCamera camera;
     private Viewport viewport;
-    private Viewport hudViewport;
-    private ShapeRenderer renderer;
-
-    private BitmapFont font;
-    private final GlyphLayout layout = new GlyphLayout();
-
-    private TextureRegion backgroundRegion;
-    private ArrayList<EntityBase> entities;
-
+//    private Viewport hudViewport;
     private DebugCameraController debugCameraController;
-
     private boolean cameraShouldMove;
 
-    public PlayRenderer(SpriteBatch batch, AssetManager assetManager, Map map) {
+    //for render/drawing
+    private ShapeRenderer renderer;
+    private final SpriteBatch batch;
+
+    private final GlyphLayout layout = new GlyphLayout();
+    private TextureRegion backgroundRegion;
+
+    //game-specific
+    //    private final PlayController controller;
+    private Map map;
+    private Hud hud;
+
+
+    public PlayRenderer(SpriteBatch batch, AssetManager assetManager, Map map, Hud hud) {
         this.batch = batch;
         this.assetManager = assetManager;
 //        this.controller = controller;
         this.map = map;
+        this.hud = hud;
         init();
     }
 
@@ -62,21 +68,16 @@ public class PlayRenderer {
     private void init() {
         camera = new OrthographicCamera();
         viewport = new FitViewport(GameConfig.VIRTUAL_WIDTH, GameConfig.VIRTUAL_HEIGHT, camera);
-        hudViewport = new FitViewport(GameConfig.HUD_WIDTH, GameConfig.HUD_HEIGHT);
+
         renderer = new ShapeRenderer();
 
-        font = assetManager.get(AssetDescriptors.FONT);
 
         TextureAtlas gamePlayAtlas = assetManager.get(AssetDescriptors.SOKOBAN);
 
         backgroundRegion = gamePlayAtlas.findRegion(RegionNames.SNOW);
-        entities = new ArrayList<EntityBase>();
 
         debugCameraController = new DebugCameraController();
         debugCameraController.setStartPosition(GameConfig.VIRTUAL_CENTER_X, GameConfig.VIRTUAL_CENTER_Y);
-    }
-    public void setEntities(){
-
     }
 
 
@@ -112,36 +113,12 @@ public class PlayRenderer {
             batch.draw(entityBase.getTextureRegion(),entityBase.getX(),entityBase.getY(), ENTITY_SIZE,ENTITY_SIZE);
         }
 
-        //draw all game entities here, accessed via controller
-//        // coin
-//        Coin coin = controller.getCoin();
-//        if (coin.isAvailable()) {
-//            batch.draw(coinRegion,
-//                    coin.getX(), coin.getY(),
-//                    coin.getWidth(), coin.getHeight()
-//            );
-//        }
-//
-//        // snake
-//        Snake snake = controller.getSnake();
-//
-//        // body parts
-//        for (BodyPart bodyPart : snake.getBodyParts()) {
-//            batch.draw(bodyRegion,
-//                    bodyPart.getX(), bodyPart.getY(),
-//                    bodyPart.getWidth(), bodyPart.getHeight()
-//            );
-//        }
-//
-//        // head
-//        SnakeHead head = snake.getHead();
-//        batch.draw(headRegion,
-//                head.getX(), head.getY(),
-//                head.getWidth(), head.getHeight()
-//        );
     }
     private void renderHud(){
-        
+        hud.applyViewport();
+        batch.setProjectionMatrix(hud.getStage().getCamera().combined);
+        hud.draw(); //draw the Hud
+
     }
 
 //    private void updateCamera(Puzzle puzzle) {
@@ -157,13 +134,14 @@ public class PlayRenderer {
 
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-        hudViewport.update(width, height, true);
+        hud.getStage().getViewport().update(width, height, true);
         ViewportUtils.debugPixelsPerUnit(viewport);
-        ViewportUtils.debugPixelsPerUnit(hudViewport);
+        ViewportUtils.debugPixelsPerUnit(hud.getViewport());
     }
     public void dispose() {
-
+        hud.dispose();
         renderer.dispose();
+        batch.dispose();
     }
 
 }

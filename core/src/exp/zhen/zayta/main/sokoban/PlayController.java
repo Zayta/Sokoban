@@ -13,6 +13,7 @@ import exp.zhen.zayta.main.sokoban.entity.EntityBase;
 import exp.zhen.zayta.main.sokoban.entity.EntityType;
 import exp.zhen.zayta.main.sokoban.entity.units.Crate;
 import exp.zhen.zayta.main.sokoban.entity.units.Nighter;
+import exp.zhen.zayta.main.sokoban.input.Hud;
 import exp.zhen.zayta.main.sokoban.input.KeyboardController;
 import exp.zhen.zayta.main.sokoban.map.Map;
 import exp.zhen.zayta.main.sokoban.movement.PositionTracker;
@@ -23,7 +24,6 @@ public class PlayController implements Updateable {
     //in-game
     private Map map;
     private PositionTracker positionTracker;
-    private KeyboardController keyboardController;
     private MovesPool movesPool;
 
     //for current lvl
@@ -37,11 +37,9 @@ public class PlayController implements Updateable {
         this.map = map;
         positionTracker = new PositionTracker(map.getMapWidth());
         moveHistory = new Array<Move>();
-        this.keyboardController = new KeyboardController(this);
         movesPool = new MovesPool();
     }
     public void initLvl(Map map){
-        Gdx.input.setInputProcessor(keyboardController);
         moveHistory.clear();
         map.init(curLvl);//need to init map before getting map width
         positionTracker.init(map.getMapWidth());
@@ -56,6 +54,7 @@ public class PlayController implements Updateable {
 
     @Override
     public void update(float delta){
+
         positionTracker.updateGlobalTracker(map.getEntities());
 //        positionTracker.updateCharacterTracker();
 //        positionTracker.updateCrateTracker();
@@ -195,7 +194,6 @@ public class PlayController implements Updateable {
             return "Move: ("+direction+", Nighters: "+ Arrays.toString(nighters.toArray())+", Crates: "+Arrays.toString(crates.toArray());
         }
     }
-
 
 
     public void undoMove(){

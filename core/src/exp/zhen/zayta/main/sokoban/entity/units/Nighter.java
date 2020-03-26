@@ -2,15 +2,12 @@ package exp.zhen.zayta.main.sokoban.entity.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 
 import exp.zhen.zayta.main.GameConfig;
-import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.Position;
 import exp.zhen.zayta.main.sokoban.entity.EntityType;
 import exp.zhen.zayta.main.sokoban.entity.MoveableEntity;
 import exp.zhen.zayta.main.sokoban.movement.Direction;
 import exp.zhen.zayta.main.sokoban.Updateable;
-import exp.zhen.zayta.main.sokoban.movement.Movement;
 
 //the character that the player controls
 public class Nighter extends MoveableEntity implements Updateable {

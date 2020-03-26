@@ -3,7 +3,7 @@ package exp.zhen.zayta.versions_unused.game_mechanics;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 
-import exp.zhen.zayta.main.arcade_style_game.experiment.Experiment;
+import exp.zhen.zayta.versions_unused.arcade_style_game.experiment.Experiment;
 
 
 @Deprecated

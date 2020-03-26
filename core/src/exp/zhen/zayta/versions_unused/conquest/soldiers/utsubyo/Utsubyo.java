@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.HashMap;
 
-import exp.zhen.zayta.main.arcade_style_game.characters.nur.Undead;
+import exp.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead;
 import exp.zhen.zayta.versions_unused.conquest.assets.CQRegionNames;
 
 public class Utsubyo {

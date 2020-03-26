@@ -9,10 +9,10 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Logger;
 
 import exp.zhen.zayta.main.Game;
-import exp.zhen.zayta.main.arcade_style_game.experiment.common.Mappers;
-import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.PositionTracker;
-import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.CircularBoundsComponent;
-import exp.zhen.zayta.main.arcade_style_game.experiment.engine.movement.component.PositionTrackerComponent;
+import exp.zhen.zayta.versions_unused.arcade_style_game.experiment.common.Mappers;
+import exp.zhen.zayta.versions_unused.arcade_style_game.experiment.engine.movement.PositionTracker;
+import exp.zhen.zayta.versions_unused.arcade_style_game.experiment.engine.movement.component.CircularBoundsComponent;
+import exp.zhen.zayta.versions_unused.arcade_style_game.experiment.engine.movement.component.PositionTrackerComponent;
 
 public abstract class CollisionSystemTemplate extends EntitySystem {
     private static final Logger log = new Logger(CollisionSystemTemplate.class.getName(),Logger.DEBUG);
