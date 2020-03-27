@@ -1,6 +1,0 @@
-package exp.zhen.zayta.versions_unused.spirit_gathering;
-
-import com.badlogic.ashley.core.Component;
-
-public class SpiritTag implements Component {
-}

@@ -1,9 +1,9 @@
-package exp.zhen.zayta.client;
+package snow.zhen.zayta.client;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import exp.zhen.zayta.RPG;
+import snow.zhen.zayta.RPG;
 
 public class HtmlLauncher extends GwtApplication {
 

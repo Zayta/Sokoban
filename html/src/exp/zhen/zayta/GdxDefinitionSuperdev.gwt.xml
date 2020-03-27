@@ -8,7 +8,7 @@
 	<inherits name='Box2DLights' />
 	<inherits name='com.badlogic.ashley_gwt' />
 
-    <inherits name='exp.zhen.zayta.GdxDefinition' />
+    <inherits name='snow.zhen.zayta.GdxDefinition' />
     
     <collapse-all-properties />
     

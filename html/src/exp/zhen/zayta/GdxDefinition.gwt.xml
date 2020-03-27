@@ -9,7 +9,7 @@
 	<inherits name='com.badlogic.ashley_gwt' />
 
 	<inherits name='RPG' />
-	<entry-point class='exp.zhen.zayta.client.HtmlLauncher' />
+	<entry-point class='snow.zhen.zayta.client.HtmlLauncher' />
 	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
 	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
 </module>
