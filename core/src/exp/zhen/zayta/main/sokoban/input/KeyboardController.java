@@ -29,6 +29,10 @@ public class KeyboardController extends InputAdapter {//controls keyboard input 
         {
             entityController.undoMove();
         }
+        if(keycode==Input.Keys.R)
+        {
+            entityController.restart();
+        }
         return true;
     }
 

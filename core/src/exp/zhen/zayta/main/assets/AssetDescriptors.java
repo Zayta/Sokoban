@@ -23,8 +23,11 @@ public class AssetDescriptors {
 //    public static final AssetDescriptor<TextureAtlas> MENU_CLIP =
 //            new AssetDescriptor<TextureAtlas>("menu/clips.atlas", TextureAtlas.class);
 
+    //==UI==//
+    public static final AssetDescriptor<TextureAtlas> UI_SILVER_BTNS =
+            new AssetDescriptor<TextureAtlas>("ui/silver-btns/btns.atlas", TextureAtlas.class);
 
-/*Skins*/
+    /*Skins*/
 
         public static final AssetDescriptor<BitmapFont> HOLO_FONT =
                 new AssetDescriptor<BitmapFont>("ui/holo_skin/skin/default.fnt", BitmapFont.class);
@@ -70,6 +73,8 @@ public static final AssetDescriptor<BitmapFont> NEUTRALIZER_FONT =
 
 
 
+    //=======UI decision ==//
+    public static final AssetDescriptor<TextureAtlas> UI_BTNS = UI_SILVER_BTNS;
     public static final AssetDescriptor<BitmapFont> HEADING_FONT = PIXTHULHU_FONT;
     public static final AssetDescriptor<BitmapFont> FONT = NEON_FONT;
     public static final AssetDescriptor<Skin> UI_SKIN = NEON_SKIN;

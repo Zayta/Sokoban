@@ -26,9 +26,9 @@ public class AssetPacker {
 //        );
 
         TexturePacker.process(settings,
-                RAW_ASSETS_PATH+"/sokoban",
-                ASSETS_PATH + "/puzzles",
-                "sokoban"
+                RAW_ASSETS_PATH+"/ui_skin/ui-icons-buttons-set-silver",
+                ASSETS_PATH + "/ui/silver-btns",
+                "btns"
         );
 
 //        //for experiment

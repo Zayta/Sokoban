@@ -68,6 +68,7 @@ public class LoadingScreen extends ScreenAdapter {
         assetManager.load(AssetDescriptors.FONT);
         assetManager.load(AssetDescriptors.LAB);
 
+        assetManager.load(AssetDescriptors.UI_BTNS);
         assetManager.load(AssetDescriptors.SOKOBAN);
 //        assetManager.load(AssetDescriptors.CONQUEST);
 //        assetManager.load(AssetDescriptors.MENU_CLIP);

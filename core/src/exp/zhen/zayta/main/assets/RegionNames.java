@@ -27,6 +27,36 @@ public class RegionNames {
     public static final String SNOW = "background/snow";
 
 
+    //==UI btns==//
+    public static final String BTN_CART = "btn-cart";
+    public static final String BTN_CHECK = "btn-check";
+    public static final String BTN_CONSOLE = "btn-console";
+    public static final String BTN_DELETE = "btn-delete";
+    public static final String BTN_DOWN = "btn-down";
+    public static final String BTN_DOWNLOAD = "btn-download";
+    public static final String BTN_GRID = "btn-grid";
+    public static final String BTN_HOME = "btn-home";
+    public static final String BTN_INFO = "btn-info";
+    public static final String BTN_LEFT = "btn-left";
+    public static final String BTN_LIST = "btn-list";
+    public static final String BTN_MINUS = "btn-minus";
+    public static final String BTN_MULTIPLAYER = "btn-multiplayer";
+    public static final String BTN_MUSIC = "btn-music";
+    public static final String BTN_PAUSE = "btn-pause";
+    public static final String BTN_PLAY = "btn-play";
+    public static final String BTN_PLUS = "btn-plus";
+    public static final String BTN_QUESTION = "btn-question";
+    public static final String BTN_RANK = "btn-rank";
+    public static final String BTN_REFRESH = "btn-refresh";
+    public static final String BTN_RIGHT = "btn-right";
+    public static final String BTN_SETTINGS = "btn-settings";
+    public static final String BTN_SHARE = "btn-share";
+    public static final String BTN_STOP = "btn-stop";
+    public static final String BTN_TROPHY = "btn-trophy";
+    public static final String BTN_UNDO = "btn-undo";
+    public static final String BTN_UP = "btn-up";
+    public static final String BTN_X = "btn-x";
+
 
 
 

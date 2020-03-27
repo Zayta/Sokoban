@@ -210,6 +210,9 @@ public class PlayController implements Updateable {
 
 
     }
+    public void restart(){
+        initLvl(this.map);
+    }
     
 
     /*game info*/

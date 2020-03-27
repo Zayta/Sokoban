@@ -103,6 +103,7 @@ class MainScreen extends ScreenBase {
 
     private Table buttonTable(){
         Skin uiskin = assetManager.get(AssetDescriptors.UI_SKIN);
+
         // play button
         TextButton playButton = new TextButton("PLAY", uiskin);
         playButton.addListener(new ChangeListener() {

@@ -1,0 +1,209 @@
+
+btns.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+btn-cart
+  rotate: false
+  xy: 132, 200
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-check
+  rotate: false
+  xy: 197, 266
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-console
+  rotate: false
+  xy: 2, 332
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-delete
+  rotate: false
+  xy: 2, 266
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-down
+  rotate: false
+  xy: 262, 332
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-download
+  rotate: false
+  xy: 67, 332
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-grid
+  rotate: false
+  xy: 2, 200
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-home
+  rotate: false
+  xy: 67, 266
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-info
+  rotate: false
+  xy: 2, 2
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-left
+  rotate: false
+  xy: 67, 68
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-list
+  rotate: false
+  xy: 132, 134
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-minus
+  rotate: false
+  xy: 132, 332
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-multiplayer
+  rotate: false
+  xy: 2, 134
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-music
+  rotate: false
+  xy: 196, 200
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-pause
+  rotate: false
+  xy: 261, 266
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-play
+  rotate: false
+  xy: 326, 332
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-plus
+  rotate: false
+  xy: 67, 200
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-question
+  rotate: false
+  xy: 132, 266
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-rank
+  rotate: false
+  xy: 66, 2
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-refresh
+  rotate: false
+  xy: 197, 332
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-right
+  rotate: false
+  xy: 131, 68
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-settings
+  rotate: false
+  xy: 196, 134
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-share
+  rotate: false
+  xy: 2, 68
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-stop
+  rotate: false
+  xy: 260, 200
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-trophy
+  rotate: false
+  xy: 67, 134
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+btn-undo
+  rotate: false
+  xy: 325, 266
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-up
+  rotate: false
+  xy: 390, 332
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+btn-x
+  rotate: false
+  xy: 130, 2
+  size: 62, 64
+  orig: 62, 64
+  offset: 0, 0
+  index: -1
+ui-icons-buttons-set-silver
+  rotate: false
+  xy: 2, 398
+  size: 960, 560
+  orig: 960, 560
+  offset: 0, 0
+  index: -1

@@ -1,5 +1,7 @@
 package exp.zhen.zayta.main;
 
+import com.badlogic.gdx.graphics.Color;
+
 public class GameConfig {
     public static final float WIDTH = 1024f; // pixels
     public static final float HEIGHT = 720f; // pixels
@@ -19,8 +21,11 @@ public class GameConfig {
 
     public static final float SCALE = 1f*2f/(TILE_SIZE);
 
+    //hud
     public static final float HUD_WIDTH = WIDTH; // world units
     public static final float HUD_HEIGHT = HEIGHT; // world units
+    public static final float JOYSTICK_RADIUS = 20;
+    public static final Color DARK_TINT = new Color(0.7f,0.7f,0.7f,0.9f);
 
 
 }
