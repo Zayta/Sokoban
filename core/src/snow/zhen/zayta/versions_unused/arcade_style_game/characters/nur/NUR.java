@@ -16,7 +16,7 @@ public class NUR {
     public NUR(TextureAtlas labAtlas){
         this.labAtlas = labAtlas;
         nighters = new KeyListMap<snow.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead, Stats>();
-        initNighters();
+//        initNighters();
     }
     
     private void initNighters(){

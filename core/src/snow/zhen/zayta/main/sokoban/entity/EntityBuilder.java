@@ -6,33 +6,33 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.Hashtable;
 
 import snow.zhen.zayta.main.assets.RegionNames;
-import snow.zhen.zayta.main.sokoban.entity.units.Goal;
-import snow.zhen.zayta.util.BiMap;
 import snow.zhen.zayta.main.sokoban.entity.units.Crate;
 import snow.zhen.zayta.main.sokoban.entity.units.Nighter;
 import snow.zhen.zayta.main.sokoban.entity.units.Wall;
-
+import snow.zhen.zayta.main.sokoban.entity.units.Goal;
+import snow.zhen.zayta.util.BiMap;
+import snow.zhen.zayta.main.sokoban.entity.CharacterName;
 public class EntityBuilder {
     private TextureAtlas sokobanAtlas;
     public EntityBuilder(TextureAtlas sokobanAtlas){
         this.sokobanAtlas = sokobanAtlas;
 
-        characters = new BiMap<snow.zhen.zayta.main.sokoban.entity.CharacterName, snow.zhen.zayta.main.sokoban.entity.units.Nighter>();
-        characters.put(snow.zhen.zayta.main.sokoban.entity.CharacterName.TENYU, new snow.zhen.zayta.main.sokoban.entity.units.Nighter
-                            (sokobanAtlas.findRegion(RegionNames.TENYU)));
-        characters.put(snow.zhen.zayta.main.sokoban.entity.CharacterName.LETRA, new snow.zhen.zayta.main.sokoban.entity.units.Nighter
-                (sokobanAtlas.findRegion(RegionNames.LETRA)));
-        characters.put(snow.zhen.zayta.main.sokoban.entity.CharacterName.LORALE, new snow.zhen.zayta.main.sokoban.entity.units.Nighter
-                (sokobanAtlas.findRegion(RegionNames.LORALE)));
-        characters.put(snow.zhen.zayta.main.sokoban.entity.CharacterName.TARIA, new snow.zhen.zayta.main.sokoban.entity.units.Nighter
-                (sokobanAtlas.findRegion(RegionNames.TARIA)));
-        characters.put(snow.zhen.zayta.main.sokoban.entity.CharacterName.XIF, new snow.zhen.zayta.main.sokoban.entity.units.Nighter
-                (sokobanAtlas.findRegion(RegionNames.XIF)));
+        characters = new BiMap<CharacterName, Nighter>();
+//        characters.put(CharacterName.TENYU, new Nighter
+//                            (sokobanAtlas.findRegions(RegionNames.TENYU)));
+//        characters.put(CharacterName.LETRA, new Nighter
+//                (sokobanAtlas.findRegions(RegionNames.LETRA)));
+        characters.put(CharacterName.LORALE, new Nighter
+                (sokobanAtlas.findRegions(RegionNames.LORALE)));
+//        characters.put(CharacterName.TARIA, new Nighter
+//                (sokobanAtlas.findRegions(RegionNames.TARIA)));
+//        characters.put(CharacterName.XIF, new Nighter
+//                (sokobanAtlas.findRegions(RegionNames.XIF)));
 
     }
-    public BiMap<snow.zhen.zayta.main.sokoban.entity.CharacterName, snow.zhen.zayta.main.sokoban.entity.units.Nighter> characters;
+    public BiMap<CharacterName, Nighter> characters;
 
-    public snow.zhen.zayta.main.sokoban.entity.units.Nighter getCharacter(CharacterName characterName, float x, float y){
+    public Nighter getCharacter(CharacterName characterName, float x, float y){
         Nighter nighter = characters.get(characterName);
         nighter.initPos(x,y);
         return nighter;
@@ -44,23 +44,18 @@ public class EntityBuilder {
         return goal;
     }
 
-    public snow.zhen.zayta.main.sokoban.entity.units.Wall buildWall(float x, float y, int lvl){
-        snow.zhen.zayta.main.sokoban.entity.units.Wall wall = new Wall(sokobanAtlas.findRegion(RegionNames.BRICK_STONE_CRATE),x,y);
+    public Wall buildWall(float x, float y, int lvl){
+        Wall wall = new Wall(sokobanAtlas.findRegion(RegionNames.BRICK_STONE_CRATE),x,y);
         if(lvl<10){
-            wall.setTextureRegion(sokobanAtlas.findRegion(RegionNames.BRICK_STONE_CRATE));
+            wall.setTextureRegion(sokobanAtlas.findRegion(RegionNames.FUTURE_INDUSTRY));
         }
         return wall;
     }
 
 
-    public snow.zhen.zayta.main.sokoban.entity.units.Crate buildCrate(float x, float y, snow.zhen.zayta.main.sokoban.entity.units.Crate.State state, int lvl){
-        Hashtable<snow.zhen.zayta.main.sokoban.entity.units.Crate.State,TextureRegion> crateRegions= new Hashtable<snow.zhen.zayta.main.sokoban.entity.units.Crate.State, TextureRegion>();
-        crateRegions.put(snow.zhen.zayta.main.sokoban.entity.units.Crate.State.NORMAL,sokobanAtlas.findRegion(RegionNames.CRATE_BLUE_NORMAL));
-        crateRegions.put(snow.zhen.zayta.main.sokoban.entity.units.Crate.State.IN_GOAL,sokobanAtlas.findRegion(RegionNames.CRATE_BLUE_SOLVED));
-        crateRegions.put(snow.zhen.zayta.main.sokoban.entity.units.Crate.State.IN_HOLE,sokobanAtlas.findRegion(RegionNames.CRATE_BLUE_HOLE));
-        crateRegions.put(snow.zhen.zayta.main.sokoban.entity.units.Crate.State.IMMOVABLE,sokobanAtlas.findRegion(RegionNames.CRATE_BLUE_BLOCK));
+    public Crate buildCrate(float x, float y, Crate.State state, int lvl){
 
-        snow.zhen.zayta.main.sokoban.entity.units.Crate crate = new Crate(crateRegions,state,x,y);
+        Crate crate = new Crate(sokobanAtlas.findRegions(RegionNames.CRATE_LBLUE),state,x,y);
 
         return crate;
     }

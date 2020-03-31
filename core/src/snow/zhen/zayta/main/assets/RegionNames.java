@@ -5,11 +5,11 @@ public class RegionNames {
     public static final String PANEL = "window";
 
     //Sokoban
-    public static final String CRATE_BLUE_BLOCK = "crate_blue/block";
-    public static final String CRATE_BLUE_FLAT = "crate_blue/flat";
-    public static final String CRATE_BLUE_HOLE = "crate_blue/hole";
-    public static final String CRATE_BLUE_NORMAL = "crate_blue/normal";
-    public static final String CRATE_BLUE_SOLVED = "crate_blue/solved";
+    public static final String CRATE_SILVER_PURPLE = "crates/silver_purple/crate_silver_purple";
+    public static final String CRATE_LBLUE = "crates/lt_blue/crate_ltblue";
+    public static final String CRATE_BLUE = "crates/blue/crate_blue";
+    public static final String CRATE_YELLOW_BLACK = "crates/yellow_black/crate_yellow";
+
 
     public static final String BRICK_RED_CRATE = "crate_brick/red_stone_brick_crate";
     public static final String BRICK_STONE_CRATE = "crate_brick/crate_stone_brick";
@@ -24,8 +24,19 @@ public class RegionNames {
 
     public static final String[] OVERLAY = {"overlay/one","overlay/two","overlay/three","overlay/four"};
 
-    public static final String SNOW = "background/snow";
+    //backgrounds
 
+    public static final String FUTURE_INDUSTRY = "background/future_industrial/Futuristic Industrial Tileset";
+    public static final String BLUE_BIT_MATRIX = "background/blue-bit-1";
+    public static final String YELLOW = "background/yellow";
+    public static final String SNOW = "background/snow";
+    public static final String COMP_SCREEN = "background/Windows_Screen";
+    public static final String COMP_PROCESSOR = "background/processor";
+    public static final String DAY_SKY = "background/parallaxes/day sky";
+    public static final String NIGHT_SKY = "background/parallaxes/night";
+    public static final String SUNRISE = "background/parallaxes/sunrise parallax";
+
+    public static final String VR_ROOM = "background/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv";
 
     //==UI btns==//
     public static final String BTN_CART = "btn-cart";
@@ -70,8 +81,6 @@ public class RegionNames {
     public static final String MAPS_MEMLAB2 = "game/experiment/maps/memLab/memLab2.tmx";
     public static final String MAPS_MEMLABBIG = "game/experiment/maps/memLab/memLabBig.tmx";
 
-    //backgrounds
-
     //misc
     public static final String BEACH ="scene_backgrounds/Ardentryst-Intro_Kiripan_Beach_Fade";
     public static final String DARK_PATH = "scene_backgrounds/darkpath";
@@ -83,7 +92,8 @@ public class RegionNames {
     public static final String SKY_SUNRISE = "scene_backgrounds/sky/sunrise_parallax";
 
     //characters
-    public static final String LORALE = "characters/lorale";
+    public static final String LORALE = "characters/lorale/lorale";
+
     public static final String LETRA ="characters/letra";
 
     public static final String TENYU ="characters/tenyu";

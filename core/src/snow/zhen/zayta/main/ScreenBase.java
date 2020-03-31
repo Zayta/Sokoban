@@ -28,7 +28,7 @@ public abstract class ScreenBase extends ScreenAdapter {
 
     @Override
     public void show() {
-        viewport = new FitViewport(snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager.HUD_WIDTH, SizeManager.HUD_HEIGHT);
+        viewport = new FitViewport(GameConfig.WIDTH,GameConfig.HEIGHT);
         stage = new Stage(viewport, game.getBatch());
 
         Gdx.input.setInputProcessor(stage);

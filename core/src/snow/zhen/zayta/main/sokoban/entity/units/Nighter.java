@@ -1,7 +1,11 @@
 package snow.zhen.zayta.main.sokoban.entity.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
+
+import javax.xml.soap.Text;
 
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.sokoban.entity.EntityType;
@@ -17,13 +21,14 @@ public class Nighter extends MoveableEntity implements Updateable {
     //animation
     private TextureRegion textureRegion;
     // Constant rows and columns of the sprite sheet
-    private int FRAME_COLS = 4, FRAME_ROWS = 4; private float animationStateTime = 0;
+    private int FRAME_COLS = 3, FRAME_ROWS = 4;
+    private float animationStateTime = 0;
 //    private Animation<TextureRegion> currentAnimation; private float currentTime=0;
     private Animation<TextureRegion> [] animations = new Animation[FRAME_ROWS];
     private Animation <TextureRegion> leftAnimation,rightAnimation,upAnimation,downAnimation;
 
-    public Nighter(TextureRegion textureRegion) {
-        makeAnimation(textureRegion);
+    public Nighter(Array<TextureAtlas.AtlasRegion> textureRegions) {
+        makeAnimation(textureRegions);
     }
     public void initPos(float x, float y){
         setPosition(x,y);
@@ -65,12 +70,14 @@ public class Nighter extends MoveableEntity implements Updateable {
         return EntityType.CHARACTER;
     }
 
-    private void makeAnimation(TextureRegion srcPng){
-        TextureRegion [][] tmp = srcPng.split(srcPng.getRegionWidth()/FRAME_COLS,srcPng.getRegionHeight()/FRAME_ROWS);
+    private void makeAnimation(Array<TextureAtlas.AtlasRegion> textureRegions){
 
         for(int i = 0; i<animations.length; i++)
         {
-            animations[i]= new Animation<TextureRegion>(0.1f,tmp[i]);
+            int index = i*FRAME_COLS;
+            animations[i]= new Animation<TextureRegion>(0.01f,new TextureRegion[]{
+                    textureRegions.get(index),textureRegions.get(index+1),textureRegions.get(index+2)
+            });
         }
         //this is based on sithjester's spritesheet.
         upAnimation = animations[3];

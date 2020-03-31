@@ -17,7 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
@@ -33,7 +36,7 @@ public class Hud extends Stage{
     private Table table;
     private TextureAtlas btnsAtlas;
     public Hud(final PlayController playController, SpriteBatch spriteBatch, AssetManager assetManager) {
-        super(new FitViewport(GameConfig.HUD_WIDTH,GameConfig.HUD_HEIGHT), spriteBatch);
+        super(new ExtendViewport(GameConfig.HUD_WIDTH,GameConfig.HUD_HEIGHT), spriteBatch);
         this.btnsAtlas = assetManager.get(AssetDescriptors.UI_BTNS);
         this.playController = playController;
 
@@ -53,7 +56,8 @@ public class Hud extends Stage{
     }
 
     public void resize(int width, int height) {
-        getViewport().update(width, height);
+        getViewport().setWorldSize(GameConfig.HUD_WIDTH,GameConfig.HUD_HEIGHT);
+        getViewport().update(width, height,true);
         table.invalidateHierarchy();
     }
 
@@ -104,7 +108,6 @@ public class Hud extends Stage{
         final ImageTextButton infoButton = new ImageTextButton("",skin);
         infoButton.getStyle().imageUp=textureRegionDrawable;
         infoButton.getStyle().imageDown=textureRegionDrawable.tint(GameConfig.DARK_TINT);
-
 //        TextButton restartButton = new TextButton("Restart", skin);
         infoButton.addListener(new ChangeListener() {
             boolean toggledInfo =false;
@@ -128,17 +131,22 @@ public class Hud extends Stage{
         Table verticalCtrls = new Table(skin);
         Table horizontalCtrls = new Table(skin);
 
-        horizontalCtrls.add(directionBtn(Direction.left)).padRight(GameConfig.PADDING);
-        horizontalCtrls.add(directionBtn(Direction.right));
 
-        verticalCtrls.add(directionBtn(Direction.up)).row();
-        verticalCtrls.add(directionBtn(Direction.down)).padTop(GameConfig.PADDING);
+        verticalCtrls.add(directionBtn(Direction.up)).padBottom(GameConfig.PADDING).row();
+        verticalCtrls.add(directionBtn(Direction.down)).pad(GameConfig.PADDING);
+
+        horizontalCtrls.add(directionBtn(Direction.left)).padRight(GameConfig.PADDING);
+        horizontalCtrls.add(directionBtn(Direction.right)).padLeft(GameConfig.PADDING);
+
 
         btnControls.add(horizontalCtrls).expandX().left();
         btnControls.add(verticalCtrls).expandX().right();
 
         return btnControls;
     }
+
+
+
     private Button directionBtn(final Direction direction){
         String regionName="";
         switch (direction){

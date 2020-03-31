@@ -25,6 +25,7 @@ import snow.zhen.zayta.main.sokoban.map.Map;
 
 import static snow.zhen.zayta.main.GameConfig.ENTITY_SIZE;
 import static snow.zhen.zayta.main.GameConfig.VIRTUAL_HEIGHT;
+import static snow.zhen.zayta.main.GameConfig.VIRTUAL_WIDTH;
 
 public class PlayRenderer {
 
@@ -43,7 +44,9 @@ public class PlayRenderer {
     private final SpriteBatch batch;
 
     private final GlyphLayout layout = new GlyphLayout();
-    private TextureRegion backgroundRegion;
+//    private TextureRegion backgroundRegion;
+    private TextureRegion floorRegion;
+//    private TextureRegion borderRegion;
 
     //game-specific
     //    private final PlayController controller;
@@ -70,7 +73,10 @@ public class PlayRenderer {
 
         TextureAtlas gamePlayAtlas = assetManager.get(AssetDescriptors.SOKOBAN);
 
-        backgroundRegion = gamePlayAtlas.findRegion(RegionNames.SNOW);
+//        backgroundRegion = gamePlayAtlas.findRegion(RegionNames.SNOW);
+        floorRegion = gamePlayAtlas.findRegions(RegionNames.VR_ROOM).get(0);
+
+//        borderRegion = gamePlayAtlas.findRegion(RegionNames.YELLOW);
 
         debugCameraController = new DebugCameraController();
         debugCameraController.setStartPosition(GameConfig.VIRTUAL_CENTER_X, GameConfig.VIRTUAL_CENTER_Y);
@@ -98,12 +104,20 @@ public class PlayRenderer {
     }
 
     private void drawGamePlay() {
-        // background
-        batch.draw(backgroundRegion,
-                0, 0,
-                GameConfig.VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+        //background
+//        batch.draw(backgroundRegion,0,0,GameConfig.VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+        //floor
+//        for(int j = 0; j<VIRTUAL_HEIGHT;j++){
+//            batch.draw(borderRegion,0,j,ENTITY_SIZE,ENTITY_SIZE);
+//            batch.draw(borderRegion,VIRTUAL_WIDTH-1,j,ENTITY_SIZE,ENTITY_SIZE);
+//        }
+        for(int i = 0; i<VIRTUAL_WIDTH;i++){
+            for(int j = 0; j<VIRTUAL_HEIGHT;j++){
+                batch.draw(floorRegion,i,j,ENTITY_SIZE,ENTITY_SIZE);
+            }
+        }
 
-        ArrayList<snow.zhen.zayta.main.sokoban.entity.EntityBase> entityBases = map.getEntities();
+        ArrayList<EntityBase> entityBases = map.getEntities();
         for(EntityBase entityBase: entityBases)
         {
             batch.draw(entityBase.getTextureRegion(),entityBase.getX(),entityBase.getY(), ENTITY_SIZE,ENTITY_SIZE);
@@ -129,6 +143,7 @@ public class PlayRenderer {
 //    }
 
     public void resize(int width, int height) {
+        viewport.setWorldSize(VIRTUAL_WIDTH,VIRTUAL_HEIGHT);
         viewport.update(width, height, true);
         hud.resize(width,height);
         ViewportUtils.debugPixelsPerUnit(viewport);

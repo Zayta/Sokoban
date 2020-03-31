@@ -20,7 +20,7 @@ import static snow.zhen.zayta.main.GameConfig.VIRTUAL_WIDTH;
 public class Map {
 
     //temporarily only Tenyu is available
-    private CharacterName characterName = CharacterName.TENYU;
+    private CharacterName characterName = CharacterName.LORALE;
 
     private snow.zhen.zayta.main.sokoban.map.Levels levels;
     private int curLvl =0;

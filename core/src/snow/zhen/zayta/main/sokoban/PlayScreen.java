@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import snow.zhen.zayta.main.Game;
+import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.UserData;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.sokoban.input.Hud;
@@ -65,6 +66,7 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
+        GameConfig.configScreenOrientation(width,height);
         renderer.resize(width, height);
     }
 
