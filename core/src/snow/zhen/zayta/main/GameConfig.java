@@ -23,6 +23,8 @@ public class GameConfig {
     public static int VIRTUAL_HEIGHT=VIRTUAL_SHORT;
 
     public static final int ENTITY_SIZE = 1;
+    public static final float CHARACTER_RENDER_WIDTH = ENTITY_SIZE*0.7f;
+    public static final float CHARACTER_RENDER_OFFSET = (ENTITY_SIZE-CHARACTER_RENDER_WIDTH)/2;
     public static float VIRTUAL_CENTER_X = VIRTUAL_WIDTH/2f;
     public static float VIRTUAL_CENTER_Y = VIRTUAL_HEIGHT/2f;
 

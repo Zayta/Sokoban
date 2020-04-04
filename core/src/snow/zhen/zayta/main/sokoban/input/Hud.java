@@ -48,21 +48,36 @@ public class Hud extends Stage{
         table = new Table(skin);
         table.setFillParent(true);
         table.setDebug(true);
+        this.addActor(table);
 //        table.setBackground(RegionNames.PANEL);
 
-        table.add(gameStateBtns()).top().fillX().padTop(GameConfig.PADDING).row();
-        table.add(directionBtnControls()).fillX().expand().bottom().left();
-        this.addActor(table);
+        createHud(getViewport().getScreenWidth(),getViewport().getScreenHeight());
+    }
+    private void createHud(int width, int height){
+        if(width>height) {//landscape
+            table.add(horizontalHud()).expand().fill();
+        }
+        else{//portrait
+
+            table.add(verticalHud()).expand().fill();
+        }
     }
 
     public void resize(int width, int height) {
         getViewport().setWorldSize(GameConfig.HUD_WIDTH,GameConfig.HUD_HEIGHT);
         getViewport().update(width, height,true);
+        table.clearChildren();
         table.invalidateHierarchy();
+        createHud(width,height);
     }
-
-    //==Game state buttons for undo and restart lvl==//
-    private Table gameStateBtns(){
+    /*Horizontal controls*/
+    private Table horizontalHud(){
+        Table table = new Table(skin);
+        table.add(gameStateBtnsLandscape()).top().fillX().padTop(GameConfig.PADDING).row();
+        table.add(directionBtnControlsLandscape()).fillX().expand().bottom().left();
+        return table;
+    }
+    private Table gameStateBtnsLandscape(){
         Table table = new Table();
         table.add(infoBtn()).expandX().left();
         Table resetMvementTable = new Table();
@@ -73,6 +88,51 @@ public class Hud extends Stage{
 
         return table;
     }
+    private Table directionBtnControlsLandscape(){
+        Table btnControls = new Table(skin);
+        Table verticalCtrls = new Table(skin);
+        Table horizontalCtrls = new Table(skin);
+
+
+        verticalCtrls.add(directionBtn(Direction.up)).padBottom(GameConfig.PADDING).row();
+        verticalCtrls.add(directionBtn(Direction.down)).pad(GameConfig.PADDING);
+
+        horizontalCtrls.add(directionBtn(Direction.left)).padRight(GameConfig.PADDING);
+        horizontalCtrls.add(directionBtn(Direction.right)).padLeft(GameConfig.PADDING);
+
+
+        btnControls.add(horizontalCtrls).expandX().left();
+        btnControls.add(verticalCtrls).expandX().right();
+
+        return btnControls;
+    }
+
+    /*Vertical controls*/
+    public Table verticalHud(){
+        Table table = new Table(skin);
+        table.add(gameStateBtnsVertical()).expand().bottom();
+        table.add(directionBtnControlsVertical()).expand().bottom();
+        return table;
+    }
+    private Table gameStateBtnsVertical(){
+        Table table = new Table();
+        Table resetMvementTable = new Table();
+        resetMvementTable.add(restart()).left().pad(GameConfig.PADDING);
+        resetMvementTable.add(undoBtn()).right().pad(GameConfig.PADDING);
+        table.add(resetMvementTable).expandX().right();
+        return table;
+    }
+    private Table directionBtnControlsVertical(){
+        Table controls = new Table(skin);
+        int btnSize = 128;
+        controls.add(directionBtn(Direction.up)).padLeft(btnSize).size(btnSize).row();
+        controls.add(directionBtn(Direction.left)).padRight(btnSize).size(btnSize);
+        controls.add(directionBtn(Direction.right)).size(btnSize).row();
+        controls.add(directionBtn(Direction.down)).padLeft(btnSize).size(btnSize);
+        return controls;
+    }
+
+    //==Game state buttons for undo and restart lvl==//
     private Button undoBtn(){
         TextureRegionDrawable textureRegionDrawable = new TextureRegionDrawable(btnsAtlas.findRegion(RegionNames.BTN_UNDO));
         ImageButton undoButton = new ImageButton(textureRegionDrawable);
@@ -126,26 +186,6 @@ public class Hud extends Stage{
     }
 
     //==Btns for controlling the playable character==//
-    private Table directionBtnControls(){
-        Table btnControls = new Table(skin);
-        Table verticalCtrls = new Table(skin);
-        Table horizontalCtrls = new Table(skin);
-
-
-        verticalCtrls.add(directionBtn(Direction.up)).padBottom(GameConfig.PADDING).row();
-        verticalCtrls.add(directionBtn(Direction.down)).pad(GameConfig.PADDING);
-
-        horizontalCtrls.add(directionBtn(Direction.left)).padRight(GameConfig.PADDING);
-        horizontalCtrls.add(directionBtn(Direction.right)).padLeft(GameConfig.PADDING);
-
-
-        btnControls.add(horizontalCtrls).expandX().left();
-        btnControls.add(verticalCtrls).expandX().right();
-
-        return btnControls;
-    }
-
-
 
     private Button directionBtn(final Direction direction){
         String regionName="";

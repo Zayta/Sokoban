@@ -23,8 +23,8 @@ public class PlayController implements Updateable {
     private PositionTracker positionTracker;
     private MovesPool movesPool;
 
-    //for current lvl
-    private int curLvl=0;
+    //for lvl
+    private int curLvl;
     private int placedCrates=0;
     private Array<Move> moveHistory;
 //    private boolean isComplete = false;
@@ -36,17 +36,19 @@ public class PlayController implements Updateable {
         moveHistory = new Array<Move>();
         movesPool = new MovesPool();
     }
-    public void initLvl(Map map){
+    public void initLvl(int curLvl){
         moveHistory.clear();
+        this.curLvl = curLvl;
         map.init(curLvl);//need to init map before getting map width
         positionTracker.init(map.getMapWidth());
+        positionTracker.updateGlobalTracker(map.getEntities());
+
+        //see how many crates area alrdy at goal initially
         placedCrates=0;
-//        isComplete = false;
-//        positionTracker.updateGoalTracker(map.getGoals());
-//        positionTracker.updateWallTracker();
-    }
-    public void setLvl(int lvl){
-        curLvl = lvl;
+        for(Crate crate: map.getCrates()){
+            if(crate.getState()== Crate.State.IN_GOAL)
+                placedCrates++;
+        }
     }
 
     @Override
@@ -134,6 +136,7 @@ public class PlayController implements Updateable {
         }
         //moves all entities in the direction. returns true if move changed entity positions
         public boolean apply(){
+
             for(Crate c: crates) {
                 moveCrate(c,direction);
             }
@@ -151,17 +154,24 @@ public class PlayController implements Updateable {
             if(crate.getState()== Crate.State.IN_GOAL){//must be before crate setting newstate
                 placedCrates--;
             }
-            if(crateCollider==null||crateCollider.is(EntityType.CHARACTER)) //if crate no collide, move crate, then move nighter
+            if(crateCollider==null) //if crate no collide, move crate, then move nighter
             {
                 crate.move(direction);
                 crate.setState(Crate.State.NORMAL);
 
             }
-            else if(crateCollider.is(EntityType.GOAL)){
-                crate.move(direction);
-                crate.setState(Crate.State.IN_GOAL);
+            else {
 
-                placedCrates++;
+                if (positionTracker.isGoalPos(crateCollider.getX(), crateCollider.getY())) {
+                    crate.move(direction);
+                    crate.setState(Crate.State.IN_GOAL);
+                    System.out.println("DEBUG: Crates placed: " + placedCrates + " out of " + map.getNumGoals());
+                    placedCrates++;
+                }
+                else if(crateCollider.is(EntityType.CHARACTER)){
+                    crate.move(direction);
+                    crate.setState(Crate.State.NORMAL);
+                }
             }
         }
 
@@ -208,7 +218,7 @@ public class PlayController implements Updateable {
 
     }
     public void restart(){
-        initLvl(this.map);
+        initLvl(curLvl);
     }
     
 

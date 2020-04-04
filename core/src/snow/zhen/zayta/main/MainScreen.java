@@ -155,6 +155,7 @@ class MainScreen extends ScreenBase {
 
     private void play() {
 //        puzzle.setCurrentLvl(chosenLvl);
+        playScreen.setLvl(game.getUserData().getNumScenesUnlocked());
         game.setScreen(playScreen);
     }
 

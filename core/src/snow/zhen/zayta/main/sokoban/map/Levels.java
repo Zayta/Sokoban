@@ -10,7 +10,7 @@ public class Levels {
 
     private String [] levels;
     public Levels(){
-        loadFile(Files.puzzles[0]);
+        loadFile(Files.puzzles[1]);
     }
 
     class Level{

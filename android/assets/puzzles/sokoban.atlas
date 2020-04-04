@@ -81,31 +81,45 @@ background/parallaxes/sunrise parallax
   index: -1
 
 sokoban4.png
-size: 64,32
+size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-background/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv
+brick/brick_lavender
   rotate: false
   xy: 2, 2
-  size: 16, 16
-  orig: 16, 16
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: 133
-background/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv
+  index: -1
+brick/brick_metal_lavendar
   rotate: false
-  xy: 20, 2
-  size: 16, 16
-  orig: 16, 16
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: 147
-background/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv
+  index: -1
+brick/brick_metal_yellow
   rotate: false
-  xy: 38, 2
-  size: 16, 16
-  orig: 16, 16
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: 175
+  index: -1
+brick/brick_stone
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+brick/brick_yellow
+  rotate: false
+  xy: 266, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 
 sokoban5.png
 size: 1024,256
@@ -215,21 +229,21 @@ characters/lorale/lorale
   size: 64, 104
   orig: 64, 104
   offset: 0, 0
-  index: 10
+  index: 2
 characters/lorale/lorale
   rotate: false
-  xy: 596, 5
-  size: 64, 103
-  orig: 64, 103
+  xy: 596, 4
+  size: 64, 104
+  orig: 64, 104
   offset: 0, 0
-  index: 0
+  index: 10
 characters/lorale/lorale
   rotate: false
   xy: 662, 5
   size: 64, 103
   orig: 64, 103
   offset: 0, 0
-  index: 2
+  index: 0
 characters/lorale/lorale
   rotate: false
   xy: 728, 5
@@ -326,79 +340,51 @@ crates/yellow_black/crate_yellow
   index: 0
 
 sokoban11.png
-size: 256,128
+size: 64,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-crate_brick/crate_brown_brick
+floor/vr_pattern1/vr_pattern1
   rotate: false
   xy: 2, 2
-  size: 64, 64
-  orig: 64, 64
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
-  index: -1
-crate_brick/crate_stone_brick
+  index: 0
+floor/vr_pattern1/vr_pattern1
   rotate: false
-  xy: 68, 2
-  size: 64, 64
-  orig: 64, 64
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
-  index: -1
-crate_brick/red_stone_brick_crate
+  index: 1
+floor/vr_pattern1/vr_pattern1
   rotate: false
-  xy: 134, 2
-  size: 64, 64
-  orig: 64, 64
+  xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
-  index: -1
+  index: 2
 
 sokoban12.png
-size: 512,128
+size: 64,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-floor/floor_dirt
+floor/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv
   rotate: false
   xy: 2, 2
-  size: 64, 64
-  orig: 64, 64
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
-  index: -1
-floor/floor_dirt_overlay
+  index: 147
+floor/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv
   rotate: false
-  xy: 68, 2
-  size: 64, 64
-  orig: 64, 64
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
-  index: -1
-floor/floor_grass
-  rotate: false
-  xy: 134, 2
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-floor/floor_grass_overlay
-  rotate: false
-  xy: 200, 2
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-floor/floor_stone
-  rotate: false
-  xy: 266, 2
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-floor/overlay_stone
-  rotate: false
-  xy: 332, 2
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
+  index: 175
 
 sokoban13.png
 size: 512,128

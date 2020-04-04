@@ -38,8 +38,8 @@ public class Game extends com.badlogic.gdx.Game {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
 //        login();
-        userData = new snow.zhen.zayta.main.UserData();
-        mainScreen = new snow.zhen.zayta.main.MainScreen(this);//need to create a main for loading screen to go to
+        userData = UserData.getInstance();
+        mainScreen = new MainScreen(this);//need to create a main for loading screen to go to
 
         snow.zhen.zayta.main.LoadingScreen loadingScreen = new LoadingScreen(this);
         setScreen(loadingScreen);//goes to main
@@ -76,33 +76,6 @@ public class Game extends com.badlogic.gdx.Game {
         return userData;
     }
 
-
-
-    //    private void login(){
-//        HttpRequestBuilder builder = new HttpRequestBuilder();
-//        Net.HttpRequest request = builder.newRequest().method(Net.HttpMethods.GET).url("http://yourdomain.com/script.php").build();
-//        request.setHeader("Content-Type", "application/x-www-form-urlencoded");
-//
-//        final long start = System.nanoTime(); //for checking the time until response
-//        Gdx.net.sendHttpRequest(request, new Net.HttpResponseListener() {
-//            @Override
-//            public void handleHttpResponse(Net.HttpResponse httpResponse) {
-//                Gdx.app.log("WebRequest", "HTTP Response code: " + httpResponse.getStatus().getStatusCode());
-//                Gdx.app.log("WebRequest", "HTTP Response code: " + httpResponse.getResultAsString());
-//                Gdx.app.log("WebRequest", "Response time: " + ((System.nanoTime() - start) / 1000000) + "ms");
-//            }
-//
-//            @Override
-//            public void failed(Throwable t) {
-//                Gdx.app.log("WebRequest", "HTTP request failed");
-//            }
-//
-//            @Override
-//            public void cancelled() {
-//                Gdx.app.log("WebRequest", "HTTP request cancelled");
-//            }
-//        });
-//    }
 
 
     @Override

@@ -11,9 +11,9 @@ public class RegionNames {
     public static final String CRATE_YELLOW_BLACK = "crates/yellow_black/crate_yellow";
 
 
-    public static final String BRICK_RED_CRATE = "crate_brick/red_stone_brick_crate";
-    public static final String BRICK_STONE_CRATE = "crate_brick/crate_stone_brick";
-    public static final String BRICK_BROWN_CRATE = "crate_brick/crate_brown_brick";
+    public static final String BRICK_STONE_CRATE = "brick/brick_stone";
+    public static final String BRICK_YELLOW = "brick/brick_yellow";
+    public static final String BRICK_LAVENDER = "brick/brick_lavender";
 
     public static final String FLOOR_DIRT = "floor/floor_dirt";
     public static final String FLOOR_DIRT_OVERLAY = "floor/floor_dirt_overlay";
@@ -36,8 +36,7 @@ public class RegionNames {
     public static final String NIGHT_SKY = "background/parallaxes/night";
     public static final String SUNRISE = "background/parallaxes/sunrise parallax";
 
-    public static final String VR_ROOM = "background/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv";
-
+    public static final String VR_ROOM_P1 = "floor/vr_pattern1/vr_pattern1";
     //==UI btns==//
     public static final String BTN_CART = "btn-cart";
     public static final String BTN_CHECK = "btn-check";

@@ -15,11 +15,13 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
     private Preferences preferences;
 
 //    public ArrayList<Entity> Nighter = new;
-
-
-    UserData() {
-        preferences = Gdx.app.getPreferences(Game.class.getSimpleName());
-        setNumScenesUnlocked(0);
+    private static UserData userData = new UserData();
+    public static UserData getInstance(){
+        return userData;
+    }
+    private UserData() {
+        preferences = Gdx.app.getPreferences("Preference");
+        //setNumScenesUnlocked(0);
 
     }
 

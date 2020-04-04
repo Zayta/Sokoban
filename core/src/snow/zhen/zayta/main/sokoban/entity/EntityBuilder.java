@@ -47,7 +47,7 @@ public class EntityBuilder {
     public Wall buildWall(float x, float y, int lvl){
         Wall wall = new Wall(sokobanAtlas.findRegion(RegionNames.BRICK_STONE_CRATE),x,y);
         if(lvl<10){
-            wall.setTextureRegion(sokobanAtlas.findRegion(RegionNames.FUTURE_INDUSTRY));
+            wall.setTextureRegion(sokobanAtlas.findRegion(RegionNames.BRICK_YELLOW));
         }
         return wall;
     }

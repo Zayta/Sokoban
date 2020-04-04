@@ -75,9 +75,9 @@ public class Nighter extends MoveableEntity implements Updateable {
         for(int i = 0; i<animations.length; i++)
         {
             int index = i*FRAME_COLS;
-            animations[i]= new Animation<TextureRegion>(0.01f,new TextureRegion[]{
-                    textureRegions.get(index),textureRegions.get(index+1),textureRegions.get(index+2)
-            });
+            Array<TextureRegion> frames = new Array<TextureRegion>(new TextureRegion[]{
+                    textureRegions.get(index),textureRegions.get(index+1),textureRegions.get(index+2)});
+            animations[i]= new Animation<TextureRegion>(0.8f,frames, Animation.PlayMode.LOOP);
         }
         //this is based on sithjester's spritesheet.
         upAnimation = animations[3];

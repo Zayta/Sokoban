@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.assets.RegionNames;
+import snow.zhen.zayta.main.sokoban.entity.units.Crate;
+import snow.zhen.zayta.main.sokoban.entity.units.Goal;
+import snow.zhen.zayta.main.sokoban.entity.units.Nighter;
+import snow.zhen.zayta.main.sokoban.entity.units.Wall;
 import snow.zhen.zayta.main.sokoban.input.Hud;
 import snow.zhen.zayta.util.GdxUtils;
 import snow.zhen.zayta.util.ViewportUtils;
@@ -23,6 +27,8 @@ import snow.zhen.zayta.main.debug.DebugCameraController;
 import snow.zhen.zayta.main.sokoban.entity.EntityBase;
 import snow.zhen.zayta.main.sokoban.map.Map;
 
+import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_WIDTH;
+import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_OFFSET;
 import static snow.zhen.zayta.main.GameConfig.ENTITY_SIZE;
 import static snow.zhen.zayta.main.GameConfig.VIRTUAL_HEIGHT;
 import static snow.zhen.zayta.main.GameConfig.VIRTUAL_WIDTH;
@@ -74,7 +80,7 @@ public class PlayRenderer {
         TextureAtlas gamePlayAtlas = assetManager.get(AssetDescriptors.SOKOBAN);
 
 //        backgroundRegion = gamePlayAtlas.findRegion(RegionNames.SNOW);
-        floorRegion = gamePlayAtlas.findRegions(RegionNames.VR_ROOM).get(0);
+        floorRegion = gamePlayAtlas.findRegions(RegionNames.VR_ROOM_P1).get(2);
 
 //        borderRegion = gamePlayAtlas.findRegion(RegionNames.YELLOW);
 
@@ -116,13 +122,16 @@ public class PlayRenderer {
                 batch.draw(floorRegion,i,j,ENTITY_SIZE,ENTITY_SIZE);
             }
         }
+        drawEntities(map.getGoals(),ENTITY_SIZE,ENTITY_SIZE,0);
+        drawEntities(map.getCrates(),ENTITY_SIZE,ENTITY_SIZE,0);
+        drawEntities(map.getWalls(),ENTITY_SIZE,ENTITY_SIZE,0);
+        drawEntities(map.getNighters(),CHARACTER_RENDER_WIDTH,ENTITY_SIZE,CHARACTER_RENDER_OFFSET);
 
-        ArrayList<EntityBase> entityBases = map.getEntities();
-        for(EntityBase entityBase: entityBases)
-        {
-            batch.draw(entityBase.getTextureRegion(),entityBase.getX(),entityBase.getY(), ENTITY_SIZE,ENTITY_SIZE);
+    }
+    private void drawEntities(ArrayList<? extends EntityBase>entities, float width, float height, float renderOffset){
+        for(EntityBase entityBase: entities){
+            batch.draw(entityBase.getTextureRegion(),entityBase.getX()+renderOffset,entityBase.getY(),width,height);
         }
-
     }
     private void renderHud(){
         hud.getViewport().apply();

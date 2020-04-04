@@ -85,7 +85,7 @@ public class Map {
             for(int j = 0; j<mapHeight; j++){
                 char id = mapData[i+j*mapWidth];
                 float x = i+(VIRTUAL_WIDTH-mapWidth)/2;
-                float y = j+(VIRTUAL_HEIGHT-mapHeight+1)/2;
+                float y = j+(VIRTUAL_HEIGHT-mapHeight)/2;
                 addEntity(id,x,y);
             }
         }

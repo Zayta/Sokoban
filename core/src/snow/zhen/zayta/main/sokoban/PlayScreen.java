@@ -26,7 +26,7 @@ public class PlayScreen extends ScreenAdapter {
     private snow.zhen.zayta.main.sokoban.map.Map map;
     private Hud hud;
     private InputMultiplexer inputMultiplexer;
-//    private int curLvl =0;
+    private int curLvl =0;
     private final AssetManager assetManager; private Skin skin;
 
 
@@ -50,7 +50,7 @@ public class PlayScreen extends ScreenAdapter {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
-        controller.initLvl(map);
+        controller.initLvl(curLvl);
 
     }
     @Override
@@ -91,8 +91,8 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     /*For level management*/
-    public void setLevel(int lvl){
-        controller.setLvl(lvl);
+    public void setLvl(int lvl){
+        this.curLvl = lvl;
     }
 
 }
