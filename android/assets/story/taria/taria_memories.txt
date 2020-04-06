@@ -53,11 +53,4 @@ mom: You can start by doing laundry and learning how to cook.
 tr: But that's boring...
 tr_t: Mom always said I was in poor health.
 
-label mem4(school):
-cd: Taria, did you figure out the square root thing?
-tr: Yea, I'll show it to you during lunch
-cd: Thanks. By the way, why do you always take the car to school? Your house is across the street
-tr: My mom says that the sidewalk is dangerous for me to walk on...
-cd: She worries a lot.
-tr: Yea I guess.
-cd: She must have her reasons.
+

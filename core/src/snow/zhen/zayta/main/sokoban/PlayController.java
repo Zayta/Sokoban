@@ -70,6 +70,8 @@ public class PlayController implements Updateable {
         Move move = movesPool.obtain();//creates the move
         move.setDirection(direction);
         for(Nighter nighter: map.getNighters()){
+            if(direction==Direction.none)
+                continue;
             //check for collision
             EntityBase collidedEntity = getCollidedEntity(nighter, direction);
             //check if nighter can move

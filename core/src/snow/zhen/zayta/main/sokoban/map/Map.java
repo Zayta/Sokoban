@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.sokoban.entity.CharacterName;
 import snow.zhen.zayta.main.sokoban.entity.units.Crate;
 import snow.zhen.zayta.main.sokoban.entity.EntityBase;
@@ -13,8 +14,6 @@ import snow.zhen.zayta.main.sokoban.entity.units.Goal;
 import snow.zhen.zayta.main.sokoban.entity.units.Wall;
 import snow.zhen.zayta.main.sokoban.entity.units.Nighter;
 
-import static snow.zhen.zayta.main.GameConfig.VIRTUAL_HEIGHT;
-import static snow.zhen.zayta.main.GameConfig.VIRTUAL_WIDTH;
 
 
 public class Map {
@@ -84,8 +83,8 @@ public class Map {
         for(int i = 0; i < mapWidth; i++){
             for(int j = 0; j<mapHeight; j++){
                 char id = mapData[i+j*mapWidth];
-                float x = i+(VIRTUAL_WIDTH-mapWidth)/2;
-                float y = j+(VIRTUAL_HEIGHT-mapHeight)/2;
+                float x = i+(GameConfig.VIRTUAL_WIDTH-mapWidth)/2;
+                float y = j+(GameConfig.VIRTUAL_HEIGHT-mapHeight)/2;
                 addEntity(id,x,y);
             }
         }

@@ -8,8 +8,8 @@ import snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
 import snow.zhen.zayta.versions_unused.arcade_style_game.experiment.engine.movement.PositionTracker;
 
 public class GameConfig {
-    public static float WIDTH = 1024f; // pixels
-    public static float HEIGHT = 720f; // pixels
+    public static float WIDTH = Gdx.graphics.getWidth()>Gdx.graphics.getHeight()?1024f:720f; // pixels
+    public static float HEIGHT =Gdx.graphics.getWidth()>Gdx.graphics.getHeight()?720f:1024f; // pixels
     //todo might need to adjust tile size
     public static final int TILE_SIZE = 64;
 
@@ -37,7 +37,7 @@ public class GameConfig {
     public static final int BTN_SIZE = 128;
     public static final int BTN_SMALL_SIZE = 88;
 
-    public static final float JOYSTICK_RADIUS = 20;
+    public static final float JOYSTICK_RADIUS = 25;
     public static final Color DARK_TINT = new Color(0.7f,0.7f,0.7f,0.9f);
 
     public static void configScreenOrientation(int screenWidth,int screenHeight){
@@ -56,11 +56,11 @@ public class GameConfig {
         HUD_WIDTH = WIDTH; // world units
         HUD_HEIGHT = HEIGHT; // world units
 
-        VIRTUAL_WIDTH = VIRTUAL_LONG; // world units
-        VIRTUAL_HEIGHT = VIRTUAL_SHORT; // world units
+//        VIRTUAL_WIDTH = VIRTUAL_LONG; // world units
+//        VIRTUAL_HEIGHT = VIRTUAL_SHORT; // world units
 
-        VIRTUAL_CENTER_X = VIRTUAL_WIDTH / 2f; // world units
-        VIRTUAL_CENTER_Y = VIRTUAL_HEIGHT / 2f; // world units
+//        VIRTUAL_CENTER_X = VIRTUAL_WIDTH / 2f; // world units
+//        VIRTUAL_CENTER_Y = VIRTUAL_HEIGHT / 2f; // world units
 
     }
 
@@ -73,11 +73,11 @@ public class GameConfig {
         HUD_WIDTH = WIDTH; // world units
         HUD_HEIGHT = HEIGHT; // world units
 
-        VIRTUAL_HEIGHT = VIRTUAL_LONG; // world units
-        VIRTUAL_WIDTH = VIRTUAL_SHORT; // world units
-
-        VIRTUAL_CENTER_X = VIRTUAL_WIDTH / 2f; // world units
-        VIRTUAL_CENTER_Y = VIRTUAL_HEIGHT / 2f; // world units
+//        VIRTUAL_HEIGHT = VIRTUAL_LONG; // world units
+//        VIRTUAL_WIDTH = VIRTUAL_SHORT; // world units
+//
+//        VIRTUAL_CENTER_X = VIRTUAL_WIDTH / 2f; // world units
+//        VIRTUAL_CENTER_Y = VIRTUAL_HEIGHT / 2f; // world units
 
      }
 

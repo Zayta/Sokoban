@@ -120,14 +120,8 @@ public class StoryScreen extends ScreenBase {
         //reset table
         table.clearChildren();
         currentLine = 0;
-        //background picture
-//        TextureRegion backgroundRegion = assetManager.get(AssetDescriptors.LAB).findRegion(RegionNames.SQUARE_FLOOR);
         table.setBackground(currentScene);
 
-//        loadEpisode(1,new TextureRegionDrawable(backgroundRegion));//current Episode cannot be 0
-        //speaker
-//        final Label s = new Label(speaker.get(currentLine),skin);
-//        table.add(s);
 
         table.add(dialogueTable(skin));
         table.center();

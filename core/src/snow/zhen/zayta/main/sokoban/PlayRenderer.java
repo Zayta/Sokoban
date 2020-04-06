@@ -1,6 +1,7 @@
 package snow.zhen.zayta.main.sokoban;
 
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -8,6 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -26,6 +31,7 @@ import snow.zhen.zayta.util.ViewportUtils;
 import snow.zhen.zayta.main.debug.DebugCameraController;
 import snow.zhen.zayta.main.sokoban.entity.EntityBase;
 import snow.zhen.zayta.main.sokoban.map.Map;
+import snow.zhen.zayta.versions_unused.arcade_style_game.experiment.engine.movement.component.Position;
 
 import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_WIDTH;
 import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_OFFSET;
@@ -43,7 +49,7 @@ public class PlayRenderer {
     private Viewport viewport;
 //    private Viewport hudViewport;
     private snow.zhen.zayta.main.debug.DebugCameraController debugCameraController;
-    private boolean cameraShouldMove;
+//    private boolean cameraShouldMove;
 
     //for render/drawing
     private ShapeRenderer renderer;
@@ -101,6 +107,7 @@ public class PlayRenderer {
     }
     private void renderGamePlay(){
         viewport.apply();
+        updateCamera(map);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
 
@@ -117,6 +124,9 @@ public class PlayRenderer {
 //            batch.draw(borderRegion,0,j,ENTITY_SIZE,ENTITY_SIZE);
 //            batch.draw(borderRegion,VIRTUAL_WIDTH-1,j,ENTITY_SIZE,ENTITY_SIZE);
 //        }
+//
+//        System.out.println("GameConfig Virtual width is "+VIRTUAL_WIDTH);
+//        System.out.println("GameConfig Virtual height is "+VIRTUAL_HEIGHT);
         for(int i = 0; i<VIRTUAL_WIDTH;i++){
             for(int j = 0; j<VIRTUAL_HEIGHT;j++){
                 batch.draw(floorRegion,i,j,ENTITY_SIZE,ENTITY_SIZE);
@@ -140,20 +150,37 @@ public class PlayRenderer {
 
     }
 
-//    private void updateCamera(Puzzle puzzle) {
-//        if (cameraShouldMove) {
-//            Vector2 playerPosition = puzzle.getPlayer().getPosition();
-//            Vector3 newCameraPosition = new Vector3(playerPosition.x * SCALE,
-//                    playerPosition.y * SCALE, 0);
-//            camera.position.interpolate(newCameraPosition, 0.45f, Interpolation.exp10In);
-//        } else {
-//            camera.position.set(puzzle.getWidth() * 0.5f, 1-puzzle.getHeight() * 0.5f, 0);
-//        }
-//    }
+    private void updateCamera(Map map) {
+        boolean cameraShouldMove =  (map.getMapWidth() > VIRTUAL_HEIGHT || map.getMapHeight() > VIRTUAL_HEIGHT);
+
+        if (cameraShouldMove) {
+            /*finds the avg player position*/
+            int num = map.getNighters().size();
+            float posX =0, posY =0;
+            for(int i = 0; i<num;i++) {
+                EntityBase player = map.getNighters().get(i);
+
+                posX +=player.getX();
+                posY +=player.getY();
+            }
+            posX/=num;
+            posY/=num;
+            //sets camera's new pos based on player's pos
+            Vector3 newCameraPosition = new Vector3(posX,
+                    posY, 0);
+            camera.position.interpolate(newCameraPosition, 0.45f, Interpolation.exp10In);
+        } else {
+            camera.position.set(map.getMapWidth() * 0.5f, 1 - map.getMapHeight() * 0.5f, 0);
+        }
+    }
 
     public void resize(int width, int height) {
-        viewport.setWorldSize(VIRTUAL_WIDTH,VIRTUAL_HEIGHT);
-        viewport.update(width, height, true);
+
+        viewport.setWorldSize(map.getMapWidth(),map.getMapHeight());
+        viewport.update(width, height,true);
+
+
+
         hud.resize(width,height);
         ViewportUtils.debugPixelsPerUnit(viewport);
         ViewportUtils.debugPixelsPerUnit(hud.getViewport());

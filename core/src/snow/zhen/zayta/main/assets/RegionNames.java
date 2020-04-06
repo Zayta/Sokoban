@@ -37,6 +37,9 @@ public class RegionNames {
     public static final String SUNRISE = "background/parallaxes/sunrise parallax";
 
     public static final String VR_ROOM_P1 = "floor/vr_pattern1/vr_pattern1";
+
+    //==UI==//
+    public static final String UI_TOUCHPAD_BCKGRND = "touchpad-bckgrnd";
     //==UI btns==//
     public static final String BTN_CART = "btn-cart";
     public static final String BTN_CHECK = "btn-check";
