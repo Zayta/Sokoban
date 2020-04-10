@@ -14,11 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Logger;
 
-//import snow.zhen.zayta.main.arcade_style_game.config.GameConfig;
-//import snow.zhen.zayta.main.arcade_style_game.puzzle.Puzzle;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.assets.RegionNames;
-import snow.zhen.zayta.main.shop.ShopScreen;
 import snow.zhen.zayta.main.sokoban.PlayScreen;
 import snow.zhen.zayta.main.story.StoryBoardScreen;
 import snow.zhen.zayta.main.story.StoryScreen;
@@ -48,11 +45,11 @@ class MainScreen extends ScreenBase {
     @Override
     protected Actor createUi() {
         table.clearChildren();
-        TextureAtlas textureAtlas = assetManager.get(snow.zhen.zayta.main.assets.AssetDescriptors.LAB);
+        TextureAtlas textureAtlas = assetManager.get(AssetDescriptors.GAMEPLAY);
 
         setBackground(textureAtlas);
 
-        Label label = new Label("Puzzle "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(snow.zhen.zayta.main.assets.AssetDescriptors.HEADING_FONT),Color.WHITE));
+        Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(snow.zhen.zayta.main.assets.AssetDescriptors.FONT),Color.WHITE));
         label.setFontScale(2);
 
         table.add(label).top().left();
@@ -73,13 +70,13 @@ class MainScreen extends ScreenBase {
         int time = userData.getNumScenesUnlocked()%3;
         TextureRegion sky;
         if (time == 0) {
-            sky = textureAtlas.findRegion(snow.zhen.zayta.main.assets.RegionNames.SKY_NIGHT);
+            sky = textureAtlas.findRegion(RegionNames.NIGHT_SKY);
         }
         else if(time ==1){
-            sky = textureAtlas.findRegion(snow.zhen.zayta.main.assets.RegionNames.SKY_SUNRISE);
+            sky = textureAtlas.findRegion(RegionNames.SUNRISE);
         }
         else{
-            sky = textureAtlas.findRegion(snow.zhen.zayta.main.assets.RegionNames.SKY_DAY);
+            sky = textureAtlas.findRegion(RegionNames.DAY_SKY);
         }
 
 
@@ -87,7 +84,7 @@ class MainScreen extends ScreenBase {
     }
 
     private ImageButton scene(TextureAtlas textureAtlas){
-        TextureRegion scene = textureAtlas.findRegion(RegionNames.FULL_SCANNER);
+        TextureRegion scene = textureAtlas.findRegion(RegionNames.UI_TOUCHPAD_BCKGRND);
         TextureRegionDrawable textureRegionDrawable = new TextureRegionDrawable(scene);
         ImageButton imageButton = new ImageButton(textureRegionDrawable){};
         imageButton.addListener(new ChangeListener() {
@@ -113,16 +110,7 @@ class MainScreen extends ScreenBase {
             }
         });
 
-        // high score button
-        TextButton shopButton = new TextButton("SHOP", uiskin);
-        shopButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                shop();
-            }
-        });
-
-        // options button
+        // story button
         TextButton storyButton = new TextButton("STORY", uiskin);
         storyButton.addListener(new ChangeListener() {
             @Override
@@ -144,7 +132,6 @@ class MainScreen extends ScreenBase {
         Table buttonTable = new Table(uiskin);
         int numButtons = 4;
         buttonTable.add(playButton).width(GameConfig.WIDTH/numButtons);
-        buttonTable.add(shopButton).width(GameConfig.WIDTH/numButtons);
         buttonTable.add(storyButton).width(GameConfig.WIDTH/numButtons);
         buttonTable.add(quitButton).width(GameConfig.WIDTH/numButtons);
 
@@ -159,9 +146,6 @@ class MainScreen extends ScreenBase {
         game.setScreen(playScreen);
     }
 
-    private void shop() {
-        game.setScreen(new ShopScreen(game));
-    }
 
     private void story() {
         game.setScreen(new StoryBoardScreen(game,storyScreen));

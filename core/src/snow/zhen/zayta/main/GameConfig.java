@@ -1,11 +1,8 @@
 package snow.zhen.zayta.main;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 
-import snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
-import snow.zhen.zayta.versions_unused.arcade_style_game.experiment.engine.movement.PositionTracker;
 
 public class GameConfig {
     public static float WIDTH = Gdx.graphics.getWidth()>Gdx.graphics.getHeight()?1024f:720f; // pixels

@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import snow.zhen.zayta.main.sokoban.PlayController;
 import snow.zhen.zayta.main.sokoban.movement.Direction;
 
-public class KeyboardController extends InputAdapter {//controls keyboard input controls in the game
+public class KeyboardController extends InputAdapter {//controls keyboard input controls in the gameplay
     private PlayController entityController;
     public KeyboardController(PlayController entityController){
         this.entityController = entityController;
@@ -28,6 +28,10 @@ public class KeyboardController extends InputAdapter {//controls keyboard input 
         if(keycode==Input.Keys.Z)
         {
             entityController.undoMove();
+        }
+        if(keycode==Input.Keys.E)
+        {
+            entityController.debug();
         }
         if(keycode==Input.Keys.R)
         {

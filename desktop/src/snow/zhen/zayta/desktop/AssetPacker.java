@@ -20,25 +20,25 @@ public class AssetPacker {
 //        settings.debug = DRAW_DEBUG_OUTLINE;
 //        settings.scale = new  float[]{0.5f};
 //        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/game/conquest",
-//                ASSETS_PATH + "/game/conquest",
+//                RAW_ASSETS_PATH + "/gameplay/conquest",
+//                ASSETS_PATH + "/gameplay/conquest",
 //                "conquest"
 //        );
         TexturePacker.process(settings,
-                RAW_ASSETS_PATH+"/ui_skin/ui-icons-buttons-set-silver",
-                ASSETS_PATH + "/ui/silver-btns",
-                "btns"
+                RAW_ASSETS_PATH+"/gameplay",
+                ASSETS_PATH + "/gameplay/textures",
+                "gameplay"
         );
 //        TexturePacker.process(settings,
 //                RAW_ASSETS_PATH+"/sokoban",
-//                ASSETS_PATH + "/puzzles",
+//                ASSETS_PATH + "/textures",
 //                "sokoban"
 //        );
 
 //        //for experiment
 //        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/game/experiment",
-//                ASSETS_PATH + "/game/experiment",
+//                RAW_ASSETS_PATH + "/gameplay/experiment",
+//                ASSETS_PATH + "/gameplay/experiment",
 //                "experiment"
 //        );
 
@@ -51,8 +51,8 @@ public class AssetPacker {
 
 //        //misc
 //        TexturePacker.process(settings,
-//                RAW_ASSETS_PATH + "/game/experiment/generated_map_tiles",
-//                ASSETS_PATH + "/game/experiment/generated_map_tiles",
+//                RAW_ASSETS_PATH + "/gameplay/experiment/generated_map_tiles",
+//                ASSETS_PATH + "/gameplay/experiment/generated_map_tiles",
 //                "generated_map_tiles"
 //        );
 

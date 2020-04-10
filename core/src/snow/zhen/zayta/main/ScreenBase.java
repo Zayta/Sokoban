@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import snow.zhen.zayta.util.GdxUtils;
-import snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
 
 
 public abstract class ScreenBase extends ScreenAdapter {

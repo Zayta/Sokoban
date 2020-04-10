@@ -29,9 +29,11 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import snow.zhen.zayta.main.Game;
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.assets.RegionNames;
+import snow.zhen.zayta.main.assets.UIRegionNames;
 import snow.zhen.zayta.main.sokoban.PlayController;
 import snow.zhen.zayta.main.sokoban.movement.Direction;
 
@@ -43,13 +45,16 @@ public class Hud extends Stage{
     private Table table;
     private TextureAtlas btnsAtlas;
     private final int btnSize = 113;
-    private final int smallBtnHeight = 100;
-//    private boolean showSettings = false;
+    private final int smallBtnHeight = 95;
+    private boolean showSettings = false;
     private Table settingsTable;
+    private final Game game;
 
-    public Hud(final PlayController playController, SpriteBatch spriteBatch, AssetManager assetManager) {
-        super(new ExtendViewport(GameConfig.HUD_WIDTH,GameConfig.HUD_HEIGHT), spriteBatch);
-        this.btnsAtlas = assetManager.get(AssetDescriptors.UI_BTNS);
+    public Hud(final PlayController playController, Game game) {
+        super(new ExtendViewport(GameConfig.HUD_WIDTH,GameConfig.HUD_HEIGHT), game.getBatch());
+        this.game = game;
+        AssetManager assetManager = game.getAssetManager();
+        this.btnsAtlas = assetManager.get(AssetDescriptors.GAMEPLAY);
         this.playController = playController;
 
         this.font = assetManager.get(AssetDescriptors.FONT);
@@ -80,9 +85,12 @@ public class Hud extends Stage{
         Table settingsBtnWrapper = new Table();
         settingsBtnWrapper.add(settingsBtns()).expand().left().top();
         stack.add(settingsBtnWrapper);
+
+
         stack.add(settingsTable);
 
-        settingsTable.setVisible(false);
+        showSettings = false;
+        settingsTable.setVisible(showSettings);
         table.add(stack).expand().fill();
         table.pack();
     }
@@ -134,7 +142,7 @@ public class Hud extends Stage{
     }
     private Table settingsBtns(){
         Table verticalGroup = new Table();
-        verticalGroup.add(infoBtn()).left().top().height(smallBtnHeight).row();
+        verticalGroup.add(settingsBtn()).left().top().size(smallBtnHeight).row();
 
         return verticalGroup;
     }
@@ -150,8 +158,8 @@ public class Hud extends Stage{
     }
     private Table gameStateBtnsLandscape(){
         Table table = new Table();
-        Button infoBtn = infoBtn();
-//        table.add(infoBtn).expandX().left();
+//        Button settingsBtn = settingsBtn();
+//        table.add(settingsBtn).expandX().left();
         Table resetMvementTable = new Table();
         resetMvementTable.add(restart()).left().pad(GameConfig.PADDING);
         resetMvementTable.add(undoBtn()).right().pad(GameConfig.PADDING);
@@ -180,10 +188,31 @@ public class Hud extends Stage{
     }
 
     private Table settingsTable(){
-        Table table = new Table();
-        table.setDebug(true);
-        table.add(new Label("Settings",skin));
-        return table;
+        Table wrapper = new Table();
+
+        Table table = new Table(skin);
+
+        table.add(new Label("Settings",skin)).expandY().top().row();
+//        table.setDebug(true);
+        table.setBackground(UIRegionNames.WINDOW);
+        table.add(exitBtn()).width(btnSize).expandY().center().row();
+        //for exiting settings menu
+        TextureRegionDrawable x = new TextureRegionDrawable(btnsAtlas.findRegion(RegionNames.BTN_X));
+        ImageTextButton cancelBtn = new ImageTextButton("Cancel", skin);
+//        cancelBtn.getStyle().imageUp=x;
+//        cancelBtn.getStyle().imageDown=x.tint(GameConfig.DARK_TINT);
+
+        cancelBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                showSettings = false;
+                settingsTable.setVisible(showSettings);
+            }
+        });
+        table.add(cancelBtn).expandY().bottom();
+        wrapper.add(table).expand().fillY().width(500).pad(GameConfig.PADDING);
+
+        return wrapper;
     }
     //==Game state buttons for undo and restart lvl==//
     private Button undoBtn(){
@@ -216,33 +245,36 @@ public class Hud extends Stage{
         });
         return restartButton;
     }
-    private Button infoBtn(){
-        TextureRegionDrawable textureRegionDrawable = new TextureRegionDrawable(btnsAtlas.findRegion(RegionNames.BTN_INFO));
-        final ImageTextButton infoButton = new ImageTextButton("",skin);
-//        final ImageButton infoButton = new ImageButton(skin);
-        infoButton.getStyle().imageUp=textureRegionDrawable;
-        infoButton.getStyle().imageDown=textureRegionDrawable.tint(GameConfig.DARK_TINT);
+    private Button settingsBtn(){
+        TextureRegionDrawable textureRegionDrawable = new TextureRegionDrawable(btnsAtlas.findRegion(RegionNames.BTN_LIST));
+//        final ImageTextButton settingsButton = new ImageTextButton("",skin);
+//        final ImageButton settingsButton = new ImageButton(skin);
+//        settingsButton.getStyle().imageUp=textureRegionDrawable;
+//        settingsButton.getStyle().imageDown=textureRegionDrawable.tint(GameConfig.DARK_TINT);
+        final ImageButton settingsButton = new ImageButton(textureRegionDrawable,textureRegionDrawable.tint(GameConfig.DARK_TINT));
 //        TextButton restartButton = new TextButton("Restart", skin);
-        infoButton.align(Align.left);
+        settingsButton.align(Align.left);
 
-        infoButton.addListener(new ChangeListener() {
-            boolean toggledInfo =false;
+        settingsButton.addListener(new ChangeListener() {
+
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                toggledInfo = !toggledInfo;
-                if(toggledInfo){
-                    infoButton.setText("Put the crates in place.\n Move only one at a time.");
-                    settingsTable.setVisible(true);
-                }
-                else{
-                    infoButton.setText("");
-                    settingsTable.setVisible(false);
-                }
+                showSettings = !showSettings;
+                settingsTable.setVisible(showSettings);
             }
         });
-        return infoButton;
+        return settingsButton;
     }
-
+    private Button exitBtn(){
+        ImageTextButton exitButton = new ImageTextButton("Exit",skin);
+        exitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.goToMain();
+            }
+        });
+        return exitButton;
+    }
     //==Btns for controlling the playable character==//
 
     private Button directionBtn(final Direction direction){
@@ -282,7 +314,7 @@ public class Hud extends Stage{
 
     private Stack joystick(){
         final Stack stack = new Stack();
-        stack.setDebug(true);
+//        stack.setDebug(true);
         final TextureRegionDrawable touchpadBckgrnd = null;//new TextureRegionDrawable(btnsAtlas.findRegion(RegionNames.UI_TOUCHPAD_BCKGRND));
 
         final FourDirectionalTouchpad joystick = new FourDirectionalTouchpad(GameConfig.JOYSTICK_RADIUS, new FourDirectionalTouchpad.TouchpadStyle(

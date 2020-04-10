@@ -31,8 +31,6 @@ import snow.zhen.zayta.util.ViewportUtils;
 import snow.zhen.zayta.main.debug.DebugCameraController;
 import snow.zhen.zayta.main.sokoban.entity.EntityBase;
 import snow.zhen.zayta.main.sokoban.map.Map;
-import snow.zhen.zayta.versions_unused.arcade_style_game.experiment.engine.movement.component.Position;
-
 import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_WIDTH;
 import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_OFFSET;
 import static snow.zhen.zayta.main.GameConfig.ENTITY_SIZE;
@@ -60,7 +58,7 @@ public class PlayRenderer {
     private TextureRegion floorRegion;
 //    private TextureRegion borderRegion;
 
-    //game-specific
+    //gameplay-specific
     //    private final PlayController controller;
     private snow.zhen.zayta.main.sokoban.map.Map map;
     private Hud hud;
@@ -83,7 +81,7 @@ public class PlayRenderer {
         renderer = new ShapeRenderer();
 
 
-        TextureAtlas gamePlayAtlas = assetManager.get(AssetDescriptors.SOKOBAN);
+        TextureAtlas gamePlayAtlas = assetManager.get(AssetDescriptors.GAMEPLAY);
 
 //        backgroundRegion = gamePlayAtlas.findRegion(RegionNames.SNOW);
         floorRegion = gamePlayAtlas.findRegions(RegionNames.VR_ROOM_P1).get(2);

@@ -1,0 +1,637 @@
+
+gameplay.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background/Windows_Screen
+  rotate: false
+  xy: 1004, 750
+  size: 1024, 768
+  orig: 1024, 768
+  offset: 0, 0
+  index: -1
+background/blue-bit-1
+  rotate: false
+  xy: 2, 68
+  size: 640, 448
+  orig: 640, 448
+  offset: 0, 0
+  index: -1
+background/processor
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+background/snow
+  rotate: false
+  xy: 2, 518
+  size: 1000, 1000
+  orig: 1000, 1000
+  offset: 0, 0
+  index: -1
+background/yellow
+  rotate: false
+  xy: 1004, 620
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+gameplay2.png
+size: 32,32
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background/future_industrial/Futuristic Industrial Tileset
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 12
+
+gameplay3.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background/parallaxes/day sky
+  rotate: false
+  xy: 2, 2
+  size: 300, 161
+  orig: 300, 161
+  offset: 0, 0
+  index: -1
+background/parallaxes/night
+  rotate: false
+  xy: 304, 13
+  size: 300, 150
+  orig: 300, 150
+  offset: 0, 0
+  index: -1
+background/parallaxes/sunrise parallax
+  rotate: false
+  xy: 606, 13
+  size: 300, 150
+  orig: 300, 150
+  offset: 0, 0
+  index: -1
+
+gameplay4.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+brick/brick_lavender
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+brick/brick_metal_lavendar
+  rotate: false
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+brick/brick_metal_yellow
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+brick/brick_stone
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+brick/brick_yellow
+  rotate: false
+  xy: 266, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+
+gameplay5.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+characters/anoni
+  rotate: false
+  xy: 2, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/letra
+  rotate: false
+  xy: 132, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/taria
+  rotate: false
+  xy: 262, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/tenyu
+  rotate: false
+  xy: 392, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+characters/xif
+  rotate: false
+  xy: 522, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
+
+gameplay6.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+characters/lorale/lorale
+  rotate: false
+  xy: 2, 2
+  size: 64, 106
+  orig: 64, 106
+  offset: 0, 0
+  index: 3
+characters/lorale/lorale
+  rotate: false
+  xy: 68, 2
+  size: 64, 106
+  orig: 64, 106
+  offset: 0, 0
+  index: 4
+characters/lorale/lorale
+  rotate: false
+  xy: 134, 2
+  size: 64, 106
+  orig: 64, 106
+  offset: 0, 0
+  index: 5
+characters/lorale/lorale
+  rotate: false
+  xy: 200, 2
+  size: 64, 106
+  orig: 64, 106
+  offset: 0, 0
+  index: 6
+characters/lorale/lorale
+  rotate: false
+  xy: 266, 2
+  size: 64, 106
+  orig: 64, 106
+  offset: 0, 0
+  index: 7
+characters/lorale/lorale
+  rotate: false
+  xy: 332, 2
+  size: 64, 106
+  orig: 64, 106
+  offset: 0, 0
+  index: 8
+characters/lorale/lorale
+  rotate: false
+  xy: 398, 3
+  size: 64, 105
+  orig: 64, 105
+  offset: 0, 0
+  index: 11
+characters/lorale/lorale
+  rotate: false
+  xy: 464, 4
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: 1
+characters/lorale/lorale
+  rotate: false
+  xy: 530, 4
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: 2
+characters/lorale/lorale
+  rotate: false
+  xy: 596, 4
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: 10
+characters/lorale/lorale
+  rotate: false
+  xy: 662, 5
+  size: 64, 103
+  orig: 64, 103
+  offset: 0, 0
+  index: 0
+characters/lorale/lorale
+  rotate: false
+  xy: 728, 5
+  size: 64, 103
+  orig: 64, 103
+  offset: 0, 0
+  index: 9
+
+gameplay7.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+crates/blue/crate_blue
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
+crates/blue/crate_blue
+  rotate: false
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+crates/blue/crate_blue
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+crates/blue/crate_blue
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+crates/blue/crate_blue
+  rotate: false
+  xy: 266, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+
+gameplay8.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+crates/lt_blue/crate_ltblue
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 0
+crates/lt_blue/crate_ltblue
+  rotate: false
+  xy: 132, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 1
+
+gameplay9.png
+size: 256,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+crates/silver_purple/crate_silver_purple
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+gameplay10.png
+size: 256,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+crates/yellow_black/crate_yellow
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 0
+
+gameplay11.png
+size: 64,32
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+floor/vr_pattern1/vr_pattern1
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
+floor/vr_pattern1/vr_pattern1
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+floor/vr_pattern1/vr_pattern1
+  rotate: false
+  xy: 38, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+
+gameplay12.png
+size: 64,32
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+floor/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 147
+floor/vr_room/virtual_room_tileset_tiles_by_princess_phoenix_dauv6zv
+  rotate: false
+  xy: 20, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 175
+
+gameplay13.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+overlay/four
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+overlay/one
+  rotate: false
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+overlay/three
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+overlay/two
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+
+gameplay14.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ui-btns/btn-cart
+  rotate: false
+  xy: 1091, 586
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-check
+  rotate: false
+  xy: 1218, 716
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-console
+  rotate: false
+  xy: 964, 846
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-delete
+  rotate: false
+  xy: 2, 132
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-down
+  rotate: false
+  xy: 1345, 846
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-download
+  rotate: false
+  xy: 154, 284
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-grid
+  rotate: false
+  xy: 964, 716
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-home
+  rotate: false
+  xy: 1091, 846
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-info
+  rotate: false
+  xy: 535, 284
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-left
+  rotate: false
+  xy: 1091, 456
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-list
+  rotate: false
+  xy: 1215, 586
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-minus
+  rotate: false
+  xy: 2, 2
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-multiplayer
+  rotate: false
+  xy: 281, 284
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-music
+  rotate: false
+  xy: 1342, 716
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-pause
+  rotate: false
+  xy: 1469, 846
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-play
+  rotate: false
+  xy: 659, 284
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-plus
+  rotate: false
+  xy: 964, 586
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-question
+  rotate: false
+  xy: 1091, 716
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-rank
+  rotate: false
+  xy: 1215, 456
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-refresh
+  rotate: false
+  xy: 1218, 846
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-right
+  rotate: false
+  xy: 1339, 586
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-settings
+  rotate: false
+  xy: 1466, 716
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-share
+  rotate: false
+  xy: 408, 284
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-stop
+  rotate: false
+  xy: 1593, 846
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-trophy
+  rotate: false
+  xy: 964, 456
+  size: 125, 128
+  orig: 125, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-undo
+  rotate: false
+  xy: 783, 284
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-up
+  rotate: false
+  xy: 1339, 456
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/btn-x
+  rotate: false
+  xy: 1463, 586
+  size: 122, 128
+  orig: 122, 128
+  offset: 0, 0
+  index: -1
+ui-btns/touchpad-bckgrnd
+  rotate: false
+  xy: 2, 262
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+ui-btns/ui-icons-buttons-set-silver
+  rotate: false
+  xy: 2, 414
+  size: 960, 560
+  orig: 960, 560
+  offset: 0, 0
+  index: -1

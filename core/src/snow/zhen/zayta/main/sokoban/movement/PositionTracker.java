@@ -11,7 +11,7 @@ import snow.zhen.zayta.main.sokoban.entity.EntityBase;
 import snow.zhen.zayta.main.sokoban.entity.units.Goal;
 
 public class PositionTracker {
-    private int mapWidth;
+    private int mapDimension;
     private BiMap<Integer, snow.zhen.zayta.main.sokoban.entity.EntityBase> globalTracker;
 
 //    private BiMap<Integer,Nighter> nighterTracker;
@@ -21,7 +21,7 @@ public class PositionTracker {
     private BiMap<EntityType,BiMap<Integer,EntityBase>> entityTracker;
 
 
-    public PositionTracker(int mapWidth){
+    public PositionTracker(int mapDimension){
         globalTracker = new BiMap<Integer, snow.zhen.zayta.main.sokoban.entity.EntityBase>();
 //        goalTracker = new BiMap<Integer, snow.zhen.zayta.main.sokoban.entity.units.Goal>();
         entityTracker = new BiMap<EntityType, BiMap<Integer,EntityBase>>();
@@ -31,20 +31,20 @@ public class PositionTracker {
         for(EntityType type: types) {
             entityTracker.put(type,new BiMap<Integer, EntityBase>());
         }
-        this.mapWidth = mapWidth;
+        this.mapDimension = mapDimension;
     }
-    public void init(int mapWidth){
+    public void init(int mapDimension){
         clear();
 //        nighterTracker.clear();
 //        crateTracker.clear();
 //        wallTracker.clear();
 //        goalTracker.clear();
 
-        this.mapWidth = mapWidth;
+        this.mapDimension = mapDimension;
     }
     private int generateKey(float x, float y)
     {
-        int n = mapWidth/ GameConfig.ENTITY_SIZE;
+        int n = mapDimension/ GameConfig.ENTITY_SIZE;
         return Math.round(x)*n+Math.round(y);
     }
 

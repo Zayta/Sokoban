@@ -15,6 +15,7 @@ import snow.zhen.zayta.main.Game;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.ScreenBase;
 import snow.zhen.zayta.main.assets.RegionNames;
+import snow.zhen.zayta.main.assets.UIRegionNames;
 
 
 public class StoryBoardScreen extends ScreenBase {
@@ -34,10 +35,10 @@ public class StoryBoardScreen extends ScreenBase {
     protected Actor createUi() {
         Table table = new Table();
 
-        TextureAtlas wakePlayAtlas = assetManager.get(AssetDescriptors.LAB);
+        TextureAtlas gamePlayAtlas = assetManager.get(AssetDescriptors.GAMEPLAY);
         Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
 
-        TextureRegion backgroundRegion = wakePlayAtlas.findRegion(RegionNames.SQUARE_FLOOR);
+        TextureRegion backgroundRegion = gamePlayAtlas.findRegion(RegionNames.YELLOW);
 
         // background
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
@@ -63,7 +64,7 @@ public class StoryBoardScreen extends ScreenBase {
         // setup tables
         Table contentTable = new Table(uiSkin);
         contentTable.defaults().pad(20);
-        contentTable.setBackground(RegionNames.PANEL);
+        contentTable.setBackground(UIRegionNames.WINDOW);
 
         contentTable.add(title).row();
         contentTable.add(pointsLabel).row();
@@ -87,7 +88,7 @@ public class StoryBoardScreen extends ScreenBase {
     private Table getStoryTable(Skin skin){
         Table episodeTable = new Table(skin);
         episodeTable.defaults().pad(10);
-        episodeTable.setBackground(RegionNames.PANEL);
+        episodeTable.setBackground(UIRegionNames.WINDOW);
 
         for(int i = 0; i<=game.getUserData().getNumScenesUnlocked();i++) {
             TextButton episodeButton = new TextButton("Memory "+i, skin);

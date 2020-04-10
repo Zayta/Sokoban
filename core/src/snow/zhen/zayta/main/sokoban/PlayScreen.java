@@ -27,18 +27,18 @@ public class PlayScreen extends ScreenAdapter {
     private Hud hud;
     private InputMultiplexer inputMultiplexer;
     private int curLvl =0;
-    private final AssetManager assetManager; private Skin skin;
+    private final AssetManager assetManager;
 
 
     public PlayScreen(Game game){
-        //game data
+        //gameplay data
         this.game = game;
         this.assetManager = game.getAssetManager();
         this.userData = game.getUserData();
 
-        this.map = new Map(assetManager.get(AssetDescriptors.SOKOBAN));
+        this.map = new Map(assetManager.get(AssetDescriptors.GAMEPLAY));
         this.controller = new PlayController(map);
-        this.hud = new Hud(controller,game.getBatch(),assetManager);
+        this.hud = new Hud(controller,game);
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(hud);
         inputMultiplexer.addProcessor(new KeyboardController(controller));

@@ -18,7 +18,7 @@ import snow.zhen.zayta.main.sokoban.movement.Direction;
 
 public class PlayController implements Updateable {
 
-    //in-game
+    //in-gameplay
     private Map map;
     private PositionTracker positionTracker;
     private MovesPool movesPool;
@@ -40,7 +40,7 @@ public class PlayController implements Updateable {
         moveHistory.clear();
         this.curLvl = curLvl;
         map.init(curLvl);//need to init map before getting map width
-        positionTracker.init(map.getMapWidth());
+        positionTracker.init(Math.max(map.getMapWidth(),map.getMapHeight()));
         positionTracker.updateGlobalTracker(map.getEntities());
 
         //see how many crates area alrdy at goal initially
@@ -224,7 +224,7 @@ public class PlayController implements Updateable {
     }
     
 
-    /*game info*/
+    /*gameplay info*/
     public boolean isComplete(){
         boolean complete = placedCrates>=map.getNumGoals();
 
@@ -236,4 +236,27 @@ public class PlayController implements Updateable {
     }
 
 
+    //==Debug==//
+    public void debug(){
+        System.out.println("DEBUG: numEntities = "+map.getEntities().size());
+        for(EntityBase entityBase: map.getEntities()){
+            System.out.println("Entity "+entityBase+" at pos "+entityBase.getPosition()+" and has positionTracker key "+positionTracker.getKeyForEntity(entityBase));
+        }
+
+        for(Nighter nighter: map.getNighters()) {
+
+            //check if nighter can move
+            System.out.println("Debug Nigher move: ");
+            for(Direction direction: Direction.values()) {
+
+                //check for collision
+                EntityBase collidedEntity = getCollidedEntity(nighter, direction);
+                if (canPush(collidedEntity, direction)) {
+                    System.out.println("Nighter can move " + direction);
+                } else {
+                    System.out.println("Nighter CANNOT move " + direction+" bc collidedEntity is "+collidedEntity);
+                }
+            }
+        }
+    }
 }

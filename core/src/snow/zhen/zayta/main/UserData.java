@@ -5,37 +5,25 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.Logger;
 
 
-public class UserData { /*monitors how much hp a player has left in the game
+public class UserData { /*monitors how much hp a player has left in the gameplay
  and stores levels unlocked and total points earned.*/
 private static final Logger log = new Logger(UserData.class.getName(),Logger.DEBUG);
 
 //todo later make new fonts skin and change this accordingly
     private final String numScenesUnlocked = "numScenesUnlocked";
-    private final String essence = "essence";
+
     private Preferences preferences;
 
-//    public ArrayList<Entity> Nighter = new;
     private static UserData userData = new UserData();
     public static UserData getInstance(){
         return userData;
     }
     private UserData() {
         preferences = Gdx.app.getPreferences("Preference");
-        //setNumScenesUnlocked(0);
-
     }
 
-    public int getEssence() {
-        return preferences.getInteger(essence);
-    }
-
-    public void setEssence(int essence) {
-        preferences.putInteger(this.essence,essence);
-        preferences.flush();
-    }
     public void unlockScene(){
 
-        //log.debug("scene is unlocking");
         setNumScenesUnlocked(preferences.getInteger(numScenesUnlocked)+1);
     }
 
@@ -47,7 +35,6 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
         preferences.putInteger(this.numScenesUnlocked,numScenesUnlocked);
 
         preferences.flush();
-        //log.debug("preferences are flushed");
     }
 
 

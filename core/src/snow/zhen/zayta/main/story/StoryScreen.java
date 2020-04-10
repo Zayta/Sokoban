@@ -21,9 +21,6 @@ import snow.zhen.zayta.main.ScreenBase;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.assets.Files;
 import snow.zhen.zayta.main.assets.RegionNames;
-import snow.zhen.zayta.versions_unused.arcade_style_game.characters.nur.NUR;
-import snow.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead;
-import snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager;
 
 
 public class StoryScreen extends ScreenBase {
@@ -43,14 +40,12 @@ public class StoryScreen extends ScreenBase {
     private ArrayList<String> dialogue = new ArrayList<String>();
     private Table table; private Drawable currentScene;
 
-    private NUR nur;
 
     public StoryScreen(Game game) {
         super(game);
         loadFile(Files.story);
-        loadScenes(assetManager.get(AssetDescriptors.LAB));
+        loadScenes(assetManager.get(AssetDescriptors.GAMEPLAY));
         table = new Table();
-        nur = game.getNur();
         loadEpisode(1);
     }
 
@@ -68,12 +63,12 @@ public class StoryScreen extends ScreenBase {
 
     private void loadScenes(TextureAtlas textureAtlas){
         //todo set background for story here
-        for(int ep = 0; ep<scenes.length;ep++){
-            if(ep<3)
-                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(snow.zhen.zayta.main.assets.RegionNames.SQUARE_FLOOR));
-            else
-                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(snow.zhen.zayta.main.assets.RegionNames.SQUARE_FLOOR));
-        }
+//        for(int ep = 0; ep<scenes.length;ep++){
+//            if(ep<3)
+//                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(snow.zhen.zayta.main.assets.RegionNames.SQUARE_FLOOR));
+//            else
+//                scenes[ep] = new TextureRegionDrawable(textureAtlas.findRegion(snow.zhen.zayta.main.assets.RegionNames.SQUARE_FLOOR));
+//        }
     }
 
 
@@ -133,17 +128,17 @@ public class StoryScreen extends ScreenBase {
 
     private Table dialogueTable(Skin skin){
         Table table = new Table(skin);
-        table.setBackground(RegionNames.PANEL);
+        table.setBackground(RegionNames.OVERLAY[3]);
         final Image s = new Image();
         float scalar = 100;
-        table.add(s).width(snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager.maxObjWidth*scalar).height(snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager.maxObjHeight*scalar);
+//        table.add(s).width(snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager.maxObjWidth*scalar).height(snow.zhen.zayta.versions_unused.arcade_style_game.config.SizeManager.maxObjHeight*scalar);
         table.row();
         //dialogue
         final Label d = new Label(dialogue.get(currentLine),skin);
         d.setWrap(true);
         d.setWidth(10f);
         d.setAlignment(Align.center);
-        table.add(d).width(0.8f* SizeManager.WIDTH);
+//        table.add(d).width(0.8f* SizeManager.WIDTH);
         table.row();
 
         TextButton nextLineButton = new TextButton("->",skin);
@@ -169,15 +164,15 @@ public class StoryScreen extends ScreenBase {
     }
     private void updateSpeaker(Image image){
         if(speaker.get(currentLine).equals("ll")){
-            image.setDrawable(nur.nighters.get(snow.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead.Lorale).getAvatar());
+//            image.setDrawable(nur.nighters.get(snow.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead.Lorale).getAvatar());
         }
         else if(speaker.get(currentLine).equals("lt")){
-            image.setDrawable(nur.nighters.get(snow.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead.Letra).getAvatar());
+//            image.setDrawable(nur.nighters.get(snow.zhen.zayta.versions_unused.arcade_style_game.characters.nur.Undead.Letra).getAvatar());
         }
         else{
             //log.debug("Image is "+image);
             //log.debug("Nighter is "+nur.nighters.get(Undead.Anonymous));
-            image.setDrawable(nur.nighters.get(Undead.Anonymous).getAvatar());
+//            image.setDrawable(nur.nighters.get(Undead.Anonymous).getAvatar());
         }
     }
 

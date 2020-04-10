@@ -22,7 +22,7 @@ public abstract class EntityBase{
         position = new Vector2();
         bounds = new Rectangle(0,0,width,height);
     }
-    public EntityBase(float x, float y) {//game obj use this
+    public EntityBase(float x, float y) {//gameplay obj use this
         position = new Vector2(x,y);
         bounds = new Rectangle(x, y, width, height);
     }

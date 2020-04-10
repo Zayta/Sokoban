@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
-import javax.xml.soap.Text;
 
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.sokoban.entity.EntityType;
