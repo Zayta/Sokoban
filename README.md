@@ -8,6 +8,27 @@
   gtag('config', 'UA-131292087-4');
 </script>
 
+Main code files are in the core folder
+
+# How to run:
+If you have gradle installed,
+gradlew desktop:run
+
+
+# Credits:
+
+* Sokoban levels taken from the [sokoban archive] (https://www.sourcecode.se/sokoban/levels)
+
+* Crates taken from [Kenney's Sokoban pack] (https://www.kenney.nl/assets/sokoban) and modified .
+
+* Floor tiles were taken from [princess-phoneix's virtual tournament room tileset on Deviantart](https://www.deviantart.com/princess-phoenix/art/Virtual-tournament-room-tileset-656505643) and modified.
+
+* UI Buttons were taken from [pix3Icat's UI Icons/Buttons Set on OpenGameArt] (https://opengameart.org/content/ui-iconsbuttons-set)
+
+* Game backgrounds and parallaxes were taken from [KokoroReflections Three Sky Backgrounds - Day, Sunset/Sunrise,Night on OpenGameArt](https://opengameart.org/content/three-sky-backgrounds-day-sunsetsunrise-night) (https://creativecommons.org/licenses/by/4.0/)
+
+* All other assets are original.
+
 # Implementation
 
 The main file/screen controller is Game.java. 
