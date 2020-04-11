@@ -3,7 +3,7 @@ package snow.zhen.zayta.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import snow.zhen.zayta.RPG;
+import snow.zhen.zayta.main.Game;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -46,6 +46,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new RPG();
+                return new Game();
         }
 }
