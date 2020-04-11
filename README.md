@@ -1,7 +1,7 @@
 
 Main code files are in the core folder
 
-# Run as a libGDX project
+# Run as a libGDX project as described [here] (https://libgdx.badlogicgames.com/documentation/gettingstarted/Running%20and%20Debugging.html#html)
 
 # Credits:
 
