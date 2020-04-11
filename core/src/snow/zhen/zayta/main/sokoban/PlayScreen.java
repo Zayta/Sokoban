@@ -50,13 +50,9 @@ public class PlayScreen extends ScreenAdapter {
     private void setInput(){
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(hud);
+        inputMultiplexer.addProcessor(new KeyboardController(controller));
+        inputMultiplexer.addProcessor(new GestureDetector(new SwipeController(controller)));
 
-        if(Gdx.app.getType()== Application.ApplicationType.Desktop) { //if desktop
-            inputMultiplexer.addProcessor(new KeyboardController(controller));
-        }
-        else {
-            inputMultiplexer.addProcessor(new GestureDetector(new SwipeController(controller)));
-        }
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
     @Override
