@@ -1,9 +1,11 @@
 package snow.zhen.zayta.main.sokoban;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import snow.zhen.zayta.main.Game;
@@ -12,6 +14,7 @@ import snow.zhen.zayta.main.UserData;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.sokoban.input.Hud;
 import snow.zhen.zayta.main.sokoban.input.KeyboardController;
+import snow.zhen.zayta.main.sokoban.input.SwipeController;
 import snow.zhen.zayta.main.sokoban.map.Map;
 //import snow.zhen.zayta.main.sokoban_OOP.Puzzle;
 
@@ -39,14 +42,23 @@ public class PlayScreen extends ScreenAdapter {
         this.map = new Map(assetManager.get(AssetDescriptors.GAMEPLAY));
         this.controller = new PlayController(map);
         this.hud = new Hud(controller,game);
-        inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(hud);
-        inputMultiplexer.addProcessor(new KeyboardController(controller));
-        Gdx.input.setInputProcessor(inputMultiplexer);
+
         this.renderer = new PlayRenderer(game.getBatch(), assetManager, map,hud);
+        setInput();
 
     }
+    private void setInput(){
+        inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(hud);
 
+        if(Gdx.app.getType()== Application.ApplicationType.Desktop) { //if desktop
+            inputMultiplexer.addProcessor(new KeyboardController(controller));
+        }
+        else {
+            inputMultiplexer.addProcessor(new GestureDetector(new SwipeController(controller)));
+        }
+        Gdx.input.setInputProcessor(inputMultiplexer);
+    }
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
@@ -84,10 +96,7 @@ public class PlayScreen extends ScreenAdapter {
 
     /****For screen transition*****/
     public void progress(){
-        game.unlockScene();
-    }
-    public void fail(){
-        game.stop();
+        game.complete(curLvl);
     }
 
     /*For level management*/

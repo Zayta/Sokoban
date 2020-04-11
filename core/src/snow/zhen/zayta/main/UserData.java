@@ -10,7 +10,7 @@ public class UserData { /*monitors how much hp a player has left in the gameplay
 private static final Logger log = new Logger(UserData.class.getName(),Logger.DEBUG);
 
 //todo later make new fonts skin and change this accordingly
-    private final String numScenesUnlocked = "numScenesUnlocked";
+    private final String numCompleted = "numCompleted";
 
     private Preferences preferences;
 
@@ -21,18 +21,24 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
     private UserData() {
         preferences = Gdx.app.getPreferences("Preference");
     }
-
-    public void unlockScene(){
-
-        setNumScenesUnlocked(preferences.getInteger(numScenesUnlocked)+1);
+    
+    public void complete(int completedLvl){
+        //if the completed lvl has not been previously completed
+        if(completedLvl>=preferences.getInteger(numCompleted)){
+            unlockNxtLvl();
+        }
+    }
+    
+    private void unlockNxtLvl(){
+        setNumCompleted(preferences.getInteger(numCompleted)+1);
     }
 
-    public int getNumScenesUnlocked() {
-        return preferences.getInteger(numScenesUnlocked);
+    public int getNumCompleted() {
+        return preferences.getInteger(numCompleted);
     }
 
-    public void setNumScenesUnlocked(int numScenesUnlocked) {
-        preferences.putInteger(this.numScenesUnlocked,numScenesUnlocked);
+    public void setNumCompleted(int numCompleted) {
+        preferences.putInteger(this.numCompleted,numCompleted);
 
         preferences.flush();
     }

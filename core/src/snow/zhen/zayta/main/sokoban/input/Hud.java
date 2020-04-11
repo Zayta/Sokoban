@@ -44,7 +44,7 @@ public class Hud extends Stage{
     private snow.zhen.zayta.main.sokoban.PlayController playController;
     private Table table;
     private TextureAtlas btnsAtlas;
-    private final int btnSize = 113;
+    private final int btnSize = 120;
     private final int smallBtnHeight = 95;
     private boolean showSettings = false;
     private Table settingsTable;

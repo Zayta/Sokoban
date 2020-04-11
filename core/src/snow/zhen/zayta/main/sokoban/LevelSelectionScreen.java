@@ -1,4 +1,4 @@
-package snow.zhen.zayta.main.story;
+package snow.zhen.zayta.main.sokoban;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -18,17 +18,17 @@ import snow.zhen.zayta.main.assets.RegionNames;
 import snow.zhen.zayta.main.assets.UIRegionNames;
 
 
-public class StoryBoardScreen extends ScreenBase {
+public class LevelSelectionScreen extends ScreenBase {
     //lists all episodes w no data on them picks one to play
-    private static final Logger log = new Logger(StoryBoardScreen.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(LevelSelectionScreen.class.getName(),Logger.DEBUG);
     private final int numPerRow = 3;
-    private snow.zhen.zayta.main.story.StoryScreen storyScreen;
-    public StoryBoardScreen(Game game, StoryScreen storyScreen) {
+    private PlayScreen playScreen;
+    public LevelSelectionScreen(Game game, PlayScreen playScreen) {
         super(game);
-        this.storyScreen = storyScreen;
+        this.playScreen = playScreen;
     }
 
-    //todo make array of n story-pics, and draw UserData.numScenesUnlocked of the n pics
+    //todo make array of n level-pics, and draw UserData.numLvlsCompleted of the n pics
 
 
     @Override
@@ -44,11 +44,11 @@ public class StoryBoardScreen extends ScreenBase {
         table.setBackground(new TextureRegionDrawable(backgroundRegion));
 
         // Title
-        Label title = new Label("Memories", uiSkin);
+        Label title = new Label("Levels", uiSkin);
 
         // memories label
-        int numScenesUnlocked = game.getUserData().getNumCompleted();
-        Label pointsLabel = new Label(String.valueOf(numScenesUnlocked), uiSkin);
+        int numLvlsCompleted = game.getUserData().getNumCompleted();
+        Label pointsLabel = new Label(String.valueOf(numLvlsCompleted), uiSkin);
 
         // back button
         TextButton backButton = new TextButton("BACK", uiSkin);
@@ -59,7 +59,7 @@ public class StoryBoardScreen extends ScreenBase {
             }
         });
 
-        Table storyTable = getStoryTable(uiSkin);
+        Table levelTable = getLvlTable(uiSkin);
 
         // setup tables
         Table contentTable = new Table(uiSkin);
@@ -68,7 +68,7 @@ public class StoryBoardScreen extends ScreenBase {
 
         contentTable.add(title).row();
         contentTable.add(pointsLabel).row();
-        contentTable.add(storyTable).row();
+        contentTable.add(levelTable).row();
         contentTable.add(backButton);
 
         contentTable.center();
@@ -82,21 +82,20 @@ public class StoryBoardScreen extends ScreenBase {
     }
 
     private void back() {
-//        //////log.debug("back()");
         game.goToMain();
     }
-    private Table getStoryTable(Skin skin){
+    private Table getLvlTable(Skin skin){
         Table episodeTable = new Table(skin);
         episodeTable.defaults().pad(10);
         episodeTable.setBackground(UIRegionNames.WINDOW);
 
         for(int i = 0; i<=game.getUserData().getNumCompleted();i++) {
-            TextButton episodeButton = new TextButton("Memory "+i, skin);
+            TextButton episodeButton = new TextButton("Level "+i, skin);
             final int episode = i;
             episodeButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    playStory(episode);
+                    playLvl(episode);
                 }
             });
 
@@ -109,9 +108,9 @@ public class StoryBoardScreen extends ScreenBase {
 
         return episodeTable;
     }
-    private void playStory(int episode){
-        storyScreen.loadEpisode(episode);
-        game.setScreen(storyScreen);
+    private void playLvl(int episode){
+        playScreen.setLvl(episode);
+        game.setScreen(playScreen);
     }
 
 }

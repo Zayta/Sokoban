@@ -1,7 +1,8 @@
-package snow.zhen.zayta.main.sokoban.entity;
+package snow.zhen.zayta.main.sokoban.entity.templates;
 
 import com.badlogic.gdx.math.Vector2;
 
+import snow.zhen.zayta.main.sokoban.entity.EntityBase;
 import snow.zhen.zayta.main.sokoban.movement.Direction;
 import snow.zhen.zayta.main.sokoban.movement.Movement;
 

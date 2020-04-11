@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Logger;
 
 import snow.zhen.zayta.main.assets.AssetDescriptors;
+import snow.zhen.zayta.main.sokoban.PlayScreen;
+import snow.zhen.zayta.main.story.StoryScreen;
 
 public class Game extends com.badlogic.gdx.Game {
 
@@ -16,7 +18,11 @@ public class Game extends com.badlogic.gdx.Game {
     private SpriteBatch batch; private ShapeRenderer shapeRenderer;
 
     private UserData userData;
+
+
+
     private MainScreen mainScreen;
+
 
 
     @Override
@@ -41,7 +47,7 @@ public class Game extends com.badlogic.gdx.Game {
         createWithAssets();
     }
     //dependent on assets loaded by loading screen todo put these in loading screen.
-    void createWithAssets(){
+    private void createWithAssets(){
         if(snow.zhen.zayta.main.assets.AssetDescriptors.UI_SKIN== snow.zhen.zayta.main.assets.AssetDescriptors.NEON_SKIN)
             assetManager.get(AssetDescriptors.UI_SKIN).getFont("font").getData().setScale(2,2);
         mainScreen.createScreens();
@@ -49,15 +55,10 @@ public class Game extends com.badlogic.gdx.Game {
     }
 
 
-    public void unlockScene(){
+    //completes the lvl of the game
+    public void complete(int lvl){
 
-        //log.debug("research is advancing");
-        userData.unlockScene();
-        goToMain();
-    }
-
-    public void stop(){
-        //log.debug("stop is occurring");
+        userData.complete(lvl);
         goToMain();
     }
 

@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Logger;
 
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.assets.RegionNames;
+import snow.zhen.zayta.main.sokoban.LevelSelectionScreen;
 import snow.zhen.zayta.main.sokoban.PlayScreen;
 import snow.zhen.zayta.main.story.StoryBoardScreen;
 import snow.zhen.zayta.main.story.StoryScreen;
@@ -49,7 +50,8 @@ class MainScreen extends ScreenBase {
 
         setBackground(textureAtlas);
 
-        Label label = new Label("Experiment "+userData.getNumScenesUnlocked(),new Label.LabelStyle(assetManager.get(snow.zhen.zayta.main.assets.AssetDescriptors.FONT),Color.WHITE));
+        Label label = new Label("Experiment "+userData.getNumCompleted(),
+                new Label.LabelStyle(assetManager.get(AssetDescriptors.FONT),Color.WHITE));
         label.setFontScale(2);
 
         table.add(label).top().left();
@@ -67,7 +69,7 @@ class MainScreen extends ScreenBase {
     }
     
     private void setBackground(TextureAtlas textureAtlas){
-        int time = userData.getNumScenesUnlocked()%3;
+        int time = userData.getNumCompleted()%3;
         TextureRegion sky;
         if (time == 0) {
             sky = textureAtlas.findRegion(RegionNames.NIGHT_SKY);
@@ -109,6 +111,14 @@ class MainScreen extends ScreenBase {
                 play();
             }
         });
+        //lvl select button
+        TextButton lvlSelectBtn = new TextButton("VIEW LVLS", uiskin);
+        lvlSelectBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                viewLvls();
+            }
+        });
 
         // story button
         TextButton storyButton = new TextButton("STORY", uiskin);
@@ -132,6 +142,7 @@ class MainScreen extends ScreenBase {
         Table buttonTable = new Table(uiskin);
         int numButtons = 4;
         buttonTable.add(playButton).width(GameConfig.WIDTH/numButtons);
+        buttonTable.add(lvlSelectBtn).width(GameConfig.WIDTH/numButtons);
         buttonTable.add(storyButton).width(GameConfig.WIDTH/numButtons);
         buttonTable.add(quitButton).width(GameConfig.WIDTH/numButtons);
 
@@ -141,11 +152,13 @@ class MainScreen extends ScreenBase {
     }
 
     private void play() {
-//        puzzle.setCurrentLvl(chosenLvl);
-        playScreen.setLvl(game.getUserData().getNumScenesUnlocked());
+        playScreen.setLvl(game.getUserData().getNumCompleted());
         game.setScreen(playScreen);
     }
 
+    private void viewLvls() {
+        game.setScreen(new LevelSelectionScreen(game,playScreen));
+    }
 
     private void story() {
         game.setScreen(new StoryBoardScreen(game,storyScreen));

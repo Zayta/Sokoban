@@ -7,10 +7,9 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Hashtable;
 
 import snow.zhen.zayta.main.GameConfig;
-import snow.zhen.zayta.main.assets.RegionNames;
 import snow.zhen.zayta.main.sokoban.Updateable;
 import snow.zhen.zayta.main.sokoban.entity.EntityType;
-import snow.zhen.zayta.main.sokoban.entity.MoveableEntity;
+import snow.zhen.zayta.main.sokoban.entity.templates.MoveableEntity;
 
 public class Crate extends MoveableEntity implements Updateable {
 
