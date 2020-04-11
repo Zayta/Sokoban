@@ -8,6 +8,19 @@
   gtag('config', 'UA-131292087-4');
 </script>
 
+Main code files are in the core folder
+
+# How to run:
+If you have gradle installed,
+gradlew desktop:run
+
+
+# Credits:
+Sokoban levels taken from https://www.sourcecode.se/sokoban/levels
+Crates taken from Kenney's Sokoban pack [https://www.kenney.nl/assets/sokoban] and modified .
+Floor tiles (modified) and UI Buttons were taken from OpenGameArt https://opengameart.org/content/ui-iconsbuttons-set
+All other assets are original.
+
 # Implementation
 
 The main file/screen controller is Game.java. 
