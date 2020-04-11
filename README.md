@@ -1,10 +1,7 @@
 
 Main code files are in the core folder
 
-# How to run:
-If you have gradle installed,
-gradlew desktop:run
-
+# Run as a libGDX project
 
 # Credits:
 
