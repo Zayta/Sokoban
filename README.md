@@ -1,19 +1,7 @@
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131292087-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-131292087-4');
-</script>
 
 Main code files are in the core folder
 
-# How to run:
-If you have gradle installed,
-gradlew desktop:run
-
+# Run as a libGDX project as described [here] (https://libgdx.badlogicgames.com/documentation/gettingstarted/Running%20and%20Debugging.html#html)
 
 # Credits:
 
