@@ -20,6 +20,7 @@ private static final Logger log = new Logger(UserData.class.getName(),Logger.DEB
     }
     private UserData() {
         preferences = Gdx.app.getPreferences("Preference");
+
     }
     
     public void complete(int completedLvl){

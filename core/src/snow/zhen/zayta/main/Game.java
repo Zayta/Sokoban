@@ -22,6 +22,8 @@ public class Game extends com.badlogic.gdx.Game {
 
 
     private MainScreen mainScreen;
+    private PlayScreen playScreen;
+    private StoryScreen storyScreen;
 
 
 
@@ -40,17 +42,17 @@ public class Game extends com.badlogic.gdx.Game {
         shapeRenderer = new ShapeRenderer();
 //        login();
         userData = UserData.getInstance();
-        mainScreen = new MainScreen(this);//need to create a main for loading screen to go to
 
         snow.zhen.zayta.main.LoadingScreen loadingScreen = new LoadingScreen(this);
-        setScreen(loadingScreen);//goes to main
-        createWithAssets();
-    }
-    //dependent on assets loaded by loading screen todo put these in loading screen.
-    private void createWithAssets(){
+
+        setScreen(loadingScreen);
         if(snow.zhen.zayta.main.assets.AssetDescriptors.UI_SKIN== snow.zhen.zayta.main.assets.AssetDescriptors.NEON_SKIN)
             assetManager.get(AssetDescriptors.UI_SKIN).getFont("font").getData().setScale(2,2);
-        mainScreen.createScreens();
+
+        //creates screens after assets have been loaded
+        storyScreen = new StoryScreen(this);
+        playScreen = new PlayScreen(this);
+        mainScreen = new MainScreen(this,playScreen,storyScreen);//need to create a main for loading screen to go to
 
     }
 
@@ -59,7 +61,15 @@ public class Game extends com.badlogic.gdx.Game {
     public void complete(int lvl){
 
         userData.complete(lvl);
-        goToMain();
+        System.out.println("Number of lvls completed: "+userData.getNumCompleted());
+//        goToMain();
+        continueSoko();
+    }
+
+    private void continueSoko(){
+
+        playScreen.setLvl(getUserData().getNumCompleted());
+        setScreen(playScreen);
     }
 
 

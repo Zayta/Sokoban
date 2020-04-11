@@ -30,16 +30,12 @@ class MainScreen extends ScreenBase {
     private snow.zhen.zayta.main.sokoban.PlayScreen playScreen;
     private UserData userData;
 
-    MainScreen(Game game) {
+    MainScreen(Game game, PlayScreen playScreen,StoryScreen storyScreen) {
         super(game);
         this.userData = game.getUserData();
         table = new Table();
-    }
-
-    void createScreens()
-    {
-        storyScreen = new StoryScreen(game);
-        playScreen = new PlayScreen(game);
+        this.storyScreen = storyScreen;
+        this.playScreen = playScreen;
     }
 
 
@@ -119,15 +115,15 @@ class MainScreen extends ScreenBase {
                 viewLvls();
             }
         });
-
-        // story button
-        TextButton storyButton = new TextButton("STORY", uiskin);
-        storyButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                story();
-            }
-        });
+//
+//        // story button
+//        TextButton storyButton = new TextButton("STORY", uiskin);
+//        storyButton.addListener(new ChangeListener() {
+//            @Override
+//            public void changed(ChangeEvent event, Actor actor) {
+//                story();
+//            }
+//        });
 
         // quit button
         TextButton quitButton = new TextButton("QUIT", uiskin);
@@ -143,7 +139,7 @@ class MainScreen extends ScreenBase {
         int numButtons = 4;
         buttonTable.add(playButton).width(GameConfig.WIDTH/numButtons);
         buttonTable.add(lvlSelectBtn).width(GameConfig.WIDTH/numButtons);
-        buttonTable.add(storyButton).width(GameConfig.WIDTH/numButtons);
+//        buttonTable.add(storyButton).width(GameConfig.WIDTH/numButtons);
         buttonTable.add(quitButton).width(GameConfig.WIDTH/numButtons);
 
 
@@ -167,5 +163,7 @@ class MainScreen extends ScreenBase {
     private void quit() {
         Gdx.app.exit();
     }
+
+
 
 }
