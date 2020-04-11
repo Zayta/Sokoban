@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.sokoban.Updateable;
@@ -17,7 +17,7 @@ public class Crate extends MoveableEntity implements Updateable {
         NORMAL,IN_GOAL,IMMOVABLE,IN_HOLE,
     }
     private State state;
-    private Hashtable<State,TextureRegion> textureRegions;
+    private HashMap<State,TextureRegion> textureRegions;
 
     public Crate(Array<TextureAtlas.AtlasRegion> crateRegions, State state, float x, float y) {
         super(x, y);
@@ -27,7 +27,7 @@ public class Crate extends MoveableEntity implements Updateable {
         else {
             this.state = state;
             //==IMPORTANT: must be indexed in the order of normal, in-goal, immovable, and inhole==//
-            this.textureRegions = new Hashtable<Crate.State, TextureRegion>();
+            this.textureRegions = new HashMap<Crate.State, TextureRegion>();
 
             insertTextureRegion(crateRegions,State.NORMAL,0);
             insertTextureRegion(crateRegions,State.IN_GOAL,1);

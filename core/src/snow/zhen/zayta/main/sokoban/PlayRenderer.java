@@ -180,6 +180,7 @@ public class PlayRenderer {
 
 
         hud.resize(width,height);
+
         ViewportUtils.debugPixelsPerUnit(viewport);
         ViewportUtils.debugPixelsPerUnit(hud.getViewport());
     }

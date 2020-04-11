@@ -3,7 +3,7 @@ package snow.zhen.zayta.main.sokoban.entity;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import snow.zhen.zayta.main.assets.RegionNames;
 import snow.zhen.zayta.main.sokoban.entity.units.Crate;

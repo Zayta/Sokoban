@@ -8,8 +8,12 @@
 	<inherits name='Box2DLights' />
 	<inherits name='com.badlogic.ashley_gwt' />
 
-	<inherits name='RPG' />
-	<entry-point class='snow.zhen.zayta.client.HtmlLauncher' />
+    <inherits name='snow.zhen.zayta.GdxDefinition' />
+    
+    <collapse-all-properties />
+    
+	<add-linker name="xsiframe"/>	
+	<set-configuration-property name="devModeRedirectEnabled" value="true"/>
 	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
-	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion"/>
 </module>
