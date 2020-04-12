@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-import snow.zhen.zayta.main.sokoban.entity.EntityBase;
+import snow.zhen.zayta.main.sokoban.entity.templates.EntityTemplate;
 import snow.zhen.zayta.main.sokoban.entity.EntityType;
 import snow.zhen.zayta.main.sokoban.entity.units.Crate;
 import snow.zhen.zayta.main.sokoban.entity.units.Nighter;
@@ -73,7 +73,7 @@ public class PlayController implements Updateable {
             if(direction==Direction.none)
                 continue;
             //check for collision
-            EntityBase collidedEntity = getCollidedEntity(nighter, direction);
+            EntityTemplate collidedEntity = getCollidedEntity(nighter, direction);
             //check if nighter can move
             if(canPush(collidedEntity,direction)){
                 move.addNighter(nighter);
@@ -93,7 +93,7 @@ public class PlayController implements Updateable {
     }
 
     /*Collision detection*/
-    private boolean canPush(EntityBase entity, Direction direction){
+    private boolean canPush(EntityTemplate entity, Direction direction){
         if(entity==null)
             return true;
         if(entity.is(EntityType.CRATE)){
@@ -101,16 +101,16 @@ public class PlayController implements Updateable {
         }
         return entity.is(EntityType.GOAL);
     }
-    private boolean canCrateMove(EntityBase collidedEntity){
+    private boolean canCrateMove(EntityTemplate collidedEntity){
         return collidedEntity==null||collidedEntity.is(EntityType.GOAL);
     }
 
     //returns the Entity that the moveableEntity will collide with, if it moves in the specified direction
-    private EntityBase getCollidedEntity(EntityBase moveableEntity, Direction direction){
+    private EntityTemplate getCollidedEntity(EntityTemplate moveableEntity, Direction direction){
         float x = moveableEntity.getX()+direction.directionX,
                 y = moveableEntity.getY()+direction.directionY;
-        EntityBase entityBase = positionTracker.getEntityAtPos(x,y);
-        return entityBase;
+        EntityTemplate entityTemplate = positionTracker.getEntityAtPos(x,y);
+        return entityTemplate;
     }
 
 
@@ -150,7 +150,7 @@ public class PlayController implements Updateable {
 
         private void moveCrate(Crate crate, Direction direction){
 
-            EntityBase crateCollider = getCollidedEntity(crate,direction);
+            EntityTemplate crateCollider = getCollidedEntity(crate,direction);
 //            System.out.println("Crate collider is "+crateCollider);
             //if crate was in goal but is now moved out of goal
             if(crate.getState()== Crate.State.IN_GOAL){//must be before crate setting newstate
@@ -239,8 +239,8 @@ public class PlayController implements Updateable {
     //==Debug==//
     public void debug(){
         System.out.println("DEBUG: numEntities = "+map.getEntities().size());
-        for(EntityBase entityBase: map.getEntities()){
-            System.out.println("Entity "+entityBase+" at pos "+entityBase.getPosition()+" and has positionTracker key "+positionTracker.getKeyForEntity(entityBase));
+        for(EntityTemplate entityTemplate : map.getEntities()){
+            System.out.println("Entity "+ entityTemplate +" at pos "+ entityTemplate.getPosition()+" and has positionTracker key "+positionTracker.getKeyForEntity(entityTemplate));
         }
 
         for(Nighter nighter: map.getNighters()) {
@@ -250,7 +250,7 @@ public class PlayController implements Updateable {
             for(Direction direction: Direction.values()) {
 
                 //check for collision
-                EntityBase collidedEntity = getCollidedEntity(nighter, direction);
+                EntityTemplate collidedEntity = getCollidedEntity(nighter, direction);
                 if (canPush(collidedEntity, direction)) {
                     System.out.println("Nighter can move " + direction);
                 } else {

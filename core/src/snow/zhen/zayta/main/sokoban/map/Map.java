@@ -8,7 +8,7 @@ import java.util.Arrays;
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.sokoban.entity.CharacterName;
 import snow.zhen.zayta.main.sokoban.entity.units.Crate;
-import snow.zhen.zayta.main.sokoban.entity.EntityBase;
+import snow.zhen.zayta.main.sokoban.entity.templates.EntityTemplate;
 import snow.zhen.zayta.main.sokoban.entity.EntityBuilder;
 import snow.zhen.zayta.main.sokoban.entity.units.Goal;
 import snow.zhen.zayta.main.sokoban.entity.units.Wall;
@@ -28,7 +28,7 @@ public class Map {
     private ArrayList<Wall> walls;
     private ArrayList<Crate> crates;
     private ArrayList<Goal> goals;
-    private ArrayList<EntityBase> entities;
+    private ArrayList<EntityTemplate> entities;
     //textures
     private EntityBuilder entityBuilder;
 
@@ -51,7 +51,7 @@ public class Map {
         crates = new ArrayList<Crate>();
         goals = new ArrayList<Goal>();
         walls = new ArrayList<Wall>();
-        entities = new ArrayList<EntityBase>();
+        entities = new ArrayList<EntityTemplate>();
         entityBuilder = new EntityBuilder(sokobanAtlas);
     }
 
@@ -125,7 +125,7 @@ public class Map {
     public int getNumGoals(){
         return goals.size();
     }
-    public ArrayList<EntityBase> getEntities(){
+    public ArrayList<EntityTemplate> getEntities(){
         return entities;
     }
 

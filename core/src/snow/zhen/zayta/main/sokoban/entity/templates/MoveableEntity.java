@@ -2,11 +2,10 @@ package snow.zhen.zayta.main.sokoban.entity.templates;
 
 import com.badlogic.gdx.math.Vector2;
 
-import snow.zhen.zayta.main.sokoban.entity.EntityBase;
 import snow.zhen.zayta.main.sokoban.movement.Direction;
 import snow.zhen.zayta.main.sokoban.movement.Movement;
 
-public abstract class MoveableEntity extends EntityBase implements Movement {
+public abstract class MoveableEntity extends EntityTemplate implements Movement {
     private Vector2 targetPosition;
     private snow.zhen.zayta.main.sokoban.movement.Direction direction;
     private boolean canMove = false;
@@ -24,7 +23,7 @@ public abstract class MoveableEntity extends EntityBase implements Movement {
 
     //= abstract methods =//
 //    @Override
-//    public abstract void handleCollision(EntityBase collidedEntity);
+//    public abstract void handleCollision(EntityTemplate collidedEntity);
 
     //= public methods =//
     @Override

@@ -26,6 +26,7 @@ Singleton pattern is used to create a single instance of UserData and ensure tha
 State pattern is used for transitioning between game screens, with Game.java being the screen manager.
 
 Factory pattern is used to create the entities in the game so that there is a centralized entity creator and the created units are correctly placed and reusable.
+Each entity is created based on the EntityTemplate.java
 
 Command pattern is used to store moves history in sokoban puzzle game to support undo-moves
 

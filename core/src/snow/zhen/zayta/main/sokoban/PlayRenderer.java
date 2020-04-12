@@ -1,7 +1,6 @@
 package snow.zhen.zayta.main.sokoban;
 
 
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -10,9 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -21,15 +18,11 @@ import java.util.ArrayList;
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.assets.AssetDescriptors;
 import snow.zhen.zayta.main.assets.RegionNames;
-import snow.zhen.zayta.main.sokoban.entity.units.Crate;
-import snow.zhen.zayta.main.sokoban.entity.units.Goal;
-import snow.zhen.zayta.main.sokoban.entity.units.Nighter;
-import snow.zhen.zayta.main.sokoban.entity.units.Wall;
+import snow.zhen.zayta.main.sokoban.entity.templates.EntityTemplate;
 import snow.zhen.zayta.main.sokoban.input.Hud;
 import snow.zhen.zayta.util.GdxUtils;
 import snow.zhen.zayta.util.ViewportUtils;
 import snow.zhen.zayta.main.debug.DebugCameraController;
-import snow.zhen.zayta.main.sokoban.entity.EntityBase;
 import snow.zhen.zayta.main.sokoban.map.Map;
 import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_WIDTH;
 import static snow.zhen.zayta.main.GameConfig.CHARACTER_RENDER_OFFSET;
@@ -136,9 +129,9 @@ public class PlayRenderer {
         drawEntities(map.getNighters(),CHARACTER_RENDER_WIDTH,ENTITY_SIZE,CHARACTER_RENDER_OFFSET);
 
     }
-    private void drawEntities(ArrayList<? extends EntityBase>entities, float width, float height, float renderOffset){
-        for(EntityBase entityBase: entities){
-            batch.draw(entityBase.getTextureRegion(),entityBase.getX()+renderOffset,entityBase.getY(),width,height);
+    private void drawEntities(ArrayList<? extends EntityTemplate>entities, float width, float height, float renderOffset){
+        for(EntityTemplate entityTemplate : entities){
+            batch.draw(entityTemplate.getTextureRegion(), entityTemplate.getX()+renderOffset, entityTemplate.getY(),width,height);
         }
     }
     private void renderHud(){
@@ -156,7 +149,7 @@ public class PlayRenderer {
             int num = map.getNighters().size();
             float posX =0, posY =0;
             for(int i = 0; i<num;i++) {
-                EntityBase player = map.getNighters().get(i);
+                EntityTemplate player = map.getNighters().get(i);
 
                 posX +=player.getX();
                 posY +=player.getY();

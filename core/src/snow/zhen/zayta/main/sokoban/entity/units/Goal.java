@@ -2,10 +2,10 @@ package snow.zhen.zayta.main.sokoban.entity.units;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import snow.zhen.zayta.main.sokoban.entity.EntityBase;
+import snow.zhen.zayta.main.sokoban.entity.templates.EntityTemplate;
 import snow.zhen.zayta.main.sokoban.entity.EntityType;
 
-public class Goal extends EntityBase {
+public class Goal extends EntityTemplate {
     private TextureRegion textureRegion;
     public Goal(TextureRegion textureRegion,float x, float y) {
         super(x, y);

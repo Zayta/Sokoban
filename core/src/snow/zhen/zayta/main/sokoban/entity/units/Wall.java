@@ -3,9 +3,9 @@ package snow.zhen.zayta.main.sokoban.entity.units;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import snow.zhen.zayta.main.sokoban.entity.EntityType;
-import snow.zhen.zayta.main.sokoban.entity.EntityBase;
+import snow.zhen.zayta.main.sokoban.entity.templates.EntityTemplate;
 
-public class Wall extends EntityBase {
+public class Wall extends EntityTemplate {
 
     private TextureRegion textureRegion;
     public Wall(TextureRegion textureRegion,float x, float y) {

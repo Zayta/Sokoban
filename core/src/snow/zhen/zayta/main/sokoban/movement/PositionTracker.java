@@ -6,30 +6,29 @@ import java.util.ArrayList;
 
 import snow.zhen.zayta.main.GameConfig;
 import snow.zhen.zayta.main.sokoban.entity.EntityType;
+import snow.zhen.zayta.main.sokoban.entity.templates.EntityTemplate;
 import snow.zhen.zayta.util.BiMap;
-import snow.zhen.zayta.main.sokoban.entity.EntityBase;
-import snow.zhen.zayta.main.sokoban.entity.units.Goal;
 
 public class PositionTracker {
     private int mapDimension;
-    private BiMap<Integer, snow.zhen.zayta.main.sokoban.entity.EntityBase> globalTracker;
+    private BiMap<Integer, EntityTemplate> globalTracker;
 
 //    private BiMap<Integer,Nighter> nighterTracker;
 //    private BiMap<Integer, Crate> crateTracker;
 //    private BiMap<Integer, Wall> wallTracker;
 //    private BiMap<Integer, snow.zhen.zayta.main.sokoban.entity.units.Goal> goalTracker;
-    private BiMap<EntityType,BiMap<Integer,EntityBase>> entityTracker;
+    private BiMap<EntityType,BiMap<Integer, EntityTemplate>> entityTracker;
 
 
     public PositionTracker(int mapDimension){
-        globalTracker = new BiMap<Integer, snow.zhen.zayta.main.sokoban.entity.EntityBase>();
+        globalTracker = new BiMap<Integer, EntityTemplate>();
 //        goalTracker = new BiMap<Integer, snow.zhen.zayta.main.sokoban.entity.units.Goal>();
-        entityTracker = new BiMap<EntityType, BiMap<Integer,EntityBase>>();
+        entityTracker = new BiMap<EntityType, BiMap<Integer, EntityTemplate>>();
         EntityType types[] = EntityType.values();
         System.out.println("Contents of the enum are: ");
         //Iterating enum using the for loop
         for(EntityType type: types) {
-            entityTracker.put(type,new BiMap<Integer, EntityBase>());
+            entityTracker.put(type,new BiMap<Integer, EntityTemplate>());
         }
         this.mapDimension = mapDimension;
     }
@@ -49,20 +48,20 @@ public class PositionTracker {
     }
 
 
-    public void updateGlobalTracker(ArrayList<snow.zhen.zayta.main.sokoban.entity.EntityBase> entities){
-        for(EntityBase entity:entities) {
+    public void updateGlobalTracker(ArrayList<EntityTemplate> entities){
+        for(EntityTemplate entity:entities) {
             updateGlobalTracker(entity, entity.getX(), entity.getY());
             updateEntityTracker(entity,entity.getX(),entity.getY());
         }
     }
-    private void updateGlobalTracker(snow.zhen.zayta.main.sokoban.entity.EntityBase entity, float x, float y) {
+    private void updateGlobalTracker(EntityTemplate entity, float x, float y) {
 
         globalTracker.removeKey(entity);
         int key=generateKey(x,y);
 
         globalTracker.put(key,entity);
     }
-    private void updateEntityTracker(snow.zhen.zayta.main.sokoban.entity.EntityBase entity, float x, float y) {
+    private void updateEntityTracker(EntityTemplate entity, float x, float y) {
 
         entityTracker.get(entity.getEntityType()).removeKey(entity);
         int key=generateKey(x,y);
@@ -71,18 +70,18 @@ public class PositionTracker {
     }
 
 
-    public snow.zhen.zayta.main.sokoban.entity.EntityBase getEntityAtPos(float x, float y){
+    public EntityTemplate getEntityAtPos(float x, float y){
         return globalTracker.get(generateKey(x,y));
     }
     public boolean isGoalPos(float x, float y){
         return entityTracker.get(EntityType.GOAL).get(generateKey(x,y))!=null;
     }
 
-    public int getKeyForEntity(snow.zhen.zayta.main.sokoban.entity.EntityBase entityBase){
-        return globalTracker.getKey(entityBase);
+    public int getKeyForEntity(EntityTemplate entityTemplate){
+        return globalTracker.getKey(entityTemplate);
     }
 
-    public EntityBase getEntityAtPos(Vector2 pos){
+    public EntityTemplate getEntityAtPos(Vector2 pos){
         return globalTracker.get(generateKey(pos.x,pos.y));
     }
 

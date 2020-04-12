@@ -1,14 +1,16 @@
-package snow.zhen.zayta.main.sokoban.entity;
+package snow.zhen.zayta.main.sokoban.entity.templates;
 
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import snow.zhen.zayta.main.sokoban.entity.EntityType;
+
 /*
 * Contains position and bounds of an entity
 * */
-public abstract class EntityBase{
+public abstract class EntityTemplate {
 
     // == attributes ==
     protected Vector2 position;
@@ -18,11 +20,11 @@ public abstract class EntityBase{
     protected Rectangle bounds;
 
     // == constructors ==
-    public EntityBase(){//nighters use this
+    public EntityTemplate(){//nighters use this
         position = new Vector2();
         bounds = new Rectangle(0,0,width,height);
     }
-    public EntityBase(float x, float y) {//gameplay obj use this
+    public EntityTemplate(float x, float y) {//gameplay obj use this
         position = new Vector2(x,y);
         bounds = new Rectangle(x, y, width, height);
     }
