@@ -29,7 +29,7 @@ public class Game extends com.badlogic.gdx.Game {
 
     @Override
     public void create() {
-        Gdx.app.setLogLevel(Application.LOG_DEBUG);
+        Gdx.app.setLogLevel(Application.LOG_NONE);
 
         GameConfig.configScreenOrientation(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
