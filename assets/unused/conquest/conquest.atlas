@@ -1,0 +1,135 @@
+
+conquest.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+backgrounds/darkpath
+  rotate: false
+  xy: 2, 518
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+backgrounds/day sky
+  rotate: false
+  xy: 2, 260
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+backgrounds/fullscanner
+  rotate: false
+  xy: 2, 2
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+
+conquest2.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+backgrounds/night
+  rotate: false
+  xy: 2, 518
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+backgrounds/ruined_city
+  rotate: false
+  xy: 2, 260
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+backgrounds/sunrise_parallax
+  rotate: false
+  xy: 2, 2
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+
+conquest3.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+monsters/green_tooth_beast
+  rotate: false
+  xy: 195, 101
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+monsters/love-monster
+  rotate: false
+  xy: 2, 2
+  size: 191, 227
+  orig: 191, 227
+  offset: 0, 0
+  index: -1
+monsters/purple_tongue_beast
+  rotate: false
+  xy: 325, 101
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+monsters/reaper
+  rotate: false
+  xy: 195, 45
+  size: 30, 54
+  orig: 30, 54
+  offset: 0, 0
+  index: -1
+
+conquest4.png
+size: 256,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+monsters/creeper/creeperEyeBlue
+  rotate: false
+  xy: 2, 2
+  size: 49, 59
+  orig: 49, 59
+  offset: 0, 0
+  index: -1
+monsters/creeper/creeperEyesGreen
+  rotate: false
+  xy: 53, 2
+  size: 49, 59
+  orig: 49, 59
+  offset: 0, 0
+  index: -1
+monsters/creeper/creeperNom
+  rotate: false
+  xy: 104, 2
+  size: 49, 59
+  orig: 49, 59
+  offset: 0, 0
+  index: -1
+
+conquest5.png
+size: 512,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+portraits/Lorale
+  rotate: false
+  xy: 2, 2
+  size: 150, 200
+  orig: 150, 200
+  offset: 0, 0
+  index: -1
+portraits/Tenyu
+  rotate: false
+  xy: 154, 2
+  size: 150, 200
+  orig: 150, 200
+  offset: 0, 0
+  index: -1

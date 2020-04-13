@@ -1,0 +1,88 @@
+intro:
+lt: Taria is dying. We need to save her.
+tyu: Can we find another way?
+tyu: Cybertization isn't safe and none of us performed it before.
+lt: We have to try no matter what. We are ghosts so we can't ask humans for help.
+lt: And we can't ask other ghosts because they want her dead.
+tyu: I guess we are on our own...
+tyu: We should study how Taria gave memories to Theta and get an idea of how it works.
+tyu: The only difference is that the robot has fake memories, and we need to transfer Taria's real memories...
+lt: Ok, let's try it.
+tyu: For the first round, do you want me to virtualize, and you monitor?
+lt: Sure.
+
+label exp1:
+theta: Robot Theta activated. My birthday is February 30th, 2100.
+theta: My best friend is Taria. My worst enemy is Argon.
+theta: I need to avoid ghosts besides Letra, Tenyu and Lorale.
+tyu: We did it!
+lt: Yes! He remembers the basics.
+tyu: We should try one more.
+
+label exp2:
+theta: *Points to Letra*
+theta: You are Lorale.
+theta: *Points to Tenyu*
+theta: And you are Tenyu.
+lt: ... I don't look like Lorale. I'm not even a guy.
+tyu: Theta needs improvement.
+
+label exp3:
+theta: *Points to Letra*
+theta: You are Letra. And you are Tenyu, and laying there is Taria.
+tyu: He's good now!
+theta: ... And outside the door is Cassidy.
+lt: !!
+tyu: !! How did she find this place?
+lt: Tenny, we need to hide Taria.
+lt: Cassidy will definitely report her to our ghost organization NUR and they won't let her live.
+tyu: We need to hurry.
+
+label exp4:
+cd: Tenyu. What are you doing here?
+tyu: (Oh no!)
+tyu: I... uh...
+tyu: (I wish I had Lorale's lying skills.)
+tyu: I got a bit lost and wandered into this mansion. Can you show me the way back to NUR?
+cd: Sure, after I finish some business here.
+tyu: Wha-what do you have to do here?
+cd: Reap a dying soul.
+tyu: W-wait!
+
+label exp5:
+tyu: Ca-cassidy, I am looking for Lorale. Have you seen him?
+cd: You know Lorale's at Wielder's HQ performing spy duty.
+cd: We are forbidden to interact with him during this time.
+tyu: Oh...
+lt: Lorale's cover got blown. Tenny needs to go back to tell NUR.
+cd: Letra, why are you here too?
+lt: I am on a mission for Bill Snow.
+lt: Can you show Tenny how to get back to NUR? This is urgent - Lorale's life depends on it.
+cd: I'm on a mission.
+lt: For?
+cd: Roland Snow.
+lt: Roland isn't here. He lives in Westwood now.
+cd: ... How do you know that?
+lt: He's Bill Snow's son. I researched my patron.
+cd: Ugh fine. I'll take Tenyu back.
+tyu: Thanks.
+lt: (I hope I will be okay on my own.)
+
+label exp6:
+lt: That was very risky.
+lt: I scanned myself there but with no monitor, anyone could have gone in and unplugged me.
+lt: I should wait until Tenny or Lorale comes back...
+ll: What's going on? Why's Taria so pale?
+lt: Lorale. Taria is dying. A ghost, wielder, or monster - I don't know what- stabbed her.
+ll: !!
+ll: No... no way. We need to save her fast.
+ll: Are we using cybertization? I'll go in.
+
+label exp7:
+ll: It's almost morning. Does her family know?
+ll: We have to finish before they hold her funeral.
+lt: No, I don't want Taria to wake up buried alive either.
+lt: Her brothers rarely come home, but her Grandma just entered in the hospital in Irondale.
+lt: She's in critical condition too, so Taria's parents are with them now.
+lt: Irondale is a 3-day plane ride from here, so we have 3 days.
+ll: Taria... hang in there.
