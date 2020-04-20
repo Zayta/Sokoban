@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="48" tileheight="48" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="lab_tiles/scifi_space_rpg_tile_set.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="10" height="10">
+  <data encoding="csv">
+106,107,107,107,107,107,107,107,107,109,
+112,63,64,64,64,64,64,64,65,114,
+112,78,79,79,79,79,79,79,80,114,
+112,113,113,113,113,113,113,113,113,114,
+112,63,64,64,64,64,64,64,65,114,
+112,78,79,79,79,79,79,79,80,114,
+112,113,113,113,113,113,113,113,113,114,
+112,63,64,64,64,64,64,64,65,114,
+112,78,79,79,79,79,79,79,80,114,
+118,119,119,119,119,119,119,119,119,121
+</data>
+ </layer>
+</map>

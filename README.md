@@ -3,8 +3,8 @@
           <title>NUR_Nighters</title>
           <meta http-equiv="content-type" content="text/html; charset=UTF-8">
           <meta id="gameViewport" name="viewport" content="width=device-width initial-scale=1">
-          <script src="html/build/dist/soundmanager2-setup.js"></script>
-          <script src="html/build/dist/soundmanager2-jsmin.js"></script>
+          <script src="html/distribution/soundmanager2-setup.js"></script>
+          <script src="html/distribution/soundmanager2-jsmin.js"></script>
    </head>
 
    <body>
