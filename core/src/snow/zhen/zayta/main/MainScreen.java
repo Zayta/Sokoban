@@ -23,7 +23,7 @@ import snow.zhen.zayta.main.story.StoryScreen;
 
 class MainScreen extends ScreenBase {
 
-    private final Logger log = new Logger(MainScreen.class.getName(), Logger.DEBUG);
+    private final Logger log = new Logger(MainScreen.class.getName(), Logger.NONE);
 
     private Table table;
     private snow.zhen.zayta.main.story.StoryScreen storyScreen;

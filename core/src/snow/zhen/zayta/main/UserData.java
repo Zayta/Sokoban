@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Logger;
 
 public class UserData { /*monitors how much hp a player has left in the gameplay
  and stores levels unlocked and total points earned.*/
-private static final Logger log = new Logger(UserData.class.getName(),Logger.DEBUG);
+private static final Logger log = new Logger(UserData.class.getName(),Logger.NONE);
 
 //todo later make new fonts skin and change this accordingly
     private final String numCompleted = "numCompleted";

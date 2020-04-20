@@ -13,7 +13,7 @@ import snow.zhen.zayta.main.story.StoryScreen;
 
 public class Game extends com.badlogic.gdx.Game {
 
-    private static final Logger log = new Logger(Game.class.getName(),Logger.DEBUG);
+    private static final Logger log = new Logger(Game.class.getName(),Logger.NONE);
     private AssetManager assetManager;//dont make static
     private SpriteBatch batch; private ShapeRenderer shapeRenderer;
 
@@ -35,7 +35,7 @@ public class Game extends com.badlogic.gdx.Game {
 
 
         assetManager = new AssetManager();
-        assetManager.getLogger().setLevel(Logger.DEBUG);
+        assetManager.getLogger().setLevel(Logger.NONE);
 
 
         batch = new SpriteBatch();
